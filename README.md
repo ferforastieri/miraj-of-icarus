@@ -10,19 +10,33 @@ servers evoluem juntos até formar jornadas completas e testáveis.
 ## Componentes
 
 - `api/`: contas, autenticação, sessões e catálogo de releases;
-- `game-server/`: Login, Main/Coordinator e Lobby;
+- `game-server/`: Login, Main/Coordinator, Lobby e o futuro World Server;
 - `game-clients/client-pc/`: launcher, cliente Windows e assets do jogo;
 - `portal/web/`: portal público e futura área de conta;
 - `infra/`: ambiente local reproduzível com containers.
 
 ## Tecnologias
 
-- C++20, CMake, Ninja e Wicked Engine no launcher e cliente;
-- .NET 10 nos serviços e na API;
+- C++20, CMake, Ninja e Wicked Engine no launcher, cliente e futuro World
+  Server;
+- .NET 10 na API e nos serviços de controle: Login, Main/Coordinator e Lobby;
 - PostgreSQL e Redis para dados e sessões;
 - Next.js 16, React 19 e Tailwind CSS no portal;
 - Docker e GitHub Actions para integração contínua;
 - Git LFS para assets binários grandes.
+
+## Arquitetura de execução
+
+O cliente concentra renderização, animação, física local, predição e
+interpolação em C++ para priorizar FPS e resposta imediata aos comandos. O
+futuro `game-server/world-server/` também será um processo C++ independente,
+voltado ao loop de simulação de tick fixo, movimentação, combate, NPCs,
+visibilidade e instâncias de mapas com latência previsível.
+
+API, Login, Main/Coordinator e Lobby permanecem em .NET porque atuam no plano
+de controle e não no ciclo crítico de renderização ou simulação. Os dois lados
+se comunicam por contratos de rede binários, explícitos e versionados. Banco de
+dados e serviços externos não participam diretamente do loop de simulação.
 
 ## Estado atual
 
