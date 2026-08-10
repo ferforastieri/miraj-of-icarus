@@ -1,0 +1,40 @@
+<Material MtlFlags="524544">
+ <SubMaterials>
+  <Material Name="ClassBase02A01_m01" MtlFlags="524416" Shader="Illum" GenMask="4000000080300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.020951131,0.020951131,0.020951131" Specular="0.010013474,0.015289246,0.0033275152" Emissive="0,0,0" Shininess="81" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/t_classbase003_24b.tif"/>
+    <Texture Map="Specular" File="objects/lobby02/t_classbase003_24b.tif"/>
+    <Texture Map="Bumpmap" File="objects/lobby02/t_classbase003_ddn_24b.tif"/>
+    <Texture Map="Detail" File="objects/zcom_tex/destroy_plaster_a_12b_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="5" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="0.30000001" SphereInfo="0,0,0" DetailGlossScale="0.2" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m02" MtlFlags="524416" Shader="Illum" GenMask="4000000080300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.0014331344,0.0016869151,0.0014331344" Specular="0.0050282031,0.063814871,0.34402567" Emissive="0,0,0" Shininess="100" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/t_classbase001_24d.dds"/>
+    <Texture Map="Specular" File="objects/lobby02/t_classbase001_24d.dds"/>
+    <Texture Map="Bumpmap" File="objects/lobby02/t_classbase001_ddn_24b.tif"/>
+    <Texture Map="Detail" File="objects/zcom_tex/destroy_plaster_a_12b_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="5" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0.1" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="0.1" SphereInfo="0,0,0" DetailGlossScale="0.1" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m03" MtlFlags="524416" Shader="Illum" GenMask="4000000080300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.025371276,0.035614368,0.044552624" Specular="0.82772583,0.8591736,0.97430021" Emissive="0,0,0" Shininess="100" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/t_classbase001_24d.dds"/>
+    <Texture Map="Specular" File="objects/lobby02/t_classbase001_24d.dds"/>
+    <Texture Map="Bumpmap" File="objects/lobby02/t_classbase001_ddn_24b.dds"/>
+    <Texture Map="Detail" File="objects/zcom_tex/destroy_plaster_a_12b_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="5" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0.1" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="0.1" SphereInfo="0,0,0" DetailGlossScale="0.1" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m04" MtlFlags="524416" Shader="Illum" GenMask="4000000080200" StringGenMask="%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.011881335,0.011881335,0.011881335" Specular="0.0022629532,0.04614884,0.39408314" Emissive="0,0,0" Shininess="61" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/t_classbase002_24b.tif"/>
+    <Texture Map="Specular" File="objects/lobby02/t_classbase002_24b.tif"/>
+    <Texture Map="Detail" File="objects/zcom_tex/destroy_plaster_a_12b_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="5" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0.1" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="0.1" SphereInfo="0,0,0" DetailGlossScale="0.1" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+ </SubMaterials>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

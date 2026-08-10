@@ -1,0 +1,745 @@
+<Mission Name="Mission0" Description="" Time="13:33" PlayerEquipPack="" MusicScript="" Script="" CGFCount="196">
+ <Environment>
+  <Fog ViewDistance="10000" ViewDistanceLowSpec="10000" LDRGlobalDensMult="1"/>
+  <Terrain DetailLayersViewDistRatio="1"/>
+  <EnvState WindVector="0.7,-0.7,0" BreezeGeneration="false" BreezeStrength="1" BreezeMovementSpeed="8" BreezeVariation="1" BreezeLifeTime="15" BreezeCount="4" BreezeSpawnRadius="25" BreezeSpread="0.f" BreezeRadius="5" ConsoleMergedMeshesPool="2750" ShowTerrainSurface="0" SunShadowsMinSpec="1" SunShadowsAdditionalCascadeMinSpec="0" SunShadowsClipPlaneRange="256" UseLayersActivation="0" SunLinkedToTOD="1"/>
+  <VolFogShadows Enable="0" EnableForClouds="0"/>
+  <CloudShadows CloudShadowTexture="" CloudShadowSpeed="0,0,0" CloudShadowTiling="0" CloudShadowBrightness="0" CloudShadowInvert="0"/>
+  <ParticleLighting AmbientMul="0.5" LightsMul="0.5" SunMul="1"/>
+  <SkyBox Material="Materials/Sky/Sky" MaterialLowSpec="Materials/Sky/Sky" Angle="440.1" Stretching="0.5"/>
+  <Ocean Material="Materials/Ocean/ocean_pier" CausticDepth="8" CausticIntensity="1" CausticsTilling="1"/>
+  <OceanAnimation WindDirection="0" WindSpeed="1" WavesSpeed="0.5" WavesAmount="1" WavesSize="0.5"/>
+  <Moon Latitude="240" Longitude="45" Size="0.5" Texture="Textures/Skys/Night/half_moon.dds"/>
+  <HDRSetup BloomColor="255,255,255" BloomMul="1.1"/>
+  <DynTexSource Width="256" Height="256"/>
+  <Lighting SunRotation="233" SunHeight="80" Algorithm="3" Lighting="1" Shadows="1" ShadowIntensity="100" ILQuality="1" HemiSamplQuality="5" Longitude="61" DawnTime="355" DawnDuration="10" DuskTime="365" DuskDuration="10" SunVector="-0.47918123,-0.36108908,-0.80000001"/>
+ </Environment>
+ <TimeOfDay Time="13.55" TimeStart="0" TimeEnd="24" TimeAnimSpeed="0">
+  <Variable Name="HDR dynamic power factor" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Lights HDR dynamic power factor" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sky brightening (terrain occlusion)" Value="0.30000001">
+   <Spline Keys="0:0.3:0,1:0.3:0,"/>
+  </Variable>
+  <Variable Name="SSAO amount multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="SSAO contrast multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Global illumination multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sun color" Color="0.84313732,0.7843138,0.66666669">
+   <Spline Keys="0:(0.843137:0.784314:0.666667):0,1:(0.843137:0.784314:0.666667):0,"/>
+  </Variable>
+  <Variable Name="Sun color multiplier" Value="2.4000001">
+   <Spline Keys="0:2.4:0,1:2.4:0,"/>
+  </Variable>
+  <Variable Name="Sun specular multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sky color" Color="0.627451,0.7843138,0.94117653">
+   <Spline Keys="0:(0.627451:0.784314:0.941177):0,1:(0.627451:0.784314:0.941177):0,"/>
+  </Variable>
+  <Variable Name="Sky color multiplier" Value="1.1">
+   <Spline Keys="0:1.1:0,1:1.1:0,"/>
+  </Variable>
+  <Variable Name="Ambient ground color" Color="0.627451,0.7843138,0.94117653">
+   <Spline Keys="0:(0.627451:0.784314:0.941177):0,1:(0.627451:0.784314:0.941177):0,"/>
+  </Variable>
+  <Variable Name="Ambient ground color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Ambient min height" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Ambient max height" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Fog color" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog height (bottom)" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog layer density (bottom)" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Fog color (top)" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color (top) multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog height (top)" Value="4000">
+   <Spline Keys="0:4000:0,1:4000:0,"/>
+  </Variable>
+  <Variable Name="Fog layer density (top)" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color height offset" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial)" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial) multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog radial size" Value="0.75">
+   <Spline Keys="0:0.75:0,1:0.75:0,"/>
+  </Variable>
+  <Variable Name="Fog radial lobe" Value="0.5">
+   <Spline Keys="0:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Final density clamp" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Global density" Value="0.02">
+   <Spline Keys="0:0.02:0,1:0.02:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp start" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp end" Value="100">
+   <Spline Keys="0:100:0,1:100:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp influence" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening" Value="0.25">
+   <Spline Keys="0:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening sun" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening ambient" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow range" Value="0.1">
+   <Spline Keys="0:0.1:0,1:0.1:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity" Color="0.83333331,0.83333331,1">
+   <Spline Keys="0:(0.833333:0.833333:1):0,1:(0.833333:0.833333:1):0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity multiplier" Value="30">
+   <Spline Keys="0:30:0,1:30:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Mie scattering" Value="4.8000002">
+   <Spline Keys="0:4.8:0,1:4.8:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Rayleigh scattering" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun anisotropy factor" Value="-0.995">
+   <Spline Keys="0:-0.995:0,1:-0.995:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (R)" Value="750">
+   <Spline Keys="0:750:0,1:750:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (G)" Value="601">
+   <Spline Keys="0:601:0,1:601:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (B)" Value="555">
+   <Spline Keys="0:555:0,1:555:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color" Color="0.8705883,0.58039218,0.18431373">
+   <Spline Keys="0:(0.870588:0.580392:0.184314):0,1:(0.870588:0.580392:0.184314):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color" Color="0.06666667,0.14901961,0.30588236">
+   <Spline Keys="0:(0.0666667:0.14902:0.305882):0,1:(0.0666667:0.14902:0.305882):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color multiplier" Value="0.25">
+   <Spline Keys="0:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith shift" Value="0.25">
+   <Spline Keys="0:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Star intensity" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color" Color="1,1,1">
+   <Spline Keys="0:(1:1:1):0,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color" Color="0.90196085,1,1">
+   <Spline Keys="0:(0.901961:1:1):0,1:(0.901961:1:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona scale" Value="0.49900001">
+   <Spline Keys="0:0.499:0,1:0.499:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color" Color="0.50196081,0.7843138,1">
+   <Spline Keys="0:(0.501961:0.784314:1):0,1:(0.501961:0.784314:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona scale" Value="0.0060000001">
+   <Spline Keys="0:0.006:0,1:0.006:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun light multiplier" Value="1.96">
+   <Spline Keys="0:1.96:0,1:1.96:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky light multiplier" Value="0.80000001">
+   <Spline Keys="0:0.8:0,1:0.8:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color" Color="0.84313732,0.7843138,0.66666669">
+   <Spline Keys="0:(0.843137:0.784314:0.666667):0,1:(0.843137:0.784314:0.666667):0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color influence" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color" Color="0.627451,0.7843138,0.94117653">
+   <Spline Keys="0:(0.627451:0.784314:0.941177):0,1:(0.627451:0.784314:0.941177):0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color influence" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sun shafts visibility" Value="0.25">
+   <Spline Keys="0:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Sun rays visibility" Value="2.5">
+   <Spline Keys="0:2.5:0,1:2.5:0,"/>
+  </Variable>
+  <Variable Name="Sun rays attenuation" Value="5">
+   <Spline Keys="0:5:0,1:5:0,"/>
+  </Variable>
+  <Variable Name="Sun rays suncolor influence" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sun rays custom color" Color="1,1,1">
+   <Spline Keys="0:(1:1:1):0,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Ocean fog color" Color="0.1137255,0.40000004,0.5529412">
+   <Spline Keys="0:(0.113725:0.4:0.552941):0,1:(0.113725:0.4:0.552941):0,"/>
+  </Variable>
+  <Variable Name="Ocean fog color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Ocean fog density" Value="0.2">
+   <Spline Keys="0:0.2:0,1:0.2:0,"/>
+  </Variable>
+  <Variable Name="Skybox multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve shoulder scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve midtones scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve toe scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve whitepoint" Value="4">
+   <Spline Keys="0:4:0,1:4:0,"/>
+  </Variable>
+  <Variable Name="Saturation" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Color balance" Color="1,1,1">
+   <Spline Keys="0:(1:1:1):0,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Scene key" Value="0.18000001">
+   <Spline Keys="0:0.18:0,1:0.18:0,"/>
+  </Variable>
+  <Variable Name="Min exposure" Value="0.36000001">
+   <Spline Keys="0:0.36:0,1:0.36:0,"/>
+  </Variable>
+  <Variable Name="Max exposure" Value="2.8">
+   <Spline Keys="0:2.8:0,1:2.8:0,"/>
+  </Variable>
+  <Variable Name="Filters: grain" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter color" Color="0.95200002,0.51700002,0.090000004">
+   <Spline Keys="0:(0.952:0.517:0.09):0,1:(0.952:0.517:0.09):0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter density" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Dof: focus range" Value="1000">
+   <Spline Keys="0:1000:0,1:1000:0,"/>
+  </Variable>
+  <Variable Name="Dof: blur amount" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Bias" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Slope Bias" Value="4">
+   <Spline Keys="0:4:0,1:4:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Bias" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Slope Bias" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Bias" Value="1.9">
+   <Spline Keys="0:1.9:0,1:1.9:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Slope Bias" Value="0.23999999">
+   <Spline Keys="0:0.24:0,1:0.24:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Bias" Value="3">
+   <Spline Keys="0:3:0,1:3:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Slope Bias" Value="0.23999999">
+   <Spline Keys="0:0.24:0,1:0.24:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Bias" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Bias" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Bias" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Bias" Value="2">
+   <Spline Keys="0:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Shadow jittering" Value="2.5">
+   <Spline Keys="0:2.5:0,1:2.5:0,"/>
+  </Variable>
+ </TimeOfDay>
+ <MiniMap CenterX="512" CenterY="512" ExtendsX="512" ExtendsY="512" TexWidth="1024" TexHeight="1024"/>
+ <Weapons>
+  <Used />
+  <Ammo />
+ </Weapons>
+ <Objects>
+  <Entity Name="Light3" Pos="345.78232,453.36478,154.72531" EntityClass="Light" EntityId="31" EntityGuid="4BFDAFB563B47C01" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.812241,0.84337,0.95737" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_warrior_male" Pos="347.69989,453.25058,152.96274" Rotate="0.99144489,0,0,-0.13052632" EntityClass="TagPoint" EntityId="5" EntityGuid="49F2F91FE571B902" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_fellow_p5" Pos="86.357002,314.96103,502.53043" Rotate="-0.41469324,0,0,0.90996128" EntityClass="TagPoint" EntityId="6" EntityGuid="48A5E8361E806D04" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="NEDActor1" Pos="86.156059,290.12506,500.39923" Rotate="0.49922082,-0.052208245,-0.0036563023,0.86489278" EntityClass="NEDActor" EntityId="65" EntityGuid="47283FFA316A6608" CastShadowMinSpec="1" Layer="00_CH">
+   <Properties ActorTableID="e_f07_flywolf_0001" decorate="" face="" gloves="" hair="hm_hair_003" helmet="" bIsMyActor="0" jacket="" objModel="objects/characters/players/hm/hm.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="tag_class_create_priest_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144483,0,0,-0.13052633" EntityClass="TagPoint" EntityId="21" EntityGuid="43A05ECB14893C0B" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_class_create_guardian_male" Pos="347.58411,453.37189,152.96271" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="8" EntityGuid="4E39ECA26A750A12" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light45" Pos="348.57526,453.35699,154.69739" EntityClass="Light" EntityId="64" EntityGuid="4F60E6DC639AA713" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.891262,0.91575,0.940601" fDiffuseMultiplier="0.2" fHDRDynamic="0.2" fSpecularMultiplier="0"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light138" Pos="77.961678,327.64328,501.87653" Rotate="0.78798068,0.0053725922,-0.0068766042,0.61563808" EntityClass="Light" EntityId="50" EntityGuid="4DF91C6EDA860415" ViewDistRatio="20" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2.52" _nVersion="0">
+    <Color clrDiffuse="0.170138,0.329729,0.715465" fDiffuseMultiplier="4" fHDRDynamic="4" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="1" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="cam_customize" Pos="138.82826,103.14302,494.88779" Rotate="0.98741579,-0.079619065,0.010982276,-0.13619953" EntityClass="CameraSource" EntityId="81" EntityGuid="46534DC56CEA2915" CastShadowMinSpec="1" Layer="02_Cam" FOV="0.69813198"/>
+  <Entity Name="EnvironmentProbe121" Pos="139.80481,107.50636,495.8754" Rotate="-0.21643959,3.1502307e-008,-2.357516e-009,0.97629601" EntityClass="EnvironmentLight" EntityId="76" EntityGuid="40643C3DFC674E16" CastShadowMinSpec="1" Layer="00_Cust">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="13" _nVersion="0">
+    <Color clrDiffuse="0.000492504,0.000492504,0.000492504" fDiffuseMultiplier="1" fHDRDynamic="0.5" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="0" fAttenuationFalloffMax="1" file_deferred_clip_geom="" _texture_deferred_cubemap="" bDeferredClipBounds="1" bDeferredLight="1" bDisableX360Opto="0" flare="" bIgnoresVisAreas="0" SortPriority="0"/>
+    <OptionsAdvanced texture_deferred_cubemap="game/Textures/cubemaps/a_ch_create_place/environmentprobe1_cm.tif"/>
+    <Projection fBoxHeight="10" fBoxLength="10" bBoxProject="0" fBoxWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="GeomEntity1" Pos="139.71423,106.03288,493.3931" Rotate="0.13917311,0,0,0.99026805" EntityClass="GeomEntity" EntityId="75" EntityGuid="465FFC5FBEB7E717" CastShadowMinSpec="1" HiddenInGame="1" Layer="00_Cust" Geometry="objects/characters/players/hM/hM.cdf">
+   <Properties esFaction="">
+    <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+    <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light30" Pos="349.22638,450.98618,152.8783" EntityClass="Light" EntityId="32" EntityGuid="46413BE454772E1B" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="0,0.00168692,0.00455975" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="NEDActor0" Pos="85.830635,286.0094,500.78906" Rotate="0.30901712,0,0,0.95105648" EntityClass="NEDActor" EntityId="54" EntityGuid="4F68F19A00E0501B" CastShadowMinSpec="1" Layer="00_CH">
+   <Properties ActorTableID="wr_m" decorate="" face="" gloves="" hair="hm_hair_003" helmet="" bIsMyActor="0" jacket="" objModel="objects/characters/players/hm/hm.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="ParticleEffect111112221102" Pos="341.61505,450.95721,152.10019" Rotate="0.3339234,0.3880001,0.58855927,0.62573886" EntityClass="ParticleEffect" EntityId="56" EntityGuid="4E7507FBBE110E21" ViewDistRatio="9" CastShadowMinSpec="1" Layer="07_Water_fall">
+   <Properties bActive="1" esAttachForm="Surface" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bEnableSound="1" NetworkSync="0" ParticleEffect="kwak_fx.fx_Funhouse.Funhouse_008" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="0.8" soclasses_SmartObjectClass="" SpeedScale="0.5" Strength="-1" TimeScale="1"/>
+  </Entity>
+  <Entity Name="cam_login_main" Pos="90.143715,288.87906,687.27063" Rotate="0.999807,-0.0018257581,0.00036739168,-0.019557957" EntityClass="CameraSource" EntityId="78" EntityGuid="450B979CEEACDF23" CastShadowMinSpec="1" Layer="02_Cam" FOV="0.69813198"/>
+  <Entity Name="ParticleEffect1111122211112" Pos="138.61913,107.74587,493.36908" Rotate="0.76024604,0,0,-0.64963531" Scale="0.12736802,0.12736802,0.12736802" EntityClass="ParticleEffect" EntityId="73" EntityGuid="409957B5EDA57827" ViewDistRatio="18" CastShadowMinSpec="8" Layer="Z_char_customize">
+   <Properties bActive="1" esAttachForm="Surface" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bEnableSound="1" NetworkSync="0" ParticleEffect="Lobby_Particle.leave.Flow2" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="0.2" Strength="-0.5" TimeScale="1"/>
+  </Entity>
+  <Entity Name="AnimObject0" Pos="27.86599,328.82855,689.80933" Rotate="0.026176877,0,0,0.99965733" Scale="0.88000017,0.89000022,0.94499999" EntityClass="AnimObject" EntityId="60" EntityGuid="43E9285380D88F2E" CastShadowMinSpec="1" Layer="00">
+   <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bHeavyObject="0" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/characters/npc/whale_plane/whale_plane.cdf" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+    <Animation bAlwaysUpdate="1" Animation="00-00_IDLE_00_00_LOOP_00" bLoop="1" bPhysicalizeAfterAnimation="1" playerAnimationState="" bPlaying="1" Speed="1"/>
+    <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+    <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+    <MultiplayerOptions bNetworked="0"/>
+    <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="1" bRigidBody="1">
+     <CollisionFiltering>
+      <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+     </CollisionFiltering>
+    </Physics>
+    <Rendering bWrinkleMap="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light33" Pos="346.7543,450.73434,153.54106" EntityClass="Light" EntityId="33" EntityGuid="490E1DBE714DAC2E" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.8" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light46" Pos="348.57907,453.62808,153.8264" EntityClass="Light" EntityId="51" EntityGuid="4A63F9E73BA4D132" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.6" _nVersion="0">
+    <Color clrDiffuse="0.891262,0.91575,0.940601" fDiffuseMultiplier="1.5" fHDRDynamic="0.6" fSpecularMultiplier="0"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light6" Pos="345.55389,446.95923,155.13612" EntityClass="Light" EntityId="34" EntityGuid="4A9ABA350637A435" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.505432,0.511398,0.288816" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_char_select_06" Pos="85.830627,286.00943,500.90781" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="17" EntityGuid="4F68381968BFAC35" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_char_select_04" Pos="85.830635,286.0094,500.90778" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="9" EntityGuid="4456623E290C2436" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_class_create_thief_male" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="10" EntityGuid="4369892A6BF6D637" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_fellow_p3" Pos="86.40271,300.0195,498.57968" Rotate="0.49931452,-0.052328255,0.00091365998,0.86483872" EntityClass="TagPoint" EntityId="11" EntityGuid="4248341984A4033A" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light41" Pos="346.61566,449.6203,152.8783" EntityClass="Light" EntityId="35" EntityGuid="44705475776EAB3F" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="AreaTrigger1" Pos="-351.38495,180.82797,564.8222" EntityClass="AreaTrigger" EntityId="71" EntityGuid="4B65E0EAD06A6C46" CastShadowMinSpec="1" Layer="BGM_area">
+   <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+    <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_fellow_p1" Pos="86.183907,289.7251,500.71115" Rotate="0.49923679,-0.052264269,-0.0027440358,0.86488354" EntityClass="TagPoint" EntityId="12" EntityGuid="481746DEC7F49846" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_char_select_03" Pos="85.830635,286.0094,500.90778" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="13" EntityGuid="4E49B10BA629E347" CastShadowMinSpec="1" Layer="Tag"/>
+  <Object Type="SequenceObject" Name="Lobby_Cam" Pos="-400.78027,-59.206726,536.30151" Scale="1,1,1"/>
+  <Entity Name="tag_class_create_wizard_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="14" EntityGuid="423D40BE81D8C159" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="AreaTrigger2" Pos="156.828,98.590866,503.9823" EntityClass="AreaTrigger" EntityId="52" EntityGuid="43DEF706A8CBC662" CastShadowMinSpec="1" Layer="BGM_area">
+   <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+    <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
+   </Properties>
+  </Entity>
+  <Object Type="SequenceObject" Name="ZZZZZZZZZZ" Pos="79.598076,282.98828,500.75592" Scale="1,1,1"/>
+  <Entity Name="Light43" Pos="348.22061,453.76163,153.38828" EntityClass="Light" EntityId="53" EntityGuid="47738450D7372467" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.891262,0.91575,0.940601" fDiffuseMultiplier="1.5" fHDRDynamic="0.6" fSpecularMultiplier="0"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="ParticleEffect111112221101" Pos="343.77933,447.95721,152.18338" Rotate="0.3339234,0.3880001,0.58855927,0.62573886" EntityClass="ParticleEffect" EntityId="74" EntityGuid="408BFA103E3A9568" ViewDistRatio="9" CastShadowMinSpec="1" Layer="07_Water_fall">
+   <Properties bActive="1" esAttachForm="Surface" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bEnableSound="1" NetworkSync="0" ParticleEffect="kwak_fx.fx_Funhouse.Funhouse_008" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="0.8" soclasses_SmartObjectClass="" SpeedScale="0.5" Strength="-1" TimeScale="1"/>
+  </Entity>
+  <Entity Name="Light136" Pos="87.064888,332.9964,507.29761" Rotate="0.78798068,0.0053725922,-0.0068766042,0.61563808" EntityClass="Light" EntityId="55" EntityGuid="46F487F2C85BEA68" ViewDistRatio="20" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
+    <Color clrDiffuse="0.170138,0.329729,0.715465" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="1" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light42" Pos="348.2438,452.06595,153.13474" EntityClass="Light" EntityId="36" EntityGuid="49AD414F0BDEA96A" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="3" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light19" Pos="348.89212,445.4375,155.03323" EntityClass="Light" EntityId="37" EntityGuid="49498ADF6D1BD96C" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.0619075,0.154152,0.701169" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_char_select_05" Pos="85.830635,286.0094,500.90778" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="16" EntityGuid="4234727B7CCF916E" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_class_create_thief_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="18" EntityGuid="4E7D77C0B02EB76F" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_class_create_guardian_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="19" EntityGuid="469249796B79BA7A" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="cam_class_select_main" Pos="357.02264,461.42065,154.03398" Rotate="0.99983174,-0.016999157,-0.00011719366,0.0068930523" EntityClass="CameraSource" EntityId="80" EntityGuid="444D1B587373697B" CastShadowMinSpec="1" Layer="02_Cam" FOV="0.69813198"/>
+  <Entity Name="Light111111" Pos="-20.160599,651.95239,821.16858" Rotate="0.78988749,0,0,-0.61325181" EntityClass="Light" EntityId="59" EntityGuid="437474534629EE8B" CastShadowMinSpec="8" Layer="01_Light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="250" _nVersion="0">
+    <Color clrDiffuse="0.796917,0.687031,0.541798" fDiffuseMultiplier="3" fHDRDynamic="3" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_fellow_p2" Pos="86.280922,291.41068,500.67334" Rotate="0.49922082,-0.052208245,-0.0036563044,0.86489278" EntityClass="TagPoint" EntityId="20" EntityGuid="44216459DCF5C18D" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="NEDActor2" Pos="347.67563,453.31308,152.74567" Rotate="0.95105648,0,0,-0.309017" EntityClass="NEDActor" EntityId="66" EntityGuid="4A384628400A778E" CastShadowMinSpec="1" RecvWind="1" Layer="Z_class_select">
+   <Properties ActorTableID="wr_m" decorate="" face="" gloves="ar1_105_4_00006" hair="" helmet="" bIsMyActor="0" jacket="ar1_105_3_00006" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="ar1_105_2_00006" sub=""/>
+  </Entity>
+  <Entity Name="tag_class_create_warrior_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="22" EntityGuid="43807D3BAF3E3D8F" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light134" Pos="84.774536,329.94904,505.04825" Rotate="0.78798068,0.0053725922,-0.0068766042,0.61563808" EntityClass="Light" EntityId="57" EntityGuid="4855D7160FA15A93" ViewDistRatio="20" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
+    <Color clrDiffuse="0.170138,0.329729,0.715465" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="1" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light5" Pos="347.03217,451.4903,154.72531" EntityClass="Light" EntityId="38" EntityGuid="410D1F8C759C3394" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.812241,0.84337,0.95737" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light130" Pos="72.802628,325.92041,499.03625" Rotate="0.78798068,0.0053725922,-0.0068766042,0.61563808" EntityClass="Light" EntityId="58" EntityGuid="4F9A80B8E27E4A94" ViewDistRatio="20" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
+    <Color clrDiffuse="0.170138,0.329729,0.715465" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="1" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light44" Pos="348.11566,454.10446,154.99409" EntityClass="Light" EntityId="62" EntityGuid="4CD9185713651C95" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.891262,0.91575,0.940601" fDiffuseMultiplier="1.5" fHDRDynamic="1.5" fSpecularMultiplier="0"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_archer_male" Pos="347.62582,453.35416,152.96274" Rotate="0.99144489,0,0,-0.13052629" EntityClass="TagPoint" EntityId="23" EntityGuid="49903ED5C0652B95" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light48" Pos="340.24078,456.42032,154.46515" EntityClass="Light" EntityId="39" EntityGuid="454184DCBCE5FA95" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light35" Pos="344.83582,453.4295,153.48994" EntityClass="Light" EntityId="40" EntityGuid="4031700F3DC2149D" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.8" _nVersion="0">
+    <Color clrDiffuse="0.612066,0.612066,0.612066" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light38" Pos="344.83713,456.15283,153.55215" EntityClass="Light" EntityId="61" EntityGuid="46ABFCF737E2ACA9" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.4" _nVersion="0">
+    <Color clrDiffuse="0.612066,0.612066,0.612066" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light40" Pos="349.20996,449.62711,153.42868" EntityClass="Light" EntityId="41" EntityGuid="41639A456297D4AA" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.4" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_char_select_02" Pos="85.830635,286.0094,500.90778" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="24" EntityGuid="43836F1768C6EFB3" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light4" Pos="343.01657,448.85718,154.31819" EntityClass="Light" EntityId="42" EntityGuid="4AF83514001E97B7" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.505432,0.511398,0.288816" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_archer_female" Pos="347.6918,453.25912,152.96274" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="15" EntityGuid="4CC71C22B59C5BBF" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="cam_server" Pos="90.143715,288.87906,687.27063" Rotate="0.99978173,-0.0023063882,0.0070276945,-0.019541118" EntityClass="CameraSource" EntityId="77" EntityGuid="42E5C9C3D92D0AC0" CastShadowMinSpec="1" Layer="02_Cam" FOV="0.69813198"/>
+  <Entity Name="Shape_ch:01" Pos="-76.562531,413.79041,647.54169" Rotate="-0.43051112,0,0,0.90258527" EntityClass="AreaShape" EntityId="3" EntityGuid="4DEB84F876887FC1" CastShadowMinSpec="1" Layer="BGM_area">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="100">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="95.73114,361.6795,0" ObstructSound="0"/>
+     <Point Pos="-105.83728,638.41144,0" ObstructSound="0"/>
+     <Point Pos="-475.20642,386.69519,0.021850586" ObstructSound="0"/>
+     <Point Pos="-456.3064,312.01706,0" ObstructSound="0"/>
+     <Point Pos="-323.88342,39.26358,0" ObstructSound="0"/>
+    </Points>
+    <Entities>
+     <Entity Id="71"/>
+    </Entities>
+   </Area>
+  </Entity>
+  <Entity Name="Light47" Pos="341.29108,452.99753,155.49545" EntityClass="Light" EntityId="43" EntityGuid="4DB74DB7DC606EC6" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.505432,0.511398,0.288816" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light00" Pos="-3266.4429,-3314.6221,1134.4103" EntityClass="Light" EntityId="30" EntityGuid="4BBCAFE73DB9A0C7" ViewDistRatio="255" CastShadowMinSpec="8" Layer="09_Probe">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2000" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.1" fHDRDynamic="0.3" fSpecularMultiplier="0.3"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_char_customize" Pos="139.71425,106.03287,493.3931" Rotate="0.15643449,0,0,0.98768836" EntityClass="TagPoint" EntityId="25" EntityGuid="41BEA25037A74BCD" CastShadowMinSpec="1" Layer="00_Cust"/>
+  <Entity Name="Shape_cus:02" Pos="99.852127,110.21375,496.11176" Rotate="-0.36650121,0,0,0.9304176" EntityClass="AreaShape" EntityId="2" EntityGuid="446BC0BB6F555ACF" CastShadowMinSpec="1" Layer="BGM_area">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="0">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-10.139999,80.831841,0" ObstructSound="0"/>
+     <Point Pos="-36.541382,112.17003,-3.8146973e-006" ObstructSound="0"/>
+     <Point Pos="-46.70063,37.630356,-7.6293945e-006" ObstructSound="0"/>
+     <Point Pos="-68.694336,3.4430027,-7.6293945e-006" ObstructSound="0"/>
+    </Points>
+    <Entities>
+     <Entity Id="52"/>
+    </Entities>
+   </Area>
+  </Entity>
+  <Entity Name="Light39" Pos="342.71121,455.68546,153.79362" EntityClass="Light" EntityId="44" EntityGuid="4AA0B06E06F834D1" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.505432,0.511398,0.288816" fDiffuseMultiplier="1" fHDRDynamic="2" fSpecularMultiplier="0.5"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_fellow_p4" Pos="84.992271,286.87686,501.38123" Rotate="0.34202015,0,0,0.93969262" EntityClass="TagPoint" EntityId="26" EntityGuid="463902E3DFAB0ED6" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light31" Pos="346.41293,455.67914,152.8783" EntityClass="Light" EntityId="45" EntityGuid="422F854435061ED8" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light36" Pos="344.38385,453.51163,153.11278" EntityClass="Light" EntityId="46" EntityGuid="403AF7DFE37B40DA" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="3" _nVersion="0">
+    <Color clrDiffuse="0.0414519,0.47044,0.9743" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="2"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_idoll_female" Pos="347.69949,453.23279,152.96274" Rotate="0.99144489,0,0,-0.13052629" EntityClass="TagPoint" EntityId="27" EntityGuid="40FA7D3C05107CDB" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light137" Pos="70.536179,326.95279,499.92023" Rotate="0.78798068,0.0053725922,-0.0068766042,0.61563808" EntityClass="Light" EntityId="63" EntityGuid="47F67184C974CEDE" ViewDistRatio="20" CastShadowMinSpec="8" Layer="Z_temp">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.2" _nVersion="0">
+    <Color clrDiffuse="0.170138,0.329729,0.715465" fDiffuseMultiplier="4" fHDRDynamic="4" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="1" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light37" Pos="344.77408,454.8103,153.52881" EntityClass="Light" EntityId="47" EntityGuid="478DF3E9C28684DF" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.6" _nVersion="0">
+    <Color clrDiffuse="0.612066,0.612066,0.612066" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_wizard_male" Pos="347.61469,453.116,152.96271" Rotate="0.99144489,0,0,-0.13052627" EntityClass="TagPoint" EntityId="28" EntityGuid="4CD9676D64098EE0" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="cam_char_select_main" Pos="85.073418,283.15997,502.04288" Rotate="0.99917299,0.017440628,-0.00064104272,-0.036725197" EntityClass="CameraSource" EntityId="79" EntityGuid="4F394DA38FA2F3E9" CastShadowMinSpec="1" Layer="02_Cam" FOV="0.69813198"/>
+  <Entity Name="Light34" Pos="346.40729,452.42502,154.04871" EntityClass="Light" EntityId="48" EntityGuid="4F58D4EEA0E165EA" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="0.0461488,0.0869013,0.399293" fDiffuseMultiplier="2" fHDRDynamic="2" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_char_select_01" Pos="85.830635,286.0094,500.90778" Rotate="0.35020751,0,0,0.93667215" EntityClass="TagPoint" EntityId="29" EntityGuid="4F6AD3E15F2BB6F2" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="Light32" Pos="347.91495,450.07043,153.55698" EntityClass="Light" EntityId="49" EntityGuid="493DBB493EA0A3F6" CastShadowMinSpec="8" Layer="Z_class_select_light">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="0.8" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="1" fSpecularMultiplier="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationFalloffMax="1" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" bIgnoresVisAreas="0" bIrradianceVolumes="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1" SortPriority="0"/>
+    <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0.5"/>
+    <Style nAnimationPhase="1" fAnimationSpeed="7.98142e-036" bAttachToSun="0" lightanimation_LightAnimation="12" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="1"/>
+   </Properties>
+  </Entity>
+  <Entity Name="tag_class_create_magician_female" Pos="347.61469,453.116,152.96271" Rotate="0.99144489,0,0,-0.13052629" EntityClass="TagPoint" EntityId="4" EntityGuid="43B0726B29AEF4FC" CastShadowMinSpec="1" Layer="Tag"/>
+  <Entity Name="tag_class_create_priest_male" Pos="347.6918,453.25912,152.96274" Rotate="0.99996191,0,0,0.0087264562" EntityClass="TagPoint" EntityId="7" EntityGuid="41CD051FB0CC0EFF" CastShadowMinSpec="1" Layer="Tag"/>
+ </Objects>
+</Mission>

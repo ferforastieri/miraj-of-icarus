@@ -1,0 +1,1723 @@
+<MusicThemeLibrary Name="NED_BGM" SandboxVersion="3.5.1.974">
+ <Theme Name="NED_BGM" Id="{75A1D370-5E38-4C54-BE9A-44C47FC5A1A1}" Library="NED_BGM" DefaultMood="" DefaultMoodTimeout="0" MoodCrossFadeTime="1.1">
+  <Moods>
+   <Mood Name="acheron_fall" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="acheron_fall" ProbabilityPoints="40" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/acheron_fall.fsb" PreFadeIn="5"/>
+      <Pattern Name="mute03" ProbabilityPoints="60" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="acheron_main" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="acheron_main" ProbabilityPoints="50" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/acheron_main.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute01" ProbabilityPoints="50" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="acheron_underground" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="acheron_underground" ProbabilityPoints="60" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/acheron_underground.fsb" PreFadeIn="5"/>
+      <Pattern Name="mute02" ProbabilityPoints="40" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Alchemic" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Alchemic" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/alchemic.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="AMB_Forest_wind_Day" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="AMB_Forest_wind_Day" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/env_sea.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Arkrat_enemy" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Arkrat_enemy" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.85000002" Filename="music/bgm/arkrat_enemy.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Arkrat_main" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Arkrat_main01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/arkrat_main01.fsb" PreFadeIn="0"/>
+      <Pattern Name="Arkrat_main02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/arkrat_main02.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern5" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Battle_BGM_v02" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Battle_BGM" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/battle_bgm_v02.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_crow_camp" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_crow_camp" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/bgm_crow_camp.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="BGM_edit_ch" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="BGM_edit_ch" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/BGM_edit_ch.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_evil_desert_field" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_evil_desert_field" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/evil_desert.fsb" PreFadeIn="5"/>
+      <Pattern Name="bgm_evil_desert_field02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/evil_desert02.fsb" PreFadeIn="5"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_exarahn_battle_field" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="5" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_exarahn_battle_field" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.56" Filename="music/bgm/bgm_exarahn_battle_field.fsb" PreFadeIn="0"/>
+      <Pattern Name="Exarahn_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_F98_Battle_Arena" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="F98_Battle_Arena01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.419" Filename="music/bgm/bgm_sky_battle.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_factura" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_factura" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/evil_desert.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute_factura" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_hermit" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_hermit" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/time_of_day.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute_hermit" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_parna_theme" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_parna_theme" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.75999999" Filename="music/bgm/bgm_parna_theme.fsb" PreFadeIn="0"/>
+      <Pattern Name="bgm_parna_theme2" ProbabilityPoints="90" CustomIndex="0" LayeringVolume="0.88" Filename="music/bgm/bgm_parna_theme2.fsb" PreFadeIn="0"/>
+      <Pattern Name="parna_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bgm_utran_island" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="bgm_utran_island" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.61000001" Filename="music/bgm/bgm_utran_island.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_ankelion" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_ankelion" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.81999999" Filename="music/bgm/boss_ankelion.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_fire_ruin" PlaySingle="0" Priority="0" FadeOutTime="0.89999998" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_fire_ruin" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/boss_fire_ruin.fsb" PreFadeIn="0"/>
+      <Pattern Name="boss_fire_ruin2" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/boss_fire_ruin.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_heretic" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_heretic" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_heretic.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_Kaleang" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_Kaleang" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_kaleang.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_Kaleang_short" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_Kaleang_short" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_kaleang_short.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_pvp_raid" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_pvp_raid" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_pvp_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_raid" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_raid" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.83999997" Filename="music/bgm/boss_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_yormuncant" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_yormuncant" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_yormuncant.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="boss_yormuncant_real" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="boss_yormuncant_real" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_yormuncant_real.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="brag" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="brag01" ProbabilityPoints="40" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/brag01.fsb" PreFadeIn="1"/>
+      <Pattern Name="Bragi02" ProbabilityPoints="40" CustomIndex="0" LayeringVolume="0.67000002" Filename="music/bgm/bragi02.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Bragi02" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern0" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/bragi02.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="bragi_battle" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_battle_test" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.88999999" Filename="music/bgm/gstar_battle_test.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="campsite" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="campsite" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/campsite.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="carad_pirates" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="carad_pirates" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/carad_pirates.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Central_Airspace_v02" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Central_Airspace_v02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/central_airspace_v02.fsb" PreFadeIn="2"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="chaos_elves" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="5" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="chaos_elves" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/chaos_elves.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="christmas" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="christmas01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/christmas.fsb" PreFadeIn="0"/>
+      <Pattern Name="christmas02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/christmas02.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute_30" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Collapse_Airspace" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="ex_airspaces" ProbabilityPoints="85" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/ex_airspaces.fsb" PreFadeIn="0"/>
+      <Pattern Name="ex_airspaces02" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/ex_airspaces02.fsb" PreFadeIn="0"/>
+      <Pattern Name="airspace_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Collapse_Airspace_field" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="arkrate02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.89999998" Filename="music/bgm/arkrat_main02.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern20" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/elora_raid.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern21" ProbabilityPoints="0.80000001" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Crow_camp" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Crow_camp" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/bgm_crow_camp.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Dark_Wood" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Dark_Wood" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.54000002" Filename="Music/BGM/Dark_Wood.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dead_zone" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dead_zone" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/dead_zone.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_battle_zone" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="5" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_battle_zone" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.96399999" Filename="music/bgm/krokun.fsb" PreFadeIn="5"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_boss01" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_boss01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_giant_boss.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_boss02" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_boss02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_ankelion.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_boss03" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_boss03" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/desert_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_mid_boss" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_mid_boss" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/rondo_named.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_mine" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_mine" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/desert_mine.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_raid" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_raid" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/desert_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="desert_voice" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="desert_voice" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/desert_voice.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute_voice" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Dragon_Attack" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Dragon Attack v01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.74000001" Filename="music/bgm/dragon_attack_v01.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Dragon_Coast_v01" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Dragon_Coast_v01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/dragon_coast_v01.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_Alsas_Nest" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_Alsas_Nest" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/dungeon_alsas_nest.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_Alsas_Nest_boss" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_Alsas_Nest_boss" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/dungeon_alsas_nest_boss.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_daily" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_daily" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/dungeon_daily.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_eldercastle" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_eldercastle" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/dungeon_eldercastle.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_hall_of_god" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_hall_of_god" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.70000005" Filename="music/bgm/dungeon_hall_of_god.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_hall_of_god_lobby" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_hall_of_god_lobby" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.5" Filename="music/bgm/dungeon_hall_of_god_lobby.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_hall_of_god_ready" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_hall_of_god_ready" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/dungeon_hall_of_god_ready.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_lostsanctuary" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_lostsanctuary" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/dungeon_lostsanctuary.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_redrevolution" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_redrevolution" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.88999999" Filename="music/bgm/dungeon_redrevolution.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="dungeon_tower_32f_club" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="dungeon_tower_32f_club" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/dungeon_tower_32f_club.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="DungeonLobby01" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern9" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elves_battle.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern10" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern11" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/acheron_underground.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="DungeonLobby02" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern12" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/soulforest01.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern13" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/knight_camp01.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern14" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="DungeonLobby03" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern6" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/veil_cave.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern7" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+      <Pattern Name="Pattern8" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/moor_red.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elgarden" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elgarden_01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elgarden_01.fsb" PreFadeIn="0"/>
+      <Pattern Name="elgarden_02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elgarden_02.fsb" PreFadeIn="0"/>
+      <Pattern Name="MUTE_BGM_30s" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elgarden01" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elgarden01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elgarden_01.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elgarden02" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elgarden02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elgarden_02.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elora_ambient" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elora_ambient" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elora_ambient.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elora_main" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="5" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elora_main01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.91399997" Filename="music/bgm/elora_main01.fsb" PreFadeIn="0"/>
+      <Pattern Name="elora_main02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elora_main02.fsb" PreFadeIn="0"/>
+      <Pattern Name="elora_mute" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elora_raid" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elora_raid" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/elora_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="elves_battle" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="elves_battle" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.88800001" Filename="music/bgm/elves_battle.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Ending" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Ending" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.89999998" Filename="music/bgm/ending.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_bgm_forest01" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_bgm_forest01" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/env_bgm_forest01.fsb" PreFadeIn="1"/>
+      <Pattern Name="Hacanas_Great_Plain_v03" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.57999998" Filename="music/bgm/hacanas_great_plain_v03.fsb" PreFadeIn="1"/>
+      <Pattern Name="forest_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_bgm_prison" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_bgm_prison0" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/dragon_coast_v01.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_bgm_prison_battle" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_bgm_prison_battle" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/boss_kaleang_short.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_fire_ruin" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_fire_ruin" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/env_fire_ruin.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_hk_castle_fellow" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_hk_castle_fellow" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.62" Filename="music/bgm/env_hk_castle_fellow.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_hk_castle_market" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_hk_castle_market" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.67000002" Filename="music/bgm/env_hk_castle_market.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="env_Kaleang" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="env_Kaleang" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.67000002" Filename="music/bgm/env_kaleang.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="event_ghost_mansion" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="event_ghost_mansion" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.30000001" Filename="music/bgm/event_ghost_mansion.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="event_ghost_mansion_x-mas" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="event_ghost_mansion_x-mas" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/event_ghost_mansion_x-mas.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="event_music" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="event_music" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/event_music.fsb" PreFadeIn="0"/>
+      <Pattern Name="event_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_13s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="event_summer_2015" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="event_summer_2015_01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/event_summer_2015_01.fsb" PreFadeIn="0"/>
+      <Pattern Name="event_summer_2015_02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/event_summer_2015_02.fsb" PreFadeIn="0"/>
+      <Pattern Name="event_summer_2015_mute" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="ex_die" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="5" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="ex_die" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/ex_die.fsb" PreFadeIn="10" FadePoints="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="ex_hk_castle_env01" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="ex_hk_castle_env01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.56" Filename="music/bgm/ex_hk_castle_env01.fsb" PreFadeIn="1"/>
+      <Pattern Name="hk_castle_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="ex_hk_castle_env02" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="ex_hk_castle_env02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.5" Filename="music/bgm/ex_hk_castle_env02.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="ex_hk_castle_into" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="ex_hk_castle_into" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/ex_hk_castle_into.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="fellow_cut_scene" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="fellow_cut_scene" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/fellow_cut_scene.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="fellowfarm" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern16" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.68000001" Filename="music/bgm/fellowfarm.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Giant_boss" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Giant_boss" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.88999999" Filename="music/bgm/boss_giant_boss.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_battle_test" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Battle_BGM_v02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.63999999" Filename="Music/BGM/Battle_BGM_v02.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_ch_custom" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_ch_custom" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/gstar_ch_custom.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_cut_dragon" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="no_gstar_cut_dragon" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/no_gstar_cut_dragon.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_cut_princess" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_cut_princess" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/gstar_cut_princess.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_cut_prison" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_cut_prison1" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/gstar_cut_prison.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_cut_prison_low" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern1" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.56" Filename="music/bgm/gstar_cut_prison.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_cut_ship" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_cut_ship" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="Music/BGM/gstar_cut_ship.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_flight_test" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_flight_test" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/gstar_flight_test.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_lob" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_lob" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/gstar_lob.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="gstar_taiming_test" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="gstar_taiming_test" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/gstar_taiming_test.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="halloween" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="halloween" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.62800002" Filename="music/bgm/halloween.fsb" PreFadeIn="0"/>
+      <Pattern Name="mute30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="HK_Ocean_theme" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="HK_Ocean_theme" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.704" Filename="music/bgm/bgm_hk_ocean_theme.fsb" PreFadeIn="0"/>
+      <Pattern Name="hk_ocean_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="HK_Ocean_theme_vol_down" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="HK_Ocean_theme1" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.55000001" Filename="music/bgm/bgm_hk_ocean_theme.fsb" PreFadeIn="0"/>
+      <Pattern Name="hk_ocean_mute_30sec1" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Juwel" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Juwel" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/juwel.ogg" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="knight_camp" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="knight_camp01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.54000002" Filename="music/bgm/knight_camp01.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="krokun" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="krokun" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.63999999" Filename="music/bgm/krokun.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="light_wood" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="light_wood01" ProbabilityPoints="30" CustomIndex="0" LayeringVolume="0.44999999" Filename="music/bgm/light_wood01.fsb" PreFadeIn="1"/>
+      <Pattern Name="Light Wood v02" ProbabilityPoints="40" CustomIndex="0" LayeringVolume="0.51999998" Filename="music/bgm/light_wood_v02.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Lobby_part2" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern2" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/lobby_part2.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="moor_blue" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="moor_blue" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.54000002" Filename="music/bgm/moor_blue.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="moor_red" PlaySingle="0" Priority="0" FadeOutTime="2" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="moor_red" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.56" Filename="music/bgm/moor_red.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Mute" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="MUTE_BGM_1m20s2" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/MUTE_BGM_1m20s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="oasis" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="oasis" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.86000001" Filename="music/bgm/desert_oasis.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="parna_pirate_boss" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="parna_pirate_boss" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.77999997" Filename="music/bgm/parna_pirate_boss.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="parna_pirate_theme" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="parna_pirate_theme" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/parna_pirate_theme.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="parna_plain" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="parna_plain" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/parna_plain.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="peonix" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern15" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/bracar_forest_v02.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rabini_town" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rabini_town" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/rabini_town.fsb" PreFadeIn="0"/>
+      <Pattern Name="Rabini_town_long" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/rabini_town_long.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rondo_boss_lylical" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rondo_boss_lylical" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/rondo_boss_lylical.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rondo_boss_non-lylical" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.0099999998" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rondo_boss_non-lylical" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.89999998" Filename="music/bgm/rondo_boss_non-lylical.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rondo_castle_theme" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.0099999998" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rondo_castle_theme" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.77999997" Filename="music/bgm/rondo_castle_theme.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rondo_enter" PlaySingle="0" Priority="0" FadeOutTime="0.1" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rondo_enter" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/rondo_enter.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Rondo_named" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Rondo_named" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.77999997" Filename="music/bgm/rondo_named.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Sansurps_Ranch_v02" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Sansurps_Ranch_v02" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.56999999" Filename="music/bgm/sansurps_ranch_v02.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Sansurps_Ranch_v02_no_wolf" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Sansurps Ranch v02_no_wolf" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/sansurps_ranch_v02_no_wolf.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="shiring_start" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern18" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/light_wood01.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="shiring_thame" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Pattern17" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/shiring_thame.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="sky_battle" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="sky_battle" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.75" Filename="music/bgm/bgm_sky_battle.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="soulforest" PlaySingle="0" Priority="0" FadeOutTime="0" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="soulforest01" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.67000002" Filename="music/bgm/soulforest01.fsb" PreFadeIn="0"/>
+      <Pattern Name="Bracar_Forest_v0" ProbabilityPoints="80" CustomIndex="0" LayeringVolume="0.67000002" Filename="MUSIC\BGM\Bracar_Forest_v02.fsb" PreFadeIn="0"/>
+      <Pattern Name="soulforest_mute_30sec" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/mute_bgm_30s.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="temple" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="temple01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/temple01.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="TOD" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="TOD" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.93800002" Filename="music/bgm/time_of_day.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Tornado_Hill_v03" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Tornado_Hill_v03" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.51999998" Filename="music/bgm/tornado_hill_v03.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="tortus" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="tortus" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/tortus.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Tumultuous_Land" PlaySingle="0" Priority="0" FadeOutTime="3" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Tumultuous_Land" ProbabilityPoints="2" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/tumultuous_land.fsb" PreFadeIn="1"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Turimran_akran_forest" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Turimran_akran_forest" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.68000001" Filename="music/bgm/turimran_akran_forest.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Turimran_etildir_fortress" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Turimran_etildir_fortress" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.25" Filename="music/bgm/turimran_etildir_fortress.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Turimran_floating_island" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Turimran_floating_island" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.60000002" Filename="music/bgm/turimran_floating_island.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Turimran_main" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Turimran_main01" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.5" Filename="music/bgm/turimran_main01.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="Turimran_raid" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Turimran_raid" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.69999999" Filename="music/bgm/turimran_raid.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="veil_cave" PlaySingle="0" Priority="0" FadeOutTime="5" FadeInTime="0.1" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="veil_cave" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="0.80000001" Filename="music/bgm/veil_cave.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme Name="Taiming" Id="{58E51CAC-A2D9-44C3-8320-F7A92594DC1F}" Library="NED_BGM" DefaultMood="" DefaultMoodTimeout="0" MoodCrossFadeTime="1">
+  <Moods>
+   <Mood Name="HK" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Taiming_BGM1" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="music/bgm/gstar_taiming_test.fsb" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+   <Mood Name="test" PlaySingle="0" Priority="0" FadeOutTime="1" FadeInTime="0" StartLayerPlayCount="-1">
+    <PatternSet MaxTimeout="120" MinTimeout="60" IncidentalLayerProbability="0" RhythmicLayerProbability="0" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" LoopCustomOrder="0">
+     <MainLayer>
+      <Pattern Name="Taiming_BGM" ProbabilityPoints="1" CustomIndex="0" LayeringVolume="1" Filename="Music/BGM/Taiming_BGM.wav" PreFadeIn="0"/>
+     </MainLayer>
+     <RhythmicLayer />
+     <IncidentalLayer />
+     <StartLayer />
+     <EndLayer />
+     <StingerLayer />
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme Name="" Id="{66ED37D2-B24F-4500-B9AF-D3B0A4823EB5}" Library="NED_BGM" DefaultMood="" DefaultMoodTimeout="0" MoodCrossFadeTime="5"/>
+</MusicThemeLibrary>

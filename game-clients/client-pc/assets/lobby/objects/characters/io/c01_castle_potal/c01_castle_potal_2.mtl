@@ -1,0 +1,36 @@
+<Material MtlFlags="524544">
+ <SubMaterials>
+  <Material Name="C01_Castle_Potal_proxy" MtlFlags="525440" Shader="NoDraw" GenMask="0" StringGenMask="" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.588,0.588,0.588" Specular="0,0,0" Emissive="0,0,0" Shininess="10" Opacity="1" LayerAct="1">
+   <Textures />
+  </Material>
+  <Material Name="C01_Castle_Potal_01" MtlFlags="524418" Shader="Illum" GenMask="4002000080300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING%VERTCOLORS" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.26735809,0.31576276,0.26317474" Specular="0.078056589,0.078056589,0.078056589" Emissive="0,0,0" Shininess="80" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/characters/io/c01_castle_potal/c01_castle_potal_01.tif"/>
+    <Texture Map="Specular" File="objects/characters/io/c01_castle_potal/c01_castle_potal_01.tif"/>
+    <Texture Map="Bumpmap" File="objects/characters/io/c01_castle_potal/c01_castle_potal_01_ddn.tif"/>
+    <Texture Map="Detail" File="objects/zcom_tex/detail_bump_brickscar_01_ddn.dds"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="7" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="0.5" SphereInfo="0,0,0" DetailGlossScale="0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="C01_Castle_Potal_02" MtlFlags="524416" Shader="Illum" GenMask="4002000080300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%GLOSS_MAP%SUBSURFACE_SCATTERING%VERTCOLORS" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.22331043,0.25902736,0.26317474" Specular="0.078056589,0.078056589,0.078056589" Emissive="0,0,0" Shininess="120" Opacity="1" GlowAmount="0.2" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/characters/io/c01_castle_potal/c01_castle_potal_02.tif"/>
+    <Texture Map="Specular" File="objects/characters/io/c01_castle_potal/c01_castle_potal_02.tif"/>
+    <Texture Map="Bumpmap" File="objects/characters/io/c01_castle_potal/c01_castle_potal_02_ddn.tif"/>
+    <Texture Map="Detail" File="objects/zcom_tex/detail_bump_brickscar_01_ddn.dds"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" DetailBumpTillingU="6" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" DetailDiffuseScale="0" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="1" SphereInfo="0,0,0" DetailGlossScale="0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="SubMtl4" MtlFlags="524416" Shader="Illum" GenMask="4000000090300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%ENVIRONMENT_MAP%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.098689198,0.0071550366,0.0055217445" Specular="0.33729827,0.5892058,0.69524693" Emissive="0,0,0" Shininess="150" Opacity="1" GlowAmount="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/effects/ice/ice_crysta01.tif"/>
+    <Texture Map="Specular" File="objects/effects/ice/ice_crysta01_spc.tif"/>
+    <Texture Map="Bumpmap" File="objects/effects/ice/ice_crysta01_ddn.tif"/>
+    <Texture Map="Environment" File="objects/characters/io/f03_mirror_piece/f03_mirror_piece02_cube_red.dds"/>
+    <Texture Map="Detail" File="objects/effects/ice/ice_crysta01_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="0" DetailBumpTillingU="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="11.88" DetailDiffuseScale="0.30000001" FresnelBias="1" DissolveParams2="0,0,0" DetailBumpScale="1" SphereInfo="0,0,0" DetailGlossScale="0.30000001" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+ </SubMaterials>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

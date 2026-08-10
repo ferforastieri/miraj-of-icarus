@@ -1,0 +1,8 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="100000000" StringGenMask="%TESSELLATION" SurfaceType="" MatTemplate="" Diffuse="0.11926401,0.038472746,0.17013837" Specular="0,0,0" Emissive="0,0,0" Opacity="1" GlowAmount="1.7">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/nature_bg.tif">
+   <TexMod TileU="3" OffsetU="10.4"/>
+  </Texture>
+ </Textures>
+ <PublicParams FresnelPower="4" GlossFromDiffuseContrast="1" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" IndirectColor="0.25,0.25,0.25"/>
+</Material>

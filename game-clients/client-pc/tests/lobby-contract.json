@@ -1,0 +1,57 @@
+{
+  "baseline": {
+    "cryGame32Sha256": "c1f12f61ef8a69ee6669f99dac5cd81bfb7459abbcd8831bfdd50c5631628729",
+    "controlData": "Game/GameData/adataxml/lobbycontroldata.xml",
+    "playerInfo": "Game/GameData/adataxml/lobbyplayerinfo.xml"
+  },
+  "commands": [
+    "Lobby.GetAccountCharacterList",
+    "Lobby.SelectCharacter",
+    "Lobby.GetSelectCharacter",
+    "Lobby.CreateCharacter",
+    "Lobby.CheckNameOverlap",
+    "Lobby.SetCreateCharacterName",
+    "Lobby.GetCreateCharacterName",
+    "Lobby.ConnectGame",
+    "Lobby.ChangeComponent",
+    "Lobby.GetSelectedJobAndGender",
+    "Lobby.SelectJobAndGender",
+    "Lobby.GetCreateCharacterInfo",
+    "Lobby.GetEnableGameStart",
+    "Lobby.ChangeCustomizeCharacter"
+  ],
+  "stage": {
+    "level": "A_Ch_select_stage",
+    "states": {
+      "login": "login_main",
+      "loginwait": "login_main",
+      "serverlist": "login_main",
+      "select": "char_select_main",
+      "create": "class_select_main",
+      "customize": "customize_main"
+    }
+  },
+  "cameraPresets": [
+    "login_main",
+    "login_main_direct",
+    "login_main_sound",
+    "char_select_main",
+    "char_select_main_sound",
+    "class_select_main",
+    "class_select_main_sound",
+    "customize_main",
+    "customize_main_sound"
+  ],
+  "genders": [
+    "male",
+    "female"
+  ],
+  "classes": [
+    "warrior",
+    "priest",
+    "wizard",
+    "nature",
+    "thief",
+    "guardian"
+  ]
+}

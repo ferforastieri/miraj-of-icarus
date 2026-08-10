@@ -1,0 +1,137 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceGroup NextSequenceId="5" Name="root">
+   <ChildGroups />
+   <ChildSequences>
+    <Sequence Name="ZZZZZZZZZZ"/>
+    <Sequence Name="Lobby_Cam"/>
+   </ChildSequences>
+  </SequenceGroup>
+  <SequenceData>
+   <Sequence SequenceVersion="2" Name="ZZZZZZZZZZ" Flags="0" StartTime="0" EndTime="10" ID="4">
+    <Nodes>
+     <Node Id="1" Type="1" Name="NEDActor0" Flags="1" ParamIdVersion="6" Pos="468.92834,353.45404,-35.512424" Rotate="0.75470954,0,0,-0.65605909" Scale="1,1,1" EntityGUID="4F68F19A00E0501B" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,468.92834" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,353.45404" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-35.512424" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-82.000008" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="00-00_ABSORB_00_00_FULL_00" length="1.8333334"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="NEDActor6" Flags="3" ParamIdVersion="6" Pos="468.49396,353.98785,-35.512424" Rotate="0.75470954,0,0,-0.65605909" Scale="1,1,1" EntityGUID="456F9A83CFF2B893" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,468.49396" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,353.98785" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-35.512424" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-82.000008" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="00-00_ABSORB_00_00_FULL_00" length="1.3333334"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="Lobby_Cam" Flags="0" StartTime="0" EndTime="8" ID="3">
+    <Nodes>
+     <Node Id="1" Type="3" Name="cam_server" Flags="1" ParamIdVersion="6" Pos="463.98389,355,150.9691" Rotate="0.4480809,-0.001117441,-0.0014898217,0.89399111" Scale="1,1,1" EntityGUID="42E5C9C3D92D0AC0" BoneLinkTransformEnabled="0" FOV="40.000015" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0.34999999" FrequencyA="1,1,1" FrequencyAMult="0.80000001" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0.34999999" FrequencyB="1,1,1" FrequencyBMult="1" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,40.000015" HasCustomColor="0" ValueType="0"/>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="1.5,473.21542" HasCustomColor="0">
+        <Key time="0" value="0,463.98389" flags="82" ds="0.5,0" dd="0.5,0"/>
+        <Key time="1.5" value="1.5,473.21542" flags="82" ds="0.5,0" dd="0.16666667,0"/>
+        <Key time="2" value="2,473.21542" flags="82" ds="0.16666667,0" dd="0.0033333302,0"/>
+        <Key time="2.01" value="2.01,473.21542" flags="82" ds="0.0033333302,0" dd="0.66333336,0"/>
+        <Key time="4" value="4,473.21542" flags="82" ds="0.66333336,0" dd="0.5333333,0"/>
+        <Key time="5.5999999" value="5.5999999,463.98389" flags="82" ds="0.5333333,0" dd="0.13333337,0"/>
+        <Key time="6" value="6,463.98389" flags="82" ds="0.13333337,0" dd="0.66666669,0"/>
+        <Key time="8" value="8,463.98389" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="1.5,356.36993" HasCustomColor="0">
+        <Key time="0" value="0,355" flags="82" ds="0.5,0" dd="0.5,0"/>
+        <Key time="1.5" value="1.5,356.36993" flags="82" ds="0.5,0" dd="0.16666667,0"/>
+        <Key time="2" value="2,355.74954" flags="82" ds="0.16666667,0" dd="0.0033333302,0"/>
+        <Key time="2.01" value="2.01,356.36993" flags="82" ds="0.0033333302,0" dd="0.66333336,0"/>
+        <Key time="4" value="4,355.74954" flags="82" ds="0.66333336,0" dd="0.5333333,0"/>
+        <Key time="5.5999999" value="5.5999999,355" flags="82" ds="0.5333333,0" dd="0.13333337,0"/>
+        <Key time="6" value="6,355" flags="82" ds="0.13333337,0" dd="0.66666669,0"/>
+        <Key time="8" value="8,355" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="1.5,44.04417" HasCustomColor="0">
+        <Key time="0" value="0,150.9691" flags="82" ds="0.5,0" dd="0.5,0"/>
+        <Key time="1.5" value="1.5,44.04417" flags="73" ds="0.6491679,-5.9854016" dd="0.0033398781,-0.030794056"/>
+        <Key time="2" value="2,92.033928" flags="82" ds="0.16666667,0" dd="0.0033333302,0"/>
+        <Key time="2.01" value="2.01,44.04417" flags="73" ds="0.0033268821,0.0054981513" dd="0.074000001,0.12229564"/>
+        <Key time="4" value="4,92.033928" flags="74" ds="0.66333336,0" dd="0.62038612,-0.015197754"/>
+        <Key time="5.5999999" value="5.5999999,150.20058" flags="73" ds="0.6475426,3.0871732" dd="0.10999393,0.5243988"/>
+        <Key time="6" value="6,150.9691" flags="82" ds="0.13333337,0" dd="0.66666669,0"/>
+        <Key time="8" value="8,150.9691" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="1.5,-1.9481" HasCustomColor="0">
+        <Key time="0" value="0,-0.21000001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.5" value="1.5,-1.9481" flags="73" ds="0.5,0" dd="0.0099999905,0"/>
+        <Key time="2.01" value="2.01,-1.9481" flags="73" ds="0.0033333302,0" dd="0.0033333302,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="1.5,-5.3360854e-008" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.5" value="1.5,-5.3360854e-008" flags="73" ds="0.5,0" dd="0.0099999905,0"/>
+        <Key time="2.01" value="2.01,-5.3360854e-008" flags="73" ds="0.0033333302,0" dd="0.0033333302,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="1.5,124.79" HasCustomColor="0">
+        <Key time="0" value="0,126.71999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.5" value="1.5,124.79" flags="73" ds="0.5,0" dd="0.0099999905,0"/>
+        <Key time="2.01" value="2.01,124.79" flags="73" ds="0.0033333302,0" dd="0.0033333302,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="27" Type="4" HasCustomColor="0" ValueType="15">
+       <NewSubTrack Flags="0" defaultValue="0,0.1605287" HasCustomColor="0">
+        <Key time="0" value="0,0.34999999" flags="73" ds="1,0" dd="0.00033402981,0"/>
+        <Key time="2.7729979" value="2.7729979,0" flags="73" ds="0.0032219898,0" dd="0.00017238382,0"/>
+        <Key time="4.5" value="4.5,0.34999999" flags="73" ds="0,-0" dd="0.074997902,-0.0090377247"/>
+        <Key time="6" value="6,0" flags="73" ds="0.006381637,0.0017790273" dd="0,0"/>
+        <Key time="8" value="8,0" flags="73" ds="0.0033334098,0" dd="0.0033334098,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0.1605287" HasCustomColor="0">
+        <Key time="0" value="0,0.34999999" flags="73" ds="1,0" dd="0.00033402981,0"/>
+        <Key time="2.7729979" value="2.7729979,0" flags="73" ds="0.0032219898,0" dd="0.00017238382,0"/>
+        <Key time="4.5" value="4.5,0.34999999" flags="73" ds="0,-0" dd="0.074997902,-0.0090377247"/>
+        <Key time="6" value="6,0" flags="73" ds="0.006381637,0.0017790273" dd="0,0"/>
+        <Key time="8" value="8,0" flags="73" ds="0.0033334098,0" dd="0.0033334098,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0.80000001" HasCustomColor="0">
+        <Key time="0" value="0,0.80000001" flags="73" ds="1,0" dd="0.00033402981,0"/>
+        <Key time="2.7729979" value="2.7729979,0.80000001" flags="73" ds="0.0032219898,0" dd="0.00017238382,0"/>
+        <Key time="4.5" value="4.5,0.80000001" flags="73" ds="0,0" dd="0.074997902,9.7759658e-009"/>
+        <Key time="6" value="6,0.80000001" flags="73" ds="0.006381637,1.8864033e-009" dd="0,0"/>
+        <Key time="8" value="8,0.80000001" flags="73" ds="0.0033334098,0" dd="0.0033334098,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0.99999994" HasCustomColor="0">
+        <Key time="0" value="0,1" flags="73" ds="1,0" dd="0.00033402981,0"/>
+        <Key time="2.7729979" value="2.7729979,1" flags="73" ds="0.0032219898,0" dd="0.00017238382,0"/>
+        <Key time="4.5" value="4.5,1" flags="73" ds="0,0" dd="0.074997902,1.0738045e-008"/>
+        <Key time="6" value="6,1" flags="73" ds="0.006381637,1.3325231e-009" dd="0,0"/>
+        <Key time="8" value="8,1" flags="73" ds="0.0033334098,0" dd="0.0033334098,0"/>
+       </NewSubTrack>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>

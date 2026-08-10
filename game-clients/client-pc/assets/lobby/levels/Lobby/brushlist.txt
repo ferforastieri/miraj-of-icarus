@@ -1,0 +1,2 @@
+%level%/Brush/0.cgf
+%level%/Brush/1.cgf

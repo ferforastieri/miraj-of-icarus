@@ -1,0 +1,1284 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceGroup NextSequenceId="22" Name="root">
+   <ChildGroups />
+   <ChildSequences>
+    <Sequence Name="HM_B1"/>
+    <Sequence Name="HM_BH"/>
+    <Sequence Name="HM_M1"/>
+    <Sequence Name="HM_M2"/>
+    <Sequence Name="HM_S1"/>
+    <Sequence Name="HM_S2"/>
+    <Sequence Name="HW_B1"/>
+    <Sequence Name="HW_BH"/>
+    <Sequence Name="HW_M1"/>
+    <Sequence Name="HW_M2"/>
+    <Sequence Name="HW_S1"/>
+    <Sequence Name="HW_S2"/>
+    <Sequence Name="Poster"/>
+    <Sequence Name="SR_M2"/>
+    <Sequence Name="SR_W1"/>
+   </ChildSequences>
+  </SequenceGroup>
+  <SequenceData>
+   <Sequence SequenceVersion="2" Name="HM_S2" Flags="0" StartTime="0" EndTime="8" ID="11">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HM_S2_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="73" ds="0.20000014,0" dd="0.20000014,0"/>
+       <Key time="4.8571224" value="4.8571224,1" flags="73" ds="0.60000038,0" dd="0.010000229,0"/>
+       <Key time="6.0000005" value="6.0000005,0.1" flags="73" ds="0.0033334098,0" dd="0.0033334098,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HM_S2_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.40314" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="41B2ADDB8D41E894" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40314" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we1_400_6001"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="S2-00_LOBBY_00_00_FULL_CREATE" length="7.9000006"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_WR_2" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_S2_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40314" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="47FF7E9228B49A44" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40314" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_S2-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="7.3333335"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_S2_Camera_Link" Flags="1" ParamIdVersion="6" Pos="140.30638,106.33558,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="414379F43B0668BE" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,140.30638" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.33558" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="47FF7E9228B49A44" targetName="HM_S2_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HM_S2_Camera" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710671,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4EFA022DD9E510FD" BoneLinkTransformEnabled="0" FOV="57.999996" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,57.999989" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,57.999996" flags="73" ds="1,0" dd="0.92222971,0"/>
+       <Key time="4.6333332" value="4.6333332,57.999996" flags="73" ds="1.6215233,0" dd="0.1367407,0"/>
+       <Key time="4.8666668" value="4.8666668,50" flags="73" ds="0.12961715,0" dd="1.6666667,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HM_M1" Flags="0" StartTime="0" EndTime="8" ID="8">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="Hm_M1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="1.6999999" value="1.6999999,1" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="2.1500001" value="2.1500001,0.1" flags="73" ds="0.15000002,0" dd="0.15000002,0"/>
+       <Key time="3" value="3,2.5" flags="73" ds="0.2833333,0" dd="0.1500001,0"/>
+       <Key time="3.1500001" value="3.1500001,0.1" flags="73" ds="0.050000034,0" dd="0.050000034,0"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_M1_Actor" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40475" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="44549094C5AD2479" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40475" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we5_504_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="M1-00_LOBBY_00_00_FULL_CREATE" length="4.3333335"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_M1_1" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_M1_Camera_Link" Flags="3" ParamIdVersion="6" Pos="139.31342,106.62017,493.41818" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="445BD8B6B6C33060" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.31342" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.62017" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.41818" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="401E3D314ABC40BB" targetName="HM_M1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="Hm_M1_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="47E53105F4241461" BoneLinkTransformEnabled="0" FOV="32.469978" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,32.469978" HasCustomColor="0" ValueType="0"/>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="1" Name="HM_M1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40475" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="401E3D314ABC40BB" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40475" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_M1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="4.3333335"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_M2" Flags="33080" StartTime="0" EndTime="6" ID="15">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_M2_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.0099999905" value="0.0099999905,1" flags="9" ds="0.0032183139,-0.00052644487" dd="0.051440001,-0.0084144454"/>
+       <Key time="2.0666668" value="2.0666668,1" flags="9" ds="0.051440001,0" dd="0.0013787984,0"/>
+       <Key time="2.2" value="2.2,0.1" flags="9" ds="0.020572662,0" dd="0.0099999905,0"/>
+       <Key time="2.3001776" value="2.3001776,0.1" flags="9" ds="0.0033333302,0" dd="0.0033333302,0"/>
+       <Key time="2.3333335" value="2.3333335,2" flags="9" ds="0.0083446614,-0.17258368" dd="0.012536596,-0.25928095"/>
+       <Key time="2.5000002" value="2.5000002,0.1" flags="9" ds="0.055555504,0" dd="0.055555504,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_M2_Actor" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.4061" Rotate="0.99996191,0,0,-0.0087265354" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4F23F3258A395BBA" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.4061" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-1" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we6_504_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="M2-00_LOBBY_00_00_FULL_CREATE" length="6.666667"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_M2_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.4061" Rotate="0.99254614,0,0,-0.12186935" Scale="1,1,1" EntityGUID="48A15ED995A1DD27" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.4061" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_M2-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="6.666667"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_M2_Camera_Link" Flags="1" ParamIdVersion="6" Pos="140.21071,106.30716,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="44453BF1FF1DC8B7" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,140.21071" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.30716" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="48A15ED995A1DD27" targetName="HW_M2_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HW_M2_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4F374534279BA55C" BoneLinkTransformEnabled="0" FOV="45" NearZ="0.0020000001" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="64" defaultValue="0,45" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,45" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="2.05" value="2.05,45" flags="73" ds="0.68333334,0" dd="0.25,0"/>
+       <Key time="2.3" value="2.3,45" flags="73" ds="0.083333336,0" dd="0.083333336,0"/>
+       <Key time="2.4749999" value="2.4749999,30" flags="73" ds="0.058333319,0" dd="0.058333319,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_S1" Flags="0" StartTime="0" EndTime="6" ID="16">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_S1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="2.4000001" value="2.4000001,1" flags="73" ds="1,0" dd="0.46666646,0"/>
+       <Key time="2.9000001" value="2.9000001,0.1" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_S1_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.40027" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4DB0CDD227E1E77C" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40027" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we0_504_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="S1-00_LOBBY_00_00_FULL_CREATE" length="6.666667"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_GD_2" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_S1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40027" Rotate="0.99254614,0,0,-0.12186935" Scale="1,1,1" EntityGUID="4FA4F692A90723A2" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40027" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_S1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="6.666667"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_S1_Camera_Link" Flags="3" ParamIdVersion="6" Pos="140.19453,106.5783,493.40616" Rotate="0.62251467,-0.78260815,0,0" Scale="1,1,1" EntityGUID="447AE5DDC7AEDAE7" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,140.19453" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.5783" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-103" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4FA4F692A90723A2" targetName="HW_S1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HW_S1_Camera" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4749D6127BC2741C" BoneLinkTransformEnabled="0" FOV="39" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,39" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,39" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="1" value="1,39" flags="9" ds="1,0" dd="0.0099999905,0"/>
+       <Key time="2.2349999" value="2.2349999,30" flags="9" ds="0.0033333334,0" dd="0.0033333334,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_BH" Flags="0" StartTime="0" EndTime="5" ID="13">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_BH_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.0099999905" value="0.0099999905,1" flags="9" ds="0.0033333302,0" dd="0.00085214007,0"/>
+       <Key time="0.86666679" value="0.86666679,0.99999994" flags="9" ds="0.32340911,2.5395779e-009" dd="0.062863521,4.936373e-010"/>
+       <Key time="0.98333347" value="0.98333347,0.1" flags="9" ds="0.070212096,3.3158611e-009" dd="0.17962725,8.4831395e-009"/>
+       <Key time="1.2" value="1.2,1" flags="9" ds="0.083900832,2.0589652e-009" dd="0.21970308,5.3916152e-009"/>
+       <Key time="1.7333335" value="1.7333335,2" flags="9" ds="0.066666685,0" dd="0.066666685,0"/>
+       <Key time="1.8333334" value="1.8333334,0.1" flags="9" ds="0.033333302,0" dd="0.033333302,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_BH_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.40662" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="44EF8C4CB8780745" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40662" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we4_002_0_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="BH-00_LOBBY_00_00_FULL_CREATE" length="3.9666669"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_TF_1" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_BH_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40662" Rotate="0.99254614,0,0,-0.12186935" Scale="1,1,1" EntityGUID="46171E3BDA595B29" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40662" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_BH-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="2.6666667"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_BH_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.62102,106.28288,493.27444" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="4B4CE920ED9D28D9" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.62102" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.28288" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.27444" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="46171E3BDA595B29" targetName="HW_BH_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HW_BH_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4DFEBD578D0EF469" BoneLinkTransformEnabled="0" FOV="14" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,13.999999" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,14" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HM_S1" Flags="0" StartTime="0" EndTime="5" ID="10">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HM_S1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.0099999905" value="0.0099999905,1" flags="73" ds="0.0033333302,0" dd="0.0033333302,0"/>
+       <Key time="2.2249999" value="2.2249999,1" flags="73" ds="0.1099999,0" dd="0.0099999905,0"/>
+       <Key time="2.4333334" value="2.4333334,0.1" flags="73" ds="0.15833339,0" dd="0.15833339,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HM_S1_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.39188" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="424F8C3A157B39F8" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.39188" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we0_504_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="S1-00_LOBBY_00_00_FULL_CREATE" length="6.666667"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_GD_2" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_S1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.39188" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4BB513EA86620309" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.39188" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_S1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="4"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_S1_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.7054,106.77418,493.40616" Rotate="0.99144489,-0.13052619,0,0" Scale="1,1,1" EntityGUID="4FEDEA393285D0E0" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.7054" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.77418" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-15.000001" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4BB513EA86620309" targetName="HM_S1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HM_S1_Camera" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710671,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4C6C9D743DAE0225" BoneLinkTransformEnabled="0" FOV="39" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,39" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,39" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="1" value="1,39" flags="73" ds="1,0" dd="0.0099999905,0"/>
+       <Key time="2.2349999" value="2.2349999,30" flags="73" ds="0.0033333334,0" dd="0.0033333334,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_B1" Flags="0" StartTime="0" EndTime="5" ID="12">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_B1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="9" ds="1,0" dd="0.0070685991,0"/>
+       <Key time="0.89999998" value="0.89999998,1" flags="9" ds="0.32968357,0" dd="0.13672179,0"/>
+       <Key time="1.1333334" value="1.1333334,0.17339098" flags="9" ds="0.069487095,-0.1744796" dd="0.20988463,-0.055069719"/>
+       <Key time="1.3432181" value="1.3432181,2.5" flags="9" ds="0.079486482,0.012580685" dd="0.2184943,0.034582138"/>
+       <Key time="1.6333334" value="1.6333334,0.1" flags="9" ds="0.003052192,0" dd="0.0033333302,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_B1_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.39914" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="423E11196452CFD0" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.39914" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we7_ca2_5007"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="B1-00_LOBBY_00_00_FULL_CREATE" length="6.3333335"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_AC_2(F)" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_B1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.39914" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4F27FF2AA5606FD1" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.39914" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_B1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="6.3333335"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_B1_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.71164,106.84683,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="4A7272081C745F24" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.71164" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.84683" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4F27FF2AA5606FD1" targetName="HW_B1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HW_B1_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="419494C35603BADB" BoneLinkTransformEnabled="0" FOV="45" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,45" HasCustomColor="0" ValueType="0"/>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="SR_M2" Flags="0" StartTime="0" EndTime="10" ID="18">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="SR_M2_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="64" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="SR_M2_Actor" Flags="1" ParamIdVersion="6" Pos="139.14746,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="46C84C25C92126C0" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we6_011_0_2102"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="M2-00_LOBBY_00_00_FULL_CREATE" length="11.333334"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="SR_M2_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4FCA85152EDCDEA0" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="SR_M2-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="11.333334"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="1" Name="SR_M2_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="44449C0AF454425C" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4FCA85152EDCDEA0" targetName="SR_M2_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="SR_M2_Camera" Flags="1" ParamIdVersion="6" Pos="0,3.0517578e-005,0.00012207031" Rotate="0.70710677,-0.70710683,-1.0536713e-008,1.0536712e-008" Scale="1,1,1" EntityGUID="4D4E136770974464" BoneLinkTransformEnabled="0" FOV="44.999973" NearZ="0.0020000001" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,44.999973" HasCustomColor="0" ValueType="0"/>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,3.0517578e-005" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0.00012207031" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1.7075473e-006" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_M1" Flags="0" StartTime="0" EndTime="8" ID="14">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_M1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="9" ds="1,0" dd="0.010000229,0"/>
+       <Key time="0.010000229" value="0.010000229,1" flags="73" ds="0.0034828482,0.0039620963" dd="0.059457928,0.06763947"/>
+       <Key time="1.6999999" value="1.6999999,1" flags="9" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="2.1500001" value="2.1500001,0.1" flags="9" ds="0.15000002,0" dd="0.15000002,0"/>
+       <Key time="3" value="3,2.5" flags="9" ds="0.2833333,0" dd="0.1500001,0"/>
+       <Key time="3.1500001" value="3.1500001,0.1" flags="9" ds="0.050000034,0" dd="0.050000034,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_M1_Actor" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40442" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4936512BDF50DA30" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40442" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we5_504_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="M1-00_LOBBY_00_00_FULL_CREATE" length="4.3333335"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_M1_1" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_M1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40442" Rotate="0.99254614,0,0,-0.12186935" Scale="1,1,1" EntityGUID="4858822C42F047EE" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40442" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_M1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="4.3333335"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_M1_Link" Flags="1" ParamIdVersion="6" Pos="140.36812,106.44637,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="48E2F3FACA1448C4" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,140.36812" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.44637" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4858822C42F047EE" targetName="HW_M1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HW_M1_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710677,-0.70710683,0,0" Scale="1,1,1" EntityGUID="41B895D4F7170837" BoneLinkTransformEnabled="0" FOV="35" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,34.999996" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,35" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HM_B1" Flags="33080" StartTime="0" EndTime="2.75" ID="8">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HM_B1_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="73" ds="1,0" dd="0.0070685991,0"/>
+       <Key time="0.89999998" value="0.89999998,1" flags="73" ds="0.32968357,0" dd="0.13672179,0"/>
+       <Key time="1.1333334" value="1.1333334,0.17339098" flags="73" ds="0.069487095,-0.1744796" dd="0.20988463,-0.055069719"/>
+       <Key time="1.3432181" value="1.3432181,1.5" flags="73" ds="0.079486482,0.012580685" dd="0.2184943,0.034582138"/>
+       <Key time="1.6333334" value="1.6333334,0.1" flags="73" ds="0.003052192,0" dd="0.0033333302,0"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_B1_Actor" Flags="1" ParamIdVersion="6" Pos="139.62102,106.28288,493.27444" Rotate="0.93969262,0,-0.34202012,0" Scale="1,1,1" EntityGUID="4E184FA31B35A6BC" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="5.5293207,139.62102" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="5.5293207,106.28288" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="5.5293207,493.27444" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-40" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we7_ca2_5007"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="B1-00_LOBBY_00_00_FULL_CREATE" length="7.3333335"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_AC_2(F)" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_B1_Camera_Link" Flags="1" ParamIdVersion="6" Pos="136.48311,111.25255,496.4408" Rotate="0.73315394,-0.25097936,-0.2047081,0.59798771" Scale="1,1,1" EntityGUID="4F6CB4D642199AFB" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,136.48311" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,111.25255" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,496.4408" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-37.795055" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,3.4150946e-006" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,78.403938" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="436B8233E68903C2" targetName="HM_B1_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HM_B1_Camera" Flags="3" ParamIdVersion="6" Pos="0,-3.0517578e-005,-3.0517578e-005" Rotate="0.70710683,-0.70710671,6.1182085e-008,-4.102921e-008" Scale="1,1,1" EntityGUID="4B86B5341AB4A4A8" BoneLinkTransformEnabled="0" FOV="54.999996" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,54.999996" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,54.999996" flags="73" ds="0.53837025,-0.97151959" dd="0.53837013,-0.97151947"/>
+       <Key time="3.0067463" value="3.0067463,43.873314" flags="73" ds="1.4972785,1.2652359" dd="1.1212888,0.94751543"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-3.0517578e-005" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-3.0517578e-005" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1.6329575e-006" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-8.2820243e-006" HasCustomColor="0"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="1" Name="HM_B1_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.62102,106.28288,493.27444" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="436B8233E68903C2" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.62102" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.28288" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.27444" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="5" Type="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="3">
+       <Key time="10"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="2.75" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_B1-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="3.0000002"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="Poster" Flags="0" StartTime="0" EndTime="10" ID="21">
+    <Nodes>
+     <Node Id="5" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="Camera1" BlendTime="0"/>
+      </Track>
+     </Node>
+     <Node Id="1" Type="1" Name="Horse" Flags="3" ParamIdVersion="6" Pos="138.91377,106.44918,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4C015D36FE503278" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,138.91377" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.44918" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="AF_00_CUTS_01_poster" length="1.6666667" loop="1" inplace="1"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="23"/>
+     </Node>
+     <Node Id="2" Type="1" Name="Man_Poster" Flags="3" ParamIdVersion="6" Pos="0.13957214,-0.021179199,0.089172363" Rotate="0.54076111,0.43907681,0.5739634,0.43052867" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="443D558B137E6B69" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0.13957214" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0.021179199" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0.089172363" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,92.625893" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.044998" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,91.747177" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we8_ca2_5005"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="AF-00_CUTS_00_01_poster" length="1.6666667" loop="1" inplace="1"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="kwak_changeFX.ac_change1_b1_r_00" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="Actor_Linker" Flags="1" ParamIdVersion="6" Pos="139.50087,106.14706,493.33038" Rotate="0.87461972,0,0,0.48480961" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="41A9E3D574A47AE1" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="1.4150468,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="1.4150468,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="1.4150468,58" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4C015D36FE503278" targetName="Horse" linkBone="Bone_Ride01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="3" Name="Camera0" Flags="1" ParamIdVersion="6" Pos="141.81876,106.08211,494.41019" Rotate="0.67048776,-0.023572847,0.0063514886,0.7415188" Scale="1,1,1" EntityGUID="4F06AA332BC1F0ED" BoneLinkTransformEnabled="0" FOV="45" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,45" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,45" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,143.25009" HasCustomColor="0">
+        <Key time="0" value="0,141.81876" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,106.23163" HasCustomColor="0">
+        <Key time="0" value="0,106.08211" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,494.61234" HasCustomColor="0">
+        <Key time="0" value="0,494.41019" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,9.6235065" HasCustomColor="0">
+        <Key time="0" value="0,-1.2727654" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,2.4574161" HasCustomColor="0">
+        <Key time="0" value="0,2.4918118" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,95.171112" HasCustomColor="0">
+        <Key time="0" value="0,95.731995" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+     </Node>
+     <Node Id="6" Type="3" Name="Camera1" Flags="1" ParamIdVersion="6" Pos="141.50766,106.55546,493.83423" Rotate="0.5952298,0.048424687,0.065039188,0.79945379" Scale="1,1,1" EntityGUID="40F2021DAD2FCC46" BoneLinkTransformEnabled="0" FOV="44.999977" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,44.999977" HasCustomColor="0" ValueType="0"/>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,141.3815" HasCustomColor="0">
+        <Key time="0" value="0,141.50766" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,107.22402" HasCustomColor="0">
+        <Key time="0" value="0,106.55546" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,493.72614" HasCustomColor="0">
+        <Key time="0" value="0,493.83423" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,11.36467" HasCustomColor="0">
+        <Key time="0" value="0,9.3020601" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,-3.8419817e-006" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,115.0263" HasCustomColor="0">
+        <Key time="0" value="0,106.66127" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HM_BH" Flags="0" StartTime="0" EndTime="5" ID="7">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HM_BH_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.0099999905" value="0.0099999905,1" flags="9" ds="0.0033333302,0" dd="0.00085214007,0"/>
+       <Key time="0.86666679" value="0.86666679,0.99999994" flags="9" ds="0.32340911,2.5395779e-009" dd="0.062863521,4.936373e-010"/>
+       <Key time="0.98333347" value="0.98333347,0.1" flags="9" ds="0.070212096,3.3158611e-009" dd="0.17962725,8.4831395e-009"/>
+       <Key time="1.2" value="1.2,1" flags="9" ds="0.083900832,2.0589652e-009" dd="0.21970308,5.3916152e-009"/>
+       <Key time="1.7333335" value="1.7333335,2" flags="9" ds="0.066666685,0" dd="0.066666685,0"/>
+       <Key time="1.8333334" value="1.8333334,0.1" flags="9" ds="0.033333302,0" dd="0.033333302,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HM_BH_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="48E67E9DFF8651D3" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we4_002_0_2103"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="BH-00_LOBBY_00_00_FULL_CREATE" length="2.6666667"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_TF_1" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_BH_Camera_Bone" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4DB741F32A65EE38" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_BH-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="2.3333335"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_BH_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.59824,106.67063,493.40616" Rotate="0.96126169,0,0,-0.27563736" Scale="1,1,1" EntityGUID="4178873A1EE4FCB4" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.59824" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.67063" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-32" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4DB741F32A65EE38" targetName="HM_BH_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HM_BH_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710671,-0.70710683,0,0" Scale="1,1,1" EntityGUID="488D324C776046DF" BoneLinkTransformEnabled="0" FOV="14" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,13.999999" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,14" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="SR_W1" Flags="0" StartTime="0" EndTime="10" ID="19">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="5"/>
+     </Node>
+     <Node Id="2" Type="1" Name="SR_W1_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4D31816E0D6C9C34" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.33038" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HW_S2" Flags="0" StartTime="0" EndTime="10" ID="17">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HW_S2_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,1" flags="9" ds="0.20000014,0" dd="0.20000014,0"/>
+       <Key time="4.8571224" value="4.8571224,1" flags="9" ds="0.60000038,0" dd="0.010000229,0"/>
+       <Key time="6.0000005" value="6.0000005,0.1" flags="9" ds="0.0033334098,0" dd="0.0033334098,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HW_S2_Actor" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40222" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4D8B95A73F8ED38C" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40222" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="64" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="we1_400_6001"/>
+      </Track>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="S2-00_LOBBY_00_00_FULL_CREATE" length="8.333334"/>
+      </Track>
+      <Track ParamId="100003" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="23">
+       <Key time="0" key="lobby_test_001.lobby_WR_2" targetGUID="0" target="" timescale="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="1" Name="HW_S2_Camera_Bone" Flags="3" ParamIdVersion="6" Pos="139.62102,106.28288,493.27444" Rotate="0.99254614,0,0,-0.12186935" Scale="1,1,1" EntityGUID="4D3DCAED2A097AAE" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.62102" HasCustomColor="0">
+        <Key time="0" value="0,139.62102" flags="73" ds="1,0" dd="0.0033318605,0"/>
+        <Key time="3.2333336" value="3.2333336,139.62102" flags="73" ds="0.51971412,0" dd="0.0099999905,0"/>
+        <Key time="4.0100002" value="4.0100002,139.62102" flags="73" ds="0.0033348135,6.8933965e-009" dd="0.38999987,8.0616911e-007"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,106.28288" HasCustomColor="0">
+        <Key time="0" value="0,106.28288" flags="73" ds="1,0" dd="0.0033318605,0"/>
+        <Key time="3.2333336" value="3.2333336,106.28288" flags="73" ds="0.51971412,0" dd="0.0099999905,0"/>
+        <Key time="4.0100002" value="4.0100002,106.28288" flags="73" ds="0.0033348135,8.4555172e-009" dd="0.38999987,9.8885607e-007"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,493.27444" HasCustomColor="0">
+        <Key time="0" value="0,493.27444" flags="73" ds="1,0" dd="0.0033318605,0"/>
+        <Key time="3.2333336" value="3.2333336,493.27444" flags="73" ds="0.51971412,0" dd="0.0099999905,0"/>
+        <Key time="4.0100002" value="4.0100002,493.27444" flags="73" ds="0.0033348135,-1.2559438e-007" dd="0.38999987,-1.4688016e-005"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2" value="3.2,0" flags="73" ds="1.0666667,0" dd="1.0666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2" value="3.2,0" flags="73" ds="1.0666667,0" dd="1.0666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,-14" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2" value="3.2,-14" flags="73" ds="1.0666667,0" dd="1.0666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HW_S2-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="6.666667"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HW_S2_Camera_Link" Flags="1" ParamIdVersion="6" Pos="140.32869,106.26433,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="423A23F3DEEB59F1" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,140.32869" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.26433" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="4D3DCAED2A097AAE" targetName="HW_S2_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="3" Name="HW_S2_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710671,-0.70710683,0,0" Scale="1,1,1" EntityGUID="4B1B12F3C3998B8F" BoneLinkTransformEnabled="0" FOV="58" NearZ="0.0020000001" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,57.999996" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,58" flags="9" ds="1,0" dd="0.92222971,0"/>
+       <Key time="4.6333332" value="4.6333332,57.999996" flags="9" ds="1.6215233,0" dd="0.1367407,0"/>
+       <Key time="4.8666668" value="4.8666668,50" flags="9" ds="0.12961715,0" dd="1.6666667,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="4,0.51358032" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="4,0.24137878" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="4,0.085113525" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="7.4562912,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="7.4562912,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="7.4562912,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="2" Name="HM_M2" Flags="0" StartTime="0" EndTime="5" ID="9">
+    <Nodes>
+     <Node Id="1" Type="2" Name="Director" Flags="7" ParamIdVersion="6">
+      <Track ParamId="6" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="5">
+       <Key time="0" node="HM_M2_Camera" BlendTime="0"/>
+      </Track>
+      <Track ParamId="36" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.0099999905" value="0.0099999905,1" flags="73" ds="0.0032183139,-0.00052644487" dd="0.051440001,-0.0084144454"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="1" Name="HM_M2_Actor" Flags="3" ParamIdVersion="6" Pos="139.68434,106.10131,493.40131" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="4BCE4B51A7976C0D" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40131" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="GrabSub" eventValue="ca_ra_00_0172"/>
+      </Track>
+      <Track ParamId="5" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="3"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="M2-00_LOBBY_00_00_FULL_CREATE" length="5.666667"/>
+      </Track>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24"/>
+     </Node>
+     <Node Id="3" Type="1" Name="HM_M2_Camera_Bone" Flags="1" ParamIdVersion="6" Pos="139.68434,106.10131,493.40131" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityGUID="40BEB5104E5C2DC6" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.68434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.10131" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40131" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-14" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="7" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1">
+       <Key time="0" anim="HM_M2-00_LOBBYIDLE_00_00_FULL_CUSTOM" length="5.666667"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="1" Name="HM_M2_Camera_Link" Flags="1" ParamIdVersion="6" Pos="139.61584,106.68783,493.40616" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="40F46D74C3922F37" BoneLinkTransformEnabled="0">
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,139.61584" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,106.68783" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,493.40616" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="4" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+      <Track ParamId="100005" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="24">
+       <Key time="0" targetGUID="40BEB5104E5C2DC6" targetName="HM_M2_Camera_Bone" linkBone="Ani_01" link="1" removeAllLink="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="3" Name="HM_M2_Camera" Flags="1" ParamIdVersion="6" Pos="0,0,0" Rotate="0.70710671,-0.70710683,0,0" Scale="1,1,1" EntityGUID="450EC8963DE39FBA" BoneLinkTransformEnabled="0" FOV="35" NearZ="0.25" AmplitudeA="1,1,1" AmplitudeAMult="0" FrequencyA="1,1,1" FrequencyAMult="0" NoiseAAmpMult="0" NoiseAFreqMult="0" TimeOffsetA="0" AmplitudeB="1,1,1" AmplitudeBMult="0" FrequencyB="1,1,1" FrequencyBMult="0" NoiseBAmpMult="0" NoiseBFreqMult="0" TimeOffsetB="0" DepthOfField="0,0,0">
+      <Track ParamId="0" Type="4" Flags="0" defaultValue="0,34.999996" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,35" flags="9" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="10,-90.000008" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="10,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="10,0" HasCustomColor="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>

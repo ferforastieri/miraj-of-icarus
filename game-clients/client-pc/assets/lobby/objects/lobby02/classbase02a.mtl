@@ -1,0 +1,11 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="4002000000300" StringGenMask="%BUMP_MAP%DETAIL_MAPPING%SUBSURFACE_SCATTERING%VERTCOLORS" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.25902736,0.30663478,0.30663478" Specular="0.0071550366,0.0071550366,0.0071550366" Emissive="0,0,0" Shininess="28" Opacity="1" GlowAmount="100" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby02/classbase02a..tif"/>
+  <Texture Map="Bumpmap" File="objects/lobby02/classbase02a._ddn.tif"/>
+  <Texture Map="Detail" File="objects/zcom_tex/detail_bump_brickscar_01_ddn.dds"/>
+  <Texture Map="Decal" File="objects/decal/decal_brightdep_green_15b.tif">
+   <TexMod TileU="4" TileV="4" TexMod_UOscillatorType="1" TexMod_VOscillatorType="2" TexMod_UOscillatorRate="0.1" TexMod_VOscillatorRate="0.1" TexMod_UOscillatorPhase="0.1" TexMod_VOscillatorPhase="0.1" TexMod_UOscillatorAmplitude="0.1" TexMod_VOscillatorAmplitude="0.2"/>
+  </Texture>
+ </Textures>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" DetailBumpTillingU="8" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" DetailDiffuseScale="0.5" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" DetailBumpScale="2.3" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" DetailGlossScale="0.5" IndirectColor="0,0,0"/>
+</Material>

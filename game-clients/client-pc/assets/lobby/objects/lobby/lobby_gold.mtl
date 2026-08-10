@@ -1,0 +1,8 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="1000C0000" StringGenMask="%GLOSS_DIFFUSEALPHA%GLOSS_MAP%TESSELLATION" SurfaceType="mat_metal" MatTemplate="" Diffuse="0.067724593,0.067724593,0.067724593" Specular="0.19756776,0.19756776,0.19756776" Emissive="0,0,0" Shininess="243" Opacity="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/exa/exa_elora_bridgea_02.tif"/>
+  <Texture Map="Specular" File="objects/exa/exa_elora_bridgea_02_spe.tif"/>
+  <Texture Map="Bumpmap" File="objects/exa/exa_elora_bridgea_02_ddn.tif"/>
+ </Textures>
+ <PublicParams SpecMapChannelB="0" SpecMapChannelR="0" FresnelPower="0.292" GlossMapChannelB="0.86299998" SpecMapChannelG="0" FresnelScale="27.200001" FresnelBias="0.73799998" IndirectColor="0.25,0.25,0.25"/>
+</Material>

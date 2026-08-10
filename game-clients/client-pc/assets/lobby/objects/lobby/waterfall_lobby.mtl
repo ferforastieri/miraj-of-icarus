@@ -1,0 +1,16 @@
+<Material MtlFlags="524544">
+ <SubMaterials>
+  <Material Name="water" MtlFlags="524416" Shader="Illum" GenMask="4002000000100" StringGenMask="%BUMP_MAP%SUBSURFACE_SCATTERING%VERTCOLORS" SurfaceType="mat_water" MatTemplate="" Diffuse="0.086901255,0.10615607,0.11392093" Specular="0.0085974019,0.010568326,0.014352291" Emissive="0,0,0" Shininess="233" Opacity="0.85000002" CloakAmount="0" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="textures/terrain/road/river_forest_foam_b.dds">
+     <TexMod TileV="5" TexMod_UOscillatorType="2" TexMod_UOscillatorRate="0.235" TexMod_UOscillatorAmplitude="1"/>
+    </Texture>
+    <Texture Map="Bumpmap" File="textures/terrain/road/river_forest_foam_ddn.dds">
+     <TexMod TileU="2" TileV="2"/>
+    </Texture>
+   </Textures>
+   <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+ </SubMaterials>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

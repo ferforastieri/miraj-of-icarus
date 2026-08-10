@@ -1,0 +1,105 @@
+{
+  "source": {
+    "client": "legacy/game/client-pc/Bin32/CryGame.dll",
+    "clientSha256": "c1f12f61ef8a69ee6669f99dac5cd81bfb7459abbcd8831bfdd50c5631628729",
+    "server": "legacy/game/server/LoginServer.exe",
+    "serverSha256": "7231ad180df636e820865524f58d8ea147f2b340ccdf1e307499ee0b93485ae6"
+  },
+  "headerSize": 6,
+  "messages": [
+    {
+      "name": "result_login",
+      "type0": 11,
+      "type1": 2,
+      "cryptoType": 2,
+      "semanticSize": 155,
+      "wirePayloadSize": 160,
+      "confirmedClientReads": [
+        { "offset": 0, "type": "uint32_le", "name": "result" },
+        { "offset": 4, "type": "uint32_le", "name": "opaqueState1" },
+        { "offset": 8, "type": "uint8", "name": "opaqueState2" },
+        { "offset": 9, "type": "uint32_le", "name": "opaqueState3" },
+        { "offset": 13, "type": "uint32_le", "name": "opaqueState4" },
+        { "offset": 17, "type": "uint32_le", "name": "opaqueState5" },
+        { "offset": 21, "type": "uint32_le", "name": "opaqueState6" }
+      ],
+      "opaqueOrReserved": { "offset": 25, "length": 130 }
+    },
+    {
+      "name": "result_cert",
+      "type0": 11,
+      "type1": 4,
+      "cryptoType": 2,
+      "semanticSize": 256,
+      "wirePayloadSize": 256,
+      "fieldsFromMainPath": [
+        { "offset": 0, "length": 4, "type": "uint32_le", "name": "result" },
+        { "offset": 4, "length": 101, "type": "char_fixed", "name": "certificateText101" },
+        { "offset": 105, "length": 4, "type": "uint32_le", "name": "opaqueState1" },
+        { "offset": 109, "length": 1, "type": "uint8", "name": "opaqueState2" },
+        { "offset": 110, "length": 4, "type": "uint32_le", "name": "opaqueState3" },
+        { "offset": 114, "length": 4, "type": "uint32_le", "name": "opaqueState4" },
+        { "offset": 118, "length": 4, "type": "uint32_le", "name": "opaqueState5" },
+        { "offset": 122, "length": 4, "type": "uint32_le", "name": "opaqueState6" },
+        { "offset": 126, "length": 130, "type": "utf16le_fixed", "name": "opaqueText65" }
+      ],
+      "confirmedClientReads": [0, 4, 105, 109, 110, 114, 118, 122, 256],
+      "legacyOutOfBoundsRead": { "offset": 256, "length": 4 }
+    },
+    {
+      "name": "result_push",
+      "type0": 11,
+      "type1": 6,
+      "cryptoType": 2,
+      "semanticSize": 4,
+      "wirePayloadSize": 16,
+      "fields": [
+        { "offset": 0, "length": 4, "type": "uint32_le", "name": "result" }
+      ]
+    },
+    {
+      "name": "result_world_list",
+      "type0": 11,
+      "type1": 11,
+      "cryptoType": 2,
+      "semanticSizeFormula": "10 + 60 * count",
+      "wirePayloadSizeFormula": "16 * ceil((10 + 60 * count) / 16)",
+      "fields": [
+        { "offset": 0, "length": 4, "type": "uint32_le", "name": "result" },
+        { "offset": 4, "length": 4, "type": "uint32_le", "name": "opaqueListMetadata" },
+        { "offset": 8, "length": 2, "type": "uint16_le", "name": "count" }
+      ],
+      "entry": {
+        "offset": 10,
+        "stride": 60,
+        "fields": [
+          { "offset": 0, "length": 4, "type": "uint32_le", "name": "worldId" },
+          { "offset": 4, "length": 42, "type": "utf16le_fixed", "name": "name21" },
+          { "offset": 46, "length": 1, "type": "uint8", "name": "opaqueState1" },
+          { "offset": 47, "length": 4, "type": "uint32_le", "name": "opaqueState2" },
+          { "offset": 51, "length": 4, "type": "uint32_le", "name": "opaqueState3" },
+          { "offset": 55, "length": 1, "type": "uint8", "name": "computedFlag1" },
+          { "offset": 56, "length": 1, "type": "uint8", "name": "computedFlag2" },
+          { "offset": 57, "length": 1, "type": "uint8", "name": "opaqueState4" },
+          { "offset": 58, "length": 1, "type": "uint8", "name": "opaqueState5" },
+          { "offset": 59, "length": 1, "type": "uint8", "name": "opaqueState6" }
+        ]
+      }
+    },
+    {
+      "name": "result_select_world",
+      "type0": 11,
+      "type1": 21,
+      "cryptoType": 2,
+      "semanticSize": 18,
+      "wirePayloadSize": 32,
+      "fields": [
+        { "offset": 0, "length": 4, "type": "uint32_le", "name": "result" },
+        { "offset": 4, "length": 4, "type": "ipv4_network_order", "name": "serverAddress" },
+        { "offset": 8, "length": 2, "type": "uint16_le", "name": "serverPort" },
+        { "offset": 10, "length": 4, "type": "uint32_le", "name": "opaqueSessionValue1" },
+        { "offset": 14, "length": 4, "type": "uint32_le", "name": "opaqueSessionValue2" }
+      ]
+    }
+  ]
+}

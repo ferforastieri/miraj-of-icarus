@@ -1,0 +1,7 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="4000000000100" StringGenMask="%BUMP_MAP%SUBSURFACE_SCATTERING" SurfaceType="mat_rock" MatTemplate="" Diffuse="0.084641509,0.13320851,0.14799802" Specular="0,0,0" Emissive="0,0,0" Shininess="10" Opacity="1" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="Objects/Exa/exa_elorasanctum_B04.tif"/>
+  <Texture Map="Bumpmap" File="Objects/Exa/exa_elorasanctum_B04_ddn.tif"/>
+ </Textures>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

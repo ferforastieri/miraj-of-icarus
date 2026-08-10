@@ -1,0 +1,35 @@
+<Material MtlFlags="524544">
+ <SubMaterials>
+  <Material Name="ClassBase02A01_m01" MtlFlags="524416" Shader="Illum" GenMask="4000000080100" StringGenMask="%BUMP_MAP%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.15415226,0.15105805,0.13609855" Specular="0.14497213,0.14497213,0.14497213" Emissive="0,0,0" Shininess="145" Opacity="1" GlowAmount="15" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/lobby_charslect_a01_1b.dds"/>
+    <Texture Map="Specular" File="objects/lobby02/lobby_charslect_a01_1b.dds"/>
+    <Texture Map="Bumpmap" File="objects/lobby02/t_classbase003_ddn_24b.dds"/>
+    <Texture Map="Detail" File="objects/zcom_tex/destroy_plaster_a_12b_ddn.tif"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" FresnelBias="1" DissolveParams2="0,0,0" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m02" MtlFlags="524416" Shader="Illum" GenMask="4000000080000" StringGenMask="%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.044552624,0.073827766,0.13320851" Specular="0.047327086,0.045384776,0.038056914" Emissive="0,0,0" Shininess="94" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby/10mon_lobby_floor.dds"/>
+    <Texture Map="Specular" File="objects/lobby/10mon_lobby_floor.dds"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" FresnelBias="1" DissolveParams2="0,0,0" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m03" MtlFlags="524416" Shader="Illum" GenMask="4000000080000" StringGenMask="%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.049433462,0.061907478,0.17013837" Specular="0.16044351,0.16044351,0.16044351" Emissive="0,0,0" Shininess="100" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby/10mon_lobby_floor.dds"/>
+    <Texture Map="Specular" File="objects/lobby/10mon_lobby_floor.dds"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" FresnelBias="1" DissolveParams2="0,0,0" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+  <Material Name="ClassBase02A01_m04" MtlFlags="524416" Shader="Illum" GenMask="4000000080000" StringGenMask="%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.49361622,0.49361622,0.49361622" Specular="0,0,0" Emissive="0,0,0" Shininess="61" Opacity="1" LayerAct="1">
+   <Textures>
+    <Texture Map="Diffuse" File="objects/lobby02/lobby_charslect_a03_1b.dds"/>
+    <Texture Map="Specular" File="objects/lobby02/lobby_charslect_a03_1b.dds"/>
+   </Textures>
+   <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" FresnelBias="1" DissolveParams2="0,0,0" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+  </Material>
+ </SubMaterials>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

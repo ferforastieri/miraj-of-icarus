@@ -1,0 +1,35 @@
+<LevelData SandboxVersion="3.5.1.974">
+ <LevelInfo CreationDate="03/31/17" Name="F95_Lobby" HeightmapSize="200" HeightmapUnitSize="1" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="32"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Levels/Lobby/Terrain/grass_nomal_Lobby" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Levels/Lobby/Terrain/grass_nomal_Lobby" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/rock/rock_cliff_white_B_1B" SurfaceTypeID="1" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/rock/rock_cliff_white_B_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Levels/Lobby/Terrain/ground_branches__lobby" SurfaceTypeID="2" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Levels/Lobby/Terrain/ground_branches__lobby" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/ground/ground_split_1B" SurfaceTypeID="3" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/ground/ground_split_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/ground/ground_mud_dry_1B" SurfaceTypeID="4" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/ground/ground_mud_dry_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/tile_bricks/tile_floor_fruin_1B" SurfaceTypeID="5" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/tile_bricks/tile_floor_fruin_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="00_Cust" Parent="" Id="1" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="Environment_FX"/>
+  <Library Name="Waterfall"/>
+  <Library Name="NED_PC"/>
+  <Library Name="Crysis2_generic"/>
+  <Library Name="Lobby_Particle"/>
+  <Library Name="weather"/>
+  <Library Name="F02_HK"/>
+  <Library Name="Ned_Generic"/>
+  <Library Name="elora"/>
+  <Library Name="HAru"/>
+  <Library Name="kwak_fx"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences />
+</LevelData>

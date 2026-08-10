@@ -1,0 +1,57 @@
+<LevelData SandboxVersion="3.5.1.974">
+ <LevelInfo CreationDate="07/11/17" Name="Lobby_class_select" HeightmapSize="200" HeightmapUnitSize="1" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="32"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Levels/Lobby/Terrain/grass_nomal_Lobby" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Levels/Lobby/Terrain/grass_nomal_Lobby" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/rock/rock_cliff_white_B_1B" SurfaceTypeID="1" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/rock/rock_cliff_white_B_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Levels/Lobby/Terrain/ground_branches__lobby" SurfaceTypeID="2" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Levels/Lobby/Terrain/ground_branches__lobby" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/ground/ground_split_1B" SurfaceTypeID="3" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/ground/ground_split_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/ground/ground_mud_dry_1B" SurfaceTypeID="4" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/ground/ground_mud_dry_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+  <SurfaceType Name="Materials/Terrain/tile_bricks/tile_floor_fruin_1B" SurfaceTypeID="5" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/Terrain/tile_bricks/tile_floor_fruin_1B" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="3_ShiRing" Parent="" Id="1" Specs="-1"/>
+  <Layer Name="HM_S2" Parent="1_Man" Id="2" Specs="-1"/>
+  <Layer Name="HM_M1" Parent="1_Man" Id="3" Specs="-1"/>
+  <Layer Name="Z_temp" Parent="" Id="4" Specs="-1"/>
+  <Layer Name="Z_temp_Black" Parent="" Id="5" Specs="-1"/>
+  <Layer Name="HW_M2" Parent="2_Woman" Id="6" Specs="-1"/>
+  <Layer Name="HW_S1" Parent="2_Woman" Id="7" Specs="-1"/>
+  <Layer Name="1_Man" Parent="" Id="8" Specs="-1"/>
+  <Layer Name="HW_BH" Parent="2_Woman" Id="9" Specs="-1"/>
+  <Layer Name="HM_S1" Parent="1_Man" Id="10" Specs="-1"/>
+  <Layer Name="Effect" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="Poster" Parent="1_Man" Id="12" Specs="-1"/>
+  <Layer Name="HM_B1" Parent="1_Man" Id="13" Specs="-1"/>
+  <Layer Name="HW_B1" Parent="2_Woman" Id="14" Specs="-1"/>
+  <Layer Name="Main" Parent="" Id="15" Specs="-1"/>
+  <Layer Name="HM_BH" Parent="1_Man" Id="16" Specs="-1"/>
+  <Layer Name="SR_W1" Parent="3_ShiRing" Id="17" Specs="-1"/>
+  <Layer Name="HW_M1" Parent="2_Woman" Id="18" Specs="-1"/>
+  <Layer Name="HM_M2" Parent="1_Man" Id="19" Specs="-1"/>
+  <Layer Name="2_Woman" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="SR_M2" Parent="3_ShiRing" Id="21" Specs="-1"/>
+  <Layer Name="cloud" Parent="" Id="22" Specs="-1"/>
+  <Layer Name="HW_S2" Parent="2_Woman" Id="23" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="Environment_FX"/>
+  <Library Name="Waterfall"/>
+  <Library Name="NED_PC"/>
+  <Library Name="Crysis2_generic"/>
+  <Library Name="Lobby_Particle"/>
+  <Library Name="weather"/>
+  <Library Name="F02_HK"/>
+  <Library Name="Ned_Generic"/>
+  <Library Name="elora"/>
+  <Library Name="HAru"/>
+  <Library Name="kwak_fx"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences />
+</LevelData>

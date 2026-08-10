@@ -1,0 +1,8 @@
+<Material MtlFlags="524288" Shader="ICARUSHumanSkin" GenMask="1003" StringGenMask="" SurfaceType="mat_default" MatTemplate="" Diffuse="0.37867627,0.038472746,0.63204265" Specular="0.060031611,0.56680977,0.45345649" Emissive="0.48195225,0.48195225,0.48195225" Shininess="169" Opacity="1" GlowAmount="2" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/zdungeon_ob/d12_elder_castle/elder_castle_laboratory_pylon_a01_15b.tif"/>
+  <Texture Map="Specular" File="objects/zdungeon_ob/d12_elder_castle/elder_castle_laboratory_pylon_a01_15b.tif"/>
+  <Texture Map="Bumpmap" File="objects/zdungeon_ob/d12_elder_castle/elder_castle_laboratory_pylon_a01_15b_ddn.tif"/>
+ </Textures>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" ScatterRadius="3.55" GhostColor="0,0,0" Melanin="0.34999999" RimPower="4.9299998" FresnelScale="4" RimStrength="1.63" FresnelBias="0.30000001" DissolveParams2="0,0,0" SecondarySpecGloss="122.4" SecondarySpecStrength="10" IndirectColor="0.25,0.25,0.25"/>
+</Material>

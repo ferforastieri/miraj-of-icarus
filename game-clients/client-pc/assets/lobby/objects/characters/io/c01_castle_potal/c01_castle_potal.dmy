@@ -1,0 +1,20 @@
+<DummyList>
+ <Dummy name="bone_stone" type="Bone">
+  <Properties />
+ </Dummy>
+ <Dummy name="dummy_mark" type="Point">
+  <Properties>
+   <Data Lock="1" Offset="0,0,2.7" Rotation="0,0,0"/>
+  </Properties>
+ </Dummy>
+ <Dummy name="dummybox_center" type="OBB" parent="bone_stone">
+  <Properties>
+   <Data Lock="0" Offset="0,0,0" Rotation="0,0,0" Scale="1,1,1" Axis="90,0,90"/>
+  </Properties>
+ </Dummy>
+ <Dummy name="pickingbox" type="OBB" parent="bone_stone">
+  <Properties>
+   <Data Lock="0" Offset="0.5,0,0" Rotation="0,0,0" Scale="4,1.5,1.5" Axis="0,0,0"/>
+  </Properties>
+ </Dummy>
+</DummyList>

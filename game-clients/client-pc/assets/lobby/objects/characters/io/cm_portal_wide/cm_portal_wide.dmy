@@ -1,0 +1,7 @@
+<DummyList>
+ <Dummy name="Dummy_MARK" type="Point">
+  <Properties>
+   <Data Lock="1" Offset="0,0,4.8000002" Rotation="0,0,0"/>
+  </Properties>
+ </Dummy>
+</DummyList>

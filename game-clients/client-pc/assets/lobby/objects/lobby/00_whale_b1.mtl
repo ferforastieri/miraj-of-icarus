@@ -1,0 +1,14 @@
+<Material MtlFlags="524320" Shader="Illum" GenMask="4000000000008" StringGenMask="%ANISO_SPECULAR%SUBSURFACE_SCATTERING" SurfaceType="mat_default" MatTemplate="" Diffuse="0,0,0" Specular="0,0,0" Emissive="1,1,1" Shininess="95" Opacity="0.75" AlphaTest="0.31999999" vertModifType="1" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/00_whale_b1.tif">
+   <TexMod OffsetU="8.8000002" TexMod_UOscillatorType="2" TexMod_UOscillatorRate="1" TexMod_VOscillatorRate="1" TexMod_UOscillatorPhase="1" TexMod_VOscillatorPhase="1" TexMod_UOscillatorAmplitude="0.050000001"/>
+  </Texture>
+ </Textures>
+ <VertexDeform Type="1" DividerX="0" DividerY="1" DividerZ="0" DividerW="0" NoiseScale="0,0.5,0.5">
+  <WaveX Type="1" Amp="0" Level="0" Phase="0" Freq="0"/>
+  <WaveY Type="1" Amp="4.8000002" Level="2.3" Phase="2.3" Freq="12.4"/>
+  <WaveZ Type="1" Amp="0" Level="0" Phase="0" Freq="0"/>
+  <WaveW Type="1" Amp="3.7" Level="3.4000001" Phase="5.5999999" Freq="5.0999999"/>
+ </VertexDeform>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" AnisotropicShape="0.25" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

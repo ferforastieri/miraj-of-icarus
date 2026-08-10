@@ -1,0 +1,24 @@
+<?xml version="1.0" ?><Params>
+
+	<AnimationList>
+		<Animation name="#filepath" path="Animations/io/CM_Portal_Wide"/>
+		<Animation name="$AnimEventDatabase" path="Animations/io/CM_Portal_Wide/CM_Portal_Wide.animevents"/>
+
+		<Comment value="----------Idle----------"/>
+		<Animation name="00-00_IDLE_00_00_LOOP_00" path="CM_Portal_Wide_idle.caf"/>		
+		
+		<Animation name="00-00_FIRE_00_00_END_002" path="CM_Portal_Wide_idle.caf"/>
+		<Animation name="DC-00_FIRE_00_00_END_002" path="CM_Portal_Wide_idle.caf"/>
+
+
+
+		<Comment value="----------Interact_Cast----------"/>
+		<Animation name="idle" path="CM_Portal_Wide_idle.caf"/>		
+		
+		<Comment value="----------Event-----------"/>
+		<Animation name="00-00_EVENT_00_00_FULL_00" path="CM_Portal_Wide_idle.caf"/>		
+
+
+	<Animation name="$TracksDatabase" path="Animations/Io/CM_Portal_Wide/CM_Portal_Wide.dba"/></AnimationList>
+	
+</Params>

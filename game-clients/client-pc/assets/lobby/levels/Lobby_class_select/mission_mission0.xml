@@ -1,0 +1,520 @@
+<Mission Name="Mission0" Description="" Time="13:33" PlayerEquipPack="" MusicScript="" Script="" CGFCount="189">
+ <Environment>
+  <Fog ViewDistance="10000" ViewDistanceLowSpec="10000" LDRGlobalDensMult="1"/>
+  <Terrain DetailLayersViewDistRatio="1"/>
+  <EnvState WindVector="0.7,-0.7,0" BreezeGeneration="false" BreezeStrength="1" BreezeMovementSpeed="8" BreezeVariation="1" BreezeLifeTime="15" BreezeCount="4" BreezeSpawnRadius="25" BreezeSpread="0.f" BreezeRadius="5" ConsoleMergedMeshesPool="2750" ShowTerrainSurface="0" SunShadowsMinSpec="1" SunShadowsAdditionalCascadeMinSpec="0" SunShadowsClipPlaneRange="256" UseLayersActivation="0" SunLinkedToTOD="1"/>
+  <VolFogShadows Enable="0" EnableForClouds="0"/>
+  <CloudShadows CloudShadowTexture="" CloudShadowSpeed="0,0,0" CloudShadowTiling="0" CloudShadowBrightness="0" CloudShadowInvert="0"/>
+  <ParticleLighting AmbientMul="0.5" LightsMul="0.5" SunMul="1"/>
+  <SkyBox Material="Materials/Sky/Sky" MaterialLowSpec="Materials/Sky/Sky" Angle="440.1" Stretching="0.5"/>
+  <Ocean Material="Materials/Ocean/ocean_pier" CausticDepth="8" CausticIntensity="1" CausticsTilling="1"/>
+  <OceanAnimation WindDirection="0" WindSpeed="1" WavesSpeed="0.5" WavesAmount="1" WavesSize="0.5"/>
+  <Moon Latitude="240" Longitude="45" Size="0.5" Texture="Textures/Skys/Night/half_moon.dds"/>
+  <HDRSetup BloomColor="255,255,255" BloomMul="1.1"/>
+  <DynTexSource Width="256" Height="256"/>
+  <Lighting SunRotation="44" SunHeight="80" Algorithm="3" Lighting="1" Shadows="1" ShadowIntensity="100" ILQuality="1" HemiSamplQuality="5" Longitude="61" DawnTime="355" DawnDuration="10" DuskTime="365" DuskDuration="10" SunVector="0.41679502,0.43160385,-0.80000001"/>
+ </Environment>
+ <TimeOfDay Time="13.55" TimeStart="13.5" TimeEnd="13.5" TimeAnimSpeed="0">
+  <Variable Name="HDR dynamic power factor" Value="8.8789875e-006">
+   <Spline Keys="0:-0:36,0.25:0:36,0.3125:1:36,0.314583:0.5:36,0.316667:1:36,0.322917:1.5:36,0.5:0:36,0.564583:0:36,0.625:1.5:36,0.75:0:36,1:-0:36,"/>
+  </Variable>
+  <Variable Name="Lights HDR dynamic power factor" Value="0.99999923">
+   <Spline Keys="0:0:0,0.314583:1:36,0.564583:1:36,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sky brightening (terrain occlusion)" Value="0.49999961">
+   <Spline Keys="0:0.3:0,0.243056:0.3:0,0.25:0.3:0,0.3125:1:36,0.314583:0.5:36,0.322917:1:36,0.5:0.3:0,0.564583:0.5:36,0.75:0.3:0,0.760417:0.3:0,1:0.3:0,"/>
+  </Variable>
+  <Variable Name="SSAO amount multiplier" Value="1.8000011">
+   <Spline Keys="0:2:0,0.25:2:0,0.3125:1:36,0.314583:1.8:36,0.322917:1.5:36,0.5:2:0,0.564583:1.8:36,0.625:2:36,0.75:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="SSAO contrast multiplier" Value="1.7999982">
+   <Spline Keys="0:1:0,0.243056:1:0,0.25:1:0,0.3125:1:36,0.314583:1.8:36,0.322917:1:36,0.5:1:0,0.564583:1.8:36,0.625:1.5:36,0.75:1:0,0.760417:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Global illumination multiplier" Value="0.20005801">
+   <Spline Keys="0:0:36,0.3125:0.2:36,0.314583:0.2:36,0.322917:0.2:36,0.5:0.25:36,0.564583:0.2:36,0.625:10:36,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sun color" Color="0.84336853,0.57954657,0.45907971">
+   <Spline Keys="0:(0.835528:0.781751:0.666117):36,0.250157:(0.835528:0.781751:0.666117):36,0.257101:(0.729919:0.511398:0.315763):36,0.27375:(0.812241:0.645555:0.493616):36,0.3125:(0.517401:0.493616:0.45908):36,0.314583:(0.84337:0.708298:0.487765):36,0.316667:(0.517401:0.476177:0.442323):36,0.5:(0.729919:0.511398:0.315763):36,0.564583:(0.84337:0.579547:0.45908):36,0.625:(0.585973:0.517401:0.409826):36,0.740798:(0.729919:0.511398:0.315763):36,0.744548:(0.766744:0.605484:0.436813):36,0.750192:(0.835528:0.781751:0.666117):65572,1:(0.835528:0.781751:0.666117):36,"/>
+  </Variable>
+  <Variable Name="Sun color multiplier" Value="3.9999881">
+   <Spline Keys="0:0:36,0.250418:0:36,0.255267:2:36,0.3125:2.5:36,0.314583:5:36,0.316667:1.72:36,0.31875:3:36,0.322917:2:36,0.5:2:36,0.564583:4:36,0.625:2:36,0.6875:2.5:36,0.708333:3:36,0.740798:2.00019:36,0.751215:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Sun specular multiplier" Value="0.30000138">
+   <Spline Keys="0:1:0,0.243056:1:0,0.25:1:0,0.3125:1.2:36,0.314583:1:36,0.316667:1:36,0.5:1:0,0.564583:0.3:36,0.75:1:0,0.760417:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sky color" Color="0.37361461,0.43681312,0.5859738">
+   <Spline Keys="0:(0.625345:0.781751:0.940601):36,0.250213:(0.625345:0.781751:0.940601):36,0.257157:(0.315763:0.45908:0.729919):36,0.3125:(0.0962661:0.645555:0.91575):36,0.314583:(0.373615:0.436813:0.585973):36,0.316667:(0.0962661:0.638779:0.907547):36,0.5:(0.315763:0.45908:0.729919):36,0.564583:(0.373615:0.436813:0.585973):36,0.625:(0.311181:0.453456:0.722672):36,0.739775:(0.314153:0.45747:0.728309):36,0.750192:(0.623735:0.780141:0.938991):262180,1:(0.625345:0.781751:0.940601):36,"/>
+  </Variable>
+  <Variable Name="Sky color multiplier" Value="2.3999889">
+   <Spline Keys="-0.00167945:0.3:36,0.250213:0.3:36,0.257157:1.1:36,0.3125:1:36,0.314583:2.4:36,0.322917:1:36,0.5:1.5:36,0.564583:2.4:36,0.625:0.5:36,0.739775:1.1:36,0.750192:0.3:65572,0.998321:0.3:36,"/>
+  </Variable>
+  <Variable Name="Ambient ground color" Color="0.13609916,0.227137,0.37867504">
+   <Spline Keys="0:(0.130352:0.101145:0.0600316):0,0.25:(0.130352:0.101145:0.0600316):36,0.3125:(0.315763:0.45908:0.383775):36,0.314583:(0.136099:0.227137:0.383775):36,0.316667:(0.130352:0.325037:0.344026):36,0.322917:(0.315763:0.45908:0.383775):36,0.5:(0.130352:0.101145:0.0600316):36,0.564583:(0.136099:0.227137:0.378676):36,0.625:(0.163641:0.227137:0.21952):36,0.75:(0.130352:0.101145:0.0600316):36,"/>
+  </Variable>
+  <Variable Name="Ambient ground color multiplier" Value="3.9999793">
+   <Spline Keys="0:0.35:65572,0.243056:0.35:65572,0.25:1.5:65572,0.3125:3:36,0.314583:4:36,0.316667:1.08:36,0.322917:3:36,0.5:1.5:65572,0.564583:4:36,0.625:0.5:36,0.75:1.5:65572,0.760417:0.35:65572,1:0.35:65572,"/>
+  </Variable>
+  <Variable Name="Ambient min height" Value="428.99805">
+   <Spline Keys="0:0:36,0.243056:0:36,0.3125:18.187:36,0.314583:429:36,0.322917:18.187:36,0.564583:429:36,0.625:100:36,0.760417:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Ambient max height" Value="309.99905">
+   <Spline Keys="0:1:36,0.243056:1:36,0.25:300:36,0.3125:300:36,0.314583:310:36,0.316667:1011:36,0.5:300:36,0.564583:310:36,0.625:150:36,0.75:300:36,0.760417:1:36,1:1:36,"/>
+  </Variable>
+  <Variable Name="Fog color" Color="0.12198547,0.36360195,0.59893852">
+   <Spline Keys="0:(0.00293232:0.00837312:0.0143105):36,0.250214:(0.00258583:0.00775103:0.0134734):36,0.257158:(0.163641:0.227137:0.288816):36,0.3125:(0.0265487:0.042987:0.0780566):36,0.314583:(0.121986:0.363604:0.598942):36,0.316667:(0.0134734:0.042987:0.0962661):36,0.322917:(0.0315514:0.0494335:0.0619075):36,0.5:(0.163641:0.227137:0.288816):36,0.564583:(0.121986:0.363604:0.598942):36,0.625:(0.0315514:0.018913:0.0134734):36,0.739775:(0.163641:0.227137:0.288816):458788,0.750192:(0.00258583:0.00775103:0.0134734):458788,1:(0.00293232:0.00837312:0.0143105):36,"/>
+  </Variable>
+  <Variable Name="Fog color multiplier" Value="1.1999989">
+   <Spline Keys="0:0.4:36,0.250213:0.4:65572,0.257157:0.5:65572,0.3125:1.2:36,0.314583:1.2:36,0.316667:1.43:36,0.322917:0.3:36,0.5:0.5:36,0.564583:1.2:36,0.625:1:36,0.666667:0.5:36,0.739775:0.5:36,0.750192:0.4:36,1:0.4:36,"/>
+  </Variable>
+  <Variable Name="Fog height (bottom)" Value="0.00072807696">
+   <Spline Keys="0:0:36,0.250213:0:65572,0.257157:100:36,0.3125:134:36,0.314583:0:36,0.316667:56:36,0.322917:86:36,0.335417:259:36,0.5:100:36,0.564583:0:36,0.625:123:36,0.739775:100:36,0.750192:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Fog layer density (bottom)" Value="1">
+   <Spline Keys="0:1:65572,0.243056:1:36,0.25:1:36,0.3125:0.438:36,0.314583:1:36,0.322917:0.28:36,0.5:1:36,0.625:1:36,0.75:1:36,0.760417:1:36,1:1:36,"/>
+  </Variable>
+  <Variable Name="Fog color (top)" Color="2.6990644e-008,5.7395727e-008,8.4708496e-008">
+   <Spline Keys="0:(0.00258583:0.00775103:0.0134734):36,0.250213:(0.00258583:0.00775103:0.0134734):458788,0.257157:(0.136099:0.238828:0.320382):36,0.3125:(0:0.00604059:0.154152):36,0.314583:(0:0:0):36,0.316667:(0.00715504:0.0134734:0.227137):36,0.322917:(0.00196342:0.00411618:0.00411618):36,0.335417:(0.0111261:0.0199178:0.0253713):36,0.5:(0.136099:0.238828:0.320382):36,0.564583:(0:0:0):36,0.625:(0.00455975:0.00969633:0.0143105):36,0.740798:(0.136099:0.238828:0.320382):36,0.751215:(0.00258583:0.00775103:0.0134734):36,1:(0.00258583:0.00775103:0.0134734):36,"/>
+  </Variable>
+  <Variable Name="Fog color (top) multiplier" Value="7.3399628e-006">
+   <Spline Keys="0:0.75:0,0.25:0.75:65536,0.3125:4.81:36,0.314583:0:36,0.316667:2.03:36,0.322917:4.81:36,0.5:0.75:0,0.564583:0:36,0.625:1.24:36,0.666667:0.5:36,0.75:0.75:0,1:0.75:0,"/>
+  </Variable>
+  <Variable Name="Fog height (top)" Value="2999.9844">
+   <Spline Keys="0:4000:0,0.243056:4000:0,0.25:4000:0,0.3125:917:36,0.314583:3000:36,0.322917:672:36,0.335417:5726:36,0.5:4000:0,0.564583:3000:36,0.625:350:36,0.75:4000:0,0.760417:4000:0,1:4000:0,"/>
+  </Variable>
+  <Variable Name="Fog layer density (top)" Value="1.1838651e-008">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:0.033:36,0.314583:0:36,0.5:0:0,0.564583:0:36,0.625:0.002:36,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color height offset" Value="-1.7757974e-007">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:0.0009375:36,0.314583:0:36,0.335417:1:36,0.5:0:0,0.564583:0:36,0.625:-0.03:36,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial)" Color="1.9549754e-008,1.9549754e-008,2.9763548e-008">
+   <Spline Keys="0:(0:0:0):0,0.243056:(0:0:0):0,0.25:(0:0:0):0,0.3125:(0:0:0):36,0.314583:(0:0:0):36,0.5:(0:0:0):0,0.564583:(0:0:0):36,0.625:(0.0033027:0.0033027:0.0050282):36,0.75:(0:0:0):0,0.760417:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial) multiplier" Value="3.5338369e-005">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:0:36,0.314583:0:36,0.5:0:0,0.564583:0:36,0.625:5.97:36,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog radial size" Value="0.74999809">
+   <Spline Keys="0:0.75:0,0.243056:0.75:0,0.25:0.75:0,0.3125:0.482:36,0.314583:0.75:36,0.5:0.75:0,0.564583:0.75:36,0.625:0.433:36,0.75:0.75:0,0.760417:0.75:0,1:0.75:0,"/>
+  </Variable>
+  <Variable Name="Fog radial lobe" Value="0.499998">
+   <Spline Keys="0:0.5:0,0.243056:0.5:0,0.25:0.5:0,0.3125:0.509:36,0.314583:0.5:36,0.5:0.5:0,0.564583:0.5:36,0.625:0.162:36,0.75:0.5:0,0.760417:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Final density clamp" Value="0.99999821">
+   <Spline Keys="0:1:0,0.243056:1:0,0.25:1:0,0.3125:0.32:36,0.314583:1:36,0.322917:0.321:36,0.5:1:0,0.564583:1:36,0.625:0.7:36,0.75:1:0,0.760417:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Global density" Value="0.060000826">
+   <Spline Keys="0:0.2:36,0.249984:0.199819:36,0.3125:1:36,0.314583:0.06:36,0.5:0.15:36,0.564583:0.06:36,0.625:0.2:36,0.750002:0.199994:36,1:0.2:36,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp start" Value="100.03491">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:6:36,0.314583:100:36,0.5:0:0,0.564583:100:36,0.625:5999:36,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp end" Value="500.01038">
+   <Spline Keys="0:1000:0,0.25:1000:0,0.250137:1000:0,0.3125:184:36,0.314583:500:36,0.500137:1000:0,0.564583:500:36,0.625:2252:36,0.750137:1000:0,1:1000:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp influence" Value="0.8899954">
+   <Spline Keys="0:0:36,0.243056:0:36,0.25:0.7:36,0.3125:0.838:36,0.314583:0.89:36,0.5:0.7:36,0.564583:0.89:36,0.625:0.118:36,0.740798:0.7:65572,0.751215:0:65572,1:0:36,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening" Value="0.25000039">
+   <Spline Keys="0:0.25:0,0.314583:0.25:36,0.564583:0.25:36,0.625:0.317:36,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening sun" Value="0.99999958">
+   <Spline Keys="0:1:0,0.314583:1:36,0.564583:1:36,0.625:0.926:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening ambient" Value="1">
+   <Spline Keys="0:1:0,0.314583:1:36,0.564583:1:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow range" Value="0.1">
+   <Spline Keys="0:0.1:0,0.3125:0.1:36,0.625:0.1:36,1:0.1:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity" Color="0.5113982,0.56680954,0.76674205">
+   <Spline Keys="0:(0:0:0):36,0.250213:(0:0:0):458788,0.257157:(0.487765:0.487765:0.487765):36,0.3125:(0.612066:0.774227:1):36,0.314583:(0.511398:0.56681:0.766744):36,0.316667:(0.20836:0.74453:0.867136):36,0.335417:(0.0461488:0.212044:0.923993):36,0.5:(0.493616:0.493616:0.493616):36,0.564583:(0.511398:0.56681:0.766744):36,0.625:(0.535642:0.487765:0.425905):36,0.75:(0.487765:0.487765:0.487765):36,0.760417:(0:0:0):36,1:(0:0:0):36,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity multiplier" Value="29.999847">
+   <Spline Keys="0:0:36,0.250418:-0.00966185:65572,0.257362:4.99034:36,0.3125:10:36,0.314583:30:36,0.316667:2:36,0.335417:2:36,0.5:5:36,0.564583:30:36,0.625:4.00516:36,0.75:5:36,0.760417:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Sky light: Mie scattering" Value="20.999998">
+   <Spline Keys="0:20:0,0.25:20:0,0.3125:30:36,0.314583:21:36,0.5:20:0,0.564583:21:36,0.75:20:0,1:20:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Rayleigh scattering" Value="1.7999984">
+   <Spline Keys="0:1:0,0.25:1:0,0.3125:1:36,0.314583:1.8:36,0.5:1:0,0.564583:1.8:36,0.75:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun anisotropy factor" Value="0.059999138">
+   <Spline Keys="0:-0.99:0,0.3125:-0.452:36,0.314583:0.06:36,0.335417:-0.461:36,0.5:-0.99:65536,0.564583:0.06:36,1:-0.99:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (R)" Value="750.00006">
+   <Spline Keys="0:780:0,0.25:780:0,0.3125:747:36,0.314583:750:36,0.5:780:0,0.564583:750:36,0.75:780:0,1:780:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (G)" Value="600.00006">
+   <Spline Keys="0:620:0,0.25:620:0,0.3125:624.2:36,0.314583:600:36,0.5:620:0,0.564583:600:36,0.75:620:0,1:620:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (B)" Value="513.64508">
+   <Spline Keys="0:560:0,0.25:560:0,0.3125:583.5:36,0.314583:513.645:36,0.5:560:0,0.564583:513.645:36,0.75:560:0,1:560:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color" Color="0.78174967,0.52952296,0.16687351">
+   <Spline Keys="0:(0.867136:0.579547:0.183549):36,0.243056:(0.867136:0.579547:0.183549):262180,0.3125:(0.511293:0.527125:0.503083):36,0.314583:(0.781751:0.529523:0.166872):36,0.333333:(0.404541:0.511398:0.598942):36,0.5:(0.404541:0.511398:0.598942):36,0.564583:(0.781751:0.529523:0.166872):36,0.666667:(0.404541:0.511398:0.598942):36,0.757917:(0.851252:0.573159:0.193972):36,0.760417:(0.867136:0.579547:0.183549):36,1:(0.867136:0.579547:0.183549):36,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color multiplier" Value="0">
+   <Spline Keys="0:1:36,0.243056:1:36,0.25:0:36,0.5:0:36,0.75:0:36,0.757917:0.759979:36,0.760417:1:36,1:1:36,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color" Color="0.48776475,0.68703073,0.88317961">
+   <Spline Keys="0:(0:0:0):36,0.243056:(0.022013:0.0494335:0.0986892):36,0.25:(0.358654:0.56681:0.666117):36,0.314583:(0.487765:0.687031:0.88318):36,0.5:(0.358654:0.56681:0.666117):0,0.564583:(0.487765:0.687031:0.88318):36,0.75:(0.358654:0.56681:0.666117):36,0.760417:(0.022013:0.0494335:0.0986892):458788,1:(0:0:0):36,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color multiplier" Value="0">
+   <Spline Keys="0:0.25:65572,0.243056:0.25:65572,0.25:0:36,0.5:0:36,0.75:0:36,0.760417:0.25:36,1:0.25:36,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith shift" Value="0.24485298">
+   <Spline Keys="0:0:0,0.243056:0.35:0,0.25:0.75:36,0.314583:0.244852:36,0.5:0.75:36,0.564583:0.244852:36,0.75:0.75:36,0.760417:0.35:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Star intensity" Value="0">
+   <Spline Keys="0:3:36,0.243056:1:36,0.25:0:36,0.5:0:36,0.75:0:36,0.760417:1:36,1:3:36,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color" Color="0.97429812,0.97429812,0.97429812">
+   <Spline Keys="0:(1:1:1):36,0.243056:(1:1:1):36,0.25:(0:0:0):36,0.314583:(0.9743:0.9743:0.9743):36,0.5:(0:0:0):36,0.564583:(0.9743:0.9743:0.9743):36,0.75:(0:0:0):36,0.760417:(1:1:1):36,1:(1:1:1):36,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color multiplier" Value="2.1744602">
+   <Spline Keys="0:1:65572,0.243056:1:36,0.25:0:36,0.314583:2.17445:36,0.5:0:36,0.564583:2.17445:36,0.696667:5.96:36,0.75:0:36,0.760417:1:36,1:1:65572,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color" Color="0.85125035,0.85125035,0.85125035">
+   <Spline Keys="0:(0.891262:1:1):36,0.243056:(0.891262:1:1):36,0.25:(0:0:0):36,0.314583:(0.851252:0.851252:0.851252):36,0.5:(0:0:0):36,0.564583:(0.851252:0.851252:0.851252):36,0.75:(0:0:0):36,0.760417:(0.891262:1:1):36,1:(0.891262:1:1):36,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color multiplier" Value="0">
+   <Spline Keys="0:0.25:0,0.243056:0:0,0.25:0:0,0.5:0:0,0.75:0:0,0.760417:0:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona scale" Value="0.02709562">
+   <Spline Keys="0:2:36,0.2275:2:0,0.314583:0.027094:36,0.564583:0.027094:36,1:2:36,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color" Color="0.052841499,0.052841499,0.052841499">
+   <Spline Keys="0:(0.487765:0.781751:1):36,0.243056:(0.493616:0.781751:1):36,0.25:(0:0:0):36,0.314583:(0.0528416:0.0528416:0.0528416):36,0.5:(0:0:0):36,0.564583:(0.0528416:0.0528416:0.0528416):36,0.75:(0:0:0):36,0.760417:(0.493616:0.781751:1):36,1:(0.487765:0.781751:1):36,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color multiplier" Value="0">
+   <Spline Keys="0:0.2:0,0.2275:0:0,0.243056:0:0,0.25:0:0,0.5:0:0,0.75:0:0,0.760417:0:0,1:0.2:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona scale" Value="1.6426915e-006">
+   <Spline Keys="0:2:0,0.314583:0:36,0.564583:0:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun light multiplier" Value="0.50000042">
+   <Spline Keys="0:1:0,0.3125:0:36,0.314583:0.5:36,0.564583:0.5:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky light multiplier" Value="0.75">
+   <Spline Keys="0:0.75:36,0.3125:5.33:36,0.314583:0.75:36,1:0.75:36,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color" Color="0.83552802,0.78175098,0.66611701">
+   <Spline Keys="0:(0.835528:0.781751:0.666117):0,0.243056:(0.835528:0.781751:0.666117):0,0.25:(0.835528:0.781751:0.666117):0,0.3125:(0.835528:0.781751:0.666117):36,0.314583:(0.835528:0.781751:0.666117):36,0.343333:(0.835528:0.781751:0.666117):0,0.5:(0.835528:0.781751:0.666117):0,0.564583:(0.835528:0.781751:0.666117):36,0.75:(0.835528:0.781751:0.666117):0,0.760417:(0.835528:0.781751:0.666117):0,1:(0.835528:0.781751:0.666117):0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color multiplier" Value="1">
+   <Spline Keys="0:1:0,0.243056:1:0,0.25:1:0,0.3125:0:36,0.314583:1:36,0.5:1:0,0.75:1:0,0.760417:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color influence" Value="0">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:0:36,0.314583:0:36,0.343333:0:0,0.5:0:0,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color" Color="0.62534499,0.78175098,0.94060099">
+   <Spline Keys="0:(0.625345:0.781751:0.940601):0,0.243056:(0.625345:0.781751:0.940601):0,0.25:(0.625345:0.781751:0.940601):0,0.3125:(0.625345:0.781751:0.940601):36,0.314583:(0.625345:0.781751:0.940601):36,0.5:(0.625345:0.781751:0.940601):0,0.564583:(0.625345:0.781751:0.940601):36,0.75:(0.625345:0.781751:0.940601):0,0.760417:(0.625345:0.781751:0.940601):0,1:(0.625345:0.781751:0.940601):0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color multiplier" Value="1">
+   <Spline Keys="0:1:0,0.243056:1:0,0.25:1:0,0.3125:0:36,0.314583:1:36,0.5:1:0,0.75:1:0,0.760417:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky custom color influence" Value="0">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.3125:0:36,0.5:0:0,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sun shafts visibility" Value="1">
+   <Spline Keys="0:0:36,0.243056:0:36,0.25:1:65572,0.3125:1:36,0.314583:1:36,0.5:1:65572,0.625:1:36,0.75:1:65572,0.760417:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Sun rays visibility" Value="1.2999922">
+   <Spline Keys="0:1.5:0,0.24375:1.5:0,0.25:1.5:0,0.3125:1.54688:36,0.314583:1.3:36,0.5:1.5:0,0.564583:1.3:36,0.625:0:36,0.75:1.5:0,1:1.5:0,"/>
+  </Variable>
+  <Variable Name="Sun rays attenuation" Value="1">
+   <Spline Keys="0:1.25:36,0.243056:1.25:36,0.25:1:36,0.314583:1:36,0.5:1:36,0.75:1:36,0.760417:1.25:36,1:1.25:36,"/>
+  </Variable>
+  <Variable Name="Sun rays suncolor influence" Value="0.42499751">
+   <Spline Keys="0:1:36,0.243056:1:36,0.25:0:36,0.314583:0.425:36,0.5:0:36,0.564583:0.425:36,0.625:0:36,0.75:0:36,0.760417:1:36,1:1:36,"/>
+  </Variable>
+  <Variable Name="Sun rays custom color" Color="0.62534499,0.55422693,0.18698937">
+   <Spline Keys="0:(0:0:0):36,0.243056:(0:0:0):36,0.25:(0.632043:0.535642:0.383775):36,0.3125:(0.633727:0.535642:0.383775):36,0.314583:(0.625345:0.554227:0.186989):36,0.5:(0.638779:0.535642:0.383775):36,0.564583:(0.625345:0.554227:0.186989):36,0.75:(0.632043:0.535642:0.383775):36,0.760417:(0:0:0):36,1:(0:0:0):36,"/>
+  </Variable>
+  <Variable Name="Ocean fog color" Color="0.0041166102,0.011126516,0.013473775">
+   <Spline Keys="0:(0.227137:0.227137:0.20836):0,0.25:(0.227137:0.227137:0.20836):0,0.314583:(0.00411618:0.0111261:0.0134734):36,0.5:(0.227137:0.227137:0.20836):0,0.564583:(0.00411618:0.0111261:0.0134734):36,0.75:(0.227137:0.227137:0.20836):0,1:(0.227137:0.227137:0.20836):0,"/>
+  </Variable>
+  <Variable Name="Ocean fog color multiplier" Value="0.02225196">
+   <Spline Keys="0:0.0005:0,0.243056:0.0005:0,0.25:0.0005:0,0.314583:0.022252:36,0.5:0.0005:0,0.564583:0.022252:36,0.75:0.0005:65536,0.760417:0.0005:0,1:0.0005:0,"/>
+  </Variable>
+  <Variable Name="Ocean fog density" Value="0.27214295">
+   <Spline Keys="0:0.25:0,0.25:0.25:0,0.314583:0.272143:36,0.5:0.25:0,0.564583:0.272143:36,0.75:0.25:0,0.760417:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Skybox multiplier" Value="0.39999992">
+   <Spline Keys="0:1:36,0.3125:1:36,0.314583:0.4:36,0.5:1:36,0.564583:0.4:36,0.625:0.381:36,1:1:36,"/>
+  </Variable>
+  <Variable Name="Film curve shoulder scale" Value="1.7000018">
+   <Spline Keys="0:1:36,0.187917:1:36,0.25:1.14:36,0.256944:1.35:36,0.3125:1:36,0.314583:1.5:36,0.322917:1.2:36,0.5:2:65572,0.564583:1.7:36,0.625:2:36,0.738333:1.36:36,0.75:1.14:36,0.8125:1:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve midtones scale" Value="0.70000172">
+   <Spline Keys="0:1.5:36,0.187917:1.5:36,0.25:1:36,0.3125:0.5:36,0.314583:0.7:36,0.316667:0.8:36,0.322917:0.59:36,0.5:1:36,0.564583:0.7:36,0.625:1:36,0.642736:1:36,0.75:1:36,0.8125:1.5:36,1:1.5:0,"/>
+  </Variable>
+  <Variable Name="Film curve toe scale" Value="0.59999961">
+   <Spline Keys="0:1:65572,0.187917:1:36,0.3125:1:36,0.314583:0.6:36,0.322917:1.15:36,0.5:1:36,0.564583:0.6:36,0.649167:0.5:36,0.8125:1:36,1.03505:1:36,"/>
+  </Variable>
+  <Variable Name="Film curve whitepoint" Value="0.9999997">
+   <Spline Keys="0:0.6:0,0.3125:0.6:36,0.314583:1:36,0.322917:0.44:36,0.5:0.6:36,0.564583:1:36,1:0.6:0,"/>
+  </Variable>
+  <Variable Name="Saturation" Value="1">
+   <Spline Keys="0:0.6:36,0.3125:1:36,0.314583:1:36,0.375:1:36,0.5:1:36,0.625:1:36,1:0.6:36,"/>
+  </Variable>
+  <Variable Name="Color balance" Color="0.84337014,0.84337014,0.84337014">
+   <Spline Keys="0:(1:1:1):0,0.3125:(1:1:1):36,0.314583:(0.694081:0.694081:0.694081):36,0.322917:(0.859174:0.796917:0.74453):36,0.5:(1:1:1):0,0.564583:(0.84337:0.84337:0.84337):36,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Scene key" Value="0.18000001">
+   <Spline Keys="0:0.18:0,0.3125:1:36,0.314583:0.18:36,1:0.18:0,"/>
+  </Variable>
+  <Variable Name="Min exposure" Value="2.799998">
+   <Spline Keys="0:0.36:0,0.3125:0.6:36,0.314583:2.8:36,0.564583:2.8:36,1:0.36:0,"/>
+  </Variable>
+  <Variable Name="Max exposure" Value="2.7999997">
+   <Spline Keys="0:2.8:0,0.3125:3:36,0.314583:2.8:36,1:2.8:0,"/>
+  </Variable>
+  <Variable Name="Filters: grain" Value="0">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.5:0:0,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter color" Color="0.79691637,0.79691637,0.58597255">
+   <Spline Keys="0:(0:0:0):0,0.00458333:(0:0:0):0,0.314583:(0.796917:0.796917:0.585973):36,0.564583:(0.796917:0.796917:0.585973):36,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter density" Value="0">
+   <Spline Keys="0:0:0,0.243056:0:0,0.25:0:0,0.5:0:0,0.75:0:0,0.760417:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Dof: focus range" Value="998.37585">
+   <Spline Keys="0:800:36,0.3125:500:36,0.314583:998.38:36,0.5:800:36,0.564583:998.38:36,0.625:300:36,1:800:36,"/>
+  </Variable>
+  <Variable Name="Dof: blur amount" Value="4.7354598e-007">
+   <Spline Keys="0:0:36,0.243056:0:36,0.25:0.25:36,0.3125:0:36,0.322917:0:36,0.493868:0.25:0,0.5625:0:36,0.564583:0:36,0.625:0.08:36,0.75:0.25:36,0.760417:0:36,1:0:36,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Bias" Value="0.99999857">
+   <Spline Keys="0:0.25:0,0.25:0.25:0,0.3125:0.5:36,0.314583:1:36,0.403587:10:36,0.466368:10:36,0.5:0.25:0,0.564583:1:36,0.75:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Slope Bias" Value="4.0000019">
+   <Spline Keys="0:5:0,0.25:5:0,0.3125:4.02:36,0.314583:4:36,0.403587:500:36,0.5:5:0,0.564583:4:36,0.75:5:0,1:5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Bias" Value="0.99999905">
+   <Spline Keys="0:0.5:0,0.25:0.5:0,0.3125:1:36,0.314583:1:36,0.403587:0:36,0.5:0.5:0,0.564583:1:36,0.75:0.5:0,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Slope Bias" Value="2">
+   <Spline Keys="0:2:0,0.243056:2:0,0.25:2:0,0.3125:2:36,0.314583:2:36,0.403587:500:36,0.5:2:0,0.564583:2:36,0.75:2:0,0.760417:2:0,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Bias" Value="1.8999969">
+   <Spline Keys="0:0.25:0,0.25:0.25:0,0.3125:1.86:36,0.314583:1.9:36,0.403587:0:36,0.5:0.25:0,0.564583:1.9:36,0.75:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Slope Bias" Value="0.24000917">
+   <Spline Keys="0:5:0,0.25:5:0,0.3125:0.35:36,0.314583:0.24:36,0.403587:50:36,0.5:5:0,0.564583:0.24:36,0.75:5:0,1:5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Bias" Value="2.9999948">
+   <Spline Keys="0:0.25:0,0.25:0.25:0,0.3125:3:36,0.314583:3:36,0.403587:5:36,0.466368:0:36,0.5:0.25:0,0.564583:3:36,0.75:0.25:0,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Slope Bias" Value="0.24000147">
+   <Spline Keys="0:1:0,0.25:1:0,0.3125:0.25:36,0.314583:0.24:36,0.403587:0:36,0.466368:16.3:36,0.5:1:0,0.564583:0.24:36,0.75:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Bias" Value="2">
+   <Spline Keys="0:2:0,0.3125:2:36,0.314583:2:36,0.403587:10:36,0.466368:4.87:36,0.564583:2:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,0.3125:0.5:36,0.314583:0.5:36,0.403587:303.4:36,0.466368:0:36,0.564583:0.5:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Bias" Value="2">
+   <Spline Keys="0:2:0,0.3125:2:36,0.314583:2:36,0.403587:10:36,0.466368:0:36,0.564583:2:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,0.3125:0.5:36,0.314583:0.5:36,0.403587:268:36,0.564583:0.5:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Bias" Value="2">
+   <Spline Keys="0:2:0,0.3125:2:36,0.314583:2:36,0.403587:0:36,0.564583:2:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,0.3125:0.5:36,0.314583:0.5:36,0.403587:0:36,0.564583:0.5:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Bias" Value="2">
+   <Spline Keys="0:2:0,0.3125:2:36,0.314583:2:36,0.403587:10:36,0.564583:2:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Slope Bias" Value="0.5">
+   <Spline Keys="0:0.5:0,0.3125:0.5:36,0.314583:0.5:36,0.463633:0:36,0.564583:0.5:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Shadow jittering" Value="2.5">
+   <Spline Keys="0:2.5:0,0.564583:2.5:36,1:2.5:0,"/>
+  </Variable>
+ </TimeOfDay>
+ <MiniMap CenterX="512" CenterY="512" ExtendsX="512" ExtendsY="512" TexWidth="1024" TexHeight="1024"/>
+ <Weapons>
+  <Used />
+  <Ammo />
+ </Weapons>
+ <Objects>
+  <Entity Name="HM_S1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="28" EntityGuid="4BB513EA86620309" CastShadowMinSpec="1" Layer="HM_S1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_M2_Actor" Pos="139.62102,106.28288,493.27444" Rotate="0.99996191,0,0,0.0087265354" EntityClass="NEDActor" EntityId="7" EntityGuid="4BCE4B51A7976C0D" CastShadowMinSpec="1" Layer="HM_M2">
+   <Properties ActorTableID="tf_m" decorate="" face="" gloves="ar4_110_4_003_2" hair="hm_hair_004" helmet="" bIsMyActor="0" jacket="ar4_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar4_110_5_004_2" shoulders="ar4_110_2_001_2" sub=""/>
+  </Entity>
+  <Entity Name="SR_M2_Actor0" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="15" EntityGuid="4A2A8AFC67320D10" CastShadowMinSpec="1" Layer="SR_M2">
+   <Properties ActorTableID="do_f" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_S1_Camera" ParentId="22" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="51" EntityGuid="4749D6127BC2741C" CastShadowMinSpec="1" Layer="HW_S1" FOV="0.68067843"/>
+  <Entity Name="HW_B1_Camera_Link" Pos="139.71164,106.84683,493.40616" EntityClass="NEDActor" EntityId="39" EntityGuid="4A7272081C745F24" CastShadowMinSpec="1" Layer="HW_B1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_S1_Camera" ParentId="31" Rotate="0.70710671,-0.70710683,0,0" EntityClass="CameraSource" EntityId="53" EntityGuid="4C6C9D743DAE0225" CastShadowMinSpec="1" Layer="HM_S1" FOV="0.68067843"/>
+  <Entity Name="HW_M2_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="13" EntityGuid="48A15ED995A1DD27" CastShadowMinSpec="1" Layer="HW_M2">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_BH_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="23" EntityGuid="46171E3BDA595B29" CastShadowMinSpec="1" Layer="HW_BH">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HM_B1" Scale="1,1,1"/>
+  <Entity Name="HW_M1_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="46" EntityGuid="4936512BDF50DA30" CastShadowMinSpec="1" Layer="HW_M1">
+   <Properties ActorTableID="pr_f" decorate="" face="" gloves="ar5_110_4_003_2" hair="hw_hair_003" helmet="1" bIsMyActor="0" jacket="ar5_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar5_110_5_004_2" shoulders="ar5_110_2_001_2" sub=""/>
+  </Entity>
+  <Entity Name="SR_W1_Actor" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="45" EntityGuid="4D31816E0D6C9C34" CastShadowMinSpec="1" Layer="SR_W1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="Poster" Scale="1,1,1"/>
+  <Entity Name="HW_M1_Camera" ParentId="4" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="56" EntityGuid="41B895D4F7170837" CastShadowMinSpec="1" Layer="HW_M1" FOV="0.61086524"/>
+  <Entity Name="HM_M2_Camera_Link" Pos="139.61584,106.68783,493.40616" EntityClass="NEDActor" EntityId="10" EntityGuid="40F46D74C3922F37" CastShadowMinSpec="1" Layer="HM_M2">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_BH_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="42" EntityGuid="4DB741F32A65EE38" CastShadowMinSpec="1" Layer="HM_BH">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_S2_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="11" EntityGuid="47FF7E9228B49A44" CastShadowMinSpec="1" Layer="HM_S2">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_BH_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="24" EntityGuid="44EF8C4CB8780745" CastShadowMinSpec="1" Layer="HW_BH">
+   <Properties ActorTableID="tf_f" decorate="" face="" gloves="ar3_110_4_003_2" hair="hw_hair_004" helmet="ar3_002_1_92105" bIsMyActor="0" jacket="ar3_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar3_110_5_004_2" shoulders="ar3_110_2_001_2" sub="we4_002_0_2103"/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HM_S1" Scale="1,1,1"/>
+  <Entity Name="Camera1" Pos="141.50766,106.55546,493.83423" Rotate="0.5952298,0.048424687,0.065039188,0.79945379" EntityClass="CameraSource" EntityId="61" EntityGuid="40F2021DAD2FCC46" CastShadowMinSpec="1" Layer="Poster" FOV="0.78539777"/>
+  <Object Type="SequenceObject" Name="HW_B1" Scale="1,1,1"/>
+  <Entity Name="SR_M2_Camera_Link" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="18" EntityGuid="44449C0AF454425C" CastShadowMinSpec="1" Layer="SR_M2">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_M2_Camera" ParentId="16" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="50" EntityGuid="4F374534279BA55C" CastShadowMinSpec="1" Layer="HW_M2" FOV="0.78539819"/>
+  <Entity Name="HM_M1_Camera_Link" Pos="139.31342,106.62017,493.41818" EntityClass="NEDActor" EntityId="6" EntityGuid="445BD8B6B6C33060" CastShadowMinSpec="1" Layer="HM_M1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="Hm_M1_Camera" ParentId="6" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="49" EntityGuid="47E53105F4241461" CastShadowMinSpec="1" Layer="HM_M1" FOV="0.56670803"/>
+  <Object Type="SequenceObject" Name="SR_M2" Scale="1,1,1"/>
+  <Entity Name="SR_M2_Camera" ParentId="18" Pos="0,3.0517578e-005,0.00012207031" Rotate="0.70710677,-0.70710683,-1.0536713e-008,1.0536712e-008" EntityClass="CameraSource" EntityId="57" EntityGuid="4D4E136770974464" CastShadowMinSpec="1" Layer="SR_M2" FOV="0.78539771"/>
+  <Entity Name="Man_Poster" ParentId="33" Pos="0.13957214,-0.021179199,0.089172363" Rotate="0.54076111,0.43907681,0.5739634,0.43052867" EntityClass="NEDActor" EntityId="35" EntityGuid="443D558B137E6B69" CastShadowMinSpec="1" Layer="Poster">
+   <Properties ActorTableID="gd_m" decorate="" face="tr1_1" gloves="tr1_1" hair="tr1_1" helmet="" bIsMyActor="0" jacket="tr1_1" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="tr1_1" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_BH_Camera" ParentId="27" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="52" EntityGuid="4DFEBD578D0EF469" CastShadowMinSpec="1" Layer="HW_BH" FOV="0.2443461"/>
+  <Object Type="SequenceObject" Name="HW_M2" Scale="1,1,1"/>
+  <Object Type="SequenceObject" Name="HM_BH" Scale="1,1,1"/>
+  <Object Type="SequenceObject" Name="SR_W1" Scale="1,1,1"/>
+  <Entity Name="Horse" Pos="138.91377,106.44918,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="34" EntityGuid="4C015D36FE503278" CastShadowMinSpec="1" Layer="Poster">
+   <Properties ActorTableID="e_event_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1.25" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_M1_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="8" EntityGuid="44549094C5AD2479" CastShadowMinSpec="1" Layer="HM_M1">
+   <Properties ActorTableID="pr_m" decorate="" face="" gloves="ar5_110_4_003_2" hair="hm_hair_011" helmet="" bIsMyActor="0" jacket="ar5_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar5_110_5_004_2" shoulders="ar5_110_2_001_2" sub=""/>
+  </Entity>
+  <Entity Name="HW_S1_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="19" EntityGuid="4DB0CDD227E1E77C" CastShadowMinSpec="1" Layer="HW_S1">
+   <Properties ActorTableID="gd_f" decorate="" face="" gloves="ar0_110_4_003_2" hair="hw_hair_001" helmet="ar0_ca2_a_1_92105" bIsMyActor="0" jacket="ar0_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar0_110_5_004_2" shoulders="ar0_110_2_001_2" sub="su0_504_1_3503"/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HW_BH" Scale="1,1,1"/>
+  <Entity Name="HW_S2_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="26" EntityGuid="4D8B95A73F8ED38C" CastShadowMinSpec="1" Layer="HW_S2">
+   <Properties ActorTableID="wr_f" decorate="" face="" gloves="ar1_110_4_003_2" hair="hm_hair_006" helmet="ar1_105_1_00006" bIsMyActor="0" jacket="ar1_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar1_110_5_004_2" shoulders="ar1_110_2_001_2" sub=""/>
+  </Entity>
+  <Entity Name="HW_S2_Camera" ParentId="30" Rotate="0.70710671,-0.70710683,0,0" EntityClass="CameraSource" EntityId="62" EntityGuid="4B1B12F3C3998B8F" CastShadowMinSpec="1" Layer="HW_S2" FOV="1.012291"/>
+  <Entity Name="HM_S2_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="2" EntityGuid="41B2ADDB8D41E894" CastShadowMinSpec="1" Layer="HM_S2">
+   <Properties ActorTableID="wr_m" decorate="" face="" gloves="ar1_110_4_003_2" hair="hm_hair_003" helmet="ar1_105_1_00006" bIsMyActor="0" jacket="ar1_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar1_110_5_004_2" shoulders="ar1_110_2_001_2" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HM_M2" Scale="1,1,1"/>
+  <Entity Name="SR_M2_Camera_Bone" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="21" EntityGuid="4FCA85152EDCDEA0" CastShadowMinSpec="1" Layer="SR_M2">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_S1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="20" EntityGuid="4FA4F692A90723A2" CastShadowMinSpec="1" Layer="HW_S1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HW_S1" Scale="1,1,1"/>
+  <Entity Name="HM_B1_Camera" ParentId="38" Pos="0,-3.0517578e-005,-3.0517578e-005" Rotate="0.70710683,-0.70710671,6.1182085e-008,-4.102921e-008" EntityClass="CameraSource" EntityId="59" EntityGuid="4B86B5341AB4A4A8" CastShadowMinSpec="1" Layer="HM_B1" FOV="0.95993102"/>
+  <Entity Name="HW_S2_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="29" EntityGuid="4D3DCAED2A097AAE" CastShadowMinSpec="1" Layer="HW_S2">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_BH_Camera_Link" Pos="139.59824,106.67063,493.40616" EntityClass="NEDActor" EntityId="43" EntityGuid="4178873A1EE4FCB4" CastShadowMinSpec="1" Layer="HM_BH">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_M2_Camera_Link" Pos="140.21071,106.30716,493.40616" EntityClass="NEDActor" EntityId="16" EntityGuid="44453BF1FF1DC8B7" CastShadowMinSpec="1" Layer="HW_M2">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="Cloud0" Pos="139.28748,93.805397,494.5853" EntityClass="Cloud" EntityId="12" EntityGuid="479F2FF5141E94B9" CastShadowMinSpec="1" Layer="Z_temp">
+   <Properties file_CloudFile="materials/clouds/baseclouds.mtl" fScale="127.5">
+    <Movement bAutoMove="0" fFadeDistance="5" vector_SpaceLoopBox="2000,2000,2000" vector_Speed="50,0,0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="HW_M2_Actor" Pos="139.62102,106.28288,493.27444" Rotate="0.99996191,0,0,-0.0087265354" EntityClass="NEDActor" EntityId="17" EntityGuid="4F23F3258A395BBA" CastShadowMinSpec="1" Layer="HW_M2">
+   <Properties ActorTableID="wz_f" decorate="" face="" gloves="ar4_110_4_003_2" hair="hw_hair_012" helmet="" bIsMyActor="0" jacket="ar4_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar4_110_5_004_2" shoulders="ar4_110_2_001_2" sub=""/>
+  </Entity>
+  <Entity Name="HM_M2_Camera" ParentId="10" Rotate="0.70710671,-0.70710683,0,0" EntityClass="CameraSource" EntityId="54" EntityGuid="450EC8963DE39FBA" CastShadowMinSpec="1" Layer="HM_M2" FOV="0.61086524"/>
+  <Entity Name="HM_M1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="9" EntityGuid="401E3D314ABC40BB" CastShadowMinSpec="1" Layer="HM_M1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_B1_Actor" Pos="139.62102,106.28288,493.27444" Rotate="0.99996191,0,0,-0.0087265354" EntityClass="NEDActor" EntityId="36" EntityGuid="4E184FA31B35A6BC" CastShadowMinSpec="1" Layer="HM_B1">
+   <Properties ActorTableID="tf_m" decorate="" face="" gloves="ar2_110_4_003_1" hair="hm_hair_010" helmet="" bIsMyActor="0" jacket="ar2_110_3_002_1" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar2_110_5_004_1" shoulders="ar2_110_2_001_1" sub=""/>
+  </Entity>
+  <Entity Name="HM_S2_Camera_Link" Pos="140.30638,106.33558,493.40616" EntityClass="NEDActor" EntityId="3" EntityGuid="414379F43B0668BE" CastShadowMinSpec="1" Layer="HM_S2">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="SR_M2_Actor" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="25" EntityGuid="46C84C25C92126C0" CastShadowMinSpec="1" Layer="SR_M2">
+   <Properties ActorTableID="do_f" decorate="" face="" gloves="ar11_110_4_003_1" hair="sw_hair_006" helmet="" bIsMyActor="0" jacket="ar11_110_3_002_1" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar11_110_5_004_1" shoulders="ar11_110_2_001_1" sub=""/>
+  </Entity>
+  <Entity Name="HM_B1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="37" EntityGuid="436B8233E68903C2" CastShadowMinSpec="1" Layer="HM_B1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HM_S2" Scale="1,1,1"/>
+  <Entity Name="HW_M1_Link" Pos="140.36812,106.44637,493.40616" EntityClass="NEDActor" EntityId="4" EntityGuid="48E2F3FACA1448C4" CastShadowMinSpec="1" Layer="HW_M1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_M2_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="14" EntityGuid="40BEB5104E5C2DC6" CastShadowMinSpec="1" Layer="HM_M2">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HW_S2" Scale="1,1,1"/>
+  <Entity Name="HW_B1_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="40" EntityGuid="423E11196452CFD0" CastShadowMinSpec="1" Layer="HW_B1">
+   <Properties ActorTableID="ac_f" decorate="" face="" gloves="ar2_110_4_003_1" hair="hw_hair_014" helmet="" bIsMyActor="0" jacket="ar2_110_3_002_1" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar2_110_5_004_1" shoulders="ar2_110_2_001_1" sub=""/>
+  </Entity>
+  <Entity Name="HW_B1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="41" EntityGuid="4F27FF2AA5606FD1" CastShadowMinSpec="1" Layer="HW_B1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_BH_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="44" EntityGuid="48E67E9DFF8651D3" CastShadowMinSpec="1" Layer="HM_BH">
+   <Properties ActorTableID="tf_m" decorate="" face="" gloves="ar3_110_4_003_2" hair="hm_hair_007" helmet="ar3_002_1_92105" bIsMyActor="0" jacket="ar3_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar3_110_5_004_2" shoulders="ar3_110_2_001_2" sub="we4_002_0_2103"/>
+  </Entity>
+  <Entity Name="GeomEntity0" EntityClass="GeomEntity" EntityId="47" EntityGuid="40FACC1D5C0210D6" CastShadowMinSpec="1" Layer="HM_M2" Geometry="objects/characters/players/hw/hw_face_priest.chr">
+   <Properties esFaction="">
+    <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+    <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="HW_BH_Camera_Link" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="27" EntityGuid="4B4CE920ED9D28D9" CastShadowMinSpec="1" Layer="HW_BH">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_B1_Camera" ParentId="39" Rotate="0.70710677,-0.70710683,0,0" EntityClass="CameraSource" EntityId="55" EntityGuid="419494C35603BADB" CastShadowMinSpec="1" Layer="HW_B1" FOV="0.78539819"/>
+  <Entity Name="HM_BH_Camera" ParentId="43" Rotate="0.70710671,-0.70710683,0,0" EntityClass="CameraSource" EntityId="58" EntityGuid="488D324C776046DF" CastShadowMinSpec="1" Layer="HM_BH" FOV="0.2443461"/>
+  <Entity Name="HM_S1_Camera_Link" Pos="139.7054,106.77418,493.40616" EntityClass="NEDActor" EntityId="31" EntityGuid="4FEDEA393285D0E0" CastShadowMinSpec="1" Layer="HM_S1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="Actor_Linker" Pos="139.68434,106.10131,493.33038" Rotate="0.99254614,0,0,-0.12186935" Scale="0.59000009,0.59000009,0.59000003" EntityClass="NEDActor" EntityId="33" EntityGuid="41A9E3D574A47AE1" CastShadowMinSpec="1" Layer="Poster">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_S1_Camera_Link" Pos="140.19453,106.5783,493.40616" EntityClass="NEDActor" EntityId="22" EntityGuid="447AE5DDC7AEDAE7" CastShadowMinSpec="1" Layer="HW_S1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HM_M1" Scale="1,1,1"/>
+  <Entity Name="Camera0" Pos="141.81876,106.08211,494.41019" Rotate="0.67048776,-0.023572847,0.0063514886,0.7415188" EntityClass="CameraSource" EntityId="60" EntityGuid="4F06AA332BC1F0ED" CastShadowMinSpec="1" Layer="Poster" FOV="0.78539819"/>
+  <Entity Name="HW_M1_Camera_Bone" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="5" EntityGuid="4858822C42F047EE" CastShadowMinSpec="1" Layer="HW_M1">
+   <Properties ActorTableID="e_00_camera_01" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HW_S2_Camera_Link" Pos="140.32869,106.26433,493.40616" EntityClass="NEDActor" EntityId="30" EntityGuid="423A23F3DEEB59F1" CastShadowMinSpec="1" Layer="HW_S2">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Entity Name="HM_S1_Actor" Pos="139.62102,106.28288,493.27444" EntityClass="NEDActor" EntityId="32" EntityGuid="424F8C3A157B39F8" CastShadowMinSpec="1" Layer="HM_S1">
+   <Properties ActorTableID="gd_m" decorate="" face="" gloves="ar0_110_4_003_2" hair="hm_hair_002" helmet="ar0_504_a_1_92105" bIsMyActor="0" jacket="ar0_110_3_002_2" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="ar0_110_5_004_2" shoulders="" sub="su0_504_1_3503"/>
+  </Entity>
+  <Entity Name="HM_B1_Camera_Link" Pos="136.48311,111.25255,496.4408" Rotate="0.73315394,-0.25097936,-0.2047081,0.59798771" EntityClass="NEDActor" EntityId="38" EntityGuid="4F6CB4D642199AFB" CastShadowMinSpec="1" Layer="HM_B1">
+   <Properties ActorTableID="e_00_0_0000_0000" decorate="" face="" gloves="" hair="" helmet="" bIsMyActor="0" jacket="" objModel="Objects/Characters/Players/HW/HW.cdf" Preset="None" rightHand="" Scale="1" shoes="" shoulders="" sub=""/>
+  </Entity>
+  <Object Type="SequenceObject" Name="HW_M1" Scale="1,1,1"/>
+  <Entity Name="HM_S2_Camera" ParentId="3" Rotate="0.70710671,-0.70710683,0,0" EntityClass="CameraSource" EntityId="48" EntityGuid="4EFA022DD9E510FD" CastShadowMinSpec="1" Layer="HM_S2" FOV="1.0122908"/>
+ </Objects>
+</Mission>

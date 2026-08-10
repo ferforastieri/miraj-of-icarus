@@ -1,0 +1,9 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="0" StringGenMask="" SurfaceType="" MatTemplate="" Diffuse="0.21951973,0.25084025,0.29765266" Specular="0,0,0" Emissive="0,0,0" Opacity="0.0099999998" GlowAmount="1.7">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/cus_line_muzzle.tif"/>
+  <Texture Map="Decal" File="objects/decal/decal_blendlayeropa01_12b.tif">
+   <TexMod TileV="0.5" OffsetU="1" TexMod_UOscillatorType="2" TexMod_RotateType="2" TexMod_URotateRate="0.99975586" TexMod_URotateAmplitude="0.098876953" TexMod_VRotateRate="0.99975586" TexMod_URotateCenter="1" TexMod_UOscillatorRate="0.5" TexMod_UOscillatorPhase="1" TexMod_VOscillatorPhase="1" TexMod_UOscillatorAmplitude="1"/>
+  </Texture>
+ </Textures>
+ <PublicParams FresnelPower="4" GlossFromDiffuseContrast="1" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" IndirectColor="0.25,0.25,0.25"/>
+</Material>

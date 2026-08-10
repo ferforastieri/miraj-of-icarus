@@ -1,0 +1,11 @@
+**/.git
+**/bin
+**/obj
+**/node_modules
+**/.next
+**/TestResults
+**/*.tsbuildinfo
+legacy
+game-clients
+tools
+portal/mobile

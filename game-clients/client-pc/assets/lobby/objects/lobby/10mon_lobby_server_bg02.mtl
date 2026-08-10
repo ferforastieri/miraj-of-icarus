@@ -1,0 +1,6 @@
+<Material MtlFlags="524320" Shader="Illum" GenMask="4002000000000" StringGenMask="%SUBSURFACE_SCATTERING%VERTCOLORS" SurfaceType="" MatTemplate="" Diffuse="0.056374099,0.056374099,0.056374099" Specular="0,0,0" Emissive="0,0,0" Shininess="85" Opacity="1" GlowAmount="1.5" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/10mon_bg_total03.tif"/>
+ </Textures>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0.064000003" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

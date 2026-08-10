@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "binary": "legacy/game/server/LoginServer.exe",
+      "sha256": "7231ad180df636e820865524f58d8ea147f2b340ccdf1e307499ee0b93485ae6",
+      "role": "receiver"
+    },
+    {
+      "binary": "legacy/game/client-pc/Bin32/CryGame.dll",
+      "sha256": "c1f12f61ef8a69ee6669f99dac5cd81bfb7459abbcd8831bfdd50c5631628729",
+      "role": "sender"
+    }
+  ],
+  "method": "static-analysis",
+  "transport": {
+    "protocolId": 1,
+    "cryptoType": 2,
+    "cipher": "AES-128-ECB",
+    "wirePayloadMultiple": 16,
+    "padding": "opaque-zero-recommended"
+  },
+  "messages": [
+    {
+      "name": "request_login",
+      "type0": 11,
+      "type1": 1,
+      "semanticSize": 121,
+      "wirePayloadSize": 128,
+      "confidence": "confirmed",
+      "fields": [
+        { "name": "user", "offset": 0, "size": 101, "type": "nul-terminated-bytes" },
+        { "name": "password", "offset": 101, "size": 19, "type": "nul-terminated-bytes", "requiredWhen": "push == 0" },
+        { "name": "push", "offset": 120, "size": 1, "type": "uint8" }
+      ]
+    },
+    {
+      "name": "request_cert",
+      "type0": 11,
+      "type1": 3,
+      "semanticSize": 108,
+      "wirePayloadSize": 112,
+      "confidence": "confirmed",
+      "fields": [
+        { "name": "environment", "offset": 0, "size": 1, "type": "uint8" },
+        { "name": "keyVal1", "offset": 1, "maximumRegionSize": 101, "type": "nul-terminated-bytes" },
+        { "name": "keyVal2", "offset": 102, "size": 4, "type": "uint32-le" },
+        { "name": "mode", "offset": 106, "size": 2, "type": "nul-terminated-bytes" }
+      ]
+    },
+    {
+      "name": "request_push",
+      "type0": 11,
+      "type1": 5,
+      "semanticSize": 1,
+      "wirePayloadSize": 16,
+      "confidence": "confirmed",
+      "fields": [
+        { "name": "ignored", "offset": 0, "size": 1, "type": "opaque", "legacySenderInitialization": "uninitialized", "newSenderValue": 0 }
+      ]
+    },
+    {
+      "name": "request_world_list",
+      "type0": 11,
+      "type1": 10,
+      "semanticSize": 1,
+      "wirePayloadSize": 16,
+      "confidence": "confirmed",
+      "fields": [
+        { "name": "ignored", "offset": 0, "size": 1, "type": "opaque", "legacySenderInitialization": "uninitialized", "newSenderValue": 0 }
+      ]
+    },
+    {
+      "name": "request_select_world",
+      "type0": 11,
+      "type1": 20,
+      "semanticSize": 4,
+      "wirePayloadSize": 16,
+      "confidence": "confirmed",
+      "fields": [
+        { "name": "worldId", "offset": 0, "size": 4, "type": "uint32-le" }
+      ]
+    }
+  ]
+}

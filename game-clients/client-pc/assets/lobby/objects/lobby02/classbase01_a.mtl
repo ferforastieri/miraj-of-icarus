@@ -1,0 +1,9 @@
+<Material MtlFlags="524288" Shader="Illum" GenMask="4000000080100" StringGenMask="%BUMP_MAP%GLOSS_MAP%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0.58823532,0.58823532,0.58823532" Specular="0,0,0" Emissive="0,0,0" Shininess="9.999999" Opacity="1" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby02/classbase_floor_side.tif"/>
+  <Texture Map="Specular" File="objects/lobby02/classbase_floor_side.tif"/>
+  <Texture Map="Bumpmap" File="objects/lobby02/classbase_floor_side_ddn.tif"/>
+  <Texture Map="Detail" File="objects/zcom_tex/detail_bump_brickscar_01_ddn.dds"/>
+ </Textures>
+ <PublicParams SpecMapChannelB="0" DissolveParams1="0,0,0" SpecMapChannelR="0" DissolveBright="1" GlossMapChannelB="0" NoiseRef="0" SpecMapChannelG="0" FresnelScale="1" FresnelBias="1" DissolveParams2="0,0,0" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

@@ -1,0 +1,9 @@
+<Material MtlFlags="524320" Shader="Illum" GenMask="4000000000000" StringGenMask="%SUBSURFACE_SCATTERING" SurfaceType="mat_default" MatTemplate="" Diffuse="0.49361622,0.5174014,0.57315886" Specular="0,0,0" Emissive="0,0,0" Shininess="95" Opacity="1" AlphaTest="0.28999999" vertModifType="6" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/flow_stone.tif">
+   <TexMod TexMod_UOscillatorRate="1" TexMod_VOscillatorRate="1" TexMod_UOscillatorPhase="1" TexMod_VOscillatorPhase="1" TexMod_UOscillatorAmplitude="0.0080000004"/>
+  </Texture>
+ </Textures>
+ <VertexDeform Type="6" DividerX="6.3000002" DividerY="17" DividerZ="17" DividerW="28.6" NoiseScale="2,2,2"/>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

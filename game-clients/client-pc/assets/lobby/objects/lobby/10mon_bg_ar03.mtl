@@ -1,0 +1,6 @@
+<Material MtlFlags="524320" Shader="Illum" GenMask="4000000000008" StringGenMask="%ANISO_SPECULAR%SUBSURFACE_SCATTERING" SurfaceType="" MatTemplate="" Diffuse="0,0.013473397,0.0160677" Specular="0,0,0" Emissive="0,0,0" Shininess="47" Opacity="1" GlowAmount="1.6" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/10mon_bg_ar01_b1.tif"/>
+ </Textures>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" AnisotropicShape="0.25" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0.064000003" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

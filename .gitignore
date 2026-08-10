@@ -1,0 +1,56 @@
+# Historical baseline and reverse-engineering workspace (local only)
+/legacy/
+
+# Secrets and local runtime state
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+!game-clients/client-pc/launcher/keys/release-signing-public.pem
+*.pfx
+*.bak
+*.mdf
+*.ndf
+*.ldf
+
+# Generated/runtime data
+artifacts/
+backups/
+patches/
+.cache/
+
+# Local tooling
+.DS_Store
+Thumbs.db
+*.swp
+**/__pycache__/
+*.py[cod]
+
+# .NET build and test outputs
+**/bin/
+**/obj/
+**/TestResults/
+*.user
+*.suo
+
+# CMake and native build outputs
+**/build/
+**/cmake-build-*/
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/Testing/
+**/compile_commands.json
+**/.ninja_deps
+**/.ninja_log
+**/build.ninja
+
+# Node.js and Next.js outputs
+**/node_modules/
+**/.next/
+**/out/
+**/.turbo/
+**/coverage/
+*.tsbuildinfo

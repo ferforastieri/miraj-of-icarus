@@ -1,0 +1,9 @@
+<Material MtlFlags="524320" Shader="Illum" GenMask="4000000000008" StringGenMask="%ANISO_SPECULAR%SUBSURFACE_SCATTERING" SurfaceType="mat_default" MatTemplate="" Diffuse="0.089193508,0.13902245,0.21576439" Specular="0,0,0" Emissive="1,1,1" Shininess="95" Opacity="0.079999998" vertModifType="6" LayerAct="1">
+ <Textures>
+  <Texture Map="Diffuse" File="objects/lobby/00_sky_cloud_01.tif">
+   <TexMod OffsetU="8.8000002" TexMod_UOscillatorType="2" TexMod_UOscillatorRate="1" TexMod_VOscillatorRate="1" TexMod_UOscillatorPhase="1" TexMod_VOscillatorPhase="1" TexMod_UOscillatorAmplitude="0.0040000002"/>
+  </Texture>
+ </Textures>
+ <VertexDeform Type="6" DividerX="6.3000002" DividerY="17" DividerZ="17" DividerW="28.6" NoiseScale="2,2,2"/>
+ <PublicParams DissolveParams1="0,0,0" DissolveBright="1" GlossFromDiffuseContrast="1" AnisotropicShape="0.25" NoiseRef="0" FresnelScale="1" GlossFromDiffuseOffset="0" FresnelBias="1" DissolveParams2="0,0,0" GlossFromDiffuseAmount="0" GlossFromDiffuseBrightness="0.333" SphereInfo="0,0,0" IndirectColor="0.25,0.25,0.25"/>
+</Material>

@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dotnet:
+    name: .NET
+    runs-on: ubuntu-latest
+    env:
+      ConnectionStrings__Database: Host=127.0.0.1;Port=5432;Database=masicarus;Username=masicarus;Password=masicarus-ci-password;GSS Encryption Mode=Disable
+      Cache__ConnectionString: 127.0.0.1:6379
+      Database__ApplyMigrations: "true"
+    services:
+      postgres:
+        image: postgres:18.4-bookworm
+        env:
+          POSTGRES_DB: masicarus
+          POSTGRES_USER: masicarus
+          POSTGRES_PASSWORD: masicarus-ci-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U masicarus -d masicarus"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:8.8.1-alpine3.23
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+          cache: true
+          cache-dependency-path: |
+            api/**/packages.lock.json
+            game-server/**/packages.lock.json
+      - run: dotnet restore api/Masicarus.slnx --locked-mode
+      - run: dotnet restore game-server/Masicarus.GameServer.slnx --locked-mode
+      - run: dotnet test api/Masicarus.slnx --configuration Release --no-restore
+      - run: dotnet test game-server/Masicarus.GameServer.slnx --configuration Release --no-restore
+
+  client-contracts:
+    name: Client contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - run: cmake -S game-clients/client-pc -B build/client -G Ninja -DMASICARUS_BUILD_WINDOWS_APPS=OFF
+      - run: cmake --build build/client
+      - run: ctest --test-dir build/client --output-on-failure
+
+  portal:
+    name: Portal
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: portal/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: portal/web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build

@@ -1,0 +1,152 @@
+name: masicarus
+
+services:
+  postgres:
+    image: postgres:18.4-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: masicarus
+      POSTGRES_USER: masicarus
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U masicarus -d masicarus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  redis:
+    image: redis:8.8.1-alpine3.23
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  api:
+    image: masicarus-api:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    build:
+      context: ..
+      dockerfile: api/Dockerfile
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Database: Host=postgres;Port=5432;Database=masicarus;Username=masicarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
+      Cache__ConnectionString: redis:6379
+      Database__ApplyMigrations: "true"
+      ClientReleases__Root: /srv/client-releases
+    volumes:
+      - /opt/masicarus/client-releases:/srv/client-releases:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8080:8080"
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/live HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  main-server:
+    image: masicarus-main-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    build:
+      context: ..
+      dockerfile: game-server/services/coordinator/Masicarus.MainServer/Dockerfile
+    restart: unless-stopped
+    environment:
+      Cache__ConnectionString: redis:6379
+      Internal__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in infra/.env}
+      Server__Id: masicarus-alpha
+      Lobby__Endpoint: ${MASICARUS_PUBLIC_LOBBY_URL:?Set MASICARUS_PUBLIC_LOBBY_URL in infra/.env}
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  login-server:
+    image: masicarus-login-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    build:
+      context: ..
+      dockerfile: game-server/services/login/Masicarus.LoginServer/Dockerfile
+    restart: unless-stopped
+    environment:
+      Cache__ConnectionString: redis:6379
+      Main__Endpoint: http://main-server:8080
+      Main__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in infra/.env}
+    depends_on:
+      main-server:
+        condition: service_healthy
+    ports:
+      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8081:8080"
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  lobby-server:
+    image: masicarus-lobby-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    build:
+      context: ..
+      dockerfile: game-server/services/lobby/Masicarus.LobbyServer/Dockerfile
+    restart: unless-stopped
+    environment:
+      ConnectionStrings__Database: Host=postgres;Port=5432;Database=masicarus;Username=masicarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
+      Cache__ConnectionString: redis:6379
+      Database__ApplyMigrations: "true"
+    depends_on:
+      api:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8083:8080"
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+  portal:
+    image: masicarus-portal:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    build:
+      context: ../portal/web
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [backend]
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:
