@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Masicarus.Application.Authentication;
+namespace MirajOfIcarus.Application.Authentication;
 
 public static class PasswordHasher
 {

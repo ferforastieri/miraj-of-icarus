@@ -1,6 +1,6 @@
-using Masicarus.Application.Authentication;
+using MirajOfIcarus.Application.Authentication;
 
-namespace Masicarus.Api.Tests;
+namespace MirajOfIcarus.Api.Tests;
 
 public sealed class PasswordHasherTests
 {

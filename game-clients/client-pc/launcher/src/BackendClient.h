@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 struct GameServer { std::string id, name, region, loginEndpoint; bool available = false; };
 struct LobbyAdmission { std::uint32_t sessionId = 0; std::string lobbyEndpoint, lobbyTicket; };

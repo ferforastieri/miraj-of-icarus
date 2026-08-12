@@ -3,8 +3,8 @@
 #include "ReleaseIntegrity.h"
 #include "ReleaseUpdater.h"
 #include "resource.h"
-#include "masicarus/client/LaunchContext.h"
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/LaunchContext.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 
 #include <windows.h>
 #include <windowsx.h>
@@ -45,7 +45,7 @@ constexpr UINT LoadEnvironmentMessage = WM_APP + 1;
 
 std::string LoadApiEndpoint()
 {
-    auto path = masicarus::launcher::ExecutableDirectory();
+    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
     if (!path.empty()) path += L'\\';
     path += L"assets\\launcher\\config.json";
     std::ifstream input(path, std::ios::binary);
@@ -76,22 +76,22 @@ int RunDiagnostic(std::wstring_view command)
         const auto apiEndpoint = LoadApiEndpoint();
         if (command == L"--update-client")
         {
-            const auto result = masicarus::launcher::EnsureClientReady(
-                apiEndpoint, masicarus::launcher::GameInstallDirectory());
+            const auto result = miraj_of_icarus::launcher::EnsureClientReady(
+                apiEndpoint, miraj_of_icarus::launcher::GameInstallDirectory());
             WriteDiagnostic("client-update=ok version=" + result.version +
                 " downloaded-bytes=" + std::to_string(result.downloadedBytes) + "\n");
             return 0;
         }
 
-        masicarus::launcher::VerifyInstalledRelease(
-            masicarus::launcher::GameInstallDirectory());
+        miraj_of_icarus::launcher::VerifyInstalledRelease(
+            miraj_of_icarus::launcher::GameInstallDirectory());
         if (command == L"--verify-release")
         {
             WriteDiagnostic("release-integrity=ok\n");
             return 0;
         }
 
-        const auto servers = masicarus::launcher::BackendClient(apiEndpoint).GetServers();
+        const auto servers = miraj_of_icarus::launcher::BackendClient(apiEndpoint).GetServers();
         const auto available = std::any_of(
             servers.begin(), servers.end(), [](const auto& server) { return server.available; });
         if (!available)
@@ -126,7 +126,7 @@ struct WindowState
     HWND close = nullptr;
     std::unique_ptr<Gdiplus::Image> background;
     std::unique_ptr<Gdiplus::Image> mark;
-    std::vector<masicarus::launcher::GameServer> servers;
+    std::vector<miraj_of_icarus::launcher::GameServer> servers;
     std::string apiEndpoint;
     std::wstring status = L"VERIFICANDO INSTALAÇÃO";
     std::wstring detail = L"Conferindo os arquivos locais assinados";
@@ -170,7 +170,7 @@ std::unique_ptr<Gdiplus::GraphicsPath> RoundedPath(
 
 void LoadImage(std::unique_ptr<Gdiplus::Image>& target, const std::wstring& relativePath)
 {
-    auto path = masicarus::launcher::ExecutableDirectory();
+    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
     if (!path.empty()) path += L'\\';
     path += relativePath;
     auto image = std::make_unique<Gdiplus::Image>(path.c_str());
@@ -398,7 +398,7 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
     constexpr int panelWidth = 430;
     const int panelLeft = width - panelWidth - 38;
     RECT brand{80, 18, 310, 51};
-    DrawTextLine(memory, state.brandFont, L"MASICARUS", brand, Moonsteel, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
+    DrawTextLine(memory, state.brandFont, L"MIRAJ OF ICARUS", brand, Moonsteel, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
     RECT release{218, 21, 420, 48};
     DrawTextLine(memory, state.utilityFont, L"ALPHA  /  ACESSO", release, Frost, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
 
@@ -530,8 +530,8 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
             DEFAULT_PITCH, L"Cascadia Mono");
         created->editBrush = CreateSolidBrush(Iron);
-        LoadImage(created->background, L"assets\\launcher\\backgrounds\\masicarus-citadel.png");
-        LoadImage(created->mark, L"assets\\global\\branding\\masicarus-mi.png");
+        LoadImage(created->background, L"assets\\launcher\\backgrounds\\miraj-of-icarus-citadel.png");
+        LoadImage(created->mark, L"assets\\global\\branding\\miraj-of-icarus-mi.png");
 
         created->username = CreateWindowExW(0, L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL,
             0, 0, 0, 0, window, reinterpret_cast<HMENU>(UsernameId), nullptr, nullptr);
@@ -570,9 +570,9 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             try
             {
                 state->apiEndpoint = LoadApiEndpoint();
-                static_cast<void>(masicarus::launcher::EnsureClientReady(
-                    state->apiEndpoint, masicarus::launcher::GameInstallDirectory(),
-                    [&](const masicarus::launcher::UpdateProgress& update)
+                static_cast<void>(miraj_of_icarus::launcher::EnsureClientReady(
+                    state->apiEndpoint, miraj_of_icarus::launcher::GameInstallDirectory(),
+                    [&](const miraj_of_icarus::launcher::UpdateProgress& update)
                     {
                         const auto percent = update.total == 0 ? 0 : static_cast<int>(
                             std::min<std::uint64_t>(100, update.completed * 100 / update.total));
@@ -580,11 +580,11 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                     }));
                 Refresh(window, *state, L"CLIENTE VERIFICADO",
                     L"Procurando reinos disponíveis", 100);
-                state->servers = masicarus::launcher::BackendClient(state->apiEndpoint).GetServers();
+                state->servers = miraj_of_icarus::launcher::BackendClient(state->apiEndpoint).GetServers();
                 std::erase_if(state->servers, [](const auto& server) { return !server.available; });
                 for (const auto& server : state->servers)
                 {
-                    const auto label = masicarus::client::windows::ToWide(server.name + "  ·  " + server.region);
+                    const auto label = miraj_of_icarus::client::windows::ToWide(server.name + "  ·  " + server.region);
                     SendMessageW(state->server, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(label.c_str()));
                 }
                 if (!state->servers.empty())
@@ -607,7 +607,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                 state->busy = false;
                 state->environmentReady = false;
                 Refresh(window, *state, L"SERVIÇO INDISPONÍVEL",
-                    masicarus::client::windows::ToWide(exception.what()), 0, true);
+                    miraj_of_icarus::client::windows::ToWide(exception.what()), 0, true);
             }
             UpdatePlayState(*state);
         }
@@ -699,18 +699,18 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             Refresh(window, *state, L"ABRINDO PASSAGEM", L"Autenticando sua conta", 100);
             try
             {
-                const auto admission = masicarus::launcher::BackendClient(state->apiEndpoint).Authenticate(
-                    masicarus::client::windows::ToUtf8(ReadControl(state->username)),
-                    masicarus::client::windows::ToUtf8(ReadControl(state->password)),
+                const auto admission = miraj_of_icarus::launcher::BackendClient(state->apiEndpoint).Authenticate(
+                    miraj_of_icarus::client::windows::ToUtf8(ReadControl(state->username)),
+                    miraj_of_icarus::client::windows::ToUtf8(ReadControl(state->password)),
                     state->servers[static_cast<std::size_t>(selected)]);
                 SetWindowTextW(state->password, L"");
-                masicarus::launcher::LaunchGame(
-                    masicarus::launcher::GameInstallDirectory() + L"\\MasicarusClient.exe",
+                miraj_of_icarus::launcher::LaunchGame(
+                    miraj_of_icarus::launcher::GameInstallDirectory() + L"\\MirajOfIcarusClient.exe",
                     {.sessionId = admission.sessionId,
                      .lobbyEndpoint = admission.lobbyEndpoint,
                      .lobbyTicket = admission.lobbyTicket,
                      .locale = "pt-BR"});
-                Refresh(window, *state, L"ENTRADA AUTORIZADA", L"Abrindo o mundo de Masicarus", 100);
+                Refresh(window, *state, L"ENTRADA AUTORIZADA", L"Abrindo o mundo de Miraj of Icarus", 100);
                 ShowWindow(window, SW_HIDE);
             }
             catch (const std::exception& exception)
@@ -718,7 +718,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                 state->busy = false;
                 state->launching = false;
                 Refresh(window, *state, L"ENTRADA RECUSADA",
-                    masicarus::client::windows::ToWide(exception.what()), 100, true);
+                    miraj_of_icarus::client::windows::ToWide(exception.what()), 100, true);
                 UpdatePlayState(*state);
             }
             return 0;
@@ -788,17 +788,17 @@ int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int showCommand)
     windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_DROPSHADOW;
     windowClass.lpfnWndProc = WindowProcedure;
     windowClass.hInstance = instance;
-    windowClass.hIcon = LoadIconW(instance, MAKEINTRESOURCEW(IDI_MASICARUS));
-    windowClass.hIconSm = LoadIconW(instance, MAKEINTRESOURCEW(IDI_MASICARUS));
+    windowClass.hIcon = LoadIconW(instance, MAKEINTRESOURCEW(IDI_MIRAJ_OF_ICARUS));
+    windowClass.hIconSm = LoadIconW(instance, MAKEINTRESOURCEW(IDI_MIRAJ_OF_ICARUS));
     windowClass.hCursor = LoadCursorW(nullptr, IDC_ARROW);
-    windowClass.lpszClassName = L"MasicarusLauncherWindow";
+    windowClass.lpszClassName = L"MirajOfIcarusLauncherWindow";
     RegisterClassExW(&windowClass);
 
     constexpr int windowWidth = 1180;
     constexpr int windowHeight = 720;
     const auto screenWidth = GetSystemMetrics(SM_CXSCREEN);
     const auto screenHeight = GetSystemMetrics(SM_CYSCREEN);
-    const auto window = CreateWindowExW(WS_EX_APPWINDOW, windowClass.lpszClassName, L"MASICARUS Launcher",
+    const auto window = CreateWindowExW(WS_EX_APPWINDOW, windowClass.lpszClassName, L"Miraj of Icarus Launcher",
         WS_POPUP | WS_MINIMIZEBOX,
         std::max(0, (screenWidth - windowWidth) / 2), std::max(0, (screenHeight - windowHeight) / 2),
         windowWidth, windowHeight, nullptr, nullptr, instance, nullptr);

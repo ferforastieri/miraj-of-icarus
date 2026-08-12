@@ -46,7 +46,7 @@ export function AuthPortal({ mode, initialError }: { mode: string; initialError?
   }
 
   const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
-  const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-masicarus text-xs font-semibold uppercase tracking-[.055em] text-[#cbd8dc] [text-shadow:0_2px_2px_#02070b] hover:bg-[url('/media/game-ui/buttons/focused.png')]";
+  const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.055em] text-[#cbd8dc] [text-shadow:0_2px_2px_#02070b] hover:bg-[url('/media/game-ui/buttons/focused.png')]";
   const activeTabClass = "bg-[url('/media/game-ui/buttons/focused.png')] text-white drop-shadow-[0_0_8px_rgba(30,139,255,.65)]";
   return (
     <main className="relative grid min-h-[calc(100vh-142px)] place-items-center bg-[linear-gradient(90deg,rgba(7,30,50,.82),rgba(7,30,50,.3),rgba(7,30,50,.7)),url('/media/portal-hero-v3.png')] bg-cover bg-center px-6 py-20 max-[620px]:px-4">

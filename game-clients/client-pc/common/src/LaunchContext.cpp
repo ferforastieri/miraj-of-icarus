@@ -1,11 +1,11 @@
-#include "masicarus/client/LaunchContext.h"
+#include "miraj_of_icarus/client/LaunchContext.h"
 
 #include <nlohmann/json.hpp>
 
 #include <stdexcept>
 #include <string_view>
 
-namespace masicarus::client
+namespace miraj_of_icarus::client
 {
 namespace
 {

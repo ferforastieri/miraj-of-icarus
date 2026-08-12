@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using StackExchange.Redis;
 
-namespace Masicarus.Infrastructure.Health;
+namespace MirajOfIcarus.Infrastructure.Health;
 
 internal sealed class RedisHealthCheck(
     IConnectionMultiplexer connection) : IHealthCheck

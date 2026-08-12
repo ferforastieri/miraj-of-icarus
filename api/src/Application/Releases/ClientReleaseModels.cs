@@ -1,4 +1,4 @@
-namespace Masicarus.Application.Releases;
+namespace MirajOfIcarus.Application.Releases;
 
 public sealed record ClientRelease(
     string Version,

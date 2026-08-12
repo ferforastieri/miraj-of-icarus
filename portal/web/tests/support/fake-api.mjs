@@ -39,7 +39,7 @@ const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", "http://127.0.0.1:18080");
   if (url.pathname === "/health") return json(response, 200, { status: "ok" });
   if (url.pathname === "/v1/client-releases/windows/latest") return json(response, 404, { error: "release_not_found" });
-  if (url.pathname === "/v1/game-servers") return json(response, 200, [{ id: "alpha", name: "Alpha", region: "BR", loginEndpoint: "login.masicarus.test", available: true }]);
+  if (url.pathname === "/v1/game-servers") return json(response, 200, [{ id: "alpha", name: "Alpha", region: "BR", loginEndpoint: "login.mirajoficarus.test", available: true }]);
 
   if (url.pathname === "/v1/accounts" && request.method === "POST") {
     const input = await body(request);

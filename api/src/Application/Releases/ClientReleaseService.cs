@@ -1,6 +1,6 @@
-using Masicarus.Application.Common;
+using MirajOfIcarus.Application.Common;
 
-namespace Masicarus.Application.Releases;
+namespace MirajOfIcarus.Application.Releases;
 
 public sealed class ClientReleaseService(IClientReleaseProvider provider)
 {

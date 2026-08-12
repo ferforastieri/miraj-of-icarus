@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 namespace
 {
@@ -62,10 +62,10 @@ std::wstring GameInstallDirectory()
         ThrowWindowsError("GetEnvironmentVariableW(LOCALAPPDATA)");
     }
     localAppData.resize(length);
-    return localAppData + L"\\Masicarus\\Game";
+    return localAppData + L"\\MirajOfIcarus\\Game";
 }
 
-void LaunchGame(const std::wstring& executable, const masicarus::client::LaunchContext& context)
+void LaunchGame(const std::wstring& executable, const miraj_of_icarus::client::LaunchContext& context)
 {
     SECURITY_ATTRIBUTES security{sizeof(security), nullptr, TRUE};
     HANDLE rawRead = nullptr;

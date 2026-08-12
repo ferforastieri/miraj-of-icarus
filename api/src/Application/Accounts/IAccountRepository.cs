@@ -1,6 +1,6 @@
-using Masicarus.Domain.Accounts;
+using MirajOfIcarus.Domain.Accounts;
 
-namespace Masicarus.Application.Accounts;
+namespace MirajOfIcarus.Application.Accounts;
 
 public interface IAccountRepository
 {

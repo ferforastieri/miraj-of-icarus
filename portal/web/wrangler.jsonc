@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "masicarus-portal",
+  "name": "miraj-of-icarus-portal",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-08-12",
   "compatibility_flags": [
@@ -14,15 +14,15 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "masicarus-portal"
+      "service": "miraj-of-icarus-portal"
     }
   ],
   "vars": {
-    "MASICARUS_API_INTERNAL_URL": "https://api.masicarus.com.br"
+    "MIRAJ_OF_ICARUS_API_INTERNAL_URL": "https://api.mirajoficarus.com.br"
   },
   "routes": [
     {
-      "pattern": "masicarus.com.br",
+      "pattern": "mirajoficarus.com.br",
       "custom_domain": true
     }
   ],

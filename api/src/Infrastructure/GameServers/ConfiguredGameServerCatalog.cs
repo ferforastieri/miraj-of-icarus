@@ -1,7 +1,7 @@
-using Masicarus.Application.GameServers;
+using MirajOfIcarus.Application.GameServers;
 using Microsoft.Extensions.Configuration;
 
-namespace Masicarus.Infrastructure.GameServers;
+namespace MirajOfIcarus.Infrastructure.GameServers;
 
 public sealed class ConfiguredGameServerCatalog(IConfiguration configuration)
     : IGameServerCatalog

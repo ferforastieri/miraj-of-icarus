@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Masicarus Display";
-  src: url("/fonts/masicarus-display.woff2") format("woff2");
+  font-family: "MirajOfIcarus Display";
+  src: url("/fonts/miraj-of-icarus-display.woff2") format("woff2");
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -21,9 +21,9 @@
   --color-parchment: #eee7d6;
   --color-skywash: #dcecf1;
   --color-danger: #a34247;
-  --font-display: "Masicarus Display";
-  --font-masicarus: "Masicarus Display";
-  --font-interface: "Masicarus Display";
+  --font-display: "MirajOfIcarus Display";
+  --font-miraj-of-icarus: "MirajOfIcarus Display";
+  --font-interface: "MirajOfIcarus Display";
   --animate-hero-arrival: hero-arrival 2.2s cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -34,12 +34,20 @@
 
 @layer base {
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: var(--color-abyss); }
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-abyss);
+    cursor: url("/media/branding/miraj-jade-cursor.png") 24 4, auto;
+  }
+  a, button, label, select, summary, [role="button"] {
+    cursor: url("/media/branding/miraj-jade-cursor.png") 24 4, pointer;
+  }
+  input, textarea, [contenteditable="true"] { cursor: text; }
   body {
     margin: 0;
     background: var(--color-abyss);
     color: var(--color-moonsteel);
-    font-family: "Masicarus Display";
+    font-family: "MirajOfIcarus Display";
     -webkit-font-smoothing: antialiased;
   }
   ::selection { color: var(--color-abyss); background: var(--color-frost); }

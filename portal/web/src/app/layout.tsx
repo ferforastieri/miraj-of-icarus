@@ -4,14 +4,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Masicarus — A passagem está aberta",
-    template: "%s | Masicarus",
+    default: "Miraj of Icarus — A passagem está aberta",
+    template: "%s | Miraj of Icarus",
   },
   description:
-    "Portal oficial do Masicarus. Baixe o launcher, acompanhe os reinos e gerencie sua conta.",
-  metadataBase: new URL("https://masicarus.com.br"),
+    "Portal oficial de Miraj of Icarus. Baixe o launcher, acompanhe os reinos e gerencie sua conta.",
+  metadataBase: new URL("https://mirajoficarus.com.br"),
   alternates: { canonical: "/" },
-  icons: { icon: "/media/branding/masicarus-feather-mark.png" },
+  icons: { icon: "/media/branding/miraj-mj-mark.png" },
 };
 
 export default function RootLayout({

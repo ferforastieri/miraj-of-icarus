@@ -9,8 +9,8 @@ fi
 readonly version="$1"
 readonly client_directory="$2"
 readonly launcher_archive="$3"
-readonly bucket="${MASICARUS_R2_BUCKET:-masicarus-releases}"
-readonly public_base="${MASICARUS_DOWNLOAD_BASE_URL:-https://downloads.masicarus.com.br}"
+readonly bucket="${MIRAJ_OF_ICARUS_R2_BUCKET:-miraj-of-icarus-releases}"
+readonly public_base="${MIRAJ_OF_ICARUS_DOWNLOAD_BASE_URL:-https://downloads.mirajoficarus.com.br}"
 
 [[ $version =~ ^[0-9a-f]{40}$ ]] || { echo "VERSION must be a full lowercase Git SHA" >&2; exit 2; }
 for name in CLOUDFLARE_R2_ACCOUNT_ID AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
@@ -37,7 +37,7 @@ aws --endpoint-url "$endpoint" s3 cp "$client_directory/release-manifest.sig" \
   "s3://${bucket}/${release_prefix}/client/release-manifest.sig" \
   --content-type application/octet-stream --cache-control "$immutable_cache" --only-show-errors
 aws --endpoint-url "$endpoint" s3 cp "$launcher_archive" \
-  "s3://${bucket}/${release_prefix}/launcher/MasicarusLauncher.zip" \
+  "s3://${bucket}/${release_prefix}/launcher/MirajOfIcarusLauncher.zip" \
   --content-type application/zip --cache-control "$immutable_cache" --only-show-errors
 
 aws --endpoint-url "$endpoint" s3api head-object \
@@ -45,7 +45,7 @@ aws --endpoint-url "$endpoint" s3api head-object \
 aws --endpoint-url "$endpoint" s3api head-object \
   --bucket "$bucket" --key "${release_prefix}/client/release-manifest.sig" >/dev/null
 aws --endpoint-url "$endpoint" s3api head-object \
-  --bucket "$bucket" --key "${release_prefix}/launcher/MasicarusLauncher.zip" >/dev/null
+  --bucket "$bucket" --key "${release_prefix}/launcher/MirajOfIcarusLauncher.zip" >/dev/null
 while IFS= read -r relative_path; do
   aws --endpoint-url "$endpoint" s3api head-object \
     --bucket "$bucket" --key "${release_prefix}/client/files/${relative_path}" >/dev/null
@@ -76,7 +76,7 @@ channel = {
     "manifestUrl": f"{root}/client/release-manifest.json",
     "signatureUrl": f"{root}/client/release-manifest.sig",
     "filesBaseUrl": f"{root}/client/files/",
-    "launcherUrl": f"{root}/launcher/MasicarusLauncher.zip",
+    "launcherUrl": f"{root}/launcher/MirajOfIcarusLauncher.zip",
     "publishedAt": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
 }
 pathlib.Path(output_path).write_text(json.dumps(channel, indent=2) + "\n", encoding="utf-8")

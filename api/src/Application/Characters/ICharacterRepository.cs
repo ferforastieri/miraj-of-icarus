@@ -1,6 +1,6 @@
-using Masicarus.Domain.Characters;
+using MirajOfIcarus.Domain.Characters;
 
-namespace Masicarus.Application.Characters;
+namespace MirajOfIcarus.Application.Characters;
 
 public enum CharacterCreationStatus
 {

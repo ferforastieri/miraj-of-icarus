@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Masicarus.Infrastructure.Persistence.Migrations
+namespace MirajOfIcarus.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class IdentityBootstrap : Migration

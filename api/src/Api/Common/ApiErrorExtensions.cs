@@ -1,7 +1,7 @@
-using Masicarus.Application.Common;
+using MirajOfIcarus.Application.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Common;
+namespace MirajOfIcarus.Api.Common;
 
 public sealed record ErrorResponse(string Error);
 

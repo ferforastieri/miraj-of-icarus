@@ -1,9 +1,9 @@
 using System.Net;
 using System.Text.Json;
-using Masicarus.Application.Releases;
+using MirajOfIcarus.Application.Releases;
 using Microsoft.Extensions.Configuration;
 
-namespace Masicarus.Infrastructure.Releases;
+namespace MirajOfIcarus.Infrastructure.Releases;
 
 public sealed class R2ClientReleaseProvider(
     IHttpClientFactory httpClientFactory,

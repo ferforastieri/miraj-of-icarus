@@ -1,8 +1,8 @@
-using Masicarus.Application.Common;
-using Masicarus.Domain.Characters;
-using Masicarus.Game.Contracts;
+using MirajOfIcarus.Application.Common;
+using MirajOfIcarus.Domain.Characters;
+using MirajOfIcarus.Game.Contracts;
 
-namespace Masicarus.Application.Characters;
+namespace MirajOfIcarus.Application.Characters;
 
 public sealed class CharacterService(
     ICharacterRepository characters,

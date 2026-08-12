@@ -1,24 +1,24 @@
-add_executable(MasicarusClient WIN32
+add_executable(MirajOfIcarusClient WIN32
   LaunchContextPipe.cpp
   LobbyClient.cpp
   main.cpp
 )
 
-target_link_libraries(MasicarusClient
+target_link_libraries(MirajOfIcarusClient
   PRIVATE
     WickedEngine
-    masicarus_client_contracts
-    masicarus_client_winhttp
+    miraj_of_icarus_client_contracts
+    miraj_of_icarus_client_winhttp
 )
-target_compile_definitions(MasicarusClient PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
-target_compile_options(MasicarusClient PRIVATE /W4 /WX /utf-8)
-set_target_properties(MasicarusClient PROPERTIES OUTPUT_NAME "MasicarusClient")
+target_compile_definitions(MirajOfIcarusClient PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_compile_options(MirajOfIcarusClient PRIVATE /W4 /WX /utf-8)
+set_target_properties(MirajOfIcarusClient PROPERTIES OUTPUT_NAME "MirajOfIcarusClient")
 
-add_custom_command(TARGET MasicarusClient POST_BUILD
+add_custom_command(TARGET MirajOfIcarusClient POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${MASICARUS_WICKED_ROOT}/WickedEngine/dxcompiler.dll"
-    "$<TARGET_FILE_DIR:MasicarusClient>/dxcompiler.dll"
+    "${MIRAJ_OF_ICARUS_WICKED_ROOT}/WickedEngine/dxcompiler.dll"
+    "$<TARGET_FILE_DIR:MirajOfIcarusClient>/dxcompiler.dll"
   COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${MASICARUS_WICKED_ROOT}/WickedEngine/shaders"
-    "$<TARGET_FILE_DIR:MasicarusClient>/shaders"
+    "${MIRAJ_OF_ICARUS_WICKED_ROOT}/WickedEngine/shaders"
+    "$<TARGET_FILE_DIR:MirajOfIcarusClient>/shaders"
 )

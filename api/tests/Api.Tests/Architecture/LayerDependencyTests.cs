@@ -1,9 +1,9 @@
-using Masicarus.Application;
-using Masicarus.Domain;
-using Masicarus.Infrastructure;
+using MirajOfIcarus.Application;
+using MirajOfIcarus.Domain;
+using MirajOfIcarus.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Tests.Architecture;
+namespace MirajOfIcarus.Api.Tests.Architecture;
 
 public sealed class LayerDependencyTests
 {
@@ -12,9 +12,9 @@ public sealed class LayerDependencyTests
     {
         var references = ReferencedAssemblies(typeof(DomainAssembly).Assembly);
 
-        Assert.DoesNotContain("Masicarus.Application", references);
-        Assert.DoesNotContain("Masicarus.Infrastructure", references);
-        Assert.DoesNotContain("Masicarus.Api", references);
+        Assert.DoesNotContain("MirajOfIcarus.Application", references);
+        Assert.DoesNotContain("MirajOfIcarus.Infrastructure", references);
+        Assert.DoesNotContain("MirajOfIcarus.Api", references);
     }
 
     [Fact]
@@ -22,8 +22,8 @@ public sealed class LayerDependencyTests
     {
         var references = ReferencedAssemblies(typeof(ApplicationAssembly).Assembly);
 
-        Assert.DoesNotContain("Masicarus.Infrastructure", references);
-        Assert.DoesNotContain("Masicarus.Api", references);
+        Assert.DoesNotContain("MirajOfIcarus.Infrastructure", references);
+        Assert.DoesNotContain("MirajOfIcarus.Api", references);
     }
 
     [Fact]
@@ -31,7 +31,7 @@ public sealed class LayerDependencyTests
     {
         var references = ReferencedAssemblies(typeof(InfrastructureAssembly).Assembly);
 
-        Assert.DoesNotContain("Masicarus.Api", references);
+        Assert.DoesNotContain("MirajOfIcarus.Api", references);
     }
 
     [Fact]

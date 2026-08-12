@@ -1,4 +1,4 @@
-namespace Masicarus.Api.Contracts;
+namespace MirajOfIcarus.Api.Contracts;
 
 public sealed record RegisterAccountRequest(string UserName, string Password);
 

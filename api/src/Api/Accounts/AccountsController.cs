@@ -1,9 +1,9 @@
-using Masicarus.Api.Common;
-using Masicarus.Api.Contracts;
-using Masicarus.Application.Accounts;
+using MirajOfIcarus.Api.Common;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Application.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Accounts;
+namespace MirajOfIcarus.Api.Accounts;
 
 [ApiController]
 [Route("v1/accounts")]

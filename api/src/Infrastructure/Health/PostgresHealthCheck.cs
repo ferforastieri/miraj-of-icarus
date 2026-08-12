@@ -1,8 +1,8 @@
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Masicarus.Infrastructure.Health;
+namespace MirajOfIcarus.Infrastructure.Health;
 
 internal sealed class PostgresHealthCheck(
     IDbContextFactory<PlatformDbContext> contextFactory) : IHealthCheck

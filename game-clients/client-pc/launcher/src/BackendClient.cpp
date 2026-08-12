@@ -1,16 +1,16 @@
 #include "BackendClient.h"
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 #include <nlohmann/json.hpp>
 
 #include <stdexcept>
 #include <string_view>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 namespace
 {
-using masicarus::client::windows::JoinEndpoint;
-using masicarus::client::windows::RequestJson;
+using miraj_of_icarus::client::windows::JoinEndpoint;
+using miraj_of_icarus::client::windows::RequestJson;
 
 template <typename Operation>
 auto RunStage(std::string_view stage, Operation&& operation)

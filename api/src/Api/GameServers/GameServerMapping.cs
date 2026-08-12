@@ -1,7 +1,7 @@
-using Masicarus.Api.Contracts;
-using Masicarus.Application.GameServers;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Application.GameServers;
 
-namespace Masicarus.Api.GameServers;
+namespace MirajOfIcarus.Api.GameServers;
 
 internal static class GameServerMapping
 {

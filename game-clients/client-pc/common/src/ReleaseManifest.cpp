@@ -1,4 +1,4 @@
-#include "masicarus/client/ReleaseManifest.h"
+#include "miraj_of_icarus/client/ReleaseManifest.h"
 
 #include <nlohmann/json.hpp>
 
@@ -8,7 +8,7 @@
 #include <string_view>
 #include <unordered_set>
 
-namespace masicarus::client
+namespace miraj_of_icarus::client
 {
 namespace
 {
@@ -99,7 +99,7 @@ void ReleaseManifest::Validate() const
         {
             throw std::invalid_argument("Release manifest contains a duplicate path.");
         }
-        hasClient = hasClient || file.path == "MasicarusClient.exe";
+        hasClient = hasClient || file.path == "MirajOfIcarusClient.exe";
     }
     if (!hasClient)
     {

@@ -1,23 +1,23 @@
-using Masicarus.Application.Accounts;
-using Masicarus.Application.Authentication;
-using Masicarus.Application.Characters;
-using Masicarus.Application.GameServers;
-using Masicarus.Application.Releases;
-using Masicarus.Infrastructure.Accounts;
-using Masicarus.Infrastructure.Authentication;
-using Masicarus.Infrastructure.Characters;
-using Masicarus.Infrastructure.GameServers;
-using Masicarus.Infrastructure.Health;
-using Masicarus.Infrastructure.Persistence;
-using Masicarus.Infrastructure.Releases;
-using Masicarus.Game.Runtime;
+using MirajOfIcarus.Application.Accounts;
+using MirajOfIcarus.Application.Authentication;
+using MirajOfIcarus.Application.Characters;
+using MirajOfIcarus.Application.GameServers;
+using MirajOfIcarus.Application.Releases;
+using MirajOfIcarus.Infrastructure.Accounts;
+using MirajOfIcarus.Infrastructure.Authentication;
+using MirajOfIcarus.Infrastructure.Characters;
+using MirajOfIcarus.Infrastructure.GameServers;
+using MirajOfIcarus.Infrastructure.Health;
+using MirajOfIcarus.Infrastructure.Persistence;
+using MirajOfIcarus.Infrastructure.Releases;
+using MirajOfIcarus.Game.Runtime;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using StackExchange.Redis;
 
-namespace Masicarus.Infrastructure;
+namespace MirajOfIcarus.Infrastructure;
 
 public static class DependencyInjection
 {

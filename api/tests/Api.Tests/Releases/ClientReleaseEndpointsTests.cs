@@ -3,13 +3,13 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Globalization;
-using Masicarus.Api.Contracts;
+using MirajOfIcarus.Api.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Masicarus.Api.Tests;
+namespace MirajOfIcarus.Api.Tests;
 
 public sealed class ClientReleaseEndpointsTests
 {
@@ -21,10 +21,10 @@ public sealed class ClientReleaseEndpointsTests
         var channel = new ClientReleaseChannel(
             Version,
             1234,
-            $"https://downloads.masicarus.com.br/releases/{Version}/client/release-manifest.json",
-            $"https://downloads.masicarus.com.br/releases/{Version}/client/release-manifest.sig",
-            $"https://downloads.masicarus.com.br/releases/{Version}/client/files/",
-            $"https://downloads.masicarus.com.br/releases/{Version}/launcher/MasicarusLauncher.zip",
+            $"https://downloads.mirajoficarus.com.br/releases/{Version}/client/release-manifest.json",
+            $"https://downloads.mirajoficarus.com.br/releases/{Version}/client/release-manifest.sig",
+            $"https://downloads.mirajoficarus.com.br/releases/{Version}/client/files/",
+            $"https://downloads.mirajoficarus.com.br/releases/{Version}/launcher/MirajOfIcarusLauncher.zip",
             DateTimeOffset.Parse("2026-08-12T12:00:00Z", CultureInfo.InvariantCulture));
         await using var factory = CreateFactory(JsonSerializer.Serialize(channel));
         using var client = factory.CreateClient();

@@ -1,11 +1,11 @@
-using Masicarus.Api.Authentication;
-using Masicarus.Api.Characters;
-using Masicarus.Application.Accounts;
-using Masicarus.Application.Characters;
-using Masicarus.Application.GameServers;
-using Masicarus.Application.Releases;
-using Masicarus.Infrastructure;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Api.Authentication;
+using MirajOfIcarus.Api.Characters;
+using MirajOfIcarus.Application.Accounts;
+using MirajOfIcarus.Application.Characters;
+using MirajOfIcarus.Application.GameServers;
+using MirajOfIcarus.Application.Releases;
+using MirajOfIcarus.Infrastructure;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,7 @@ builder.Services.AddHttpClient("client-releases", client =>
     client.Timeout = TimeSpan.FromSeconds(10));
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<Masicarus.Application.Authentication.AuthenticationService>();
+builder.Services.AddScoped<MirajOfIcarus.Application.Authentication.AuthenticationService>();
 builder.Services.AddScoped<CharacterService>();
 builder.Services.AddScoped<CharacterDeletionService>();
 builder.Services.AddScoped<GameServerService>();

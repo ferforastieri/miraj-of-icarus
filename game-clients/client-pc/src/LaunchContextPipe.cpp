@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace masicarus::game
+namespace miraj_of_icarus::game
 {
 namespace
 {
@@ -23,14 +23,14 @@ struct HandleCloser
 using Handle = std::unique_ptr<void, HandleCloser>;
 }
 
-masicarus::client::LaunchContext ReadLaunchContext(const wchar_t* commandLine)
+miraj_of_icarus::client::LaunchContext ReadLaunchContext(const wchar_t* commandLine)
 {
     const std::wstring arguments(commandLine == nullptr ? L"" : commandLine);
     constexpr auto Prefix = L"--launch-context-handle=";
     const auto position = arguments.find(Prefix);
     if (position == std::wstring::npos)
     {
-        throw std::runtime_error("The game must be started by the MASICARUS launcher.");
+        throw std::runtime_error("The game must be started by the Miraj of Icarus launcher.");
     }
     const auto value = arguments.substr(position + std::wstring_view(Prefix).size());
     wchar_t* end = nullptr;
@@ -55,6 +55,6 @@ masicarus::client::LaunchContext ReadLaunchContext(const wchar_t* commandLine)
         payload.append(buffer.data(), received);
         if (payload.size() > 65536) throw std::runtime_error("The launcher context is too large.");
     }
-    return masicarus::client::LaunchContext::Deserialize(payload);
+    return miraj_of_icarus::client::LaunchContext::Deserialize(payload);
 }
 }

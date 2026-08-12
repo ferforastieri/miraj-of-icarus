@@ -1,4 +1,4 @@
-add_executable(MasicarusLauncher WIN32
+add_executable(MirajOfIcarusLauncher WIN32
   resources/launcher.rc
   src/BackendClient.cpp
   src/GameProcess.cpp
@@ -7,12 +7,12 @@ add_executable(MasicarusLauncher WIN32
   src/main.cpp
 )
 
-target_include_directories(MasicarusLauncher PRIVATE resources)
+target_include_directories(MirajOfIcarusLauncher PRIVATE resources)
 
-target_link_libraries(MasicarusLauncher
+target_link_libraries(MirajOfIcarusLauncher
   PRIVATE
-    masicarus_client_contracts
-    masicarus_client_winhttp
+    miraj_of_icarus_client_contracts
+    miraj_of_icarus_client_winhttp
     comctl32
     bcrypt
     crypt32
@@ -21,6 +21,6 @@ target_link_libraries(MasicarusLauncher
     gdiplus
     shell32
 )
-target_compile_definitions(MasicarusLauncher PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
-target_compile_options(MasicarusLauncher PRIVATE /W4 /WX /utf-8)
-set_target_properties(MasicarusLauncher PROPERTIES OUTPUT_NAME "MasicarusLauncher")
+target_compile_definitions(MirajOfIcarusLauncher PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_compile_options(MirajOfIcarusLauncher PRIVATE /W4 /WX /utf-8)
+set_target_properties(MirajOfIcarusLauncher PROPERTIES OUTPUT_NAME "MirajOfIcarusLauncher")

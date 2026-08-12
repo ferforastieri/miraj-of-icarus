@@ -1,8 +1,8 @@
-using Masicarus.Application.Authentication;
-using Masicarus.Application.Common;
-using Masicarus.Game.Contracts;
+using MirajOfIcarus.Application.Authentication;
+using MirajOfIcarus.Application.Common;
+using MirajOfIcarus.Game.Contracts;
 
-namespace Masicarus.Application.GameServers;
+namespace MirajOfIcarus.Application.GameServers;
 
 public sealed class GameServerService(
     IGameServerCatalog catalog,

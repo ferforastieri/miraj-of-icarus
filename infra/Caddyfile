@@ -1,5 +1,5 @@
 {
-	email {$MASICARUS_TLS_EMAIL}
+	email {$MIRAJ_OF_ICARUS_TLS_EMAIL}
 }
 
 (security) {
@@ -13,17 +13,17 @@
 	}
 }
 
-api.masicarus.com.br {
+api.mirajoficarus.com.br {
 	import security
 	reverse_proxy api:8080
 }
 
-login.masicarus.com.br {
+login.mirajoficarus.com.br {
 	import security
 	reverse_proxy login-server:8080
 }
 
-lobby.masicarus.com.br {
+lobby.mirajoficarus.com.br {
 	import security
 	reverse_proxy lobby-server:8080
 }

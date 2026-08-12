@@ -1,12 +1,12 @@
 using System.Security.Claims;
 using System.Text.Encodings.Web;
-using Masicarus.Api.Common;
-using Masicarus.Application.Authentication;
+using MirajOfIcarus.Api.Common;
+using MirajOfIcarus.Application.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
-using ApplicationAuthenticationService = Masicarus.Application.Authentication.AuthenticationService;
+using ApplicationAuthenticationService = MirajOfIcarus.Application.Authentication.AuthenticationService;
 
-namespace Masicarus.Api.Authentication;
+namespace MirajOfIcarus.Api.Authentication;
 
 public sealed class OpaqueBearerHandler(
     IOptionsMonitor<AuthenticationSchemeOptions> options,

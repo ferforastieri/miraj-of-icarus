@@ -1,4 +1,4 @@
-namespace Masicarus.Domain;
+namespace MirajOfIcarus.Domain;
 
 public static class DomainAssembly
 {

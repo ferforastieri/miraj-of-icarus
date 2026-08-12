@@ -1,4 +1,4 @@
-namespace Masicarus.Domain.Accounts;
+namespace MirajOfIcarus.Domain.Accounts;
 
 public sealed class Account
 {

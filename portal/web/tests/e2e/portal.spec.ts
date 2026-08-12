@@ -43,16 +43,16 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
   await page.getByRole("button", { name: "Cancelar exclusão" }).click();
   await expect(page.getByText(/Bloqueado\. Exclusão em/)).toHaveCount(0);
 
-  await context.clearCookies({ name: "masicarus_access" });
+  await context.clearCookies({ name: "miraj_of_icarus_access" });
   await page.goto("/painel");
   await expect(page.getByRole("heading", { name: new RegExp(account) })).toBeVisible();
   const cookies = await context.cookies();
-  expect(cookies.some(cookie => cookie.name === "masicarus_access" && cookie.httpOnly)).toBeTruthy();
-  expect(cookies.some(cookie => cookie.name === "masicarus_refresh" && cookie.httpOnly)).toBeTruthy();
+  expect(cookies.some(cookie => cookie.name === "miraj_of_icarus_access" && cookie.httpOnly)).toBeTruthy();
+  expect(cookies.some(cookie => cookie.name === "miraj_of_icarus_refresh" && cookie.httpOnly)).toBeTruthy();
 
   await page.getByRole("button", { name: "Sair da conta" }).click();
   await expect(page.getByRole("heading", { name: "Retorne ao reino." })).toBeVisible();
-  expect((await context.cookies()).some(cookie => cookie.name.startsWith("masicarus_"))).toBeFalsy();
+  expect((await context.cookies()).some(cookie => cookie.name.startsWith("miraj_of_icarus_"))).toBeFalsy();
 });
 
 test("movimento reduzido desativa a chegada cinematográfica", async ({ page }) => {

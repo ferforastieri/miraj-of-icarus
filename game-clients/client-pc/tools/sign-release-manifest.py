@@ -12,7 +12,7 @@ import sys
 import tempfile
 
 
-PRIVATE_KEY_ENV = "MASICARUS_RELEASE_SIGNING_KEY_BASE64"
+PRIVATE_KEY_ENV = "MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64"
 
 
 def main() -> int:
@@ -37,7 +37,7 @@ def main() -> int:
 
     signature = root / "release-manifest.sig"
     temporary_signature = root / "release-manifest.sig.tmp"
-    with tempfile.TemporaryDirectory(prefix="masicarus-release-signing-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="miraj-of-icarus-release-signing-") as temporary:
         key_path = pathlib.Path(temporary) / "private.pem"
         key_path.write_bytes(private_key)
         key_path.chmod(0o600)

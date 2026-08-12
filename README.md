@@ -1,6 +1,6 @@
-# Masicarus
+# Miraj of Icarus
 
-Masicarus é um MMORPG em reconstrução, desenvolvido com código-fonte próprio e
+Miraj of Icarus é um MMORPG em reconstrução, desenvolvido com código-fonte próprio e
 arquitetura moderna. O projeto preserva a identidade visual, os assets, mapas e
 mecânicas do jogo de referência enquanto substitui sua implementação técnica.
 
@@ -48,28 +48,28 @@ restrito. Login, Main e Lobby implementam a jornada inicial de sessão e
 personagens. O próximo marco é validar e ampliar essa jornada no ambiente
 hospedado.
 
-O portal público usa a mesma identidade do launcher em `https://masicarus.com.br`.
+O portal público usa a mesma identidade do launcher em `https://mirajoficarus.com.br`.
 A rota `/painel` oferece cadastro, sessão persistente e gestão de personagens.
-A API pública é anunciada em `https://api.masicarus.com.br`; releases assinadas
+A API pública é anunciada em `https://api.mirajoficarus.com.br`; releases assinadas
 do launcher e cliente são distribuídas pelo Cloudflare R2 em
-`https://downloads.masicarus.com.br`.
+`https://downloads.mirajoficarus.com.br`.
 
 ## Publicação do cliente
 
 Mudanças em `game-clients/client-pc/` acionam o workflow
 `client-release.yml`. Pull requests apenas compilam e validam. Em `main`, o
 workflow assina o manifesto, publica objetos imutáveis no bucket R2
-`masicarus-releases` e atualiza `channels/alpha.json` somente depois de validar
+`miraj-of-icarus-releases` e atualiza `channels/alpha.json` somente depois de validar
 o upload completo.
 
 Secrets exigidos no GitHub:
 
-- `MASICARUS_RELEASE_SIGNING_KEY_BASE64`;
+- `MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64`;
 - `CLOUDFLARE_R2_ACCOUNT_ID`;
 - `CLOUDFLARE_R2_ACCESS_KEY_ID`;
 - `CLOUDFLARE_R2_SECRET_ACCESS_KEY`.
 
-O bucket deve possuir o domínio próprio `downloads.masicarus.com.br`, com
+O bucket deve possuir o domínio próprio `downloads.mirajoficarus.com.br`, com
 acesso público somente por esse domínio. Objetos sob `releases/{git-sha}/`
 recebem cache imutável; `channels/alpha.json` recebe cache de 60 segundos. Para
 rollback, copie novamente o manifesto de uma release completa anterior para
@@ -97,11 +97,11 @@ primeiro deploy e rollback está em [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 Requer .NET SDK 10, CMake 3.25+, Ninja, compilador C++20, Node.js e Docker.
 
 ```bash
-dotnet test api/Masicarus.slnx
-dotnet test game-server/Masicarus.GameServer.slnx
+dotnet test api/MirajOfIcarus.slnx
+dotnet test game-server/MirajOfIcarus.GameServer.slnx
 
 cmake -S game-clients/client-pc -B build/client -G Ninja \
-  -DMASICARUS_BUILD_WINDOWS_APPS=OFF
+  -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
 cmake --build build/client
 ctest --test-dir build/client --output-on-failure
 

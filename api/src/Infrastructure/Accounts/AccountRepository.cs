@@ -1,10 +1,10 @@
-using Masicarus.Application.Accounts;
-using Masicarus.Domain.Accounts;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Application.Accounts;
+using MirajOfIcarus.Domain.Accounts;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
-namespace Masicarus.Infrastructure.Accounts;
+namespace MirajOfIcarus.Infrastructure.Accounts;
 
 public sealed class AccountRepository(
     IDbContextFactory<PlatformDbContext> databaseFactory) : IAccountRepository

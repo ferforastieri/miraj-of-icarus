@@ -1,7 +1,7 @@
-using Masicarus.Api.Contracts;
+using MirajOfIcarus.Api.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Status;
+namespace MirajOfIcarus.Api.Status;
 
 [ApiController]
 [Route("api/v1/status")]
@@ -15,7 +15,7 @@ public sealed class StatusController : ControllerBase
             ?? "unknown";
 
         return Ok(new ServiceStatusResponse(
-            Service: "masicarus-api",
+            Service: "miraj-of-icarus-api",
             Status: "healthy",
             Version: version));
     }

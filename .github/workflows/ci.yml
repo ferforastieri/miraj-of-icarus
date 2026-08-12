@@ -13,20 +13,20 @@ jobs:
     name: .NET
     runs-on: ubuntu-latest
     env:
-      ConnectionStrings__Database: Host=127.0.0.1;Port=5432;Database=masicarus;Username=masicarus;Password=masicarus-ci-password;GSS Encryption Mode=Disable
+      ConnectionStrings__Database: Host=127.0.0.1;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=miraj-of-icarus-ci-password;GSS Encryption Mode=Disable
       Cache__ConnectionString: 127.0.0.1:6379
       Database__ApplyMigrations: "true"
     services:
       postgres:
         image: postgres:18.4-bookworm
         env:
-          POSTGRES_DB: masicarus
-          POSTGRES_USER: masicarus
-          POSTGRES_PASSWORD: masicarus-ci-password
+          POSTGRES_DB: miraj-of-icarus
+          POSTGRES_USER: miraj-of-icarus
+          POSTGRES_PASSWORD: miraj-of-icarus-ci-password
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U masicarus -d masicarus"
+          --health-cmd "pg_isready -U miraj-of-icarus -d miraj-of-icarus"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -48,10 +48,10 @@ jobs:
           cache-dependency-path: |
             api/**/packages.lock.json
             game-server/**/packages.lock.json
-      - run: dotnet restore api/Masicarus.slnx --locked-mode
-      - run: dotnet restore game-server/Masicarus.GameServer.slnx --locked-mode
-      - run: dotnet test api/Masicarus.slnx --configuration Release --no-restore
-      - run: dotnet test game-server/Masicarus.GameServer.slnx --configuration Release --no-restore
+      - run: dotnet restore api/MirajOfIcarus.slnx --locked-mode
+      - run: dotnet restore game-server/MirajOfIcarus.GameServer.slnx --locked-mode
+      - run: dotnet test api/MirajOfIcarus.slnx --configuration Release --no-restore
+      - run: dotnet test game-server/MirajOfIcarus.GameServer.slnx --configuration Release --no-restore
 
   client-contracts:
     name: Client contracts
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
-      - run: cmake -S game-clients/client-pc -B build/client -G Ninja -DMASICARUS_BUILD_WINDOWS_APPS=OFF
+      - run: cmake -S game-clients/client-pc -B build/client -G Ninja -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
       - run: cmake --build build/client
       - run: ctest --test-dir build/client --output-on-failure
       - run: game-clients/client-pc/tools/test-publish-r2-release.sh

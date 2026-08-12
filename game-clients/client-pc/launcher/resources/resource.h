@@ -1,3 +1,3 @@
 #pragma once
 
-#define IDI_MASICARUS 101
+#define IDI_MIRAJ_OF_ICARUS 101

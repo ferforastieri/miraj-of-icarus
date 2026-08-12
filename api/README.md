@@ -1,4 +1,4 @@
-# API do Masicarus
+# API do Miraj of Icarus
 
 A API usa quatro assemblies com dependências unidirecionais e organiza o
 conteúdo interno por módulo de negócio.
@@ -16,7 +16,7 @@ Api -> Application -> Domain
 - `tests/Api.Tests`: testes organizados pelos mesmos módulos.
 
 As pastas têm nomes curtos, mas projetos, assemblies e namespaces mantêm o
-prefixo `Masicarus` para serem identificáveis em referências, logs e stack
+prefixo `MirajOfIcarus` para serem identificáveis em referências, logs e stack
 traces.
 
 ## Fluxo de uma requisição
@@ -34,7 +34,7 @@ Erros de aplicação usam códigos estáveis e a camada HTTP é a única respons
 por convertê-los em `400`, `401`, `404`, `409` ou `503`.
 
 O esquema `OpaqueBearer` autentica todas as rotas com `[Authorize]`. A geração
-e leitura dos tokens reutiliza `Masicarus.Game.Runtime`, garantindo que API,
+e leitura dos tokens reutiliza `MirajOfIcarus.Game.Runtime`, garantindo que API,
 Login, Main e Lobby compartilhem formato, chave Redis e consumo atômico.
 
 ## Módulos atuais
@@ -48,9 +48,9 @@ Login, Main e Lobby compartilhem formato, chave Redis e consumo atômico.
 ## Validação
 
 ```bash
-dotnet restore api/Masicarus.slnx --locked-mode
-dotnet build api/Masicarus.slnx --configuration Release --no-restore
-dotnet test api/Masicarus.slnx --configuration Release --no-restore
+dotnet restore api/MirajOfIcarus.slnx --locked-mode
+dotnet build api/MirajOfIcarus.slnx --configuration Release --no-restore
+dotnet test api/MirajOfIcarus.slnx --configuration Release --no-restore
 ```
 
 Os testes marcados como `Infrastructure` exigem PostgreSQL e Redis. O workflow

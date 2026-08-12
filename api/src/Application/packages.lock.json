@@ -2,10 +2,10 @@
   "version": 1,
   "dependencies": {
     "net10.0": {
-      "masicarus.domain": {
+      "mirajoficarus.domain": {
         "type": "Project"
       },
-      "masicarus.game.contracts": {
+      "mirajoficarus.game.contracts": {
         "type": "Project"
       }
     }

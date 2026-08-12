@@ -25,14 +25,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: masicarus-api
+          - image: miraj-of-icarus-api
             dockerfile: api/Dockerfile
-          - image: masicarus-main-server
-            dockerfile: game-server/services/coordinator/Masicarus.MainServer/Dockerfile
-          - image: masicarus-login-server
-            dockerfile: game-server/services/login/Masicarus.LoginServer/Dockerfile
-          - image: masicarus-lobby-server
-            dockerfile: game-server/services/lobby/Masicarus.LobbyServer/Dockerfile
+          - image: miraj-of-icarus-main-server
+            dockerfile: game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
+          - image: miraj-of-icarus-login-server
+            dockerfile: game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
+          - image: miraj-of-icarus-lobby-server
+            dockerfile: game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
     steps:
       - uses: actions/checkout@v4
         with:
@@ -78,9 +78,9 @@ jobs:
           SSH_HOST_KEY: ${{ secrets.LIGHTSAIL_SSH_HOST_KEY }}
         run: |
           install -d -m 0700 "$HOME/.ssh"
-          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/masicarus-deploy"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/miraj-of-icarus-deploy"
           printf '%s\n' "$SSH_HOST_KEY" > "$HOME/.ssh/known_hosts"
-          chmod 0600 "$HOME/.ssh/masicarus-deploy" "$HOME/.ssh/known_hosts"
+          chmod 0600 "$HOME/.ssh/miraj-of-icarus-deploy" "$HOME/.ssh/known_hosts"
 
       - name: Install the immutable deployment definition
         env:
@@ -88,10 +88,10 @@ jobs:
           LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
         run: |
           remote="${LIGHTSAIL_USER}@${LIGHTSAIL_HOST}"
-          ssh -i "$HOME/.ssh/masicarus-deploy" "$remote" 'mkdir -p /opt/masicarus/infra'
-          scp -i "$HOME/.ssh/masicarus-deploy" \
+          ssh -i "$HOME/.ssh/miraj-of-icarus-deploy" "$remote" 'mkdir -p /opt/miraj_of_icarus/infra'
+          scp -i "$HOME/.ssh/miraj-of-icarus-deploy" \
             infra/compose.yml infra/compose.production.yml infra/Caddyfile infra/deploy-backend.sh \
-            "${remote}:/opt/masicarus/infra/"
+            "${remote}:/opt/miraj_of_icarus/infra/"
 
       - name: Authenticate the server to the private container registry
         env:
@@ -101,7 +101,7 @@ jobs:
           LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
         run: |
           remote="${LIGHTSAIL_USER}@${LIGHTSAIL_HOST}"
-          printf '%s' "$GHCR_DEPLOY_TOKEN" | ssh -i "$HOME/.ssh/masicarus-deploy" "$remote" \
+          printf '%s' "$GHCR_DEPLOY_TOKEN" | ssh -i "$HOME/.ssh/miraj-of-icarus-deploy" "$remote" \
             "docker login ghcr.io --username '${GHCR_DEPLOY_USER}' --password-stdin"
 
       - name: Deploy with health verification and rollback
@@ -111,5 +111,5 @@ jobs:
           RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           remote="${LIGHTSAIL_USER}@${LIGHTSAIL_HOST}"
-          ssh -i "$HOME/.ssh/masicarus-deploy" "$remote" \
-            "chmod 0755 /opt/masicarus/infra/deploy-backend.sh && /opt/masicarus/infra/deploy-backend.sh '${RELEASE_SHA}'"
+          ssh -i "$HOME/.ssh/miraj-of-icarus-deploy" "$remote" \
+            "chmod 0755 /opt/miraj_of_icarus/infra/deploy-backend.sh && /opt/miraj_of_icarus/infra/deploy-backend.sh '${RELEASE_SHA}'"

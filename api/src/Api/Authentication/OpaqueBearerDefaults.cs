@@ -1,4 +1,4 @@
-namespace Masicarus.Api.Authentication;
+namespace MirajOfIcarus.Api.Authentication;
 
 public static class OpaqueBearerDefaults
 {

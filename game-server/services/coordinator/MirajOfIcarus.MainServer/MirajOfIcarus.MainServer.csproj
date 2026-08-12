@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\contracts\MirajOfIcarus.Game.Contracts\MirajOfIcarus.Game.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\libraries\runtime\MirajOfIcarus.Game.Runtime\MirajOfIcarus.Game.Runtime.csproj" />
+  </ItemGroup>
+</Project>

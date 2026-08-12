@@ -73,7 +73,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
     <section className="mb-28" id="personagens" aria-labelledby="characters-title">
       <div className="mb-11 flex items-end justify-between gap-8 max-[620px]:flex-col max-[620px]:items-start">
         <div><Kicker>Até quatro viajantes</Kicker><h2 id="characters-title" className="font-display text-[clamp(2.65rem,5vw,5rem)] font-medium leading-[.95] tracking-[-.025em]">Seus personagens</h2></div>
-        <span className="grid min-h-[54px] min-w-[180px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-masicarus text-xs font-semibold uppercase tracking-[.06em] text-[#d8e7eb] [text-shadow:0_2px_2px_#02070b]">{values.length} / 4 slots</span>
+        <span className="grid min-h-[54px] min-w-[180px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.06em] text-[#d8e7eb] [text-shadow:0_2px_2px_#02070b]">{values.length} / 4 slots</span>
       </div>
       {message && <Alert className="mb-5" kind={message.kind} role="status">{message.text}</Alert>}
       <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
@@ -110,7 +110,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
                       <input className="peer sr-only" type="radio" name="archetype" value={value} defaultChecked={index === 0} />
                       <Image className="mt-3 size-[71px] object-contain transition-[filter] group-hover:brightness-125 peer-checked:hidden" src={`/media/game-ui/classes/${value}.png`} alt="" width={71} height={71} />
                       <Image className="hidden h-auto w-[89px] object-contain drop-shadow-[0_4px_8px_rgba(22,164,235,.4)] peer-checked:block" src={`/media/game-ui/classes/${value}-selected.png`} alt="" width={89} height={113} />
-                      <span className="font-masicarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-[#20caff] peer-checked:[text-shadow:0_0_7px_rgba(32,202,255,.75)]">{label}</span>
+                      <span className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-[#20caff] peer-checked:[text-shadow:0_0_7px_rgba(32,202,255,.75)]">{label}</span>
                     </label>
                   ))}
                 </div>
@@ -121,7 +121,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
                   {[["male", "Masculino", "♂"], ["female", "Feminino", "♀"]].map(([value, label, symbol], index) => (
                     <label className="cursor-pointer" key={value}>
                       <input className="peer sr-only" type="radio" name="gender" value={value} defaultChecked={index === 0} />
-                      <span className="flex min-h-[54px] items-center justify-center gap-2 bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-masicarus text-xs font-semibold uppercase tracking-[.04em] text-mist [text-shadow:0_2px_2px_#02070b] peer-checked:bg-[url('/media/game-ui/buttons/focused.png')] peer-checked:text-white peer-checked:drop-shadow-[0_0_7px_rgba(30,139,255,.55)]"><b className="text-lg font-normal">{symbol}</b>{label}</span>
+                      <span className="flex min-h-[54px] items-center justify-center gap-2 bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.04em] text-mist [text-shadow:0_2px_2px_#02070b] peer-checked:bg-[url('/media/game-ui/buttons/focused.png')] peer-checked:text-white peer-checked:drop-shadow-[0_0_7px_rgba(30,139,255,.55)]"><b className="text-lg font-normal">{symbol}</b>{label}</span>
                     </label>
                   ))}
                 </div>

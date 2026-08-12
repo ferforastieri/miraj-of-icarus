@@ -32,7 +32,7 @@ compose() {
 
 write_release() {
   umask 077
-  printf 'MASICARUS_IMAGE_TAG=%s\n' "$1" > "$release_env"
+  printf 'MIRAJ_OF_ICARUS_IMAGE_TAG=%s\n' "$1" > "$release_env"
 }
 
 wait_for_services() {
@@ -62,7 +62,7 @@ wait_for_services() {
 
 old_sha=""
 if [[ -f $release_env ]]; then
-  old_sha="$(sed -n 's/^MASICARUS_IMAGE_TAG=//p' "$release_env")"
+  old_sha="$(sed -n 's/^MIRAJ_OF_ICARUS_IMAGE_TAG=//p' "$release_env")"
 fi
 
 write_release "$release_sha"

@@ -1,11 +1,11 @@
-using Masicarus.Api.Common;
-using Masicarus.Api.Contracts;
-using Masicarus.Application.Authentication;
+using MirajOfIcarus.Api.Common;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Application.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ApplicationAuthenticationService = Masicarus.Application.Authentication.AuthenticationService;
+using ApplicationAuthenticationService = MirajOfIcarus.Application.Authentication.AuthenticationService;
 
-namespace Masicarus.Api.Authentication;
+namespace MirajOfIcarus.Api.Authentication;
 
 [ApiController]
 [Route("v1/auth")]

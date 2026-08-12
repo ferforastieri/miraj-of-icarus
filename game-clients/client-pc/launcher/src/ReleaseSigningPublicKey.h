@@ -1,6 +1,6 @@
 #pragma once
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 inline constexpr unsigned char ReleaseSigningPublicKey[] = {
     0x30, 0x82, 0x01, 0xa2, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,

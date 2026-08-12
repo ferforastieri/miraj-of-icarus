@@ -1,9 +1,9 @@
-using Masicarus.Domain.Accounts;
-using Masicarus.Domain.Characters;
-using Masicarus.Domain.Platform;
+using MirajOfIcarus.Domain.Accounts;
+using MirajOfIcarus.Domain.Characters;
+using MirajOfIcarus.Domain.Platform;
 using Microsoft.EntityFrameworkCore;
 
-namespace Masicarus.Infrastructure.Persistence;
+namespace MirajOfIcarus.Infrastructure.Persistence;
 
 public sealed class PlatformDbContext(
     DbContextOptions<PlatformDbContext> options) : DbContext(options)

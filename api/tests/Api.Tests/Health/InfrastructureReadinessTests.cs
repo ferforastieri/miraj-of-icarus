@@ -1,12 +1,12 @@
 using System.Net;
-using Masicarus.Domain.Platform;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Domain.Platform;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
-namespace Masicarus.Api.Tests;
+namespace MirajOfIcarus.Api.Tests;
 
 [Trait("Category", "Infrastructure")]
 public sealed class InfrastructureReadinessTests(
@@ -33,7 +33,7 @@ public sealed class InfrastructureReadinessTests(
             .GetDatabase();
         var suffix = Guid.NewGuid().ToString("N");
         var databaseKey = $"integration-test:{suffix}";
-        var redisKey = (RedisKey)$"masicarus:integration-test:{suffix}";
+        var redisKey = (RedisKey)$"miraj-of-icarus:integration-test:{suffix}";
 
         await using var database = await contextFactory.CreateDbContextAsync();
 

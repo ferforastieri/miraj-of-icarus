@@ -1,4 +1,4 @@
-namespace Masicarus.Application.Authentication;
+namespace MirajOfIcarus.Application.Authentication;
 
 public sealed record AccountIdentity(long AccountId, string UserName);
 

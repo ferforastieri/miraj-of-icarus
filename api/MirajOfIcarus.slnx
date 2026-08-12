@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Api/MirajOfIcarus.Api.csproj" />
+    <Project Path="src/Application/MirajOfIcarus.Application.csproj" />
+    <Project Path="src/Domain/MirajOfIcarus.Domain.csproj" />
+    <Project Path="src/Infrastructure/MirajOfIcarus.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/shared/">
+    <Project Path="../game-server/libraries/contracts/MirajOfIcarus.Game.Contracts/MirajOfIcarus.Game.Contracts.csproj" />
+    <Project Path="../game-server/libraries/runtime/MirajOfIcarus.Game.Runtime/MirajOfIcarus.Game.Runtime.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Api.Tests/MirajOfIcarus.Api.Tests.csproj" />
+  </Folder>
+</Solution>

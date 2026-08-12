@@ -1,4 +1,4 @@
-namespace Masicarus.Domain.Platform;
+namespace MirajOfIcarus.Domain.Platform;
 
 public sealed class PlatformMetadata
 {

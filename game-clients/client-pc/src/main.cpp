@@ -10,8 +10,8 @@
 namespace
 {
 wi::Application Application;
-std::optional<masicarus::client::LaunchContext> StartupContext;
-std::optional<masicarus::game::LobbyState> ActiveLobby;
+std::optional<miraj_of_icarus::client::LaunchContext> StartupContext;
+std::optional<miraj_of_icarus::game::LobbyState> ActiveLobby;
 
 LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -58,14 +58,14 @@ int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR commandLine, int)
 
     try
     {
-        StartupContext = masicarus::game::ReadLaunchContext(commandLine);
-        ActiveLobby = masicarus::game::LobbyClient(StartupContext->lobbyEndpoint)
+        StartupContext = miraj_of_icarus::game::ReadLaunchContext(commandLine);
+        ActiveLobby = miraj_of_icarus::game::LobbyClient(StartupContext->lobbyEndpoint)
                           .Enter(StartupContext->lobbyTicket);
         StartupContext->lobbyTicket.clear();
     }
     catch (const std::exception& exception)
     {
-        MessageBoxA(nullptr, exception.what(), "MASICARUS", MB_OK | MB_ICONERROR);
+        MessageBoxA(nullptr, exception.what(), "Miraj of Icarus", MB_OK | MB_ICONERROR);
         return 2;
     }
 
@@ -76,10 +76,10 @@ int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR commandLine, int)
     windowClass.hInstance = instance;
     windowClass.hCursor = LoadCursorW(nullptr, IDC_ARROW);
     windowClass.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1);
-    windowClass.lpszClassName = L"MasicarusClientWindow";
+    windowClass.lpszClassName = L"MirajOfIcarusClientWindow";
     RegisterClassExW(&windowClass);
 
-    const auto window = CreateWindowW(windowClass.lpszClassName, L"MASICARUS",
+    const auto window = CreateWindowW(windowClass.lpszClassName, L"Miraj of Icarus",
         WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, 1280, 720,
         nullptr, nullptr, instance, nullptr);
     if (window == nullptr)

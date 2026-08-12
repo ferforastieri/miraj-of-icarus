@@ -1,4 +1,4 @@
-namespace Masicarus.Domain.Characters;
+namespace MirajOfIcarus.Domain.Characters;
 
 public sealed class Character
 {

@@ -1,10 +1,10 @@
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Masicarus.Infrastructure.Persistence.Migrations;
+namespace MirajOfIcarus.Infrastructure.Persistence.Migrations;
 
 [DbContext(typeof(PlatformDbContext))]
 [Migration("20260812120000_PortalCharacters")]

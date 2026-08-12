@@ -1,15 +1,15 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Masicarus.Api.Contracts;
-using Masicarus.Api.Tests.Support;
-using Masicarus.Application.Characters;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Api.Tests.Support;
+using MirajOfIcarus.Application.Characters;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Masicarus.Api.Tests.Characters;
+namespace MirajOfIcarus.Api.Tests.Characters;
 
 [Trait("Category", "Infrastructure")]
 public sealed class CharacterJourneyTests(

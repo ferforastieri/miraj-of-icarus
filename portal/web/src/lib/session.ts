@@ -1,5 +1,5 @@
-export const ACCESS_COOKIE = "masicarus_access";
-export const REFRESH_COOKIE = "masicarus_refresh";
+export const ACCESS_COOKIE = "miraj_of_icarus_access";
+export const REFRESH_COOKIE = "miraj_of_icarus_refresh";
 
 export type Account = { accountId: number; userName: string };
 export type Session = {
@@ -10,7 +10,7 @@ export type Session = {
   account: Account;
 };
 
-export const apiUrl = process.env.MASICARUS_API_INTERNAL_URL ??
+export const apiUrl = process.env.MIRAJ_OF_ICARUS_API_INTERNAL_URL ??
   (process.env.NODE_ENV === "production"
-    ? "https://api.masicarus.com.br"
+    ? "https://api.mirajoficarus.com.br"
     : "http://127.0.0.1:8080");

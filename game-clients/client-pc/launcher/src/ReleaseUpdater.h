@@ -4,7 +4,7 @@
 #include <functional>
 #include <string>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 enum class UpdateAction
 {

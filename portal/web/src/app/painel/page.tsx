@@ -33,7 +33,7 @@ export default function PanelPage({
 
   useEffect(() => {
     if (!account.data) return;
-    document.title = `Painel | Masicarus`;
+    document.title = `Painel | Miraj of Icarus`;
   }, [account.data]);
 
   if (account.isLoading) {

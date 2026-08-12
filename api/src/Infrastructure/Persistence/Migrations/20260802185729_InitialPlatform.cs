@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Masicarus.Infrastructure.Persistence.Migrations
+namespace MirajOfIcarus.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class InitialPlatform : Migration

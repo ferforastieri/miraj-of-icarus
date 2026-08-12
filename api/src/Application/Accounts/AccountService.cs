@@ -1,8 +1,8 @@
-using Masicarus.Application.Authentication;
-using Masicarus.Application.Common;
-using Masicarus.Domain.Accounts;
+using MirajOfIcarus.Application.Authentication;
+using MirajOfIcarus.Application.Common;
+using MirajOfIcarus.Domain.Accounts;
 
-namespace Masicarus.Application.Accounts;
+namespace MirajOfIcarus.Application.Accounts;
 
 public sealed class AccountService(
     IAccountRepository accounts,

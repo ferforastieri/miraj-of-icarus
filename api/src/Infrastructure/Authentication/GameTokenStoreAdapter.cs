@@ -1,7 +1,7 @@
-using Masicarus.Application.Authentication;
-using Masicarus.Game.Runtime;
+using MirajOfIcarus.Application.Authentication;
+using MirajOfIcarus.Game.Runtime;
 
-namespace Masicarus.Infrastructure.Authentication;
+namespace MirajOfIcarus.Infrastructure.Authentication;
 
 public sealed class GameTokenStoreAdapter(OpaqueTokenStore tokens) : ITokenStore
 {

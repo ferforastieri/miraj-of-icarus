@@ -1,11 +1,11 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Masicarus.Api.Contracts;
-using Masicarus.Api.Tests.Support;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Api.Tests.Support;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace Masicarus.Api.Tests.Authentication;
+namespace MirajOfIcarus.Api.Tests.Authentication;
 
 [Trait("Category", "Infrastructure")]
 public sealed class AuthenticationJourneyTests(

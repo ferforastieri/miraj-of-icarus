@@ -1,4 +1,4 @@
-namespace Masicarus.Infrastructure;
+namespace MirajOfIcarus.Infrastructure;
 
 public static class InfrastructureAssembly
 {

@@ -1,7 +1,7 @@
-using Masicarus.Application.Accounts;
-using Masicarus.Application.Common;
+using MirajOfIcarus.Application.Accounts;
+using MirajOfIcarus.Application.Common;
 
-namespace Masicarus.Application.Authentication;
+namespace MirajOfIcarus.Application.Authentication;
 
 public sealed class AuthenticationService(
     IAccountRepository accounts,

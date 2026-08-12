@@ -1,11 +1,11 @@
-using Masicarus.Api.Authentication;
-using Masicarus.Api.Common;
-using Masicarus.Api.Contracts;
-using Masicarus.Application.Characters;
+using MirajOfIcarus.Api.Authentication;
+using MirajOfIcarus.Api.Common;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Application.Characters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Characters;
+namespace MirajOfIcarus.Api.Characters;
 
 [ApiController]
 [Authorize]

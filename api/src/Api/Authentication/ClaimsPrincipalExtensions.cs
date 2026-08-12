@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Security.Claims;
-using Masicarus.Application.Authentication;
+using MirajOfIcarus.Application.Authentication;
 
-namespace Masicarus.Api.Authentication;
+namespace MirajOfIcarus.Api.Authentication;
 
 public static class ClaimsPrincipalExtensions
 {

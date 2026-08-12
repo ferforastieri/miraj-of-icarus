@@ -1,4 +1,4 @@
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 
 #include <windows.h>
 #include <winhttp.h>
@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <vector>
 
-namespace masicarus::client::windows
+namespace miraj_of_icarus::client::windows
 {
 namespace
 {
@@ -93,7 +93,7 @@ std::string RequestJson(
     Require(parts.nScheme == INTERNET_SCHEME_HTTP || parts.nScheme == INTERNET_SCHEME_HTTPS,
         "Service URL must use HTTP or HTTPS.");
 
-    Handle session(WinHttpOpen(L"MASICARUS/0.1", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
+    Handle session(WinHttpOpen(L"Miraj of Icarus/0.1", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
         WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0));
     Require(session != nullptr, "Unable to initialize WinHTTP.");
     WinHttpSetTimeouts(session.get(), 5000, 5000, 5000, 10000);
@@ -166,7 +166,7 @@ void DownloadFile(const std::string& url, const std::wstring& destination,
     Require(parts.nScheme == INTERNET_SCHEME_HTTP || parts.nScheme == INTERNET_SCHEME_HTTPS,
         "Download URL must use HTTP or HTTPS.");
 
-    Handle session(WinHttpOpen(L"MASICARUS Launcher/0.1", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
+    Handle session(WinHttpOpen(L"Miraj of Icarus Launcher/0.1", WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
         WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0));
     Require(session != nullptr, "Unable to initialize the download.");
     WinHttpSetTimeouts(session.get(), 5000, 5000, 10000, 30000);

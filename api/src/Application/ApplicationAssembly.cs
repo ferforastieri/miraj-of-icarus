@@ -1,4 +1,4 @@
-namespace Masicarus.Application;
+namespace MirajOfIcarus.Application;
 
 public static class ApplicationAssembly
 {

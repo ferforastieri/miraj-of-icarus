@@ -1,11 +1,11 @@
 #include "LobbyClient.h"
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 
 #include <nlohmann/json.hpp>
 
 #include <utility>
 
-namespace masicarus::game
+namespace miraj_of_icarus::game
 {
 namespace
 {
@@ -26,9 +26,9 @@ LobbyClient::LobbyClient(std::string endpoint) : endpoint_(std::move(endpoint)) 
 
 LobbyState LobbyClient::Enter(const std::string& oneTimeTicket) const
 {
-    const auto session = nlohmann::json::parse(masicarus::client::windows::RequestJson(
+    const auto session = nlohmann::json::parse(miraj_of_icarus::client::windows::RequestJson(
         "POST",
-        masicarus::client::windows::JoinEndpoint(endpoint_, "/v1/sessions"),
+        miraj_of_icarus::client::windows::JoinEndpoint(endpoint_, "/v1/sessions"),
         nlohmann::json{{"ticket", oneTimeTicket}}.dump()));
     LobbyState state{
         .sessionToken = session.at("sessionToken"),
@@ -45,9 +45,9 @@ Character LobbyClient::CreateCharacter(
     const std::string& gender,
     const std::string& customization) const
 {
-    const auto response = masicarus::client::windows::RequestJson(
+    const auto response = miraj_of_icarus::client::windows::RequestJson(
         "POST",
-        masicarus::client::windows::JoinEndpoint(endpoint_, "/v1/characters"),
+        miraj_of_icarus::client::windows::JoinEndpoint(endpoint_, "/v1/characters"),
         nlohmann::json{
             {"name", name},
             {"archetype", archetype},
@@ -60,9 +60,9 @@ Character LobbyClient::CreateCharacter(
 
 std::vector<Character> LobbyClient::ListCharacters(const std::string& sessionToken) const
 {
-    const auto response = nlohmann::json::parse(masicarus::client::windows::RequestJson(
+    const auto response = nlohmann::json::parse(miraj_of_icarus::client::windows::RequestJson(
         "GET",
-        masicarus::client::windows::JoinEndpoint(endpoint_, "/v1/characters"),
+        miraj_of_icarus::client::windows::JoinEndpoint(endpoint_, "/v1/characters"),
         {},
         sessionToken));
     std::vector<Character> characters;

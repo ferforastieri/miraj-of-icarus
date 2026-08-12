@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
-using Masicarus.Api.Contracts;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
-namespace Masicarus.Api.Tests.Support;
+namespace MirajOfIcarus.Api.Tests.Support;
 
 internal static class ApiTestSupport
 {

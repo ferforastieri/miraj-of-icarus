@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Masicarus.Infrastructure.Persistence;
+namespace MirajOfIcarus.Infrastructure.Persistence;
 
 public static class DatabaseMigrationExtensions
 {

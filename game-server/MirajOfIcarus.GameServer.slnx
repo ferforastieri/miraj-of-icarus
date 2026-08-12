@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/libraries/">
+    <Project Path="libraries/contracts/MirajOfIcarus.Game.Contracts/MirajOfIcarus.Game.Contracts.csproj" />
+    <Project Path="libraries/protocol-legacy/MirajOfIcarus.LegacyProtocol/MirajOfIcarus.LegacyProtocol.csproj" />
+    <Project Path="libraries/runtime/MirajOfIcarus.Game.Runtime/MirajOfIcarus.Game.Runtime.csproj" />
+  </Folder>
+  <Folder Name="/services/">
+    <Project Path="services/coordinator/MirajOfIcarus.MainServer/MirajOfIcarus.MainServer.csproj" />
+    <Project Path="services/lobby/MirajOfIcarus.LobbyServer/MirajOfIcarus.LobbyServer.csproj" />
+    <Project Path="services/login/MirajOfIcarus.LoginServer/MirajOfIcarus.LoginServer.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MirajOfIcarus.Coordinator.Tests/MirajOfIcarus.Coordinator.Tests.csproj" />
+    <Project Path="tests/MirajOfIcarus.LegacyProtocol.Tests/MirajOfIcarus.LegacyProtocol.Tests.csproj" />
+    <Project Path="tests/MirajOfIcarus.LobbyServer.Tests/MirajOfIcarus.LobbyServer.Tests.csproj" />
+  </Folder>
+</Solution>

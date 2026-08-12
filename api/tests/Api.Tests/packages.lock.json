@@ -536,41 +536,41 @@
           "xunit.extensibility.core": "[2.9.3]"
         }
       },
-      "masicarus.api": {
+      "mirajoficarus.api": {
         "type": "Project",
         "dependencies": {
-          "Masicarus.Application": "[1.0.0, )",
-          "Masicarus.Infrastructure": "[1.0.0, )",
+          "MirajOfIcarus.Application": "[1.0.0, )",
+          "MirajOfIcarus.Infrastructure": "[1.0.0, )",
           "Microsoft.AspNetCore.OpenApi": "[10.0.10, )",
           "Microsoft.OpenApi": "[2.11.0, )"
         }
       },
-      "masicarus.application": {
+      "mirajoficarus.application": {
         "type": "Project",
         "dependencies": {
-          "Masicarus.Domain": "[1.0.0, )",
-          "Masicarus.Game.Contracts": "[1.0.0, )"
+          "MirajOfIcarus.Domain": "[1.0.0, )",
+          "MirajOfIcarus.Game.Contracts": "[1.0.0, )"
         }
       },
-      "masicarus.domain": {
+      "mirajoficarus.domain": {
         "type": "Project"
       },
-      "masicarus.game.contracts": {
+      "mirajoficarus.game.contracts": {
         "type": "Project"
       },
-      "masicarus.game.runtime": {
+      "mirajoficarus.game.runtime": {
         "type": "Project",
         "dependencies": {
-          "Masicarus.Game.Contracts": "[1.0.0, )",
+          "MirajOfIcarus.Game.Contracts": "[1.0.0, )",
           "StackExchange.Redis": "[3.1.0, )"
         }
       },
-      "masicarus.infrastructure": {
+      "mirajoficarus.infrastructure": {
         "type": "Project",
         "dependencies": {
-          "Masicarus.Application": "[1.0.0, )",
-          "Masicarus.Domain": "[1.0.0, )",
-          "Masicarus.Game.Runtime": "[1.0.0, )",
+          "MirajOfIcarus.Application": "[1.0.0, )",
+          "MirajOfIcarus.Domain": "[1.0.0, )",
+          "MirajOfIcarus.Game.Runtime": "[1.0.0, )",
           "Microsoft.EntityFrameworkCore": "[10.0.10, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.10, )",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "[10.0.10, )",

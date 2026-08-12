@@ -1,7 +1,7 @@
-using Masicarus.Api.Contracts;
-using Masicarus.Domain.Characters;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Domain.Characters;
 
-namespace Masicarus.Api.Characters;
+namespace MirajOfIcarus.Api.Characters;
 
 internal static class CharacterMapping
 {

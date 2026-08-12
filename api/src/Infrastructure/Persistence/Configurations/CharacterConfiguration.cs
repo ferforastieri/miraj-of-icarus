@@ -1,9 +1,9 @@
-using Masicarus.Domain.Accounts;
-using Masicarus.Domain.Characters;
+using MirajOfIcarus.Domain.Accounts;
+using MirajOfIcarus.Domain.Characters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Masicarus.Infrastructure.Persistence.Configurations;
+namespace MirajOfIcarus.Infrastructure.Persistence.Configurations;
 
 public sealed class CharacterConfiguration : IEntityTypeConfiguration<Character>
 {

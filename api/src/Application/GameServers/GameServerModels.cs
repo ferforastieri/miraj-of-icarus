@@ -1,4 +1,4 @@
-namespace Masicarus.Application.GameServers;
+namespace MirajOfIcarus.Application.GameServers;
 
 public sealed record GameServer(
     string Id,

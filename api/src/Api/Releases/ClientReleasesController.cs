@@ -1,9 +1,9 @@
-using Masicarus.Api.Common;
-using Masicarus.Api.Contracts;
-using Masicarus.Application.Releases;
+using MirajOfIcarus.Api.Common;
+using MirajOfIcarus.Api.Contracts;
+using MirajOfIcarus.Application.Releases;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Masicarus.Api.Releases;
+namespace MirajOfIcarus.Api.Releases;
 
 [ApiController]
 [Route("v1/client-releases/windows")]

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace masicarus::game
+namespace miraj_of_icarus::game
 {
 struct Character
 {

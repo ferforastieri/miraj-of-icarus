@@ -6,7 +6,7 @@ RUN npm ci
 FROM node:24.18.0-bookworm-slim AS build
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1 \
-    MASICARUS_STANDALONE_BUILD=true
+    MIRAJ_OF_ICARUS_STANDALONE_BUILD=true
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY portal/web/ .
 RUN npm run build

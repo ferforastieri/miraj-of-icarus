@@ -1,8 +1,8 @@
 #pragma once
 
-#include "masicarus/client/LaunchContext.h"
+#include "miraj_of_icarus/client/LaunchContext.h"
 
-namespace masicarus::game
+namespace miraj_of_icarus::game
 {
-[[nodiscard]] masicarus::client::LaunchContext ReadLaunchContext(const wchar_t* commandLine);
+[[nodiscard]] miraj_of_icarus::client::LaunchContext ReadLaunchContext(const wchar_t* commandLine);
 }

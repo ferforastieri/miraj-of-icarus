@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Http.Json;
-using Masicarus.Api.Contracts;
+using MirajOfIcarus.Api.Contracts;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace Masicarus.Api.Tests;
+namespace MirajOfIcarus.Api.Tests;
 
 public sealed class HealthEndpointsTests(
     WebApplicationFactory<Program> factory)
@@ -26,7 +26,7 @@ public sealed class HealthEndpointsTests(
             "/api/v1/status");
 
         Assert.NotNull(status);
-        Assert.Equal("masicarus-api", status.Service);
+        Assert.Equal("miraj-of-icarus-api", status.Service);
         Assert.Equal("healthy", status.Status);
         Assert.NotEmpty(status.Version);
     }

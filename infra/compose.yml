@@ -1,17 +1,17 @@
-name: masicarus
+name: miraj-of-icarus
 
 services:
   postgres:
     image: postgres:18.4-bookworm
     restart: unless-stopped
     environment:
-      POSTGRES_DB: masicarus
-      POSTGRES_USER: masicarus
+      POSTGRES_DB: miraj-of-icarus
+      POSTGRES_USER: miraj-of-icarus
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
     volumes:
       - postgres-data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U masicarus -d masicarus"]
+      test: ["CMD-SHELL", "pg_isready -U miraj-of-icarus -d miraj-of-icarus"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -31,21 +31,21 @@ services:
     networks: [backend]
 
   api:
-    image: masicarus-api:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-api:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
       dockerfile: api/Dockerfile
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production
-      ConnectionStrings__Database: Host=postgres;Port=5432;Database=masicarus;Username=masicarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
+      ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
-      ClientReleases__ChannelManifestUrl: ${MASICARUS_RELEASE_CHANNEL_URL:-https://downloads.masicarus.com.br/channels/alpha.json}
-      GameServers__0__Id: masicarus-alpha
-      GameServers__0__Name: MASICARUS Alpha
+      ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com.br/channels/alpha.json}
+      GameServers__0__Id: miraj-of-icarus-alpha
+      GameServers__0__Name: Miraj of Icarus Alpha
       GameServers__0__Region: BR
-      GameServers__0__LoginEndpoint: ${MASICARUS_PUBLIC_LOGIN_URL:-http://localhost:8081}
+      GameServers__0__LoginEndpoint: ${MIRAJ_OF_ICARUS_PUBLIC_LOGIN_URL:-http://localhost:8081}
       GameServers__0__Available: "true"
     depends_on:
       postgres:
@@ -53,7 +53,7 @@ services:
       redis:
         condition: service_healthy
     ports:
-      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8080:8080"
+      - "${MIRAJ_OF_ICARUS_BIND_ADDRESS:-127.0.0.1}:8080:8080"
     healthcheck:
       test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/live HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
       interval: 10s
@@ -62,16 +62,16 @@ services:
     networks: [backend]
 
   main-server:
-    image: masicarus-main-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-main-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
-      dockerfile: game-server/services/coordinator/Masicarus.MainServer/Dockerfile
+      dockerfile: game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
     restart: unless-stopped
     environment:
       Cache__ConnectionString: redis:6379
       Internal__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in infra/.env}
-      Server__Id: masicarus-alpha
-      Lobby__Endpoint: ${MASICARUS_PUBLIC_LOBBY_URL:?Set MASICARUS_PUBLIC_LOBBY_URL in infra/.env}
+      Server__Id: miraj-of-icarus-alpha
+      Lobby__Endpoint: ${MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL:?Set MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL in infra/.env}
     depends_on:
       redis:
         condition: service_healthy
@@ -83,10 +83,10 @@ services:
     networks: [backend]
 
   login-server:
-    image: masicarus-login-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-login-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
-      dockerfile: game-server/services/login/Masicarus.LoginServer/Dockerfile
+      dockerfile: game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
     restart: unless-stopped
     environment:
       Cache__ConnectionString: redis:6379
@@ -96,7 +96,7 @@ services:
       main-server:
         condition: service_healthy
     ports:
-      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8081:8080"
+      - "${MIRAJ_OF_ICARUS_BIND_ADDRESS:-127.0.0.1}:8081:8080"
     healthcheck:
       test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
       interval: 10s
@@ -105,13 +105,13 @@ services:
     networks: [backend]
 
   lobby-server:
-    image: masicarus-lobby-server:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-lobby-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
-      dockerfile: game-server/services/lobby/Masicarus.LobbyServer/Dockerfile
+      dockerfile: game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
     restart: unless-stopped
     environment:
-      ConnectionStrings__Database: Host=postgres;Port=5432;Database=masicarus;Username=masicarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
+      ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
     depends_on:
@@ -120,7 +120,7 @@ services:
       redis:
         condition: service_healthy
     ports:
-      - "${MASICARUS_BIND_ADDRESS:-127.0.0.1}:8083:8080"
+      - "${MIRAJ_OF_ICARUS_BIND_ADDRESS:-127.0.0.1}:8083:8080"
     healthcheck:
       test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
       interval: 10s
@@ -129,7 +129,7 @@ services:
     networks: [backend]
 
   portal:
-    image: masicarus-portal:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-portal:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
       dockerfile: portal/web/Dockerfile
@@ -138,7 +138,7 @@ services:
       api:
         condition: service_healthy
     environment:
-      MASICARUS_API_INTERNAL_URL: http://api:8080
+      MIRAJ_OF_ICARUS_API_INTERNAL_URL: http://api:8080
     ports:
       - "127.0.0.1:3000:3000"
     healthcheck:

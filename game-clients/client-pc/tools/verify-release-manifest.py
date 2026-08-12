@@ -48,8 +48,8 @@ def main() -> int:
     }
     if actual != expected:
         raise ValueError("release directory contains missing or unlisted files")
-    if "MasicarusClient.exe" not in expected:
-        raise ValueError("release manifest does not contain MasicarusClient.exe")
+    if "MirajOfIcarusClient.exe" not in expected:
+        raise ValueError("release manifest does not contain MirajOfIcarusClient.exe")
     print(f"verified {len(expected)} release files")
     return 0
 

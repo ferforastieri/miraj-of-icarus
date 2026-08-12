@@ -1,4 +1,4 @@
-namespace Masicarus.Application.Common;
+namespace MirajOfIcarus.Application.Common;
 
 public enum ApplicationErrorType
 {

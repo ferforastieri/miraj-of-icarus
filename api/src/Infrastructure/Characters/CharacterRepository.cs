@@ -1,10 +1,10 @@
-using Masicarus.Application.Characters;
-using Masicarus.Domain.Characters;
-using Masicarus.Infrastructure.Persistence;
+using MirajOfIcarus.Application.Characters;
+using MirajOfIcarus.Domain.Characters;
+using MirajOfIcarus.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
-namespace Masicarus.Infrastructure.Characters;
+namespace MirajOfIcarus.Infrastructure.Characters;
 
 public sealed class CharacterRepository(
     IDbContextFactory<PlatformDbContext> databaseFactory) : ICharacterRepository

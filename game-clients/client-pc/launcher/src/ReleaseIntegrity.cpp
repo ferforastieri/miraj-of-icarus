@@ -1,8 +1,8 @@
 #include "ReleaseIntegrity.h"
 #include "ReleaseSigningPublicKey.h"
 
-#include "masicarus/client/ReleaseManifest.h"
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/ReleaseManifest.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 
 #include <windows.h>
 #include <bcrypt.h>
@@ -19,7 +19,7 @@
 #include <unordered_set>
 #include <vector>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 namespace
 {
@@ -244,7 +244,7 @@ void VerifyManifestSignature(std::string_view manifest, std::vector<std::uint8_t
 }
 
 void VerifyReleaseInventory(const std::wstring& releaseDirectory,
-    const masicarus::client::ReleaseManifest& manifest)
+    const miraj_of_icarus::client::ReleaseManifest& manifest)
 {
     std::unordered_set<std::string> expected;
     for (const auto& file : manifest.files) expected.insert(file.path);
@@ -293,7 +293,7 @@ void VerifyInstalledRelease(const std::wstring& releaseDirectory)
     VerifyReleaseInventory(releaseDirectory, manifest);
 }
 
-masicarus::client::ReleaseManifest ReadVerifiedReleaseManifest(
+miraj_of_icarus::client::ReleaseManifest ReadVerifiedReleaseManifest(
     const std::wstring& releaseDirectory)
 {
     const auto separator = releaseDirectory.ends_with(L'\\') ? L"" : L"\\";
@@ -302,17 +302,17 @@ masicarus::client::ReleaseManifest ReadVerifiedReleaseManifest(
     auto signature = ReadSignature(
         releaseDirectory + separator + L"release-manifest.sig");
     VerifyManifestSignature(serializedManifest, signature);
-    return masicarus::client::ReleaseManifest::Deserialize(serializedManifest);
+    return miraj_of_icarus::client::ReleaseManifest::Deserialize(serializedManifest);
 }
 
 bool IsReleaseFileValid(const std::wstring& releaseDirectory,
-    const masicarus::client::ReleaseFile& expected)
+    const miraj_of_icarus::client::ReleaseFile& expected)
 {
     try
     {
         const auto separator = releaseDirectory.ends_with(L'\\') ? L"" : L"\\";
         const auto path = releaseDirectory + separator +
-            masicarus::client::windows::ToWide(expected.path);
+            miraj_of_icarus::client::windows::ToWide(expected.path);
         auto file = OpenRegularFile(path);
         return FileSize(file.get()) == expected.size && Sha256(file.get()) == expected.sha256;
     }

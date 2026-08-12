@@ -1,7 +1,7 @@
 #include "ReleaseUpdater.h"
 
 #include "ReleaseIntegrity.h"
-#include "masicarus/client/windows/WinHttpClient.h"
+#include "miraj_of_icarus/client/windows/WinHttpClient.h"
 
 #include <windows.h>
 #include <nlohmann/json.hpp>
@@ -14,15 +14,15 @@
 #include <string>
 #include <system_error>
 
-namespace masicarus::launcher
+namespace miraj_of_icarus::launcher
 {
 namespace
 {
-using masicarus::client::windows::DownloadFile;
-using masicarus::client::windows::EncodeUrlPath;
-using masicarus::client::windows::JoinEndpoint;
-using masicarus::client::windows::RequestJson;
-using masicarus::client::windows::ToWide;
+using miraj_of_icarus::client::windows::DownloadFile;
+using miraj_of_icarus::client::windows::EncodeUrlPath;
+using miraj_of_icarus::client::windows::JoinEndpoint;
+using miraj_of_icarus::client::windows::RequestJson;
+using miraj_of_icarus::client::windows::ToWide;
 
 struct PublishedRelease
 {

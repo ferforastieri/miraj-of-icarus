@@ -1,6 +1,6 @@
-using Masicarus.Application.Characters;
+using MirajOfIcarus.Application.Characters;
 
-namespace Masicarus.Api.Characters;
+namespace MirajOfIcarus.Api.Characters;
 
 public sealed class CharacterDeletionWorker(
     IServiceScopeFactory scopeFactory,

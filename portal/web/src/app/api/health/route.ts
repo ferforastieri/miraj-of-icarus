@@ -1,6 +1,6 @@
 export function GET() {
   return Response.json({
-    service: "masicarus-portal",
+    service: "miraj-of-icarus-portal",
     status: "healthy",
   });
 }
