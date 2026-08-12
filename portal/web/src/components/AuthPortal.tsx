@@ -1,5 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import { loginAction, registerAction } from "@/app/actions";
+import { useState, type FormEvent } from "react";
+import { useLogin } from "@/api/authentication/login";
+import { useRegister } from "@/api/authentication/register";
+import { ApiError } from "@/api/http";
+import { Alert } from "@/components/ui/Alert";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Kicker } from "@/components/ui/Kicker";
+import { routes } from "@/routes";
 
 const messages: Record<string, string> = {
   invalid_credentials: "Conta ou senha incorretas.",
@@ -11,44 +21,50 @@ const messages: Record<string, string> = {
   session_expired: "Sua sessão terminou. Entre novamente.",
 };
 
-export function AuthPortal({ mode, error }: { mode: string; error?: string }) {
+export function AuthPortal({ mode, initialError }: { mode: string; initialError?: string }) {
   const registering = mode === "cadastro";
+  const login = useLogin();
+  const register = useRegister();
+  const [error, setError] = useState(initialError);
+  const pending = login.isPending || register.isPending;
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const userName = String(form.get("userName") ?? "").trim();
+    const password = String(form.get("password") ?? "");
+    if (registering && password !== String(form.get("passwordConfirmation") ?? "")) {
+      setError("password_mismatch");
+      return;
+    }
+    setError(undefined);
+    try {
+      await (registering ? register : login).mutateAsync({ userName, password });
+    } catch (reason) {
+      setError(reason instanceof ApiError ? reason.code : "service_unavailable");
+    }
+  }
+
+  const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
   return (
-    <main className="auth-stage">
-      <div className="auth-atmosphere" aria-hidden="true" />
-      <section className="auth-card" aria-labelledby="auth-title">
-        <p className="kicker">Portal do jogador</p>
-        <h1 id="auth-title">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
-        <p className="auth-intro">
-          {registering
-            ? "Crie sua conta para preparar seus personagens e acompanhar os reinos."
-            : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}
-        </p>
-        <div className="auth-tabs" role="tablist" aria-label="Acesso à conta">
-          <a role="tab" aria-selected={!registering} href="/painel">Entrar</a>
-          <a role="tab" aria-selected={registering} href="/painel?modo=cadastro">Criar conta</a>
+    <main className="relative grid min-h-[calc(100vh-142px)] place-items-center bg-[linear-gradient(90deg,rgba(7,11,16,.97),rgba(7,11,16,.42),rgba(7,11,16,.94)),url('/media/citadel.png')] bg-cover bg-center px-6 py-20 max-[620px]:px-4">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(82,212,231,.09),transparent_30%)]" aria-hidden="true" />
+      <section className="relative w-[min(500px,100%)] border border-ancient-gold/45 bg-[rgba(9,14,18,.95)] p-10 shadow-[0_30px_90px_rgba(0,0,0,.6)] before:pointer-events-none before:absolute before:inset-2 before:border before:border-moonsteel/10 max-[620px]:p-6" aria-labelledby="auth-title">
+        <Kicker>Portal do jogador</Kicker>
+        <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
+        <p className="leading-relaxed text-mist">{registering ? "Crie sua conta para preparar seus personagens e acompanhar os reinos." : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}</p>
+        <div className="my-6 grid grid-cols-2 border-b border-moonsteel/20" role="tablist" aria-label="Acesso à conta">
+          <Link className={`p-3 text-center text-xs uppercase tracking-[.14em] ${!registering ? "border-b-2 border-frost text-frost" : "text-mist"}`} role="tab" aria-selected={!registering} href={routes.panel}>Entrar</Link>
+          <Link className={`p-3 text-center text-xs uppercase tracking-[.14em] ${registering ? "border-b-2 border-frost text-frost" : "text-mist"}`} role="tab" aria-selected={registering} href={`${routes.panel}?modo=cadastro`}>Criar conta</Link>
         </div>
-        {error && <p className="form-message form-error" role="alert">{messages[error] ?? "Não foi possível concluir a ação."}</p>}
-        <form action={registering ? registerAction : loginAction} className="auth-form">
-          <label>
-            <span>Conta</span>
-            <input name="userName" autoComplete="username" minLength={3} maxLength={32} required />
-          </label>
-          <label>
-            <span>Senha</span>
-            <input name="password" type="password" autoComplete={registering ? "new-password" : "current-password"} minLength={10} maxLength={200} required />
-          </label>
-          {registering && (
-            <label>
-              <span>Confirmar senha</span>
-              <input name="passwordConfirmation" type="password" autoComplete="new-password" minLength={10} maxLength={200} required />
-            </label>
-          )}
-          <button className="button button-primary auth-submit" type="submit">
-            {registering ? "Criar conta e entrar" : "Entrar no painel"}
-          </button>
+        {error && <Alert className="mb-4" role="alert">{messages[error] ?? "Não foi possível concluir a ação."}</Alert>}
+        <form className="grid gap-4" onSubmit={submit}>
+          <label className={labelClass}><span>Conta</span><Input name="userName" autoComplete="username" minLength={3} maxLength={32} required /></label>
+          <label className={labelClass}><span>Senha</span><Input name="password" type="password" autoComplete={registering ? "new-password" : "current-password"} minLength={10} maxLength={200} required /></label>
+          {registering && <label className={labelClass}><span>Confirmar senha</span><Input name="passwordConfirmation" type="password" autoComplete="new-password" minLength={10} maxLength={200} required /></label>}
+          <Button className="mt-1 w-full" variant="primary" type="submit" disabled={pending}>{pending ? "Abrindo passagem..." : registering ? "Criar conta e entrar" : "Entrar no painel"}</Button>
         </form>
-        <Link className="auth-back" href="/">← Voltar para o portal</Link>
+        <Link className="relative mt-6 block text-center text-xs text-mist" href={routes.home}>← Voltar para o portal</Link>
       </section>
     </main>
   );

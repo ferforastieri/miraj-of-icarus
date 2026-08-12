@@ -4,6 +4,7 @@ import "@fontsource/cormorant-garamond/500.css";
 import "@fontsource/ibm-plex-sans-condensed/400.css";
 import "@fontsource/ibm-plex-sans-condensed/500.css";
 import "@fontsource/ibm-plex-sans-condensed/600.css";
+import { QueryProvider } from "@/providers/QueryProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body>{children}</body>
+    <html lang="pt-BR" data-scroll-behavior="smooth">
+      <body><QueryProvider>{children}</QueryProvider></body>
     </html>
   );
 }

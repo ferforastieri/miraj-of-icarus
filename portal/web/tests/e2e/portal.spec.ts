@@ -55,7 +55,7 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
 test("movimento reduzido desativa a chegada cinematográfica", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const duration = await page.locator(".hero-image").evaluate(
+  const duration = await page.getByTestId("hero-image").evaluate(
     (element) => Number.parseFloat(getComputedStyle(element).animationDuration),
   );
   expect(duration).toBeLessThan(.001);
