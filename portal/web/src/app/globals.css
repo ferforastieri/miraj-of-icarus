@@ -21,9 +21,9 @@
   --color-parchment: #eee7d6;
   --color-skywash: #dcecf1;
   --color-danger: #a34247;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-masicarus: "Masicarus Display", "Cormorant Garamond", Georgia, serif;
-  --font-interface: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --font-display: "Masicarus Display";
+  --font-masicarus: "Masicarus Display";
+  --font-interface: "Masicarus Display";
   --animate-hero-arrival: hero-arrival 2.2s cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -39,7 +39,7 @@
     margin: 0;
     background: var(--color-abyss);
     color: var(--color-moonsteel);
-    font-family: var(--font-interface);
+    font-family: "Masicarus Display";
     -webkit-font-smoothing: antialiased;
   }
   ::selection { color: var(--color-abyss); background: var(--color-frost); }

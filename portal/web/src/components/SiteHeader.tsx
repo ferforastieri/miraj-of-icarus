@@ -19,19 +19,18 @@ export function SiteHeader({ compact = false }: Props) {
       </div>
 
       <nav className="relative grid h-[64px] grid-cols-[1fr_270px_1fr] items-center max-[1050px]:grid-cols-[1fr_220px_1fr] max-[900px]:grid-cols-[1fr_180px_1fr] max-[700px]:h-[54px] max-[700px]:grid-cols-[1fr_104px_1fr]" aria-label="Navegação principal">
-        <div className="flex items-center justify-end gap-0 pr-3 max-[700px]:pr-0">
+        <div className="col-start-1 flex items-center justify-end max-[700px]:pr-0">
           <Link className={navItem} href={routes.home}>Início</Link>
           <Link className={`${navItem} max-[700px]:hidden`} href={routes.game}>O jogo</Link>
         </div>
 
-        <Link className="absolute -top-9 left-1/2 z-20 grid -translate-x-1/2 justify-items-center drop-shadow-[0_10px_10px_rgba(3,19,31,.75)] max-[700px]:-top-1" href={routes.home} aria-label="Masicarus — início">
-          <Image className="h-auto w-[300px] max-w-none object-contain max-[1050px]:w-[245px] max-[900px]:w-[205px] max-[700px]:w-[126px]" src="/media/branding/masicarus-wordmark.png" alt="Masicarus" width={1936} height={399} priority />
+        <Link className="absolute -top-9 left-1/2 z-20 grid size-[138px] -translate-x-1/2 place-items-center drop-shadow-[0_12px_12px_rgba(3,19,31,.72)] max-[900px]:-top-6 max-[900px]:size-[112px] max-[700px]:-top-3 max-[700px]:size-[80px]" href={routes.home} aria-label="Masicarus — início">
+          <Image className="size-full object-contain" src="/media/branding/masicarus-feather-mark.png" alt="Masicarus" width={1254} height={1254} priority />
         </Link>
 
-        <div className="flex items-center gap-0 pl-3 max-[700px]:justify-end max-[700px]:pl-0">
+        <div className="col-start-3 flex items-center max-[700px]:justify-end max-[700px]:pl-0">
           <Link className={`${navItem} max-[700px]:hidden`} href={routes.realms}>Reinos</Link>
           <Link className={navItem} href={routes.download}>Download</Link>
-          <Link className={`${navItem} max-[900px]:hidden`} href={routes.panel}>Painel</Link>
         </div>
       </nav>
     </header>

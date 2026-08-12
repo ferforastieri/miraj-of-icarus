@@ -1,9 +1,4 @@
 import type { Metadata } from "next";
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/ibm-plex-sans-condensed/400.css";
-import "@fontsource/ibm-plex-sans-condensed/500.css";
-import "@fontsource/ibm-plex-sans-condensed/600.css";
 import { QueryProvider } from "@/providers/QueryProvider";
 import "./globals.css";
 
@@ -16,7 +11,7 @@ export const metadata: Metadata = {
     "Portal oficial do Masicarus. Baixe o launcher, acompanhe os reinos e gerencie sua conta.",
   metadataBase: new URL("https://masicarus.com.br"),
   alternates: { canonical: "/" },
-  icons: { icon: "/media/mark.png" },
+  icons: { icon: "/media/branding/masicarus-feather-mark.png" },
 };
 
 export default function RootLayout({

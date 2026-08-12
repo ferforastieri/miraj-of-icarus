@@ -147,7 +147,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative mx-auto grid aspect-square w-[min(360px,82vw)] place-items-center before:absolute before:inset-[13%] before:rotate-45 before:border before:border-[#75d7fa]/60 before:bg-[#0c3654]/65 before:shadow-[0_0_30px_rgba(67,190,236,.18)]">
-              <Image className="relative z-10 w-[74%] drop-shadow-[0_22px_20px_rgba(3,17,28,.65)]" src="/media/mark.png" alt="Símbolo metálico do Masicarus" width={420} height={420} />
+              <Image className="relative z-10 w-[74%] drop-shadow-[0_22px_20px_rgba(3,17,28,.65)]" src="/media/branding/masicarus-feather-mark.png" alt="Símbolo metálico do Masicarus" width={420} height={420} />
             </div>
           </div>
         </section>
@@ -174,7 +174,7 @@ export default function HomePage() {
         <section className="relative isolate flex min-h-[680px] w-full flex-col items-center justify-center overflow-hidden px-6 py-28 text-center text-white" id="download">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_35%,rgba(21,80,116,.28),rgba(5,24,40,.88)_72%),linear-gradient(180deg,rgba(5,24,40,.15),#061928)]" aria-hidden="true" />
-          <Image className="mb-3 h-auto w-[min(560px,78vw)] drop-shadow-[0_12px_18px_rgba(3,18,30,.7)]" src="/media/branding/masicarus-wordmark.png" alt="Masicarus" width={1936} height={399} />
+          <Image className="mb-3 h-auto w-[min(560px,78vw)] drop-shadow-[0_12px_18px_rgba(3,18,30,.7)]" src="/media/branding/masicarus-griffin-wordmark-v2.png" alt="Masicarus" width={1936} height={399} />
           <OrnamentTitle light>Masicarus para Windows</OrnamentTitle>
           <h2 className="my-6 font-masicarus text-[clamp(3rem,5.4vw,5.5rem)] font-semibold leading-[.84] text-[#f7f3df] [text-shadow:0_3px_12px_#08223a]">Sua jornada começa<br />pelo launcher.</h2>
           <p className="mb-8 max-w-[580px] leading-7 text-[#e5f2f6] [text-shadow:0_2px_8px_#08223a]">Instale, verifique e mantenha o cliente atualizado antes de atravessar os portões.</p>
@@ -198,7 +198,7 @@ export default function HomePage() {
 
       <footer className="w-full border-t border-[#4f7186] bg-[#061725] px-6">
         <div className="mx-auto flex min-h-28 w-[min(1120px,100%)] items-center justify-between font-masicarus text-xs uppercase tracking-[.1em] text-[#9fb2bb] max-[700px]:flex-col max-[700px]:justify-center max-[700px]:gap-3">
-          <Link href="#inicio" aria-label="Voltar ao início"><Image className="h-auto w-[190px]" src="/media/branding/masicarus-wordmark.png" alt="Masicarus" width={1936} height={399} /></Link>
+          <Link href="#inicio" aria-label="Voltar ao início"><Image className="h-auto w-[190px]" src="/media/branding/masicarus-griffin-wordmark-v2.png" alt="Masicarus" width={1936} height={399} /></Link>
           <p>Uma reconstrução independente em andamento</p><p>© {new Date().getFullYear()}</p>
         </div>
       </footer>
