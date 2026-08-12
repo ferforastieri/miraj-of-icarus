@@ -6,7 +6,7 @@ test("landing apresenta o mundo e o estado seguro de release", async ({ page }) 
   await expect(page.getByRole("link", { name: "Acessar painel" })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Um mundo antigo/i })).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
-  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 23, 37)");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
 });
 
 test("painel visitante alterna para cadastro e valida os campos", async ({ page }) => {

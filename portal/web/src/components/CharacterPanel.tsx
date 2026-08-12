@@ -73,12 +73,12 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
     <section className="mb-28" id="personagens" aria-labelledby="characters-title">
       <div className="mb-11 flex items-end justify-between gap-8 max-[620px]:flex-col max-[620px]:items-start">
         <div><Kicker>Até quatro viajantes</Kicker><h2 id="characters-title" className="font-display text-[clamp(2.65rem,5vw,5rem)] font-medium leading-[.95] tracking-[-.025em]">Seus personagens</h2></div>
-        <span className="grid min-h-[54px] min-w-[180px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.06em] text-[#d8e7eb] [text-shadow:0_2px_2px_#02070b]">{values.length} / 4 slots</span>
+        <span className="grid min-h-[54px] min-w-[180px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.06em] text-[#e4ecdf] [text-shadow:0_2px_2px_#041b16]">{values.length} / 4 slots</span>
       </div>
       {message && <Alert className="mb-5" kind={message.kind} role="status">{message.text}</Alert>}
       <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
         {values.map(character => (
-          <article className={`relative grid min-h-[250px] grid-cols-[76px_1fr] content-start gap-5 border-0 bg-gradient-to-br from-[#24465a] to-[#0b2435] p-7 shadow-[inset_0_0_0_1px_#506d7b,inset_0_0_0_3px_#142c39] [clip-path:polygon(14px_0,calc(100%-14px)_0,100%_14px,100%_calc(100%-14px),calc(100%-14px)_100%,14px_100%,0_calc(100%-14px),0_14px)] max-[620px]:grid-cols-[62px_1fr] max-[620px]:p-5 ${character.deletionScheduledAt ? "opacity-75" : ""}`} key={character.id}>
+          <article className={`jade-card relative grid min-h-[280px] grid-cols-[76px_1fr] content-start gap-5 px-3 py-3 drop-shadow-[0_18px_28px_rgba(3,27,22,.3)] max-[620px]:grid-cols-[62px_1fr] max-[620px]:px-0 max-[620px]:py-2 ${character.deletionScheduledAt ? "opacity-75" : ""}`} key={character.id}>
             <Image className="h-[71px] w-[71px] object-contain max-[620px]:size-[62px]" src={`/media/game-ui/classes/${character.archetype}.png`} alt="" width={71} height={71} />
             <div><p className="mb-1 text-xs uppercase tracking-[.14em] text-ancient-gold">{classes[character.archetype] ?? character.archetype} · Nível {character.level}</p><h3 className="mb-1 font-display text-3xl font-medium">{character.name}</h3><p className="text-xs text-mist">Criado em {formatDate(character.createdAt)}</p></div>
             {character.deletionScheduledAt ? (
@@ -98,7 +98,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
           </article>
         ))}
         {values.length < 4 && (
-          <article className="relative min-h-[250px] border-0 bg-gradient-to-br from-[#24465a] to-[#0b2435] p-7 shadow-[inset_0_0_0_1px_#506d7b,inset_0_0_0_3px_#142c39] [clip-path:polygon(14px_0,calc(100%-14px)_0,100%_14px,100%_calc(100%-14px),calc(100%-14px)_100%,14px_100%,0_calc(100%-14px),0_14px)] max-[620px]:p-5">
+          <article className="jade-card relative min-h-[280px] px-3 py-3 drop-shadow-[0_18px_28px_rgba(3,27,22,.3)] max-[620px]:px-0 max-[620px]:py-2">
             <p className="mb-1 text-xs uppercase tracking-[.14em] text-ancient-gold">Novo viajante</p><h3 className="font-display text-3xl font-medium">Prepare uma história</h3>
             <form className="mt-5 grid gap-3.5" onSubmit={createCharacter}>
               <label className={labelClass}>Nome<Input name="name" minLength={3} maxLength={24} pattern="[A-Za-zÀ-ÿ0-9]+" required /></label>
@@ -110,7 +110,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
                       <input className="peer sr-only" type="radio" name="archetype" value={value} defaultChecked={index === 0} />
                       <Image className="mt-3 size-[71px] object-contain transition-[filter] group-hover:brightness-125 peer-checked:hidden" src={`/media/game-ui/classes/${value}.png`} alt="" width={71} height={71} />
                       <Image className="hidden h-auto w-[89px] object-contain drop-shadow-[0_4px_8px_rgba(22,164,235,.4)] peer-checked:block" src={`/media/game-ui/classes/${value}-selected.png`} alt="" width={89} height={113} />
-                      <span className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-[#20caff] peer-checked:[text-shadow:0_0_7px_rgba(32,202,255,.75)]">{label}</span>
+                      <span className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-jade peer-checked:[text-shadow:0_0_7px_rgba(40,185,111,.75)]">{label}</span>
                     </label>
                   ))}
                 </div>
@@ -121,7 +121,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
                   {[["male", "Masculino", "♂"], ["female", "Feminino", "♀"]].map(([value, label, symbol], index) => (
                     <label className="cursor-pointer" key={value}>
                       <input className="peer sr-only" type="radio" name="gender" value={value} defaultChecked={index === 0} />
-                      <span className="flex min-h-[54px] items-center justify-center gap-2 bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.04em] text-mist [text-shadow:0_2px_2px_#02070b] peer-checked:bg-[url('/media/game-ui/buttons/focused.png')] peer-checked:text-white peer-checked:drop-shadow-[0_0_7px_rgba(30,139,255,.55)]"><b className="text-lg font-normal">{symbol}</b>{label}</span>
+                      <span className="flex min-h-[54px] items-center justify-center gap-2 bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.04em] text-mist [text-shadow:0_2px_2px_#041b16] peer-checked:bg-[url('/media/game-ui/jade/button-focused.png')] peer-checked:text-white peer-checked:drop-shadow-[0_0_7px_rgba(40,185,111,.55)]"><b className="text-lg font-normal">{symbol}</b>{label}</span>
                     </label>
                   ))}
                 </div>

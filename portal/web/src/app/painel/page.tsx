@@ -44,11 +44,11 @@ export default function PanelPage({
   }
 
   const availableServers = (servers.data ?? []).filter(server => server.available).length;
-  const overviewClass = "flex min-h-[165px] flex-col justify-between bg-[linear-gradient(145deg,#24465a,#0b2638)] p-6 shadow-[inset_0_0_0_1px_#506d7b,inset_0_0_0_3px_#142c39] [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)]";
+  const overviewClass = "jade-card flex min-h-[190px] flex-col justify-between px-0 py-0 drop-shadow-[0_14px_20px_rgba(3,27,22,.28)]";
   const overviewLabel = "text-xs uppercase tracking-[.16em] text-ancient-gold";
   const overviewValue = "font-display text-2xl font-medium";
   return (
-    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(112,217,234,.14),transparent_28%)] bg-abyss">
+    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(40,185,111,.16),transparent_28%)] bg-abyss">
       <SiteHeader compact />
       <main className="mx-auto w-[min(1180px,calc(100%-48px))] py-20 max-[620px]:w-[calc(100%-32px)] max-[620px]:pt-14">
         <header className="flex min-h-[250px] items-center justify-between gap-8 border-b border-moonsteel/20 max-[620px]:flex-col max-[620px]:items-start max-[620px]:py-12">

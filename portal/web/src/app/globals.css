@@ -9,12 +9,14 @@
 }
 
 @theme {
-  --color-abyss: #081725;
-  --color-iron: #152b3c;
-  --color-moonsteel: #f1ead8;
-  --color-mist: #a9b8be;
-  --color-frost: #70d9ea;
-  --color-ancient-gold: #c7a04b;
+  --color-abyss: #061f20;
+  --color-iron: #0a3a35;
+  --color-moonsteel: #eaf1e7;
+  --color-mist: #aebdb2;
+  --color-frost: #91e5b4;
+  --color-jade: #28b96f;
+  --color-jade-deep: #0f704a;
+  --color-ancient-gold: #b99a5b;
   --color-antique: #826532;
   --color-blood: #244f75;
   --color-royal: #173f67;
@@ -50,8 +52,26 @@
     font-family: "MirajOfIcarus Display";
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { color: var(--color-abyss); background: var(--color-frost); }
-  :focus-visible { outline: 2px solid var(--color-frost); outline-offset: 4px; }
+  ::selection { color: var(--color-abyss); background: var(--color-jade); }
+  :focus-visible { outline: 2px solid var(--color-jade); outline-offset: 4px; }
+}
+
+@layer components {
+  .jade-card {
+    border: 42px solid transparent;
+    border-image-source: url("/media/game-ui/jade/card.png");
+    border-image-slice: 76 170 fill;
+    border-image-width: 42px 58px;
+    border-image-repeat: stretch;
+    background: #073a35;
+  }
+}
+
+@media (max-width: 620px) {
+  .jade-card {
+    border-width: 28px;
+    border-image-width: 30px 38px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

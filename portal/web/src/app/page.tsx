@@ -27,9 +27,9 @@ function OrnamentTitle({ children, light = false }: { children: React.ReactNode;
   return (
     <div className="flex w-full items-center justify-center gap-4" aria-hidden="true">
       <i className={`h-px w-[min(150px,18vw)] bg-gradient-to-r from-transparent ${light ? "via-[#cfefff]" : "via-[#967332]"} to-transparent`} />
-      <span className="size-3 bg-[#17669a] shadow-[inset_0_0_0_1px_#8eeaff,inset_0_0_0_3px_#123b57,0_0_8px_#38bdf8] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
+      <span className="size-3 bg-[#16834f] shadow-[inset_0_0_0_1px_#91e5b4,inset_0_0_0_3px_#0a3a35,0_0_8px_#28b96f] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
       <span className={`font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.2em] ${light ? "text-[#e7f8ff]" : "text-[#765821]"}`}>{children}</span>
-      <span className="size-3 bg-[#17669a] shadow-[inset_0_0_0_1px_#8eeaff,inset_0_0_0_3px_#123b57,0_0_8px_#38bdf8] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
+      <span className="size-3 bg-[#16834f] shadow-[inset_0_0_0_1px_#91e5b4,inset_0_0_0_3px_#0a3a35,0_0_8px_#28b96f] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
       <i className={`h-px w-[min(150px,18vw)] bg-gradient-to-l from-transparent ${light ? "via-[#cfefff]" : "via-[#967332]"} to-transparent`} />
     </div>
   );
@@ -37,7 +37,7 @@ function OrnamentTitle({ children, light = false }: { children: React.ReactNode;
 
 function GamePlaque({ children, disabled = false }: { children: React.ReactNode; disabled?: boolean }) {
   return (
-    <span className={`inline-flex min-h-[54px] min-w-[210px] items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.06em] [text-shadow:0_2px_2px_#02070b] ${disabled ? "bg-[url('/media/game-ui/buttons/disabled.png')] text-[#89959a]" : "bg-[url('/media/game-ui/buttons/default.png')] text-[#e1f4fa]"}`}>
+    <span className={`inline-flex min-h-[54px] min-w-[210px] items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.06em] [text-shadow:0_2px_2px_#041b16] ${disabled ? "bg-[url('/media/game-ui/jade/button-disabled.png')] text-[#89958e]" : "bg-[url('/media/game-ui/jade/button-default.png')] text-[#e4ecdf]"}`}>
       {children}
     </span>
   );
@@ -45,7 +45,7 @@ function GamePlaque({ children, disabled = false }: { children: React.ReactNode;
 
 function SectionGate({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative z-10 mx-auto -mb-8 grid h-[72px] w-[min(620px,84vw)] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-miraj-of-icarus text-[clamp(1.25rem,2.7vw,2rem)] uppercase tracking-[.14em] text-[#eefaff] [text-shadow:0_2px_3px_#031522,0_0_8px_#1b83bd]">
+    <div className="relative z-10 mx-auto -mb-8 grid h-[72px] w-[min(620px,84vw)] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-miraj-of-icarus text-[clamp(1.25rem,2.7vw,2rem)] uppercase tracking-[.14em] text-[#eef7ed] [text-shadow:0_2px_3px_#041b16,0_0_8px_#16834f]">
       {children}
     </div>
   );
@@ -88,7 +88,7 @@ export default function HomePage() {
             {paths.map((path, index) => (
               <a className="group relative grid w-[96px] shrink-0 place-items-center pt-2 max-[700px]:w-[15.5vw]" href="#jogo" key={path.id} aria-label={path.label}>
                 <Image className="size-[71px] object-contain transition-[filter,transform] group-hover:-translate-y-1 group-hover:brightness-125 max-[700px]:size-[56px]" src={`/media/game-ui/classes/${path.id}.png`} alt="" width={71} height={71} />
-                <span className={`font-miraj-of-icarus text-[.68rem] uppercase tracking-[.04em] text-[#b8cbd3] group-hover:text-[#74d9ff] max-[700px]:hidden ${index === 0 ? "text-[#65cdf7]" : ""}`}>{path.label}</span>
+                <span className={`font-miraj-of-icarus text-[.68rem] uppercase tracking-[.04em] text-[#b8c8bc] group-hover:text-[#91e5b4] max-[700px]:hidden ${index === 0 ? "text-[#70d69d]" : ""}`}>{path.label}</span>
               </a>
             ))}
           </div>
@@ -122,7 +122,7 @@ export default function HomePage() {
               {paths.map((path, index) => (
                 <div className="group grid min-h-32 place-items-center content-center" key={path.id}>
                   <Image className="h-auto w-[89px] object-contain transition-[filter,transform] group-hover:-translate-y-1 group-hover:brightness-125" src={`/media/game-ui/classes/${path.id}${index === 0 ? "-selected" : ""}.png`} alt="" width={index === 0 ? 89 : 71} height={index === 0 ? 113 : 71} />
-                  <span className={`font-miraj-of-icarus text-xs uppercase tracking-[.08em] ${index === 0 ? "-mt-2 text-[#69d8ff]" : "mt-2 text-[#c7d5da]"}`}>{path.label}</span>
+                  <span className={`font-miraj-of-icarus text-xs uppercase tracking-[.08em] ${index === 0 ? "-mt-2 text-[#70d69d]" : "mt-2 text-[#c7d5ca]"}`}>{path.label}</span>
                 </div>
               ))}
             </div>
@@ -136,18 +136,18 @@ export default function HomePage() {
           <div className="mx-auto grid w-[min(1120px,100%)] grid-cols-[1fr_380px] items-center gap-20 max-[900px]:grid-cols-1">
             <div className="text-center max-[900px]:mx-auto max-[900px]:max-w-[680px]">
               <OrnamentTitle light>O retorno de Miraj of Icarus</OrnamentTitle>
-              <h2 className="my-7 font-miraj-of-icarus text-[clamp(3rem,5vw,5rem)] font-semibold leading-[.86] text-[#f2f7e9] [text-shadow:0_3px_8px_#061725]">A memória permanece.<br /><span className="text-[#7bdcff]">A fundação evolui.</span></h2>
+              <h2 className="my-7 font-miraj-of-icarus text-[clamp(3rem,5vw,5rem)] font-semibold leading-[.86] text-[#f2f7e9] [text-shadow:0_3px_8px_#061725]">A memória permanece.<br /><span className="text-[#91e5b4]">A fundação evolui.</span></h2>
               <p className="mx-auto max-w-[690px] leading-[1.85] text-[#d2e4eb]">O mundo é reconstruído sistema por sistema, preservando sua identidade e preparando launcher, cliente e servidores para uma nova geração de viajantes.</p>
               <div className="mt-10 grid grid-cols-3 gap-3 max-[650px]:grid-cols-1">
                 {[["Integridade", "Arquivos verificados"], ["Evolução", "Atualizações contínuas"], ["Preservação", "Identidade original"]].map(([title, copy]) => (
                   <div className="border-y border-[#668aa0] bg-[#071b2b]/72 px-4 py-6 shadow-[inset_0_0_0_1px_rgba(119,206,239,.08)]" key={title}>
-                    <strong className="block font-miraj-of-icarus text-lg uppercase text-[#78d8fa]">{title}</strong><span className="text-sm text-[#bfd0d7]">{copy}</span>
+                    <strong className="block font-miraj-of-icarus text-lg uppercase text-[#91e5b4]">{title}</strong><span className="text-sm text-[#c5d4c9]">{copy}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative mx-auto grid aspect-square w-[min(360px,82vw)] place-items-center before:absolute before:inset-[13%] before:rotate-45 before:border before:border-[#75d7fa]/60 before:bg-[#0c3654]/65 before:shadow-[0_0_30px_rgba(67,190,236,.18)]">
-              <Image className="relative z-10 h-auto w-[78%] drop-shadow-[0_22px_20px_rgba(3,17,28,.65)]" src="/media/branding/miraj-mj-mark.png" alt="Símbolo MJ de Miraj of Icarus" width={1059} height={1125} />
+            <div className="relative mx-auto grid aspect-square w-[min(360px,82vw)] place-items-center before:absolute before:inset-[13%] before:rotate-45 before:border before:border-[#91e5b4]/60 before:bg-[#0a3a35]/65 before:shadow-[0_0_30px_rgba(40,185,111,.2)]">
+              <Image className="relative z-10 h-auto w-[78%] drop-shadow-[0_22px_20px_rgba(3,17,28,.65)]" src="/media/branding/miraj-mj-mark.png" alt="Símbolo MJ de Miraj of Icarus" width={1052} height={1167} />
             </div>
           </div>
         </section>
@@ -161,7 +161,7 @@ export default function HomePage() {
             <div className="mt-10 border-y border-[#7693a2] bg-[#0b2940] p-2 shadow-[0_22px_45px_rgba(27,61,78,.25)]">
               {servers.map(server => (
                 <article className="flex min-h-24 items-center justify-between border-b border-[#36566b] bg-[linear-gradient(90deg,#102e44,#173e58,#102e44)] px-8 text-left last:border-0 max-[600px]:px-4" key={server.id}>
-                  <div><span className="text-[.65rem] uppercase tracking-[.2em] text-[#7bdcff]">{server.region}</span><h3 className="font-miraj-of-icarus text-2xl text-white">{server.name}</h3></div>
+                  <div><span className="text-[.65rem] uppercase tracking-[.2em] text-[#91e5b4]">{server.region}</span><h3 className="font-miraj-of-icarus text-2xl text-white">{server.name}</h3></div>
                   <span className={`font-miraj-of-icarus uppercase tracking-[.12em] ${server.available ? "text-[#8df2ce]" : "text-[#9eafb6]"}`}>{server.available ? "Online" : "Manutenção"}</span>
                 </article>
               ))}
@@ -174,7 +174,7 @@ export default function HomePage() {
         <section className="relative isolate flex min-h-[680px] w-full flex-col items-center justify-center overflow-hidden px-6 py-28 text-center text-white" id="download">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_35%,rgba(21,80,116,.28),rgba(5,24,40,.88)_72%),linear-gradient(180deg,rgba(5,24,40,.15),#061928)]" aria-hidden="true" />
-          <Image className="mb-3 h-auto w-[min(720px,90vw)] drop-shadow-[0_10px_16px_rgba(3,17,28,.72)]" src="/media/branding/miraj-of-icarus-wordmark.png" alt="Miraj of Icarus" width={1649} height={687} />
+          <Image className="mb-3 h-auto w-[min(720px,90vw)] drop-shadow-[0_10px_16px_rgba(3,17,28,.72)]" src="/media/branding/miraj-of-icarus-wordmark.png" alt="Miraj of Icarus" width={1413} height={673} />
           <OrnamentTitle light>Miraj of Icarus para Windows</OrnamentTitle>
           <h2 className="my-6 font-miraj-of-icarus text-[clamp(3rem,5.4vw,5.5rem)] font-semibold leading-[.84] text-[#f7f3df] [text-shadow:0_3px_12px_#08223a]">Sua jornada começa<br />pelo launcher.</h2>
           <p className="mb-8 max-w-[580px] leading-7 text-[#e5f2f6] [text-shadow:0_2px_8px_#08223a]">Instale, verifique e mantenha o cliente atualizado antes de atravessar os portões.</p>
@@ -189,7 +189,7 @@ export default function HomePage() {
             </>
           ) : !releaseQuery.isLoading && (
             <div className="border-y border-[#6a8da1] bg-[#071d30]/88 px-9 py-5 shadow-[0_10px_30px_rgba(5,24,40,.45)] backdrop-blur-sm">
-              <strong className="block font-miraj-of-icarus text-xl uppercase tracking-[.08em] text-[#79ddff]">Release em preparação</strong>
+              <strong className="block font-miraj-of-icarus text-xl uppercase tracking-[.08em] text-[#91e5b4]">Release em preparação</strong>
               <span className="text-sm text-[#d9e8ed]">O download aparecerá quando o canal Alpha estiver disponível.</span>
             </div>
           )}
@@ -198,7 +198,7 @@ export default function HomePage() {
 
       <footer className="w-full border-t border-[#4f7186] bg-[#061725] px-6">
         <div className="mx-auto flex min-h-28 w-[min(1120px,100%)] items-center justify-between font-miraj-of-icarus text-xs uppercase tracking-[.1em] text-[#9fb2bb] max-[700px]:flex-col max-[700px]:justify-center max-[700px]:gap-3">
-          <Link href="#inicio" aria-label="Miraj of Icarus — voltar ao início"><Image className="h-auto w-52" src="/media/branding/miraj-of-icarus-wordmark.png" alt="Miraj of Icarus" width={1649} height={687} /></Link>
+          <Link href="#inicio" aria-label="Miraj of Icarus — voltar ao início"><Image className="h-auto w-52" src="/media/branding/miraj-of-icarus-wordmark.png" alt="Miraj of Icarus" width={1413} height={673} /></Link>
           <p>Uma reconstrução independente em andamento</p><p>© {new Date().getFullYear()}</p>
         </div>
       </footer>
