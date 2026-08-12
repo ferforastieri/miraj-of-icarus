@@ -1,21 +1,35 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Masicarus Display";
+  src: url("/fonts/masicarus-display.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
 @theme {
-  --color-abyss: #070b10;
-  --color-iron: #151c22;
-  --color-moonsteel: #d9e4e8;
-  --color-mist: #9aa9b0;
-  --color-frost: #52d4e7;
-  --color-ancient-gold: #a88b52;
-  --color-danger: #c55a62;
+  --color-abyss: #081725;
+  --color-iron: #152b3c;
+  --color-moonsteel: #f1ead8;
+  --color-mist: #a9b8be;
+  --color-frost: #70d9ea;
+  --color-ancient-gold: #c7a04b;
+  --color-antique: #826532;
+  --color-blood: #244f75;
+  --color-royal: #173f67;
+  --color-parchment: #eee7d6;
+  --color-skywash: #dcecf1;
+  --color-danger: #a34247;
   --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-masicarus: "Masicarus Display", "Cormorant Garamond", Georgia, serif;
   --font-interface: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
   --animate-hero-arrival: hero-arrival 2.2s cubic-bezier(.2,.7,.2,1) both;
 }
 
 @keyframes hero-arrival {
-  from { opacity: .55; transform: scale(1.08); filter: saturate(.75); }
-  to { opacity: 1; transform: scale(1.025); filter: saturate(1); }
+  from { opacity: .55; transform: scale(1.065); filter: saturate(.8) contrast(1.02); }
+  to { opacity: 1; transform: scale(1.01); filter: saturate(1) contrast(1); }
 }
 
 @layer base {

@@ -44,11 +44,11 @@ export default function PanelPage({
   }
 
   const availableServers = (servers.data ?? []).filter(server => server.available).length;
-  const overviewClass = "flex min-h-[165px] flex-col justify-between bg-abyss p-6";
+  const overviewClass = "flex min-h-[165px] flex-col justify-between bg-[linear-gradient(145deg,#24465a,#0b2638)] p-6 shadow-[inset_0_0_0_1px_#506d7b,inset_0_0_0_3px_#142c39] [clip-path:polygon(12px_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%,0_12px)]";
   const overviewLabel = "text-xs uppercase tracking-[.16em] text-ancient-gold";
   const overviewValue = "font-display text-2xl font-medium";
   return (
-    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(82,212,231,.07),transparent_25%)] bg-abyss">
+    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(112,217,234,.14),transparent_28%)] bg-abyss">
       <SiteHeader compact />
       <main className="mx-auto w-[min(1180px,calc(100%-48px))] py-20 max-[620px]:w-[calc(100%-32px)] max-[620px]:pt-14">
         <header className="flex min-h-[250px] items-center justify-between gap-8 border-b border-moonsteel/20 max-[620px]:flex-col max-[620px]:items-start max-[620px]:py-12">
@@ -58,7 +58,7 @@ export default function PanelPage({
 
         {query.erro && <Alert className="mt-6" role="status">Sua sessão terminou. Entre novamente.</Alert>}
 
-        <section className="my-10 mb-24 grid grid-cols-4 gap-px border border-moonsteel/20 bg-moonsteel/20 max-[900px]:grid-cols-2 max-[620px]:grid-cols-1" aria-label="Visão geral">
+        <section className="my-10 mb-24 grid grid-cols-4 gap-2 max-[900px]:grid-cols-2 max-[620px]:grid-cols-1" aria-label="Visão geral">
           <article className={overviewClass}><span className={overviewLabel}>Conta</span><strong className={overviewValue}>{account.data.userName}</strong><small className="text-mist">ID #{account.data.accountId}</small></article>
           <article className={overviewClass}><span className={overviewLabel}>Reinos</span><strong className={overviewValue}>{availableServers} online</strong><small className="text-mist">{servers.data?.length || "Nenhum"} configurado(s)</small></article>
           <article className={overviewClass}><span className={overviewLabel}>Release Alpha</span><strong className={overviewValue}>{release.data ? release.data.version.slice(0, 8) : "Em preparação"}</strong><small className="text-mist">{release.data ? formatBytes(release.data.totalSize) : "Sem download disponível"}</small></article>

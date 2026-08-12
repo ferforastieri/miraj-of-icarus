@@ -46,16 +46,18 @@ export function AuthPortal({ mode, initialError }: { mode: string; initialError?
   }
 
   const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
+  const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-masicarus text-xs font-semibold uppercase tracking-[.055em] text-[#cbd8dc] [text-shadow:0_2px_2px_#02070b] hover:bg-[url('/media/game-ui/buttons/focused.png')]";
+  const activeTabClass = "bg-[url('/media/game-ui/buttons/focused.png')] text-white drop-shadow-[0_0_8px_rgba(30,139,255,.65)]";
   return (
-    <main className="relative grid min-h-[calc(100vh-142px)] place-items-center bg-[linear-gradient(90deg,rgba(7,11,16,.97),rgba(7,11,16,.42),rgba(7,11,16,.94)),url('/media/citadel.png')] bg-cover bg-center px-6 py-20 max-[620px]:px-4">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(82,212,231,.09),transparent_30%)]" aria-hidden="true" />
-      <section className="relative w-[min(500px,100%)] border border-ancient-gold/45 bg-[rgba(9,14,18,.95)] p-10 shadow-[0_30px_90px_rgba(0,0,0,.6)] before:pointer-events-none before:absolute before:inset-2 before:border before:border-moonsteel/10 max-[620px]:p-6" aria-labelledby="auth-title">
+    <main className="relative grid min-h-[calc(100vh-142px)] place-items-center bg-[linear-gradient(90deg,rgba(7,30,50,.82),rgba(7,30,50,.3),rgba(7,30,50,.7)),url('/media/portal-hero-v3.png')] bg-cover bg-center px-6 py-20 max-[620px]:px-4">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,232,157,.12),transparent_35%)]" aria-hidden="true" />
+      <section className="relative w-[min(500px,100%)] bg-[linear-gradient(145deg,rgba(35,70,90,.96),rgba(7,29,45,.97))] p-10 shadow-[inset_0_0_0_1px_#607c89,inset_0_0_0_4px_#112b39,0_30px_90px_rgba(5,28,46,.46)] [clip-path:polygon(18px_0,calc(100%-18px)_0,100%_18px,100%_calc(100%-18px),calc(100%-18px)_100%,18px_100%,0_calc(100%-18px),0_18px)] before:pointer-events-none before:absolute before:left-1/2 before:top-0 before:h-1 before:w-28 before:-translate-x-1/2 before:bg-frost before:shadow-[0_0_18px_rgba(112,217,234,.65)] max-[620px]:p-6" aria-labelledby="auth-title">
         <Kicker>Portal do jogador</Kicker>
         <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
         <p className="leading-relaxed text-mist">{registering ? "Crie sua conta para preparar seus personagens e acompanhar os reinos." : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}</p>
-        <div className="my-6 grid grid-cols-2 border-b border-moonsteel/20" role="tablist" aria-label="Acesso à conta">
-          <Link className={`p-3 text-center text-xs uppercase tracking-[.14em] ${!registering ? "border-b-2 border-frost text-frost" : "text-mist"}`} role="tab" aria-selected={!registering} href={routes.panel}>Entrar</Link>
-          <Link className={`p-3 text-center text-xs uppercase tracking-[.14em] ${registering ? "border-b-2 border-frost text-frost" : "text-mist"}`} role="tab" aria-selected={registering} href={`${routes.panel}?modo=cadastro`}>Criar conta</Link>
+        <div className="my-6 grid grid-cols-2 gap-2" role="tablist" aria-label="Acesso à conta">
+          <Link className={`${tabClass} ${!registering ? activeTabClass : ""}`} role="tab" aria-selected={!registering} href={routes.panel}>Entrar</Link>
+          <Link className={`${tabClass} ${registering ? activeTabClass : ""}`} role="tab" aria-selected={registering} href={`${routes.panel}?modo=cadastro`}>Criar conta</Link>
         </div>
         {error && <Alert className="mb-4" role="alert">{messages[error] ?? "Não foi possível concluir a ação."}</Alert>}
         <form className="grid gap-4" onSubmit={submit}>

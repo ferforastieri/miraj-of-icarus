@@ -6,8 +6,16 @@ import { useGameServers } from "@/api/game-servers/get-game-servers";
 import { useLatestRelease } from "@/api/releases/get-latest-release";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
-import { Kicker } from "@/components/ui/Kicker";
 import { routes } from "@/routes";
+
+const paths = [
+  { id: "warrior", label: "Guerreiro" },
+  { id: "guardian", label: "Guardião" },
+  { id: "thief", label: "Assassino" },
+  { id: "priest", label: "Sacerdote" },
+  { id: "wizard", label: "Mago" },
+  { id: "nature", label: "Naturalista" },
+] as const;
 
 function formatBytes(bytes: number) {
   if (bytes < 1024 ** 2) return `${Math.ceil(bytes / 1024)} KB`;
@@ -15,8 +23,33 @@ function formatBytes(bytes: number) {
   return `${(bytes / 1024 ** 3).toFixed(1)} GB`;
 }
 
-const sectionTitle = "mb-5 font-display text-[clamp(2.65rem,5vw,5rem)] font-medium leading-[.95] tracking-[-.025em]";
-const bodyCopy = "max-w-[590px] text-base leading-[1.8] text-mist";
+function OrnamentTitle({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+  return (
+    <div className="flex w-full items-center justify-center gap-4" aria-hidden="true">
+      <i className={`h-px w-[min(150px,18vw)] bg-gradient-to-r from-transparent ${light ? "via-[#cfefff]" : "via-[#967332]"} to-transparent`} />
+      <span className="size-3 bg-[#17669a] shadow-[inset_0_0_0_1px_#8eeaff,inset_0_0_0_3px_#123b57,0_0_8px_#38bdf8] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
+      <span className={`font-masicarus text-xs font-semibold uppercase tracking-[.2em] ${light ? "text-[#e7f8ff]" : "text-[#765821]"}`}>{children}</span>
+      <span className="size-3 bg-[#17669a] shadow-[inset_0_0_0_1px_#8eeaff,inset_0_0_0_3px_#123b57,0_0_8px_#38bdf8] [clip-path:polygon(25%_7%,75%_7%,100%_50%,75%_93%,25%_93%,0_50%)]" />
+      <i className={`h-px w-[min(150px,18vw)] bg-gradient-to-l from-transparent ${light ? "via-[#cfefff]" : "via-[#967332]"} to-transparent`} />
+    </div>
+  );
+}
+
+function GamePlaque({ children, disabled = false }: { children: React.ReactNode; disabled?: boolean }) {
+  return (
+    <span className={`inline-flex min-h-[54px] min-w-[210px] items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-masicarus text-xs font-semibold uppercase tracking-[.06em] [text-shadow:0_2px_2px_#02070b] ${disabled ? "bg-[url('/media/game-ui/buttons/disabled.png')] text-[#89959a]" : "bg-[url('/media/game-ui/buttons/default.png')] text-[#e1f4fa]"}`}>
+      {children}
+    </span>
+  );
+}
+
+function SectionGate({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative z-10 mx-auto -mb-8 grid h-[72px] w-[min(620px,84vw)] place-items-center bg-[url('/media/game-ui/buttons/default.png')] bg-[length:100%_100%] bg-center bg-no-repeat font-masicarus text-[clamp(1.25rem,2.7vw,2rem)] uppercase tracking-[.14em] text-[#eefaff] [text-shadow:0_2px_3px_#031522,0_0_8px_#1b83bd]">
+      {children}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const releaseQuery = useLatestRelease();
@@ -26,117 +59,148 @@ export default function HomePage() {
   const availableServers = servers.filter(server => server.available).length;
 
   return (
-    <div className="min-h-screen overflow-hidden bg-abyss">
-      <section className="relative isolate grid min-h-svh place-items-center overflow-hidden border-b border-ancient-gold/30 max-[620px]:min-h-[780px]" id="inicio" aria-labelledby="hero-title">
-        <div data-testid="hero-image" className="absolute inset-0 -z-30 scale-[1.025] animate-hero-arrival bg-[url('/media/citadel.png')] bg-cover bg-[center_43%]" aria-hidden="true" />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(7,11,16,.92)_0%,rgba(7,11,16,.25)_31%,rgba(7,11,16,.15)_60%,rgba(7,11,16,.84)_100%),linear-gradient(180deg,rgba(7,11,16,.68)_0%,transparent_30%,transparent_62%,#070b10_100%)]" aria-hidden="true" />
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#081725]">
+      <section className="relative isolate min-h-[100svh] w-full overflow-hidden bg-[#cce4ed] max-[700px]:min-h-[800px]" id="inicio" aria-labelledby="hero-title">
+        <div data-testid="hero-image" className="absolute inset-0 -z-30 animate-hero-arrival bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center max-[700px]:bg-[57%_center]" aria-hidden="true" />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,transparent_0_28%,rgba(8,28,44,.16)_57%,rgba(5,20,34,.66)_100%),linear-gradient(180deg,rgba(5,25,42,.26)_0%,transparent_24%,transparent_62%,rgba(5,24,40,.82)_100%)] max-[700px]:bg-[linear-gradient(180deg,rgba(5,24,40,.32),transparent_30%,rgba(5,24,40,.22)_52%,rgba(5,24,40,.9)_84%)]" aria-hidden="true" />
         <SiteHeader />
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50" aria-hidden="true">
-          <i className="absolute -top-1/4 left-[39%] h-[110%] w-0.5 -rotate-1 bg-gradient-to-b from-transparent via-[rgba(217,246,255,.86)] to-transparent blur-[.4px]" />
-          <i className="absolute -top-1/4 left-[65.5%] h-[110%] w-0.5 -rotate-1 bg-gradient-to-b from-transparent via-[rgba(217,246,255,.86)] to-transparent blur-[.4px]" />
-          <i className="absolute -top-1/4 left-[67%] h-[110%] w-0.5 -rotate-1 bg-gradient-to-b from-transparent via-frost/30 to-transparent opacity-30 blur-[.4px]" />
-        </div>
-        <div className="w-[min(760px,calc(100%-40px))] pt-40 text-center [text-shadow:0_3px_20px_rgba(0,0,0,.9)] max-[620px]:pt-24">
-          <p className="mb-5 flex items-center justify-center gap-3.5 text-[.66rem] font-semibold uppercase tracking-[.24em] text-[#bcdce2] before:h-px before:w-10 before:bg-ancient-gold after:h-px after:w-10 after:bg-ancient-gold">Alpha · Acesso para Windows</p>
-          <h1 id="hero-title" className="mb-4 font-display text-[clamp(4.5rem,8.5vw,8.4rem)] font-medium leading-[.75] tracking-[-.04em] max-[620px]:text-[4.55rem] max-[620px]:leading-[.78]">
-            A passagem<br /><em className="inline-block font-normal text-[#f3fbfd] [text-shadow:0_3px_20px_#000,0_0_34px_rgba(82,212,231,.25)]">está aberta.</em>
+
+        <div className="relative mx-auto flex min-h-[calc(100svh-118px)] w-[min(820px,calc(100%-36px))] flex-col items-center justify-center pb-48 pt-40 text-center max-[700px]:min-h-[720px] max-[700px]:justify-end max-[700px]:pb-40 max-[700px]:pt-32">
+          <OrnamentTitle light>O chamado dos reinos</OrnamentTitle>
+          <h1 id="hero-title" className="my-5 font-masicarus text-[clamp(2.8rem,6vw,5.7rem)] font-semibold uppercase leading-[.91] tracking-[.02em] text-[#f7f2d7] [text-shadow:0_3px_2px_#0b2a43,0_0_12px_#0b2a43,0_0_28px_#0b2a43]">
+            A passagem está aberta
           </h1>
-          <p className="mx-auto max-w-[590px] text-base leading-7 text-[#c5d0d4]">Um mundo preservado com cuidado e reconstruído sobre uma fundação preparada para durar.</p>
-          <div className="mt-8 flex justify-center gap-3 max-[620px]:flex-col">
+          <p className="max-w-[600px] text-[clamp(1rem,1.55vw,1.3rem)] font-medium leading-relaxed text-white [text-shadow:0_2px_8px_#08233a,0_0_14px_#08233a]">
+            Retorne aos céus de Masicarus. Reúna seus aliados, escolha seu caminho e atravesse os portões de um mundo reconstruído.
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-4 max-[600px]:w-full max-[600px]:flex-col max-[600px]:gap-1">
             {release ? (
-              <a className={buttonStyles("primary")} href={release.launcherUrl}>Baixar launcher <span aria-hidden="true">↓</span></a>
+              <a className={buttonStyles("primary", true)} href={release.launcherUrl}>Baixar launcher</a>
             ) : (
-              <span className="inline-flex min-h-12 items-center justify-center rounded-[2px] border border-moonsteel/20 bg-abyss/70 px-6 text-xs font-semibold uppercase tracking-[.12em] text-mist" aria-disabled="true">
-                {releaseQuery.isLoading ? "Consultando release" : "Download indisponível"}
-              </span>
+              <GamePlaque disabled>{releaseQuery.isLoading ? "Consultando release" : "Download indisponível"}</GamePlaque>
             )}
-            <Link className={buttonStyles("ghost")} href={routes.panel}>Acessar painel</Link>
+            <Link className={buttonStyles("ghost", true)} href={routes.panel}>Acessar painel</Link>
           </div>
         </div>
-        <a className="absolute bottom-6 grid justify-items-center gap-2 text-[.64rem] uppercase tracking-[.2em] text-moonsteel/65 max-[620px]:hidden" href="#jogo">
-          <span>Conheça o mundo</span><i className="h-8 w-px bg-gradient-to-b from-ancient-gold to-transparent" aria-hidden="true" />
-        </a>
+
+        <div className="absolute inset-x-0 bottom-0 border-y border-[#56798d] bg-[linear-gradient(180deg,rgba(7,31,51,.9),rgba(8,24,39,.98))] shadow-[0_-15px_35px_rgba(5,24,40,.45)]">
+          <div className="mx-auto flex h-[124px] w-[min(760px,calc(100%-24px))] items-center justify-center gap-5 max-[700px]:h-[112px] max-[700px]:gap-1" aria-label="Caminhos disponíveis">
+            {paths.map((path, index) => (
+              <a className="group relative grid w-[96px] shrink-0 place-items-center pt-2 max-[700px]:w-[15.5vw]" href="#jogo" key={path.id} aria-label={path.label}>
+                <Image className="size-[71px] object-contain transition-[filter,transform] group-hover:-translate-y-1 group-hover:brightness-125 max-[700px]:size-[56px]" src={`/media/game-ui/classes/${path.id}.png`} alt="" width={71} height={71} />
+                <span className={`font-masicarus text-[.68rem] uppercase tracking-[.04em] text-[#b8cbd3] group-hover:text-[#74d9ff] max-[700px]:hidden ${index === 0 ? "text-[#65cdf7]" : ""}`}>{path.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <main>
-        <section className="mx-auto grid min-h-[760px] w-[min(1180px,calc(100%-48px))] grid-cols-[.9fr_1.1fr] items-center gap-24 max-[900px]:grid-cols-1 max-[900px]:gap-12 max-[900px]:py-24 max-[620px]:min-h-0 max-[620px]:w-[calc(100%-32px)]" id="jogo">
-          <div>
-            <Kicker>Além do portão</Kicker>
-            <h2 className={sectionTitle}>O mundo que você lembra respira outra vez.</h2>
-            <p className={bodyCopy}>Masicarus é um MMORPG em reconstrução. Mapas, criaturas e a atmosfera original permanecem no centro enquanto cada sistema recebe uma implementação própria, segura e moderna.</p>
-            <div className="mt-10 flex flex-wrap gap-2.5" aria-label="Características do projeto">
-              {["Cliente nativo", "Mundo persistente", "Jornada compartilhada"].map(note => <span className="border-l border-ancient-gold px-3 py-2 text-xs uppercase tracking-[.08em] text-[#bdc8cc]" key={note}>{note}</span>)}
+      <main className="w-full">
+        <SectionGate>O mundo</SectionGate>
+        <section className="relative isolate w-full overflow-hidden bg-[linear-gradient(180deg,#dcecf0_0%,#f7f0dc_48%,#d5e9ee_100%)] px-6 pb-28 pt-28 text-[#173247] max-[700px]:px-4" id="jogo">
+          <div className="absolute inset-0 -z-10 opacity-25 [background-image:radial-gradient(circle_at_15%_10%,white_0_12%,transparent_30%),radial-gradient(circle_at_85%_35%,white_0_9%,transparent_28%)]" aria-hidden="true" />
+          <div className="mx-auto grid w-[min(1180px,100%)] grid-cols-[.95fr_1.05fr] items-center gap-20 max-[900px]:grid-cols-1 max-[900px]:gap-14">
+            <div className="relative min-h-[520px] overflow-hidden border-y border-[#92713c] bg-[url('/media/portal-hero-v3.png')] bg-cover bg-[69%_center] shadow-[inset_0_0_0_7px_rgba(225,240,244,.48),0_24px_55px_rgba(24,67,91,.25)] before:absolute before:inset-3 before:border before:border-[#effaff]/70 max-[900px]:min-h-[420px] max-[600px]:min-h-[340px]" aria-hidden="true">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#071d2e]/90 to-transparent px-8 pb-7 pt-28 text-right font-masicarus text-lg uppercase tracking-[.13em] text-[#d9f5ff]">Um reino acima das nuvens</div>
+            </div>
+            <div className="text-center max-[900px]:mx-auto max-[900px]:max-w-[680px]">
+              <OrnamentTitle>Além do portão</OrnamentTitle>
+              <h2 className="my-7 font-masicarus text-[clamp(3rem,5vw,5.2rem)] font-semibold leading-[.84] text-[#173247]">Um mundo antigo.<br /><span className="text-[#9a732b]">Uma nova passagem.</span></h2>
+              <p className="mx-auto max-w-[620px] text-base leading-[1.85] text-[#4b6877]">Masicarus é um MMORPG de fantasia em reconstrução. Explore terras suspensas, enfrente criaturas lendárias e encontre companheiros para uma jornada que volta a ganhar vida.</p>
+              <div className="mt-9 flex flex-wrap justify-center gap-2">
+                <GamePlaque>Mundo persistente</GamePlaque>
+                <GamePlaque>Jornada em grupo</GamePlaque>
+                <GamePlaque>Combate por classes</GamePlaque>
+              </div>
             </div>
           </div>
-          <div className="relative aspect-[4/5] max-h-[600px] overflow-hidden border border-ancient-gold/40 bg-[url('/media/citadel.png')] bg-[length:auto_100%] bg-[53%_center] bg-no-repeat shadow-[0_30px_80px_rgba(0,0,0,.45)] before:absolute before:inset-3.5 before:border before:border-moonsteel/20 before:shadow-[inset_0_0_80px_rgba(7,11,16,.7)] max-[900px]:aspect-[5/3] max-[900px]:w-full max-[900px]:justify-self-center max-[900px]:bg-cover max-[620px]:aspect-[4/5]" aria-hidden="true">
-            <span className="absolute right-0 bottom-0 bg-abyss/90 px-6 py-4 text-xs uppercase tracking-[.18em] text-ancient-gold">O reino além do portão</span>
-          </div>
-        </section>
 
-        <section className="grid min-h-[720px] grid-cols-[.8fr_1.2fr] items-center gap-24 border-y border-moonsteel/20 bg-gradient-to-r from-[rgba(21,28,34,.98)] to-[rgba(9,14,18,.98)] px-[max(24px,calc((100%-1180px)/2))] py-24 max-[900px]:grid-cols-1 max-[900px]:gap-12 max-[620px]:px-4" id="reconstrucao">
-          <div className="relative grid place-items-center before:absolute before:aspect-square before:w-[70%] before:rotate-45 before:border before:border-frost/20 before:shadow-[0_0_90px_rgba(82,212,231,.08)] max-[900px]:order-2 max-[900px]:max-h-[340px] max-[900px]:overflow-hidden">
-            <Image className="relative w-[min(420px,90%)] drop-shadow-[0_28px_30px_rgba(0,0,0,.65)] max-[900px]:w-[300px]" src="/media/mark.png" alt="" width={420} height={420} />
-          </div>
-          <div>
-            <Kicker>Reconstruído para durar</Kicker>
-            <h2 className={sectionTitle}>Memória preservada.<br />Fundação renovada.</h2>
-            <p className={bodyCopy}>O launcher, o cliente e os serviços evoluem juntos em jornadas completas. Cada release é assinada, verificada e distribuída de forma reproduzível.</p>
-            <ul className="mt-10 max-w-[610px] border-t border-moonsteel/20">
-              {[["Integridade", "Arquivos validados antes de abrir o jogo."], ["Evolução", "Atualizações diferenciais pelo próprio launcher."], ["Preservação", "Identidade e conteúdo tratados como parte do mundo."]].map(([title, copy]) => (
-                <li className="grid min-h-[76px] grid-cols-[130px_1fr] items-center border-b border-moonsteel/20 max-[620px]:grid-cols-1 max-[620px]:gap-1 max-[620px]:py-4" key={title}>
-                  <strong className="font-display text-xl font-medium">{title}</strong><span className="text-sm text-mist">{copy}</span>
-                </li>
+          <div className="mx-auto mt-24 w-[min(1060px,100%)] text-center">
+            <OrnamentTitle>Escolha seu caminho</OrnamentTitle>
+            <h3 className="mt-5 font-masicarus text-[clamp(2.3rem,4vw,3.8rem)] uppercase text-[#173247]">Seis classes. Uma aventura.</h3>
+            <div className="mt-10 grid grid-cols-6 border-y border-[#8aa9b6] bg-[#0b2940] px-7 py-8 shadow-[inset_0_0_0_5px_#173c55,0_18px_40px_rgba(28,65,83,.24)] max-[760px]:grid-cols-3 max-[760px]:gap-y-7 max-[480px]:px-2">
+              {paths.map((path, index) => (
+                <div className="group grid min-h-32 place-items-center content-center" key={path.id}>
+                  <Image className="h-auto w-[89px] object-contain transition-[filter,transform] group-hover:-translate-y-1 group-hover:brightness-125" src={`/media/game-ui/classes/${path.id}${index === 0 ? "-selected" : ""}.png`} alt="" width={index === 0 ? 89 : 71} height={index === 0 ? 113 : 71} />
+                  <span className={`font-masicarus text-xs uppercase tracking-[.08em] ${index === 0 ? "-mt-2 text-[#69d8ff]" : "mt-2 text-[#c7d5da]"}`}>{path.label}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
-        <section className="mx-auto w-[min(1180px,calc(100%-48px))] py-32 max-[620px]:w-[calc(100%-32px)]" id="reinos">
-          <div className="mb-11 flex items-end justify-between gap-8 max-[620px]:flex-col max-[620px]:items-start">
-            <div><Kicker>Estado dos reinos</Kicker><h2 className={`${sectionTitle} mb-0`}>Escolha sua passagem.</h2></div>
-            <span className="border border-moonsteel/20 px-3 py-2 text-xs uppercase tracking-[.14em] text-mist">
-              <i className={`mr-2 inline-block size-1.5 rounded-full ${availableServers ? "bg-frost shadow-[0_0_8px_#52d4e7]" : "bg-danger shadow-[0_0_8px_#c55a62]"}`} />
-              {serversQuery.isLoading ? "Consultando" : availableServers ? `${availableServers} disponível` : "Indisponível"}
-            </span>
-          </div>
-          <div className="border-t border-moonsteel/20">
-            {servers.map(server => (
-              <article className="flex min-h-28 items-center justify-between border-b border-moonsteel/20 bg-gradient-to-r from-iron/45 to-transparent px-7 py-5 max-[620px]:px-4" key={server.id}>
-                <div><span className="text-xs uppercase tracking-[.18em] text-ancient-gold">{server.region}</span><h3 className="mt-1 font-display text-2xl font-medium">{server.name}</h3></div>
-                <span className={`text-xs uppercase tracking-[.15em] ${server.available ? "text-frost" : "text-mist"}`}>{server.available ? "Online" : "Manutenção"}</span>
-              </article>
-            ))}
-            {!serversQuery.isLoading && !servers.length && <p className="py-10 text-mist">Não foi possível consultar os reinos agora.</p>}
+        <SectionGate>Reconstrução</SectionGate>
+        <section className="relative isolate overflow-hidden bg-[#0a2941] px-6 pb-28 pt-28 text-white max-[700px]:px-4" id="reconstrucao">
+          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-25" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#071d30_0%,rgba(8,40,64,.88)_50%,#071d30_100%)]" aria-hidden="true" />
+          <div className="mx-auto grid w-[min(1120px,100%)] grid-cols-[1fr_380px] items-center gap-20 max-[900px]:grid-cols-1">
+            <div className="text-center max-[900px]:mx-auto max-[900px]:max-w-[680px]">
+              <OrnamentTitle light>O retorno de Masicarus</OrnamentTitle>
+              <h2 className="my-7 font-masicarus text-[clamp(3rem,5vw,5rem)] font-semibold leading-[.86] text-[#f2f7e9] [text-shadow:0_3px_8px_#061725]">A memória permanece.<br /><span className="text-[#7bdcff]">A fundação evolui.</span></h2>
+              <p className="mx-auto max-w-[690px] leading-[1.85] text-[#d2e4eb]">O mundo é reconstruído sistema por sistema, preservando sua identidade e preparando launcher, cliente e servidores para uma nova geração de viajantes.</p>
+              <div className="mt-10 grid grid-cols-3 gap-3 max-[650px]:grid-cols-1">
+                {[["Integridade", "Arquivos verificados"], ["Evolução", "Atualizações contínuas"], ["Preservação", "Identidade original"]].map(([title, copy]) => (
+                  <div className="border-y border-[#668aa0] bg-[#071b2b]/72 px-4 py-6 shadow-[inset_0_0_0_1px_rgba(119,206,239,.08)]" key={title}>
+                    <strong className="block font-masicarus text-lg uppercase text-[#78d8fa]">{title}</strong><span className="text-sm text-[#bfd0d7]">{copy}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative mx-auto grid aspect-square w-[min(360px,82vw)] place-items-center before:absolute before:inset-[13%] before:rotate-45 before:border before:border-[#75d7fa]/60 before:bg-[#0c3654]/65 before:shadow-[0_0_30px_rgba(67,190,236,.18)]">
+              <Image className="relative z-10 w-[74%] drop-shadow-[0_22px_20px_rgba(3,17,28,.65)]" src="/media/mark.png" alt="Símbolo metálico do Masicarus" width={420} height={420} />
+            </div>
           </div>
         </section>
 
-        <section className="relative flex min-h-[680px] flex-col items-center justify-center overflow-hidden border-t border-moonsteel/20 bg-[linear-gradient(rgba(7,11,16,.78),rgba(7,11,16,.96)),url('/media/citadel.png')] bg-cover bg-[center_38%] px-6 py-28 text-center" id="download">
-          <div className="pointer-events-none absolute top-[35%] left-1/2 h-[400px] w-[700px] -translate-1/2 bg-[radial-gradient(ellipse,rgba(82,212,231,.18),transparent_68%)]" aria-hidden="true" />
-          <Image className="relative mb-0.5 w-[130px] drop-shadow-[0_15px_16px_#000]" src="/media/mark.png" alt="" width={180} height={180} />
-          <Kicker>Masicarus para Windows</Kicker>
-          <h2 className={`${sectionTitle} max-w-[800px]`}>Seu caminho começa pelo launcher.</h2>
-          <p className="mb-8 max-w-[580px] leading-7 text-[#aebdc2]">Baixe uma vez. O launcher instala, verifica e mantém o cliente atualizado antes de cada jornada.</p>
+        <SectionGate>Estado dos reinos</SectionGate>
+        <section className="bg-[linear-gradient(180deg,#dcecf0,#f4eedf)] px-6 pb-28 pt-28 text-[#173247] max-[700px]:px-4" id="reinos">
+          <div className="mx-auto w-[min(980px,100%)] text-center">
+            <OrnamentTitle>Servidores</OrnamentTitle>
+            <h2 className="mt-6 font-masicarus text-[clamp(3rem,5vw,5rem)] font-semibold leading-none">Escolha sua passagem.</h2>
+            <p className="mx-auto mt-5 max-w-[560px] text-[#536e7a]">Acompanhe daqui a disponibilidade dos mundos antes de iniciar o launcher.</p>
+            <div className="mt-10 border-y border-[#7693a2] bg-[#0b2940] p-2 shadow-[0_22px_45px_rgba(27,61,78,.25)]">
+              {servers.map(server => (
+                <article className="flex min-h-24 items-center justify-between border-b border-[#36566b] bg-[linear-gradient(90deg,#102e44,#173e58,#102e44)] px-8 text-left last:border-0 max-[600px]:px-4" key={server.id}>
+                  <div><span className="text-[.65rem] uppercase tracking-[.2em] text-[#7bdcff]">{server.region}</span><h3 className="font-masicarus text-2xl text-white">{server.name}</h3></div>
+                  <span className={`font-masicarus uppercase tracking-[.12em] ${server.available ? "text-[#8df2ce]" : "text-[#9eafb6]"}`}>{server.available ? "Online" : "Manutenção"}</span>
+                </article>
+              ))}
+              {!serversQuery.isLoading && !servers.length && <p className="py-12 text-center text-[#c4d7df]">Não foi possível consultar os reinos agora.</p>}
+            </div>
+            <div className="mt-7 flex justify-center"><GamePlaque>{serversQuery.isLoading ? "Consultando reinos" : availableServers ? `${availableServers} reino disponível` : "Reinos indisponíveis"}</GamePlaque></div>
+          </div>
+        </section>
+
+        <section className="relative isolate flex min-h-[680px] w-full flex-col items-center justify-center overflow-hidden px-6 py-28 text-center text-white" id="download">
+          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_35%,rgba(21,80,116,.28),rgba(5,24,40,.88)_72%),linear-gradient(180deg,rgba(5,24,40,.15),#061928)]" aria-hidden="true" />
+          <Image className="mb-3 h-auto w-[min(560px,78vw)] drop-shadow-[0_12px_18px_rgba(3,18,30,.7)]" src="/media/branding/masicarus-wordmark.png" alt="Masicarus" width={1936} height={399} />
+          <OrnamentTitle light>Masicarus para Windows</OrnamentTitle>
+          <h2 className="my-6 font-masicarus text-[clamp(3rem,5.4vw,5.5rem)] font-semibold leading-[.84] text-[#f7f3df] [text-shadow:0_3px_12px_#08223a]">Sua jornada começa<br />pelo launcher.</h2>
+          <p className="mb-8 max-w-[580px] leading-7 text-[#e5f2f6] [text-shadow:0_2px_8px_#08223a]">Instale, verifique e mantenha o cliente atualizado antes de atravessar os portões.</p>
           {release ? (
             <>
-              <a className={buttonStyles("primary", true)} href={release.launcherUrl}>Baixar launcher para Windows <span>↓</span></a>
-              <div className="mt-5 flex text-xs uppercase tracking-[.08em] text-mist max-[620px]:flex-col max-[620px]:gap-1.5">
-                <span className="border-r border-moonsteel/20 px-4 max-[620px]:border-0">Versão {release.version.slice(0, 8)}</span>
-                <span className="border-r border-moonsteel/20 px-4 max-[620px]:border-0">{formatBytes(release.totalSize)}</span>
-                <span className="px-4">Publicada em {new Intl.DateTimeFormat("pt-BR").format(new Date(release.publishedAt))}</span>
+              <a className={buttonStyles("primary", true)} href={release.launcherUrl}>Baixar launcher para Windows</a>
+              <div className="mt-6 flex font-masicarus text-sm uppercase tracking-[.08em] text-[#c8dce4] max-[700px]:flex-col max-[700px]:gap-2">
+                <span className="border-r border-[#587589] px-5 max-[700px]:border-0">Versão {release.version.slice(0, 8)}</span>
+                <span className="border-r border-[#587589] px-5 max-[700px]:border-0">{formatBytes(release.totalSize)}</span>
+                <span className="px-5">{new Intl.DateTimeFormat("pt-BR").format(new Date(release.publishedAt))}</span>
               </div>
             </>
           ) : !releaseQuery.isLoading && (
-            <div className="grid gap-1 border border-moonsteel/20 bg-abyss/70 px-6 py-4">
-              <strong className="font-display text-xl text-ancient-gold">Release em preparação</strong>
-              <span className="text-sm text-mist">O download aparecerá aqui assim que o canal Alpha estiver disponível.</span>
+            <div className="border-y border-[#6a8da1] bg-[#071d30]/88 px-9 py-5 shadow-[0_10px_30px_rgba(5,24,40,.45)] backdrop-blur-sm">
+              <strong className="block font-masicarus text-xl uppercase tracking-[.08em] text-[#79ddff]">Release em preparação</strong>
+              <span className="text-sm text-[#d9e8ed]">O download aparecerá quando o canal Alpha estiver disponível.</span>
             </div>
           )}
         </section>
       </main>
 
-      <footer className="mx-auto flex min-h-28 w-[min(1180px,calc(100%-48px))] items-center justify-between text-xs text-[#718087] max-[620px]:w-[calc(100%-32px)] max-[620px]:flex-col max-[620px]:gap-4 max-[620px]:py-8">
-        <Link className="flex items-center gap-2 font-display tracking-[.18em] text-moonsteel" href="#inicio"><Image src="/media/mark.png" alt="" width={36} height={36} /><span>MASICARUS</span></Link>
-        <p>Uma reconstrução independente em andamento.</p><p>© {new Date().getFullYear()} Masicarus</p>
+      <footer className="w-full border-t border-[#4f7186] bg-[#061725] px-6">
+        <div className="mx-auto flex min-h-28 w-[min(1120px,100%)] items-center justify-between font-masicarus text-xs uppercase tracking-[.1em] text-[#9fb2bb] max-[700px]:flex-col max-[700px]:justify-center max-[700px]:gap-3">
+          <Link href="#inicio" aria-label="Voltar ao início"><Image className="h-auto w-[190px]" src="/media/branding/masicarus-wordmark.png" alt="Masicarus" width={1936} height={399} /></Link>
+          <p>Uma reconstrução independente em andamento</p><p>© {new Date().getFullYear()}</p>
+        </div>
       </footer>
     </div>
   );

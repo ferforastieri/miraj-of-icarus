@@ -4,9 +4,9 @@ test("landing apresenta o mundo e o estado seguro de release", async ({ page }) 
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /A passagem está aberta/i })).toBeVisible();
   await expect(page.getByRole("link", { name: "Acessar painel" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /O mundo que você lembra/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Um mundo antigo/i })).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
-  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(7, 11, 16)");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 23, 37)");
 });
 
 test("painel visitante alterna para cadastro e valida os campos", async ({ page }) => {
@@ -30,8 +30,11 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
   await expect(page.getByRole("heading", { name: new RegExp(account) })).toBeVisible();
 
   await page.getByLabel("Nome").fill(character);
+  await page.getByText("Naturalista", { exact: true }).click();
+  await expect(page.getByRole("radio", { name: "Naturalista" })).toBeChecked();
   await page.getByRole("button", { name: "Criar personagem" }).click();
   await expect(page.getByRole("heading", { name: character })).toBeVisible();
+  await expect(page.getByText(/Naturalista · Nível 1/)).toBeVisible();
 
   await page.getByText("Agendar exclusão").click();
   await page.getByLabel(new RegExp(`Digite ${character}`)).fill(character);

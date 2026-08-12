@@ -9,10 +9,10 @@ export function Alert({
   return (
     <p
       className={cn(
-        "border-l-2 px-3.5 py-3 text-sm",
+        "px-5 py-3 text-sm [clip-path:polygon(8px_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%,0_8px)]",
         kind === "error"
-          ? "border-danger bg-danger/10 text-[#efb0b5]"
-          : "border-frost bg-frost/10 text-[#a9edf5]",
+          ? "bg-danger/15 text-[#ffd5da] shadow-[inset_0_0_0_1px_#a85c65]"
+          : "bg-frost/10 text-[#c9f8ff] shadow-[inset_0_0_0_1px_#52d4e7]",
         className,
       )}
       {...props}

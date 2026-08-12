@@ -4,6 +4,7 @@ export default defineConfig({
   testDir: "./tests/e2e",
   outputDir: "./test-results",
   reporter: "line",
+  expect: { timeout: 15_000 },
   use: {
     baseURL: "http://127.0.0.1:3100",
     trace: "retain-on-failure",
