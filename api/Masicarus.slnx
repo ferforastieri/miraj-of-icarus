@@ -5,6 +5,9 @@
     <Project Path="src/Masicarus.Domain/Masicarus.Domain.csproj" />
     <Project Path="src/Masicarus.Infrastructure/Masicarus.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/shared/">
+    <Project Path="../game-server/libraries/contracts/Masicarus.Game.Contracts/Masicarus.Game.Contracts.csproj" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Masicarus.Api.Tests/Masicarus.Api.Tests.csproj" />
   </Folder>

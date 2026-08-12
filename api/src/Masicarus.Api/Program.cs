@@ -5,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddHttpClient("client-releases", client =>
+    client.Timeout = TimeSpan.FromSeconds(10));
 builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddHostedService<Masicarus.Api.CharacterDeletionWorker>();
 var healthChecks = builder.Services.AddHealthChecks();
 builder.Services.AddInfrastructure(builder.Configuration, healthChecks);
 

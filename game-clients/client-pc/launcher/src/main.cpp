@@ -18,7 +18,9 @@ using byte = unsigned char;
 #include <algorithm>
 #include <array>
 #include <exception>
+#include <fstream>
 #include <memory>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -40,7 +42,24 @@ constexpr int PlayId = 104;
 constexpr int MinimizeId = 105;
 constexpr int CloseId = 106;
 constexpr UINT LoadEnvironmentMessage = WM_APP + 1;
-constexpr auto ApiEndpoint = "http://localhost:8080";
+
+std::string LoadApiEndpoint()
+{
+    auto path = masicarus::launcher::ExecutableDirectory();
+    if (!path.empty()) path += L'\\';
+    path += L"assets\\launcher\\config.json";
+    std::ifstream input(path, std::ios::binary);
+    if (!input) throw std::runtime_error("Launcher API configuration is missing.");
+    const auto endpoint = nlohmann::json::parse(input).at("apiEndpoint").get<std::string>();
+    const bool secure = endpoint.starts_with("https://");
+    const bool local = endpoint.starts_with("http://localhost:") ||
+        endpoint.starts_with("http://127.0.0.1:");
+    if ((!secure && !local) || endpoint.ends_with('/'))
+    {
+        throw std::runtime_error("Launcher API endpoint is invalid.");
+    }
+    return endpoint;
+}
 
 void WriteDiagnostic(std::string_view message)
 {
@@ -54,10 +73,11 @@ int RunDiagnostic(std::wstring_view command)
 {
     try
     {
+        const auto apiEndpoint = LoadApiEndpoint();
         if (command == L"--update-client")
         {
             const auto result = masicarus::launcher::EnsureClientReady(
-                ApiEndpoint, masicarus::launcher::GameInstallDirectory());
+                apiEndpoint, masicarus::launcher::GameInstallDirectory());
             WriteDiagnostic("client-update=ok version=" + result.version +
                 " downloaded-bytes=" + std::to_string(result.downloadedBytes) + "\n");
             return 0;
@@ -71,7 +91,7 @@ int RunDiagnostic(std::wstring_view command)
             return 0;
         }
 
-        const auto servers = masicarus::launcher::BackendClient(ApiEndpoint).GetServers();
+        const auto servers = masicarus::launcher::BackendClient(apiEndpoint).GetServers();
         const auto available = std::any_of(
             servers.begin(), servers.end(), [](const auto& server) { return server.available; });
         if (!available)
@@ -107,6 +127,7 @@ struct WindowState
     std::unique_ptr<Gdiplus::Image> background;
     std::unique_ptr<Gdiplus::Image> mark;
     std::vector<masicarus::launcher::GameServer> servers;
+    std::string apiEndpoint;
     std::wstring status = L"VERIFICANDO INSTALAÇÃO";
     std::wstring detail = L"Conferindo os arquivos locais assinados";
     int progress = 8;
@@ -548,8 +569,9 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
         {
             try
             {
+                state->apiEndpoint = LoadApiEndpoint();
                 static_cast<void>(masicarus::launcher::EnsureClientReady(
-                    ApiEndpoint, masicarus::launcher::GameInstallDirectory(),
+                    state->apiEndpoint, masicarus::launcher::GameInstallDirectory(),
                     [&](const masicarus::launcher::UpdateProgress& update)
                     {
                         const auto percent = update.total == 0 ? 0 : static_cast<int>(
@@ -558,7 +580,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                     }));
                 Refresh(window, *state, L"CLIENTE VERIFICADO",
                     L"Procurando reinos disponíveis", 100);
-                state->servers = masicarus::launcher::BackendClient(ApiEndpoint).GetServers();
+                state->servers = masicarus::launcher::BackendClient(state->apiEndpoint).GetServers();
                 std::erase_if(state->servers, [](const auto& server) { return !server.available; });
                 for (const auto& server : state->servers)
                 {
@@ -677,7 +699,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             Refresh(window, *state, L"ABRINDO PASSAGEM", L"Autenticando sua conta", 100);
             try
             {
-                const auto admission = masicarus::launcher::BackendClient(ApiEndpoint).Authenticate(
+                const auto admission = masicarus::launcher::BackendClient(state->apiEndpoint).Authenticate(
                     masicarus::client::windows::ToUtf8(ReadControl(state->username)),
                     masicarus::client::windows::ToUtf8(ReadControl(state->password)),
                     state->servers[static_cast<std::size_t>(selected)]);

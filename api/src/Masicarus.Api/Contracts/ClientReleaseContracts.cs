@@ -5,6 +5,17 @@ public sealed record ClientReleaseResponse(
     long TotalSize,
     string ManifestUrl,
     string SignatureUrl,
-    string FilesBaseUrl);
+    string FilesBaseUrl,
+    string LauncherUrl,
+    DateTimeOffset PublishedAt);
 
 public sealed record ClientReleaseMetadata(string Version, long TotalSize);
+
+public sealed record ClientReleaseChannel(
+    string Version,
+    long TotalSize,
+    string ManifestUrl,
+    string SignatureUrl,
+    string FilesBaseUrl,
+    string LauncherUrl,
+    DateTimeOffset PublishedAt);

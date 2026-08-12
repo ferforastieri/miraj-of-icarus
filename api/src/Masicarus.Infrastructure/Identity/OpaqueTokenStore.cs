@@ -7,6 +7,10 @@ namespace Masicarus.Infrastructure.Identity;
 public sealed class OpaqueTokenStore(IConnectionMultiplexer redis)
 {
     private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web);
+    private static readonly LuaScript ConsumeScript = LuaScript.Prepare(
+        "local value = redis.call('GET', @key); " +
+        "if value then redis.call('DEL', @key); end; " +
+        "return value;");
 
     public async ValueTask<string> IssueAsync<T>(
         string purpose,
@@ -42,6 +46,29 @@ public sealed class OpaqueTokenStore(IConnectionMultiplexer redis)
         return value.IsNullOrEmpty
             ? default
             : JsonSerializer.Deserialize<T>((string)value!, SerializerOptions);
+    }
+
+    public async ValueTask<T?> ConsumeAsync<T>(
+        string purpose,
+        string token,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var result = await redis.GetDatabase().ScriptEvaluateAsync(
+            ConsumeScript,
+            new { key = (RedisKey)BuildKey(purpose, token) });
+        return result.IsNull
+            ? default
+            : JsonSerializer.Deserialize<T>((string)result!, SerializerOptions);
+    }
+
+    public async ValueTask RevokeAsync(
+        string purpose,
+        string token,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        await redis.GetDatabase().KeyDeleteAsync(BuildKey(purpose, token));
     }
 
     private static string BuildKey(string purpose, string token)

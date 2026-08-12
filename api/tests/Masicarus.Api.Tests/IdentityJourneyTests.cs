@@ -40,13 +40,30 @@ public sealed class IdentityJourneyTests(
             var login = await loginMessage.Content.ReadFromJsonAsync<LoginResponse>();
             Assert.NotNull(login);
             Assert.Equal(userName, login.Account.UserName);
+            Assert.NotEmpty(login.RefreshToken);
+
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", login.AccessToken);
+            var account = await client.GetFromJsonAsync<AccountResponse>("/v1/auth/me");
+            Assert.Equal(userName, account?.UserName);
+
+            using var characterMessage = await client.PostAsJsonAsync(
+                "/v1/account/characters",
+                new CreateCharacterRequest($"Hero{Guid.NewGuid():N}"[..20], "warrior", "male"));
+            characterMessage.EnsureSuccessStatusCode();
+            var character = await characterMessage.Content.ReadFromJsonAsync<CharacterResponse>();
+            Assert.NotNull(character);
+
+            using var deletion = await client.DeleteAsync($"/v1/account/characters/{character.Id}");
+            Assert.Equal(HttpStatusCode.Accepted, deletion.StatusCode);
+            using var restoration = await client.PostAsJsonAsync(
+                $"/v1/account/characters/{character.Id}/restore", new { });
+            restoration.EnsureSuccessStatusCode();
 
             var servers = await client.GetFromJsonAsync<GameServerResponse[]>("/v1/game-servers");
             var server = Assert.Single(servers!);
             Assert.True(server.Available);
 
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", login.AccessToken);
             using var ticketMessage = await client.PostAsJsonAsync(
                 "/v1/game-tickets",
                 new GameTicketRequest(server.Id));
@@ -55,6 +72,23 @@ public sealed class IdentityJourneyTests(
             Assert.NotNull(ticket);
             Assert.Equal(server.Id, ticket.Server.Id);
             Assert.NotEmpty(ticket.Ticket);
+
+            using var refreshMessage = await client.PostAsJsonAsync(
+                "/v1/auth/refresh", new RefreshTokenRequest(login.RefreshToken));
+            refreshMessage.EnsureSuccessStatusCode();
+            var refreshed = await refreshMessage.Content.ReadFromJsonAsync<LoginResponse>();
+            Assert.NotNull(refreshed);
+            Assert.NotEqual(login.RefreshToken, refreshed.RefreshToken);
+
+            using var replay = await client.PostAsJsonAsync(
+                "/v1/auth/refresh", new RefreshTokenRequest(login.RefreshToken));
+            Assert.Equal(HttpStatusCode.Unauthorized, replay.StatusCode);
+            using var logout = await client.PostAsJsonAsync(
+                "/v1/auth/logout", new LogoutRequest(refreshed.RefreshToken));
+            Assert.Equal(HttpStatusCode.NoContent, logout.StatusCode);
+            using var revoked = await client.PostAsJsonAsync(
+                "/v1/auth/refresh", new RefreshTokenRequest(refreshed.RefreshToken));
+            Assert.Equal(HttpStatusCode.Unauthorized, revoked.StatusCode);
         }
         finally
         {

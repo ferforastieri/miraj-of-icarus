@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\contracts\Masicarus.Game.Contracts\Masicarus.Game.Contracts.csproj" />
     <ProjectReference Include="..\..\..\libraries\runtime\Masicarus.Game.Runtime\Masicarus.Game.Runtime.csproj" />
   </ItemGroup>
 </Project>

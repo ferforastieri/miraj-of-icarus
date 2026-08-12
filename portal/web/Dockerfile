@@ -1,13 +1,13 @@
 FROM node:24.18.0-bookworm-slim AS dependencies
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY portal/web/package.json portal/web/package-lock.json ./
 RUN npm ci
 
 FROM node:24.18.0-bookworm-slim AS build
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=dependencies /app/node_modules ./node_modules
-COPY . .
+COPY portal/web/ .
 RUN npm run build
 
 FROM node:24.18.0-bookworm-slim AS runtime
@@ -20,5 +20,6 @@ EXPOSE 3000
 RUN chown node:node /app
 COPY --from=build --chown=node:node /app/.next/standalone ./
 COPY --from=build --chown=node:node /app/.next/static ./.next/static
+COPY --from=build --chown=node:node /app/public ./public
 USER node
 CMD ["node", "server.js"]

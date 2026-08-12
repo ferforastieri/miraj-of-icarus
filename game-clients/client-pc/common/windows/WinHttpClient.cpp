@@ -67,6 +67,11 @@ std::string EncodeUrlPath(std::string_view path)
 
 std::string JoinEndpoint(const std::string& base, std::string_view path)
 {
+    if (path.starts_with("https://") || path.starts_with("http://"))
+    {
+        return std::string(path);
+    }
+
     return base.ends_with('/')
         ? base.substr(0, base.size() - 1) + std::string(path)
         : base + std::string(path);

@@ -9,7 +9,17 @@ public sealed record AccountResponse(long AccountId, string UserName);
 public sealed record LoginResponse(
     string AccessToken,
     DateTimeOffset ExpiresAt,
+    string RefreshToken,
+    DateTimeOffset RefreshExpiresAt,
     AccountResponse Account);
+
+public sealed record RefreshTokenRequest(string RefreshToken);
+
+public sealed record LogoutRequest(string RefreshToken);
+
+public sealed record AccessSession(long AccountId, string UserName, DateTimeOffset ExpiresAt);
+
+public sealed record RefreshSession(long AccountId, string UserName, DateTimeOffset ExpiresAt);
 
 public sealed record GameServerResponse(
     string Id,

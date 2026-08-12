@@ -22,6 +22,64 @@ namespace Masicarus.Infrastructure.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Masicarus.Domain.Game.Character", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("account_id");
+
+                    b.Property<string>("Archetype")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("archetype");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Customization")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("customization");
+
+                    b.Property<DateTimeOffset?>("DeletionScheduledAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deletion_scheduled_at");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("gender");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("integer")
+                        .HasColumnName("level");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("NormalizedName")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("normalized_name");
+
+                    b.HasKey("Id");
+                    b.HasIndex("AccountId");
+                    b.HasIndex("NormalizedName").IsUnique();
+                    b.ToTable("game_characters", (string)null);
+                });
+
             modelBuilder.Entity("Masicarus.Domain.Identity.Account", b =>
                 {
                     b.Property<long>("Id")
@@ -87,6 +145,15 @@ namespace Masicarus.Infrastructure.Persistence.Migrations
                     b.HasKey("Key");
 
                     b.ToTable("platform_metadata", (string)null);
+                });
+
+            modelBuilder.Entity("Masicarus.Domain.Game.Character", b =>
+                {
+                    b.HasOne("Masicarus.Domain.Identity.Account", null)
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

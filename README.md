@@ -12,7 +12,7 @@ servers evoluem juntos até formar jornadas completas e testáveis.
 - `api/`: contas, autenticação, sessões e catálogo de releases;
 - `game-server/`: Login, Main/Coordinator, Lobby e o futuro World Server;
 - `game-clients/client-pc/`: launcher, cliente Windows e assets do jogo;
-- `portal/web/`: portal público e futura área de conta;
+- `portal/web/`: landing page, download e área autenticada da conta;
 - `infra/`: ambiente local reproduzível com containers.
 
 ## Tecnologias
@@ -46,6 +46,33 @@ restrito. Login, Main e Lobby implementam a jornada inicial de sessão e
 personagens. O próximo marco é validar e ampliar essa jornada no ambiente
 hospedado.
 
+O portal público usa a mesma identidade do launcher em `https://masicarus.com.br`.
+A rota `/painel` oferece cadastro, sessão persistente e gestão de personagens.
+A API pública é anunciada em `https://api.masicarus.com.br`; releases assinadas
+do launcher e cliente são distribuídas pelo Cloudflare R2 em
+`https://downloads.masicarus.com.br`.
+
+## Publicação do cliente
+
+Mudanças em `game-clients/client-pc/` acionam o workflow
+`client-release.yml`. Pull requests apenas compilam e validam. Em `main`, o
+workflow assina o manifesto, publica objetos imutáveis no bucket R2
+`masicarus-releases` e atualiza `channels/alpha.json` somente depois de validar
+o upload completo.
+
+Secrets exigidos no GitHub:
+
+- `MASICARUS_RELEASE_SIGNING_KEY_BASE64`;
+- `CLOUDFLARE_R2_ACCOUNT_ID`;
+- `CLOUDFLARE_R2_ACCESS_KEY_ID`;
+- `CLOUDFLARE_R2_SECRET_ACCESS_KEY`.
+
+O bucket deve possuir o domínio próprio `downloads.masicarus.com.br`, com
+acesso público somente por esse domínio. Objetos sob `releases/{git-sha}/`
+recebem cache imutável; `channels/alpha.json` recebe cache de 60 segundos. Para
+rollback, copie novamente o manifesto de uma release completa anterior para
+`channels/alpha.json`; os objetos versionados nunca são sobrescritos.
+
 ## Desenvolvimento local
 
 Requer .NET SDK 10, CMake 3.25+, Ninja, compilador C++20, Node.js e Docker.
@@ -62,8 +89,9 @@ ctest --test-dir build/client --output-on-failure
 npm --prefix portal/web ci
 npm --prefix portal/web run lint
 npm --prefix portal/web run typecheck
+npm --prefix portal/web run build
 ```
 
-O launcher e o cliente Windows são compilados pela pipeline em um runner
-Windows. Configurações locais devem partir dos arquivos `.env.example`; nenhum
+O launcher e o cliente Windows são compilados por cross-compilation na pipeline
+Linux com LLVM e o Windows SDK. Configurações locais devem partir dos arquivos `.env.example`; nenhum
 segredo deve ser versionado.

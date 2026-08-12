@@ -1,3 +1,4 @@
+using Masicarus.Game.Contracts;
 using Npgsql;
 
 namespace Masicarus.LobbyServer;
@@ -18,8 +19,11 @@ public static class LobbyDatabase
                 gender varchar(8) NOT NULL,
                 customization jsonb NOT NULL,
                 level integer NOT NULL DEFAULT 1,
-                created_at timestamptz NOT NULL
+                created_at timestamptz NOT NULL,
+                deletion_scheduled_at timestamptz NULL
             );
+            ALTER TABLE game_characters
+                ADD COLUMN IF NOT EXISTS deletion_scheduled_at timestamptz NULL;
             CREATE INDEX IF NOT EXISTS ix_game_characters_account_id
                 ON game_characters(account_id);
             """;
@@ -38,7 +42,7 @@ public sealed class CharacterRepository(NpgsqlDataSource dataSource)
         const string sql = """
             SELECT id, name, archetype, gender, customization::text, level, created_at
             FROM game_characters
-            WHERE account_id = $1
+            WHERE account_id = $1 AND deletion_scheduled_at IS NULL
             ORDER BY created_at, id;
             """;
         await using var command = dataSource.CreateCommand(sql);
@@ -85,7 +89,7 @@ public sealed class CharacterRepository(NpgsqlDataSource dataSource)
         {
             countCommand.Parameters.AddWithValue(accountId);
             var count = (long)(await countCommand.ExecuteScalarAsync(cancellationToken) ?? 0L);
-            if (count >= 4)
+            if (count >= CharacterRules.MaximumCharactersPerAccount)
             {
                 return new CreateCharacterResult(CreateCharacterStatus.SlotsFull, null);
             }

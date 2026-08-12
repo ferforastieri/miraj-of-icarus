@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using Masicarus.Api.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -6,82 +7,80 @@ namespace Masicarus.Api.Controllers;
 
 [ApiController]
 [Route("v1/client-releases/windows")]
-public sealed class ClientReleasesController(IConfiguration configuration) : ControllerBase
+public sealed class ClientReleasesController(
+    IHttpClientFactory httpClientFactory,
+    IConfiguration configuration) : ControllerBase
 {
-    private static readonly JsonSerializerOptions WebJsonOptions =
-        new(JsonSerializerDefaults.Web);
-
-    private const string ManifestName = "release-manifest.json";
-    private const string SignatureName = "release-manifest.sig";
-
-    private readonly string releaseRoot = Path.GetFullPath(
-        configuration["ClientReleases:Root"] ?? "/srv/client-releases");
+    private static readonly JsonSerializerOptions WebJsonOptions = new(JsonSerializerDefaults.Web);
 
     [HttpGet("latest")]
     [ProducesResponseType<ClientReleaseResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
     public async Task<ActionResult<ClientReleaseResponse>> GetLatestAsync(
         CancellationToken cancellationToken)
     {
-        var metadataPath = Path.Combine(releaseRoot, "current", "release-metadata.json");
-        if (!System.IO.File.Exists(metadataPath))
+        var configuredUrl = configuration["ClientReleases:ChannelManifestUrl"];
+        if (!Uri.TryCreate(configuredUrl, UriKind.Absolute, out var channelUri))
         {
             return NotFound(new { error = "client_release_unavailable" });
         }
 
-        await using var stream = System.IO.File.OpenRead(metadataPath);
-        var metadata = await JsonSerializer.DeserializeAsync<ClientReleaseMetadata>(
-            stream, WebJsonOptions, cancellationToken);
-        if (metadata is null || !IsVersion(metadata.Version) || metadata.TotalSize <= 0)
+        try
         {
-            throw new InvalidDataException("Published client release metadata is invalid.");
+            using var response = await httpClientFactory.CreateClient("client-releases")
+                .GetAsync(channelUri, cancellationToken);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound(new { error = "client_release_unavailable" });
+            }
+            if (!response.IsSuccessStatusCode)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    new { error = "client_release_service_unavailable" });
+            }
+
+            await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            var channel = await JsonSerializer.DeserializeAsync<ClientReleaseChannel>(
+                stream, WebJsonOptions, cancellationToken);
+            if (channel is null || !IsVersion(channel.Version) || channel.TotalSize <= 0 ||
+                !IsPublicHttpsUrl(channel.ManifestUrl) ||
+                !IsPublicHttpsUrl(channel.SignatureUrl) ||
+                !IsPublicHttpsUrl(channel.FilesBaseUrl) ||
+                !IsPublicHttpsUrl(channel.LauncherUrl))
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    new { error = "invalid_client_release" });
+            }
+
+            Response.Headers.CacheControl = "no-store";
+            return Ok(new ClientReleaseResponse(
+                channel.Version,
+                channel.TotalSize,
+                channel.ManifestUrl,
+                channel.SignatureUrl,
+                channel.FilesBaseUrl,
+                channel.LauncherUrl,
+                channel.PublishedAt));
         }
-
-        Response.Headers.CacheControl = "no-store";
-        var root = $"/v1/client-releases/windows/{metadata.Version}";
-        return Ok(new ClientReleaseResponse(
-            metadata.Version,
-            metadata.TotalSize,
-            $"{root}/{ManifestName}",
-            $"{root}/{SignatureName}",
-            $"{root}/files/"));
-    }
-
-    [HttpGet("{version}/{fileName}")]
-    public IActionResult GetMetadata(string version, string fileName)
-    {
-        if (fileName is not (ManifestName or SignatureName))
+        catch (Exception exception) when (exception is HttpRequestException or JsonException)
         {
-            return NotFound();
+            return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                new { error = "client_release_service_unavailable" });
         }
-        return SendImmutableFile(version, fileName,
-            fileName == ManifestName ? "application/json" : "application/octet-stream");
-    }
-
-    [HttpGet("{version}/files/{**relativePath}")]
-    public IActionResult GetFile(string version, string relativePath) =>
-        SendImmutableFile(version, relativePath, "application/octet-stream");
-
-    private IActionResult SendImmutableFile(string version, string relativePath, string contentType)
-    {
-        if (!IsVersion(version) || string.IsNullOrWhiteSpace(relativePath))
+        catch (TaskCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
-            return NotFound();
+            return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                new { error = "client_release_service_unavailable" });
         }
-
-        var versionRoot = Path.GetFullPath(Path.Combine(releaseRoot, version));
-        var candidate = Path.GetFullPath(Path.Combine(versionRoot, relativePath));
-        if (!candidate.StartsWith(versionRoot + Path.DirectorySeparatorChar,
-                StringComparison.Ordinal) || !System.IO.File.Exists(candidate))
-        {
-            return NotFound();
-        }
-
-        Response.Headers.CacheControl = "public,max-age=31536000,immutable";
-        return PhysicalFile(candidate, contentType, enableRangeProcessing: true);
     }
 
     private static bool IsVersion(string? value) =>
         value is { Length: 40 } && value.All(character =>
             character is >= '0' and <= '9' or >= 'a' and <= 'f');
+
+    private static bool IsPublicHttpsUrl(string value) =>
+        Uri.TryCreate(value, UriKind.Absolute, out var uri) &&
+        uri.Scheme == Uri.UriSchemeHttps &&
+        !string.IsNullOrWhiteSpace(uri.Host);
 }

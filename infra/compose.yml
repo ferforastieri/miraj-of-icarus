@@ -41,9 +41,7 @@ services:
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=masicarus;Username=masicarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
-      ClientReleases__Root: /srv/client-releases
-    volumes:
-      - /opt/masicarus/client-releases:/srv/client-releases:ro
+      ClientReleases__ChannelManifestUrl: ${MASICARUS_RELEASE_CHANNEL_URL:-https://downloads.masicarus.com.br/channels/alpha.json}
     depends_on:
       postgres:
         condition: service_healthy
@@ -128,12 +126,14 @@ services:
   portal:
     image: masicarus-portal:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG in infra/.env}
     build:
-      context: ../portal/web
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: portal/web/Dockerfile
     restart: unless-stopped
     depends_on:
       api:
         condition: service_healthy
+    environment:
+      MASICARUS_API_INTERNAL_URL: http://api:8080
     ports:
       - "127.0.0.1:3000:3000"
     healthcheck:

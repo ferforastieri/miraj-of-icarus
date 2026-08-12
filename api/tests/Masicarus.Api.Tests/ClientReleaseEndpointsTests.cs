@@ -1,79 +1,96 @@
 using System.Net;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
+using System.Globalization;
 using Masicarus.Api.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Masicarus.Api.Tests;
 
-public sealed class ClientReleaseEndpointsTests : IDisposable
+public sealed class ClientReleaseEndpointsTests
 {
-    private static readonly JsonSerializerOptions WebJsonOptions =
-        new(JsonSerializerDefaults.Web);
-
     private const string Version = "0123456789abcdef0123456789abcdef01234567";
-    private readonly string releaseRoot = Path.Combine(
-        Path.GetTempPath(), $"masicarus-release-tests-{Guid.NewGuid():N}");
 
     [Fact]
-    public async Task LatestAndImmutableFilesExposePublishedReleaseAsync()
+    public async Task LatestReleaseReturnsValidatedR2UrlsAsync()
     {
-        var versionRoot = Path.Combine(releaseRoot, Version);
-        Directory.CreateDirectory(versionRoot);
-        await File.WriteAllTextAsync(Path.Combine(versionRoot, "release-manifest.json"), "{\"files\":[]}");
-        await File.WriteAllBytesAsync(Path.Combine(versionRoot, "release-manifest.sig"), [1, 2, 3]);
-        await File.WriteAllTextAsync(Path.Combine(versionRoot, "MasicarusClient.exe"), "client");
-        Directory.CreateSymbolicLink(Path.Combine(releaseRoot, "current"), versionRoot);
-        await File.WriteAllTextAsync(
-            Path.Combine(versionRoot, "release-metadata.json"),
-            JsonSerializer.Serialize(
-                new ClientReleaseMetadata(Version, 6),
-                WebJsonOptions));
-
-        await using var factory = CreateFactory();
+        var channel = new ClientReleaseChannel(
+            Version,
+            1234,
+            $"https://downloads.masicarus.com.br/releases/{Version}/client/release-manifest.json",
+            $"https://downloads.masicarus.com.br/releases/{Version}/client/release-manifest.sig",
+            $"https://downloads.masicarus.com.br/releases/{Version}/client/files/",
+            $"https://downloads.masicarus.com.br/releases/{Version}/launcher/MasicarusLauncher.zip",
+            DateTimeOffset.Parse("2026-08-12T12:00:00Z", CultureInfo.InvariantCulture));
+        await using var factory = CreateFactory(JsonSerializer.Serialize(channel));
         using var client = factory.CreateClient();
-        var latest = await client.GetFromJsonAsync<ClientReleaseResponse>(
-            "/v1/client-releases/windows/latest");
 
-        Assert.NotNull(latest);
-        Assert.Equal(Version, latest.Version);
-        Assert.Equal(6, latest.TotalSize);
-        Assert.Equal($"/v1/client-releases/windows/{Version}/files/", latest.FilesBaseUrl);
-        using var file = await client.GetAsync(latest.FilesBaseUrl + "MasicarusClient.exe");
-        Assert.Equal(HttpStatusCode.OK, file.StatusCode);
-        Assert.Equal("client", await file.Content.ReadAsStringAsync());
-        Assert.Contains("immutable", file.Headers.CacheControl?.Extensions.Select(value => value.Name) ?? []);
+        var response = await client.GetAsync("/v1/client-releases/windows/latest");
+        response.EnsureSuccessStatusCode();
+        var release = await response.Content.ReadFromJsonAsync<ClientReleaseResponse>();
+
+        Assert.NotNull(release);
+        Assert.Equal(Version, release.Version);
+        Assert.Equal(channel.LauncherUrl, release.LauncherUrl);
+        Assert.Equal("no-store", response.Headers.CacheControl?.ToString());
+    }
+
+    [Fact]
+    public async Task InvalidChannelIsRejectedWithoutLeakingContentAsync()
+    {
+        await using var factory = CreateFactory("{\"version\":\"bad\"}");
+        using var client = factory.CreateClient();
+
+        using var response = await client.GetAsync("/v1/client-releases/windows/latest");
+
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
     }
 
     [Theory]
-    [InlineData("../release-metadata.json")]
-    [InlineData("%2e%2e/release-metadata.json")]
-    public async Task FileRouteRejectsTraversalAsync(string path)
+    [InlineData(HttpStatusCode.NotFound, HttpStatusCode.NotFound)]
+    [InlineData(HttpStatusCode.BadGateway, HttpStatusCode.ServiceUnavailable)]
+    public async Task ChannelFailureReturnsStablePublicStatusAsync(
+        HttpStatusCode channelStatus,
+        HttpStatusCode expectedStatus)
     {
-        Directory.CreateDirectory(Path.Combine(releaseRoot, Version));
-        await using var factory = CreateFactory();
-        using var client = factory.CreateClient(new() { AllowAutoRedirect = false });
+        await using var factory = CreateFactory("{}", channelStatus);
+        using var client = factory.CreateClient();
 
-        using var response = await client.GetAsync(
-            $"/v1/client-releases/windows/{Version}/files/{path}");
+        using var response = await client.GetAsync("/v1/client-releases/windows/latest");
 
-        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        Assert.Equal(expectedStatus, response.StatusCode);
     }
 
-    private WebApplicationFactory<Program> CreateFactory() =>
+    private static WebApplicationFactory<Program> CreateFactory(
+        string channel,
+        HttpStatusCode channelStatus = HttpStatusCode.OK) =>
         new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+        {
             builder.ConfigureAppConfiguration((_, configuration) =>
                 configuration.AddInMemoryCollection(new Dictionary<string, string?>
                 {
-                    ["ClientReleases:Root"] = releaseRoot,
+                    ["ClientReleases:ChannelManifestUrl"] = "https://channel.test/alpha.json",
                     ["Database:ApplyMigrations"] = "false",
-                })));
+                }));
+            builder.ConfigureServices(services =>
+                services.AddHttpClient("client-releases")
+                    .ConfigurePrimaryHttpMessageHandler(() =>
+                        new ChannelHandler(channel, channelStatus)));
+        });
 
-    public void Dispose()
+    private sealed class ChannelHandler(string channel, HttpStatusCode status) : HttpMessageHandler
     {
-        if (Directory.Exists(releaseRoot)) Directory.Delete(releaseRoot, recursive: true);
-        GC.SuppressFinalize(this);
+        protected override Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request,
+            CancellationToken cancellationToken) =>
+            Task.FromResult(new HttpResponseMessage(status)
+            {
+                RequestMessage = request,
+                Content = new StringContent(channel, Encoding.UTF8, "application/json"),
+            });
     }
 }

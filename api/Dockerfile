@@ -8,9 +8,11 @@ COPY api/src/Masicarus.Application/Masicarus.Application.csproj api/src/Masicaru
 COPY api/src/Masicarus.Domain/Masicarus.Domain.csproj api/src/Masicarus.Domain/packages.lock.json ./api/src/Masicarus.Domain/
 COPY api/src/Masicarus.Infrastructure/Masicarus.Infrastructure.csproj api/src/Masicarus.Infrastructure/packages.lock.json ./api/src/Masicarus.Infrastructure/
 COPY api/tests/Masicarus.Api.Tests/Masicarus.Api.Tests.csproj api/tests/Masicarus.Api.Tests/packages.lock.json ./api/tests/Masicarus.Api.Tests/
+COPY game-server/libraries/contracts/Masicarus.Game.Contracts/Masicarus.Game.Contracts.csproj game-server/libraries/contracts/Masicarus.Game.Contracts/packages.lock.json ./game-server/libraries/contracts/Masicarus.Game.Contracts/
 RUN dotnet restore api/Masicarus.slnx --locked-mode
 
 COPY api ./api
+COPY game-server/libraries/contracts/Masicarus.Game.Contracts ./game-server/libraries/contracts/Masicarus.Game.Contracts
 RUN dotnet publish api/src/Masicarus.Api/Masicarus.Api.csproj \
     --configuration Release \
     --no-restore \

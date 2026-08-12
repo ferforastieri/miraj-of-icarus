@@ -18,15 +18,33 @@ public sealed class IdentityController(
 {
     private static readonly TimeSpan AccessLifetime = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan GameTicketLifetime = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan RefreshLifetime = TimeSpan.FromDays(30);
 
     [HttpPost("accounts")]
     public async Task<ActionResult<AccountResponse>> RegisterAsync(
         RegisterAccountRequest request,
         CancellationToken cancellationToken)
     {
-        var userName = NormalizeDisplayName(request.UserName);
+        string userName;
+        try
+        {
+            userName = NormalizeDisplayName(request.UserName);
+        }
+        catch (ArgumentException)
+        {
+            return BadRequest(new { error = "invalid_account_name" });
+        }
+
         var normalized = userName.ToUpperInvariant();
-        var password = PasswordHasher.Hash(request.Password);
+        PasswordHashResult password;
+        try
+        {
+            password = PasswordHasher.Hash(request.Password);
+        }
+        catch (ArgumentException)
+        {
+            return BadRequest(new { error = "invalid_password" });
+        }
         var account = new Account(
             userName,
             normalized,
@@ -66,16 +84,48 @@ public sealed class IdentityController(
             return Unauthorized(new { error = "invalid_credentials" });
         }
 
-        var expiresAt = timeProvider.GetUtcNow().Add(AccessLifetime);
-        var accessToken = await tokens.IssueAsync(
-            "access",
-            new AccessSession(account.Id, account.UserName, expiresAt),
-            AccessLifetime,
-            cancellationToken);
-        return Ok(new LoginResponse(
-            accessToken,
-            expiresAt,
-            new AccountResponse(account.Id, account.UserName)));
+        return Ok(await IssueLoginAsync(account.Id, account.UserName, cancellationToken));
+    }
+
+    [HttpGet("auth/me")]
+    public async Task<ActionResult<AccountResponse>> MeAsync(CancellationToken cancellationToken)
+    {
+        var access = await AuthenticateAsync(cancellationToken);
+        return access is null
+            ? Unauthorized(new { error = "invalid_access_token" })
+            : Ok(new AccountResponse(access.AccountId, access.UserName));
+    }
+
+    [HttpPost("auth/refresh")]
+    public async Task<ActionResult<LoginResponse>> RefreshAsync(
+        RefreshTokenRequest request,
+        CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrWhiteSpace(request.RefreshToken))
+        {
+            return Unauthorized(new { error = "invalid_refresh_token" });
+        }
+
+        var refresh = await tokens.ConsumeAsync<RefreshSession>(
+            "refresh", request.RefreshToken, cancellationToken);
+        if (refresh is null || refresh.ExpiresAt <= timeProvider.GetUtcNow())
+        {
+            return Unauthorized(new { error = "invalid_refresh_token" });
+        }
+
+        return Ok(await IssueLoginAsync(refresh.AccountId, refresh.UserName, cancellationToken));
+    }
+
+    [HttpPost("auth/logout")]
+    public async Task<IActionResult> LogoutAsync(
+        LogoutRequest request,
+        CancellationToken cancellationToken)
+    {
+        if (!string.IsNullOrWhiteSpace(request.RefreshToken))
+        {
+            await tokens.RevokeAsync("refresh", request.RefreshToken, cancellationToken);
+        }
+        return NoContent();
     }
 
     [HttpGet("game-servers")]
@@ -108,7 +158,7 @@ public sealed class IdentityController(
         return Ok(new GameTicketResponse(gameTicket, expiresAt, server));
     }
 
-    private async ValueTask<AccessSession?> AuthenticateAsync(CancellationToken cancellationToken)
+    internal async ValueTask<AccessSession?> AuthenticateAsync(CancellationToken cancellationToken)
     {
         var header = Request.Headers.Authorization.ToString();
         const string prefix = "Bearer ";
@@ -124,6 +174,28 @@ public sealed class IdentityController(
         return access is not null && access.ExpiresAt > timeProvider.GetUtcNow()
             ? access
             : null;
+    }
+
+    private async Task<LoginResponse> IssueLoginAsync(
+        long accountId,
+        string userName,
+        CancellationToken cancellationToken)
+    {
+        var now = timeProvider.GetUtcNow();
+        var expiresAt = now.Add(AccessLifetime);
+        var refreshExpiresAt = now.Add(RefreshLifetime);
+        var accessToken = await tokens.IssueAsync(
+            "access", new AccessSession(accountId, userName, expiresAt),
+            AccessLifetime, cancellationToken);
+        var refreshToken = await tokens.IssueAsync(
+            "refresh", new RefreshSession(accountId, userName, refreshExpiresAt),
+            RefreshLifetime, cancellationToken);
+        return new LoginResponse(
+            accessToken,
+            expiresAt,
+            refreshToken,
+            refreshExpiresAt,
+            new AccountResponse(accountId, userName));
     }
 
     private GameServerResponse[] ReadServers()
@@ -147,11 +219,6 @@ public sealed class IdentityController(
 
         return value;
     }
-
-    private sealed record AccessSession(
-        long AccountId,
-        string UserName,
-        DateTimeOffset ExpiresAt);
 
     private sealed record LoginTicket(
         long AccountId,

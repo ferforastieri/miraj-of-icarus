@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Masicarus.Domain\Masicarus.Domain.csproj" />
+    <ProjectReference Include="..\..\..\game-server\libraries\contracts\Masicarus.Game.Contracts\Masicarus.Game.Contracts.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

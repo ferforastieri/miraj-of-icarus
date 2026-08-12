@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Masicarus.Game.Runtime;
+using Masicarus.Game.Contracts;
 using Masicarus.LobbyServer;
 using Npgsql;
 using StackExchange.Redis;
@@ -160,27 +161,10 @@ internal static class LobbyAuthentication
 
 internal static class CharacterValidator
 {
-    private static readonly HashSet<string> Archetypes =
-        ["warrior", "priest", "wizard", "nature", "thief", "guardian"];
-    private static readonly HashSet<string> Genders = ["male", "female"];
-
     public static string? Validate(CreateCharacterRequest request)
     {
-        var name = request.Name.Trim();
-        if (name.Length is < 3 or > 24 || name.Any(character => !char.IsLetterOrDigit(character)))
-        {
-            return "invalid_character_name";
-        }
-
-        if (!Archetypes.Contains(request.Archetype))
-        {
-            return "invalid_archetype";
-        }
-
-        if (!Genders.Contains(request.Gender))
-        {
-            return "invalid_gender";
-        }
+        var rulesError = CharacterRules.Validate(request.Name, request.Archetype, request.Gender);
+        if (rulesError is not null) return rulesError;
 
         try
         {

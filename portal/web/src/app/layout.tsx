@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import "@fontsource/cormorant-garamond/400.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/ibm-plex-sans-condensed/400.css";
+import "@fontsource/ibm-plex-sans-condensed/500.css";
+import "@fontsource/ibm-plex-sans-condensed/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Masicarus — Uma nova era",
+    default: "Masicarus — A passagem está aberta",
     template: "%s | Masicarus",
   },
   description:
-    "Portal oficial do Masicarus, um mundo online sendo reconstruído sobre uma plataforma moderna.",
+    "Portal oficial do Masicarus. Baixe o launcher, acompanhe os reinos e gerencie sua conta.",
+  metadataBase: new URL("https://masicarus.com.br"),
+  alternates: { canonical: "/" },
+  icons: { icon: "/media/mark.png" },
 };
 
 export default function RootLayout({

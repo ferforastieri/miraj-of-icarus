@@ -370,10 +370,14 @@
       "masicarus.application": {
         "type": "Project",
         "dependencies": {
-          "Masicarus.Domain": "[1.0.0, )"
+          "Masicarus.Domain": "[1.0.0, )",
+          "Masicarus.Game.Contracts": "[1.0.0, )"
         }
       },
       "masicarus.domain": {
+        "type": "Project"
+      },
+      "masicarus.game.contracts": {
         "type": "Project"
       }
     }

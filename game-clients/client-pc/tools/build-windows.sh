@@ -56,4 +56,19 @@ install -m 0755 "${build_directory}/launcher/MasicarusLauncher.exe" "$launcher_o
 cmake -E copy_directory "${source_directory}/assets/launcher" "$launcher_output_directory/assets/launcher"
 cmake -E copy_directory "${source_directory}/assets/global/branding" "$launcher_output_directory/assets/global/branding"
 
+public_api_url="${MASICARUS_PUBLIC_API_URL:-http://localhost:8080}"
+if [[ "$public_api_url" != https://* && "$public_api_url" != http://localhost:* && "$public_api_url" != http://127.0.0.1:* ]]; then
+  echo "MASICARUS_PUBLIC_API_URL must use HTTPS (except localhost development URLs)" >&2
+  exit 1
+fi
+python3 - "$public_api_url" "$launcher_output_directory/assets/launcher/config.json" <<'PY'
+import json
+import pathlib
+import sys
+
+destination = pathlib.Path(sys.argv[2])
+destination.parent.mkdir(parents=True, exist_ok=True)
+destination.write_text(json.dumps({"apiEndpoint": sys.argv[1]}, separators=(",", ":")) + "\n")
+PY
+
 python3 "${source_directory}/tools/create-release-manifest.py" "$client_output_directory"
