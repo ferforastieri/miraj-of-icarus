@@ -1,0 +1,41 @@
+services:
+  api:
+    image: ghcr.io/${MASICARUS_GHCR_NAMESPACE:?Set MASICARUS_GHCR_NAMESPACE}/${MASICARUS_API_IMAGE:-masicarus-api}:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG}
+
+  main-server:
+    image: ghcr.io/${MASICARUS_GHCR_NAMESPACE:?Set MASICARUS_GHCR_NAMESPACE}/${MASICARUS_MAIN_IMAGE:-masicarus-main-server}:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG}
+
+  login-server:
+    image: ghcr.io/${MASICARUS_GHCR_NAMESPACE:?Set MASICARUS_GHCR_NAMESPACE}/${MASICARUS_LOGIN_IMAGE:-masicarus-login-server}:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG}
+
+  lobby-server:
+    image: ghcr.io/${MASICARUS_GHCR_NAMESPACE:?Set MASICARUS_GHCR_NAMESPACE}/${MASICARUS_LOBBY_IMAGE:-masicarus-lobby-server}:${MASICARUS_IMAGE_TAG:?Set MASICARUS_IMAGE_TAG}
+
+  portal:
+    profiles: [local-only]
+
+  caddy:
+    image: caddy:2.10.2-alpine
+    restart: unless-stopped
+    environment:
+      MASICARUS_TLS_EMAIL: ${MASICARUS_TLS_EMAIL:?Set MASICARUS_TLS_EMAIL}
+    depends_on:
+      api:
+        condition: service_healthy
+      login-server:
+        condition: service_healthy
+      lobby-server:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [backend]
+
+volumes:
+  caddy-data:
+  caddy-config:

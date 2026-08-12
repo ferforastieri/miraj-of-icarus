@@ -63,6 +63,7 @@ jobs:
       - run: cmake -S game-clients/client-pc -B build/client -G Ninja -DMASICARUS_BUILD_WINDOWS_APPS=OFF
       - run: cmake --build build/client
       - run: ctest --test-dir build/client --output-on-failure
+      - run: game-clients/client-pc/tools/test-publish-r2-release.sh
 
   portal:
     name: Portal
@@ -83,5 +84,6 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - run: npm run build:cloudflare
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

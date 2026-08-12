@@ -1,18 +1,14 @@
 import "server-only";
 
 import { cookies } from "next/headers";
+import {
+  ACCESS_COOKIE,
+  apiUrl,
+  type Account,
+} from "@/lib/session";
 
-export const ACCESS_COOKIE = "masicarus_access";
-export const REFRESH_COOKIE = "masicarus_refresh";
-
-export type Account = { accountId: number; userName: string };
-export type Session = {
-  accessToken: string;
-  expiresAt: string;
-  refreshToken: string;
-  refreshExpiresAt: string;
-  account: Account;
-};
+export { ACCESS_COOKIE, REFRESH_COOKIE, apiUrl } from "@/lib/session";
+export type { Account, Session } from "@/lib/session";
 export type GameServer = {
   id: string;
   name: string;
@@ -38,8 +34,6 @@ export type ClientRelease = {
   launcherUrl: string;
   publishedAt: string;
 };
-
-export const apiUrl = process.env.MASICARUS_API_INTERNAL_URL ?? "http://127.0.0.1:8080";
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
   return fetch(`${apiUrl}${path}`, {

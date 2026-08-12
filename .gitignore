@@ -5,6 +5,7 @@
 .env
 .env.*
 !.env.example
+!.env.production.example
 *.key
 *.pem
 !game-clients/client-pc/launcher/keys/release-signing-public.pem

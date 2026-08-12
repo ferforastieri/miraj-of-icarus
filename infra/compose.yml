@@ -42,6 +42,11 @@ services:
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
       ClientReleases__ChannelManifestUrl: ${MASICARUS_RELEASE_CHANNEL_URL:-https://downloads.masicarus.com.br/channels/alpha.json}
+      GameServers__0__Id: masicarus-alpha
+      GameServers__0__Name: MASICARUS Alpha
+      GameServers__0__Region: BR
+      GameServers__0__LoginEndpoint: ${MASICARUS_PUBLIC_LOGIN_URL:-http://localhost:8081}
+      GameServers__0__Available: "true"
     depends_on:
       postgres:
         condition: service_healthy

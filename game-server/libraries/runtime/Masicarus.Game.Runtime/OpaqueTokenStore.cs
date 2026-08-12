@@ -58,6 +58,15 @@ public sealed class OpaqueTokenStore(IConnectionMultiplexer redis)
             : JsonSerializer.Deserialize<T>((string)result!, SerializerOptions);
     }
 
+    public async ValueTask RevokeAsync(
+        string purpose,
+        string token,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        await redis.GetDatabase().KeyDeleteAsync(BuildKey(purpose, token));
+    }
+
     public static string BuildKey(string purpose, string token)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(purpose);

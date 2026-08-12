@@ -23,6 +23,8 @@ servers evoluem juntos até formar jornadas completas e testáveis.
 - PostgreSQL e Redis para dados e sessões;
 - Next.js 16, React 19 e Tailwind CSS no portal;
 - Docker e GitHub Actions para integração contínua;
+- Cloudflare Workers para o portal, R2 para downloads e AWS Lightsail para os
+  serviços persistentes;
 - Git LFS para assets binários grandes.
 
 ## Arquitetura de execução
@@ -73,6 +75,23 @@ recebem cache imutável; `channels/alpha.json` recebe cache de 60 segundos. Para
 rollback, copie novamente o manifesto de uma release completa anterior para
 `channels/alpha.json`; os objetos versionados nunca são sobrescritos.
 
+## Entrega contínua e produção
+
+O GitHub Actions é o único coordenador das pipelines:
+
+- `ci.yml` valida .NET, contratos C++ e portal em cada PR e push em `main`;
+- `portal-deploy.yml`, depois de uma CI aprovada em `main`, publica a mesma
+  revisão como Worker OpenNext no Cloudflare;
+- `backend-deploy.yml`, também depois da CI, cria imagens Linux no GHCR e
+  atualiza API, Main, Login e Lobby no Lightsail com verificação de saúde e
+  rollback;
+- `client-release.yml` recompila os executáveis Windows quando o cliente ou o
+  launcher muda e publica a release assinada no R2.
+
+O portal não roda no Lightsail em produção. Ele continua disponível no Compose
+base apenas para desenvolvimento local. O guia completo de DNS, secrets,
+primeiro deploy e rollback está em [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 ## Desenvolvimento local
 
 Requer .NET SDK 10, CMake 3.25+, Ninja, compilador C++20, Node.js e Docker.
@@ -90,6 +109,8 @@ npm --prefix portal/web ci
 npm --prefix portal/web run lint
 npm --prefix portal/web run typecheck
 npm --prefix portal/web run build
+npm --prefix portal/web run build:cloudflare
+npm --prefix portal/web run test:e2e
 ```
 
 O launcher e o cliente Windows são compilados por cross-compilation na pipeline

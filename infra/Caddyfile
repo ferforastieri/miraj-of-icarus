@@ -1,0 +1,29 @@
+{
+	email {$MASICARUS_TLS_EMAIL}
+}
+
+(security) {
+	encode zstd gzip
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+}
+
+api.masicarus.com.br {
+	import security
+	reverse_proxy api:8080
+}
+
+login.masicarus.com.br {
+	import security
+	reverse_proxy login-server:8080
+}
+
+lobby.masicarus.com.br {
+	import security
+	reverse_proxy lobby-server:8080
+}

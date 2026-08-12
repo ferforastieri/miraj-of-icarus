@@ -3,17 +3,19 @@ WORKDIR /source
 
 COPY global.json ./
 COPY api/Masicarus.slnx api/Directory.Build.props ./api/
-COPY api/src/Masicarus.Api/Masicarus.Api.csproj api/src/Masicarus.Api/packages.lock.json ./api/src/Masicarus.Api/
-COPY api/src/Masicarus.Application/Masicarus.Application.csproj api/src/Masicarus.Application/packages.lock.json ./api/src/Masicarus.Application/
-COPY api/src/Masicarus.Domain/Masicarus.Domain.csproj api/src/Masicarus.Domain/packages.lock.json ./api/src/Masicarus.Domain/
-COPY api/src/Masicarus.Infrastructure/Masicarus.Infrastructure.csproj api/src/Masicarus.Infrastructure/packages.lock.json ./api/src/Masicarus.Infrastructure/
-COPY api/tests/Masicarus.Api.Tests/Masicarus.Api.Tests.csproj api/tests/Masicarus.Api.Tests/packages.lock.json ./api/tests/Masicarus.Api.Tests/
+COPY api/src/Api/Masicarus.Api.csproj api/src/Api/packages.lock.json ./api/src/Api/
+COPY api/src/Application/Masicarus.Application.csproj api/src/Application/packages.lock.json ./api/src/Application/
+COPY api/src/Domain/Masicarus.Domain.csproj api/src/Domain/packages.lock.json ./api/src/Domain/
+COPY api/src/Infrastructure/Masicarus.Infrastructure.csproj api/src/Infrastructure/packages.lock.json ./api/src/Infrastructure/
+COPY api/tests/Api.Tests/Masicarus.Api.Tests.csproj api/tests/Api.Tests/packages.lock.json ./api/tests/Api.Tests/
 COPY game-server/libraries/contracts/Masicarus.Game.Contracts/Masicarus.Game.Contracts.csproj game-server/libraries/contracts/Masicarus.Game.Contracts/packages.lock.json ./game-server/libraries/contracts/Masicarus.Game.Contracts/
+COPY game-server/libraries/runtime/Masicarus.Game.Runtime/Masicarus.Game.Runtime.csproj game-server/libraries/runtime/Masicarus.Game.Runtime/packages.lock.json ./game-server/libraries/runtime/Masicarus.Game.Runtime/
 RUN dotnet restore api/Masicarus.slnx --locked-mode
 
 COPY api ./api
 COPY game-server/libraries/contracts/Masicarus.Game.Contracts ./game-server/libraries/contracts/Masicarus.Game.Contracts
-RUN dotnet publish api/src/Masicarus.Api/Masicarus.Api.csproj \
+COPY game-server/libraries/runtime/Masicarus.Game.Runtime ./game-server/libraries/runtime/Masicarus.Game.Runtime
+RUN dotnet publish api/src/Api/Masicarus.Api.csproj \
     --configuration Release \
     --no-restore \
     --output /app/publish \

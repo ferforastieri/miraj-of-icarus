@@ -1,3 +1,4 @@
+using Masicarus.Game.Contracts;
 using Masicarus.Game.Runtime;
 using Masicarus.LoginServer;
 using StackExchange.Redis;

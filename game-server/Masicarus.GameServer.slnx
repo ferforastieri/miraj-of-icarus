@@ -12,5 +12,6 @@
   <Folder Name="/tests/">
     <Project Path="tests/Masicarus.Coordinator.Tests/Masicarus.Coordinator.Tests.csproj" />
     <Project Path="tests/Masicarus.LegacyProtocol.Tests/Masicarus.LegacyProtocol.Tests.csproj" />
+    <Project Path="tests/Masicarus.LobbyServer.Tests/Masicarus.LobbyServer.Tests.csproj" />
   </Folder>
 </Solution>
