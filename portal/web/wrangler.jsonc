@@ -18,11 +18,11 @@
     }
   ],
   "vars": {
-    "MIRAJ_OF_ICARUS_API_INTERNAL_URL": "https://api.mirajoficarus.com.br"
+    "MIRAJ_OF_ICARUS_API_INTERNAL_URL": "https://api.mirajoficarus.com"
   },
   "routes": [
     {
-      "pattern": "mirajoficarus.com.br",
+      "pattern": "mirajoficarus.com",
       "custom_domain": true
     }
   ],

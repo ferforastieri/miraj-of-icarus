@@ -3,7 +3,7 @@
 ## Topologia
 
 - bucket: `miraj-of-icarus-releases`;
-- domínio de produção: `downloads.mirajoficarus.com.br`;
+- domínio de produção: `downloads.mirajoficarus.com`;
 - canal mutável: `channels/alpha.json`;
 - objetos imutáveis: `releases/{git-sha}/...`.
 
@@ -12,7 +12,7 @@ Domains**. O endpoint `r2.dev` pode ser habilitado em testes, mas deve ficar
 desabilitado em produção para não criar um caminho público alternativo sem as
 regras de cache e segurança do domínio próprio.
 
-Antes disso, a zona `mirajoficarus.com.br` precisa aparecer como **Active** no
+Antes disso, a zona `mirajoficarus.com` precisa aparecer como **Active** no
 Cloudflare. No Registro.br, os únicos nameservers devem ser exatamente os dois
 atribuídos à zona pelo Cloudflare. Não crie um registro DNS manual para
 `downloads`: ao conectar o Custom Domain, o próprio R2 cria e administra o
@@ -34,7 +34,7 @@ ao Amazon S3 e isso não cria um segundo serviço de armazenamento na AWS.
 O workflow gera dois produtos:
 
 1. `MirajOfIcarusLauncher.zip`, contendo o launcher, a identidade visual e
-   `assets/launcher/config.json` apontando para `https://api.mirajoficarus.com.br`;
+   `assets/launcher/config.json` apontando para `https://api.mirajoficarus.com`;
 2. o cliente descompactado, seu manifesto assinado e os arquivos atualizáveis.
 
 `publish-r2-release.sh` valida os hashes locais, envia todos os objetos versionados,

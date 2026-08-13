@@ -13,17 +13,17 @@
 	}
 }
 
-api.mirajoficarus.com.br {
+api.mirajoficarus.com {
 	import security
 	reverse_proxy api:8080
 }
 
-login.mirajoficarus.com.br {
+login.mirajoficarus.com {
 	import security
 	reverse_proxy login-server:8080
 }
 
-lobby.mirajoficarus.com.br {
+lobby.mirajoficarus.com {
 	import security
 	reverse_proxy lobby-server:8080
 }

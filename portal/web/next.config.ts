@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1"],
+  allowedDevOrigins: ["127.0.0.1", "192.168.15.10"],
   output: process.env.MIRAJ_OF_ICARUS_STANDALONE_BUILD === "true" ? "standalone" : undefined,
 };
 

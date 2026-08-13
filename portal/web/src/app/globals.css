@@ -34,15 +34,20 @@
   to { opacity: 1; transform: scale(1.01); filter: saturate(1) contrast(1); }
 }
 
+@keyframes jade-cursor-pointer {
+  0%, 100% { transform: rotate(-18deg) scale(1); filter: drop-shadow(0 0 2px rgb(40 185 111 / .55)); }
+  50% { transform: rotate(-12deg) scale(1.14); filter: drop-shadow(0 0 8px rgb(78 240 150 / .95)); }
+}
+
 @layer base {
   * { box-sizing: border-box; }
   html {
     scroll-behavior: smooth;
     background: var(--color-abyss);
-    cursor: url("/media/branding/miraj-jade-cursor.png") 24 4, auto;
+    cursor: url("/media/branding/miraj-jade-cursor-crystal.png") 16 2, auto;
   }
   a, button, label, select, summary, [role="button"] {
-    cursor: url("/media/branding/miraj-jade-cursor.png") 24 4, pointer;
+    cursor: url("/media/branding/miraj-jade-cursor-crystal.png") 16 2, pointer;
   }
   input, textarea, [contenteditable="true"] { cursor: text; }
   body {
@@ -54,6 +59,56 @@
   }
   ::selection { color: var(--color-abyss); background: var(--color-jade); }
   :focus-visible { outline: 2px solid var(--color-jade); outline-offset: 4px; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-jade-cursor="active"],
+  html[data-jade-cursor="active"] body,
+  html[data-jade-cursor="active"] a,
+  html[data-jade-cursor="active"] button,
+  html[data-jade-cursor="active"] label,
+  html[data-jade-cursor="active"] select,
+  html[data-jade-cursor="active"] summary,
+  html[data-jade-cursor="active"] [role="button"] {
+    cursor: none;
+  }
+
+  html[data-jade-cursor="active"] input,
+  html[data-jade-cursor="active"] textarea,
+  html[data-jade-cursor="active"] [contenteditable="true"] {
+    cursor: text;
+  }
+
+  .jade-cursor {
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 48px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(calc(var(--cursor-x) - 10px), calc(var(--cursor-y) - 5px), 0);
+    transition: opacity 80ms linear;
+  }
+
+  .jade-cursor[data-visible="true"] { opacity: 1; }
+
+  .jade-cursor__crystal {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("/media/branding/miraj-jade-cursor-crystal.png") center / contain no-repeat;
+    transform: rotate(-18deg);
+    transform-origin: 50% 18%;
+    filter: drop-shadow(0 0 2px rgb(40 185 111 / .55));
+  }
+
+  .jade-cursor[data-interactive="true"] .jade-cursor__crystal {
+    animation: jade-cursor-pointer 760ms ease-in-out infinite;
+  }
 }
 
 @layer components {
@@ -80,5 +135,8 @@
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
+  }
+  .jade-cursor[data-interactive="true"] .jade-cursor__crystal {
+    transform: rotate(-18deg) scale(1.08);
   }
 }

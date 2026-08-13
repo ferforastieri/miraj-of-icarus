@@ -48,11 +48,11 @@ restrito. Login, Main e Lobby implementam a jornada inicial de sessão e
 personagens. O próximo marco é validar e ampliar essa jornada no ambiente
 hospedado.
 
-O portal público usa a mesma identidade do launcher em `https://mirajoficarus.com.br`.
+O portal público usa a mesma identidade do launcher em `https://mirajoficarus.com`.
 A rota `/painel` oferece cadastro, sessão persistente e gestão de personagens.
-A API pública é anunciada em `https://api.mirajoficarus.com.br`; releases assinadas
+A API pública é anunciada em `https://api.mirajoficarus.com`; releases assinadas
 do launcher e cliente são distribuídas pelo Cloudflare R2 em
-`https://downloads.mirajoficarus.com.br`.
+`https://downloads.mirajoficarus.com`.
 
 ## Publicação do cliente
 
@@ -69,7 +69,7 @@ Secrets exigidos no GitHub:
 - `CLOUDFLARE_R2_ACCESS_KEY_ID`;
 - `CLOUDFLARE_R2_SECRET_ACCESS_KEY`.
 
-O bucket deve possuir o domínio próprio `downloads.mirajoficarus.com.br`, com
+O bucket deve possuir o domínio próprio `downloads.mirajoficarus.com`, com
 acesso público somente por esse domínio. Objetos sob `releases/{git-sha}/`
 recebem cache imutável; `channels/alpha.json` recebe cache de 60 segundos. Para
 rollback, copie novamente o manifesto de uma release completa anterior para

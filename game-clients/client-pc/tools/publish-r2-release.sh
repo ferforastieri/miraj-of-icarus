@@ -10,7 +10,7 @@ readonly version="$1"
 readonly client_directory="$2"
 readonly launcher_archive="$3"
 readonly bucket="${MIRAJ_OF_ICARUS_R2_BUCKET:-miraj-of-icarus-releases}"
-readonly public_base="${MIRAJ_OF_ICARUS_DOWNLOAD_BASE_URL:-https://downloads.mirajoficarus.com.br}"
+readonly public_base="${MIRAJ_OF_ICARUS_DOWNLOAD_BASE_URL:-https://downloads.mirajoficarus.com}"
 
 [[ $version =~ ^[0-9a-f]{40}$ ]] || { echo "VERSION must be a full lowercase Git SHA" >&2; exit 2; }
 for name in CLOUDFLARE_R2_ACCOUNT_ID AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do

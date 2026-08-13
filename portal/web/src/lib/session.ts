@@ -12,5 +12,5 @@ export type Session = {
 
 export const apiUrl = process.env.MIRAJ_OF_ICARUS_API_INTERNAL_URL ??
   (process.env.NODE_ENV === "production"
-    ? "https://api.mirajoficarus.com.br"
+    ? "https://api.mirajoficarus.com"
     : "http://127.0.0.1:8080");

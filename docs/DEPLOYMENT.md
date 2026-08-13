@@ -4,11 +4,11 @@
 
 | Endereço | Execução | Função |
 | --- | --- | --- |
-| `mirajoficarus.com.br` | Cloudflare Worker/OpenNext | landing e painel Next.js |
-| `downloads.mirajoficarus.com.br` | Cloudflare R2 | launcher, cliente e manifestos |
-| `api.mirajoficarus.com.br` | Lightsail, via Caddy | contas, sessão, personagens e releases |
-| `login.mirajoficarus.com.br` | Lightsail, via Caddy | entrada do cliente no jogo |
-| `lobby.mirajoficarus.com.br` | Lightsail, via Caddy | seleção de personagens |
+| `mirajoficarus.com` | Cloudflare Worker/OpenNext | landing e painel Next.js |
+| `downloads.mirajoficarus.com` | Cloudflare R2 | launcher, cliente e manifestos |
+| `api.mirajoficarus.com` | Lightsail, via Caddy | contas, sessão, personagens e releases |
+| `login.mirajoficarus.com` | Lightsail, via Caddy | entrada do cliente no jogo |
+| `lobby.mirajoficarus.com` | Lightsail, via Caddy | seleção de personagens |
 
 PostgreSQL, Redis e Main/Coordinator ficam apenas na rede Docker do Lightsail.
 O portal acessa a API pública pelo lado servidor; access e refresh tokens ficam
@@ -16,7 +16,7 @@ em cookies `HttpOnly`, nunca em `localStorage`.
 
 ## 1. Ativar o domínio no Cloudflare
 
-1. Adicione `mirajoficarus.com.br` como uma zona no Cloudflare.
+1. Adicione `mirajoficarus.com` como uma zona no Cloudflare.
 2. No Registro.br, troque os servidores DNS pelos dois nameservers fornecidos
    pelo Cloudflare e aguarde a zona mudar para **Active**.
 3. Preserve os registros MX/TXT de e-mail importados. Não publique registros
@@ -27,7 +27,7 @@ em cookies `HttpOnly`, nunca em `localStorage`.
 1. Crie o bucket `miraj-of-icarus-releases`, classe **Standard** e localização
    automática.
 2. Em **Settings > Custom Domains**, conecte
-   `downloads.mirajoficarus.com.br`.
+   `downloads.mirajoficarus.com`.
 3. Deixe o acesso `r2.dev` desativado em produção.
 4. Crie um token R2 restrito a esse bucket, com leitura e gravação de objetos.
 
@@ -51,8 +51,8 @@ Workers Scripts e Workers Routes. Cadastre:
 - `CLOUDFLARE_API_TOKEN`.
 
 O arquivo `portal/web/wrangler.jsonc` declara o Worker
-`miraj-of-icarus-portal`, a rota customizada `mirajoficarus.com.br` e a API interna como
-`https://api.mirajoficarus.com.br`. O workflow publica o portal somente depois que
+`miraj-of-icarus-portal`, a rota customizada `mirajoficarus.com` e a API interna como
+`https://api.mirajoficarus.com`. O workflow publica o portal somente depois que
 a CI da mesma revisão passa. Não crie um projeto Pages separado.
 
 ## 4. Preparar o Lightsail
@@ -103,9 +103,9 @@ A sequência esperada é:
 Verifique:
 
 ```bash
-curl --fail https://mirajoficarus.com.br/api/health
-curl --fail https://api.mirajoficarus.com.br/health/ready
-curl --fail https://downloads.mirajoficarus.com.br/channels/alpha.json
+curl --fail https://mirajoficarus.com/api/health
+curl --fail https://api.mirajoficarus.com/health/ready
+curl --fail https://downloads.mirajoficarus.com/channels/alpha.json
 ```
 
 No servidor, use:

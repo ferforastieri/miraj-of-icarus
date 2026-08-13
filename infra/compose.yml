@@ -41,7 +41,7 @@ services:
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
-      ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com.br/channels/alpha.json}
+      ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com/channels/alpha.json}
       GameServers__0__Id: miraj-of-icarus-alpha
       GameServers__0__Name: Miraj of Icarus Alpha
       GameServers__0__Region: BR
