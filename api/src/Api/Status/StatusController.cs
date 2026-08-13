@@ -1,5 +1,6 @@
 using MirajOfIcarus.Api.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using MirajOfIcarus.Api.Security;
 
 namespace MirajOfIcarus.Api.Status;
 
@@ -8,6 +9,7 @@ namespace MirajOfIcarus.Api.Status;
 public sealed class StatusController : ControllerBase
 {
     [HttpGet]
+    [RateLimit("public-read")]
     [ProducesResponseType<ServiceStatusResponse>(StatusCodes.Status200OK)]
     public ActionResult<ServiceStatusResponse> Get()
     {

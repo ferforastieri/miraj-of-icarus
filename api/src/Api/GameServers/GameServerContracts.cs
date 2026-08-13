@@ -5,7 +5,8 @@ public sealed record GameServerResponse(
     string Name,
     string Region,
     string LoginEndpoint,
-    bool Available);
+    bool Available,
+    string? MaintenanceMessage);
 
 public sealed record GameTicketRequest(string ServerId);
 

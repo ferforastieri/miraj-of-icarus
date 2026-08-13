@@ -1,5 +1,6 @@
 using MirajOfIcarus.Application.Accounts;
 using MirajOfIcarus.Application.Common;
+using MirajOfIcarus.Domain.Accounts;
 
 namespace MirajOfIcarus.Application.Authentication;
 
@@ -27,8 +28,14 @@ public sealed class AuthenticationService(
                 "invalid_credentials", ApplicationErrorType.Unauthorized);
         }
 
+        if (account.Status == AccountStatus.Suspended)
+        {
+            return ApplicationResult.Failure<LoginSession>(
+                "account_suspended", ApplicationErrorType.Unauthorized);
+        }
+
         return ApplicationResult.Success(
-            await IssueLoginAsync(account.Id, account.UserName, cancellationToken));
+            await IssueLoginAsync(account, cancellationToken));
     }
 
     public async Task<ApplicationResult<LoginSession>> RefreshAsync(
@@ -47,8 +54,14 @@ public sealed class AuthenticationService(
             return InvalidRefresh();
         }
 
-        return ApplicationResult.Success(
-            await IssueLoginAsync(refresh.AccountId, refresh.UserName, cancellationToken));
+        var account = await accounts.FindByIdAsync(refresh.AccountId, cancellationToken);
+        if (account is null || account.Status == AccountStatus.Suspended)
+        {
+            await tokens.RevokeAccountAsync(refresh.AccountId, cancellationToken);
+            return InvalidRefresh();
+        }
+
+        return ApplicationResult.Success(await IssueLoginAsync(account, cancellationToken));
     }
 
     public async ValueTask LogoutAsync(
@@ -68,31 +81,33 @@ public sealed class AuthenticationService(
         if (string.IsNullOrWhiteSpace(accessToken)) return null;
         var access = await tokens.ReadAsync<AccessSession>(
             "access", accessToken, cancellationToken);
-        return access is not null && access.ExpiresAt > timeProvider.GetUtcNow()
-            ? new AccountIdentity(access.AccountId, access.UserName)
+        if (access is null || access.ExpiresAt <= timeProvider.GetUtcNow()) return null;
+        var account = await accounts.FindByIdAsync(access.AccountId, cancellationToken);
+        return account is { Status: AccountStatus.Active }
+            ? new AccountIdentity(account.Id, account.UserName, account.Role, account.Status)
             : null;
     }
 
     private async Task<LoginSession> IssueLoginAsync(
-        long accountId,
-        string userName,
+        Account account,
         CancellationToken cancellationToken)
     {
         var now = timeProvider.GetUtcNow();
         var expiresAt = now.Add(AccessLifetime);
         var refreshExpiresAt = now.Add(RefreshLifetime);
         var accessToken = await tokens.IssueAsync(
-            "access", new AccessSession(accountId, userName, expiresAt),
+            "access", new AccessSession(
+                account.Id, account.UserName, account.Role, account.Status, expiresAt),
             AccessLifetime, cancellationToken);
         var refreshToken = await tokens.IssueAsync(
-            "refresh", new RefreshSession(accountId, userName, refreshExpiresAt),
+            "refresh", new RefreshSession(account.Id, account.UserName, refreshExpiresAt),
             RefreshLifetime, cancellationToken);
         return new LoginSession(
             accessToken,
             expiresAt,
             refreshToken,
             refreshExpiresAt,
-            new AccountIdentity(accountId, userName));
+            new AccountIdentity(account.Id, account.UserName, account.Role, account.Status));
     }
 
     private static ApplicationResult<LoginSession> InvalidRefresh() =>

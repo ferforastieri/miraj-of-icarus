@@ -1,77 +1,59 @@
 "use client";
 
-import Link from "next/link";
-import { use, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAccount } from "@/api/authentication/get-account";
-import { useLogout } from "@/api/authentication/logout";
+import { useAdminAccounts, useAdminAudit, useAdminCharacters, useAdminDeleteCharacter, useAdminOverview, useAdminRestoreCharacter, useSetMaintenance, useSuspendAccount, useRestoreAccount } from "@/api/administration/admin";
 import { useGameServers } from "@/api/game-servers/get-game-servers";
-import { useLatestRelease } from "@/api/releases/get-latest-release";
-import { AuthPortal } from "@/components/AuthPortal";
-import { CharacterPanel } from "@/components/CharacterPanel";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
 import { routes } from "@/routes";
 
-function formatBytes(bytes: number) {
-  if (bytes < 1024 ** 2) return `${Math.ceil(bytes / 1024)} KB`;
-  if (bytes < 1024 ** 3) return `${(bytes / 1024 ** 2).toFixed(1)} MB`;
-  return `${(bytes / 1024 ** 3).toFixed(1)} GB`;
-}
-
-export default function PanelPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ modo?: string; erro?: string }>;
-}) {
-  const query = use(searchParams);
+export default function AdministrationPage() {
   const account = useAccount();
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [selectedAccount, setSelectedAccount] = useState<number | null>(null);
+  const overview = useAdminOverview(account.data?.role === "Administrator");
+  const accounts = useAdminAccounts(query, page, account.data?.role === "Administrator");
+  const characters = useAdminCharacters(selectedAccount, account.data?.role === "Administrator");
+  const audit = useAdminAudit(account.data?.role === "Administrator");
   const servers = useGameServers();
-  const release = useLatestRelease();
-  const logout = useLogout();
-
+  const suspend = useSuspendAccount();
+  const restore = useRestoreAccount();
+  const deleteCharacter = useAdminDeleteCharacter();
+  const restoreCharacter = useAdminRestoreCharacter();
+  const maintenance = useSetMaintenance();
   useEffect(() => {
-    if (!account.data) return;
-    document.title = `Painel | Miraj of Icarus`;
-  }, [account.data]);
+    if (!account.isLoading && !account.data) window.location.replace(`${routes.login}?retorno=${encodeURIComponent(routes.panel)}`);
+    if (account.data && account.data.role !== "Administrator") window.location.replace(routes.client);
+  }, [account.data, account.isLoading]);
+  if (account.isLoading || account.data?.role !== "Administrator") return <div className="min-h-screen bg-abyss"><SiteHeader compact /><main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">Validando administração...</main></div>;
 
-  if (account.isLoading) {
-    return <div className="min-h-screen bg-abyss"><SiteHeader compact /><main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">Abrindo o painel...</main></div>;
-  }
-  if (!account.data) {
-    return <div className="min-h-screen overflow-hidden bg-abyss"><SiteHeader compact /><AuthPortal mode={query.modo ?? "login"} initialError={account.isError ? "service_unavailable" : query.erro} /></div>;
-  }
-
-  const availableServers = (servers.data ?? []).filter(server => server.available).length;
-  const overviewClass = "jade-card flex min-h-[190px] flex-col justify-between px-0 py-0 drop-shadow-[0_14px_20px_rgba(3,27,22,.28)]";
-  const overviewLabel = "text-xs uppercase tracking-[.16em] text-ancient-gold";
-  const overviewValue = "font-display text-2xl font-medium";
+  const stat = "jade-card flex min-h-[160px] flex-col justify-between";
   return (
-    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(40,185,111,.16),transparent_28%)] bg-abyss">
-      <SiteHeader compact />
-      <main className="mx-auto w-[min(1180px,calc(100%-48px))] py-20 max-[620px]:w-[calc(100%-32px)] max-[620px]:pt-14">
-        <header className="flex min-h-[250px] items-center justify-between gap-8 border-b border-moonsteel/20 max-[620px]:flex-col max-[620px]:items-start max-[620px]:py-12">
-          <div><Kicker>Portal do jogador</Kicker><h1 className="mb-3 font-display text-[clamp(3.2rem,6vw,6rem)] font-medium leading-[.85]">Bem-vindo, <em className="font-normal text-frost">{account.data.userName}</em>.</h1><p className="text-mist">Acompanhe seus viajantes e prepare a próxima entrada no reino.</p></div>
-          <Button variant="ghost" type="button" disabled={logout.isPending} onClick={() => logout.mutate()}>{logout.isPending ? "Saindo..." : "Sair da conta"}</Button>
-        </header>
-
-        {query.erro && <Alert className="mt-6" role="status">Sua sessão terminou. Entre novamente.</Alert>}
-
-        <section className="my-10 mb-24 grid grid-cols-4 gap-2 max-[900px]:grid-cols-2 max-[620px]:grid-cols-1" aria-label="Visão geral">
-          <article className={overviewClass}><span className={overviewLabel}>Conta</span><strong className={overviewValue}>{account.data.userName}</strong><small className="text-mist">ID #{account.data.accountId}</small></article>
-          <article className={overviewClass}><span className={overviewLabel}>Reinos</span><strong className={overviewValue}>{availableServers} online</strong><small className="text-mist">{servers.data?.length || "Nenhum"} configurado(s)</small></article>
-          <article className={overviewClass}><span className={overviewLabel}>Release Alpha</span><strong className={overviewValue}>{release.data ? release.data.version.slice(0, 8) : "Em preparação"}</strong><small className="text-mist">{release.data ? formatBytes(release.data.totalSize) : "Sem download disponível"}</small></article>
-          <article className={overviewClass}><span className={overviewLabel}>Launcher</span>{release.data ? <a className={`${overviewValue} text-frost`} href={release.data.launcherUrl}>Baixar para Windows ↓</a> : <strong className={overviewValue}>Indisponível</strong>}<small className="text-mist">Atualização e integridade automáticas</small></article>
+    <div className="min-h-screen bg-abyss"><SiteHeader compact />
+      <main className="mx-auto w-[min(1180px,calc(100%-40px))] py-16 max-[560px]:w-[calc(100%-18px)] max-[560px]:py-9">
+        <Kicker>Administração do jogo</Kicker>
+        <h1 className="mb-4 text-[clamp(3rem,7vw,6rem)] leading-[.88]">Painel dos reinos</h1>
+        <p className="max-w-2xl text-mist">Contas, personagens, estado dos servidores e release ativa. Publicações e rollbacks continuam restritos ao GitHub.</p>
+        {overview.isError && <Alert className="mt-6">Não foi possível carregar a administração.</Alert>}
+        <section className="my-10 grid grid-cols-4 gap-2 max-[800px]:grid-cols-2 max-[480px]:grid-cols-1">
+          <article className={stat}><span className="text-ancient-gold">Contas</span><strong className="text-4xl">{overview.data?.accounts ?? "—"}</strong></article>
+          <article className={stat}><span className="text-ancient-gold">Personagens</span><strong className="text-4xl">{overview.data?.characters ?? "—"}</strong></article>
+          <article className={stat}><span className="text-ancient-gold">Reinos</span><strong className="text-4xl">{overview.data ? `${overview.data.availableServers}/${overview.data.totalServers}` : "—"}</strong></article>
+          <article className={stat}><span className="text-ancient-gold">Release</span><strong className="text-2xl">{overview.data?.release?.version.slice(0, 8) ?? "Sem release"}</strong></article>
         </section>
-
-        <CharacterPanel enabled />
-
-        <section className="mb-28 flex items-center justify-between gap-10 border-y border-moonsteel/20 p-10 max-[620px]:flex-col max-[620px]:items-start max-[620px]:px-0" aria-labelledby="security-title">
-          <div><Kicker>Segurança</Kicker><h2 id="security-title" className="mb-2 font-display text-4xl font-medium">Sua sessão</h2><p className="max-w-[600px] text-mist">Este dispositivo permanecerá conectado por até 30 dias. Ao sair, a renovação desta sessão é revogada.</p></div>
-          <Button type="button" disabled={logout.isPending} onClick={() => logout.mutate()}>Encerrar sessão</Button>
+        <section className="jade-card mb-16" aria-labelledby="accounts-title">
+          <div className="mb-6 flex items-end justify-between gap-5 max-[640px]:flex-col max-[640px]:items-stretch"><div><Kicker>Moderação</Kicker><h2 id="accounts-title" className="text-4xl">Contas</h2></div><label className="grid gap-2 text-xs uppercase text-mist">Buscar<Input value={query} onChange={event => { setQuery(event.target.value); setPage(1); }} placeholder="Nome da conta" /></label></div>
+          <div className="overflow-x-auto"><table className="w-full min-w-[760px] border-collapse text-left"><thead className="text-xs uppercase tracking-[.12em] text-ancient-gold"><tr><th className="p-3">Conta</th><th className="p-3">Papel</th><th className="p-3">Estado</th><th className="p-3">Ações</th></tr></thead><tbody>{accounts.data?.items.map(item => <tr className="border-t border-jade/20" key={item.accountId}><td className="p-3"><button className="text-left text-jade focus-visible:text-white" onClick={() => setSelectedAccount(item.accountId)}>{item.userName}<small className="block text-mist">#{item.accountId}</small></button></td><td className="p-3">{item.role}</td><td className="p-3">{item.status}</td><td className="flex gap-1 p-3">{item.status === "Active" ? <Button className="min-w-[140px]" variant="danger" onClick={() => { const reason = window.prompt("Motivo da suspensão"); if (reason) suspend.mutate({ accountId: item.accountId, reason }); }}>Suspender</Button> : <Button className="min-w-[140px]" onClick={() => restore.mutate(item.accountId)}>Reativar</Button>}<Button className="min-w-[140px]" onClick={() => setSelectedAccount(item.accountId)}>Personagens</Button></td></tr>)}</tbody></table></div>
+          <div className="mt-5 flex items-center justify-between"><Button disabled={page <= 1} onClick={() => setPage(value => value - 1)}>Anterior</Button><span className="text-sm text-mist">Página {page}</span><Button disabled={!accounts.data || page * accounts.data.pageSize >= accounts.data.total} onClick={() => setPage(value => value + 1)}>Próxima</Button></div>
         </section>
-        <Link className="text-xs text-mist" href={routes.home}>← Voltar para a landing page</Link>
+        {selectedAccount !== null && <section className="jade-card mb-16"><div className="mb-5 flex items-center justify-between"><div><Kicker>Conta #{selectedAccount}</Kicker><h2 className="text-4xl">Personagens</h2></div><Button onClick={() => setSelectedAccount(null)}>Fechar</Button></div><div className="grid gap-2">{characters.data?.map(character => <article className="flex items-center justify-between gap-4 border-y border-jade/20 p-4 max-[560px]:flex-col max-[560px]:items-start" key={character.id}><div><strong className="text-xl">{character.name}</strong><p className="text-sm text-mist">{character.archetype} · nível {character.level}{character.deletionScheduledAt ? " · exclusão agendada" : ""}</p></div>{character.deletionScheduledAt ? <Button onClick={() => restoreCharacter.mutate({ accountId: selectedAccount, characterId: character.id })}>Cancelar exclusão</Button> : <Button variant="danger" onClick={() => { if (window.confirm(`Agendar exclusão de ${character.name}?`)) deleteCharacter.mutate({ accountId: selectedAccount, characterId: character.id }); }}>Agendar exclusão</Button>}</article>)}</div></section>}
+        <section className="jade-card mb-16"><Kicker>Operação</Kicker><h2 className="mb-5 text-4xl">Manutenção dos reinos</h2><div className="grid gap-2">{servers.data?.map(server => <article className="flex items-center justify-between gap-5 border-y border-jade/20 p-4 max-[620px]:flex-col max-[620px]:items-start" key={server.id}><div><strong className="text-xl">{server.name}</strong><p className="text-sm text-mist">{server.available ? "Disponível" : server.maintenanceMessage || "Indisponível"}</p></div>{server.maintenanceMessage ? <Button onClick={() => maintenance.mutate({ serverId: server.id, enabled: false })}>Encerrar manutenção</Button> : <Button variant="danger" onClick={() => { const message = window.prompt("Mensagem pública de manutenção"); if (message) maintenance.mutate({ serverId: server.id, enabled: true, message }); }}>Ativar manutenção</Button>}</article>)}</div></section>
+        <section className="jade-card mb-16"><Kicker>Segurança</Kicker><h2 className="mb-5 text-4xl">Auditoria</h2><div className="grid gap-2">{audit.data?.map(entry => <article className="border-y border-jade/20 p-4" key={entry.id}><strong>{entry.action}</strong><span className="mx-2 text-ancient-gold">{entry.target}</span><time className="block text-sm text-mist">{new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" }).format(new Date(entry.createdAt))}</time></article>)}</div></section>
       </main>
     </div>
   );

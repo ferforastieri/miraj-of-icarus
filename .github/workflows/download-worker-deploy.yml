@@ -1,0 +1,45 @@
+name: Download worker deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: Full Git SHA already validated by CI
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: download-worker-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: distribution/download-worker
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.revision }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: distribution/download-worker/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - name: Install download authorization secret
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DOWNLOAD_AUTHORIZATION_SIGNING_KEY: ${{ secrets.DOWNLOAD_AUTHORIZATION_SIGNING_KEY }}
+        run: printf '%s' "$DOWNLOAD_AUTHORIZATION_SIGNING_KEY" | npx wrangler secret put DOWNLOAD_AUTHORIZATION_SIGNING_KEY
+      - name: Deploy without custom-domain cutover
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run deploy

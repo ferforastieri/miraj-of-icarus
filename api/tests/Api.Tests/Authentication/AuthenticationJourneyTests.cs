@@ -31,6 +31,8 @@ public sealed class AuthenticationJourneyTests(
 
         try
         {
+            client.DefaultRequestHeaders.Add("CF-Connecting-IP",
+                $"203.0.113.{Random.Shared.Next(1, 255)}");
             using var registration = await client.PostAsJsonAsync(
                 "/v1/accounts",
                 new RegisterAccountRequest(userName, ApiTestSupport.Password));

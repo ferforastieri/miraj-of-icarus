@@ -30,9 +30,11 @@ struct UpdateResult
 };
 
 using UpdateProgressCallback = std::function<void(const UpdateProgress&)>;
+using AccessTokenProvider = std::function<std::string()>;
 
 [[nodiscard]] UpdateResult EnsureClientReady(
     const std::string& apiEndpoint,
     const std::wstring& installDirectory,
+    const AccessTokenProvider& accessTokenProvider,
     const UpdateProgressCallback& progress = {});
 }

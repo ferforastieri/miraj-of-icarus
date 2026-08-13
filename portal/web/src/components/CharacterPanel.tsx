@@ -84,7 +84,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
             {character.deletionScheduledAt ? (
               <div className="col-span-full mt-4 flex items-center justify-between gap-5 border-t border-moonsteel/20 pt-4 max-[620px]:flex-col max-[620px]:items-start">
                 <p className="text-sm text-[#d49ba0]">Bloqueado. Exclusão em {formatDate(character.deletionScheduledAt)}.</p>
-                <button className="cursor-pointer border-0 bg-transparent text-xs uppercase tracking-[.08em] text-frost" type="button" onClick={() => restoreCharacter(character.id)} disabled={restore.isPending}>Cancelar exclusão</button>
+                <button className="cursor-pointer border-0 bg-transparent text-xs uppercase tracking-[.08em] text-jade" type="button" onClick={() => restoreCharacter(character.id)} disabled={restore.isPending}>Cancelar exclusão</button>
               </div>
             ) : (
               <details className="col-span-full mt-4 border-t border-moonsteel/20 pt-4">
@@ -108,7 +108,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
                   {Object.entries(classes).map(([value, label], index) => (
                     <label className="group grid min-h-[136px] cursor-pointer grid-rows-[113px_auto] justify-items-center text-center" key={value}>
                       <input className="peer sr-only" type="radio" name="archetype" value={value} defaultChecked={index === 0} />
-                      <Image className="mt-3 size-[71px] object-contain transition-[filter] group-hover:brightness-125 peer-checked:hidden" src={`/media/game-ui/classes/${value}.png`} alt="" width={71} height={71} />
+                      <Image className="mt-3 size-[71px] object-contain peer-checked:hidden" src={`/media/game-ui/classes/${value}.png`} alt="" width={71} height={71} />
                       <Image className="hidden h-auto w-[89px] object-contain drop-shadow-[0_4px_8px_rgba(22,164,235,.4)] peer-checked:block" src={`/media/game-ui/classes/${value}-selected.png`} alt="" width={89} height={113} />
                       <span className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-jade peer-checked:[text-shadow:0_0_7px_rgba(40,185,111,.75)]">{label}</span>
                     </label>

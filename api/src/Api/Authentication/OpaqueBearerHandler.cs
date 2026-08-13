@@ -36,6 +36,8 @@ public sealed class OpaqueBearerHandler(
             new Claim(ClaimTypes.NameIdentifier,
                 account.AccountId.ToString(System.Globalization.CultureInfo.InvariantCulture)),
             new Claim(ClaimTypes.Name, account.UserName),
+            new Claim(ClaimTypes.Role, account.Role.ToString()),
+            new Claim("account_status", account.Status.ToString()),
         };
         var principal = new ClaimsPrincipal(
             new ClaimsIdentity(claims, OpaqueBearerDefaults.Scheme));

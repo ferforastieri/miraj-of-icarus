@@ -37,6 +37,22 @@ public sealed class ClientReleaseEndpointsTests
         Assert.Equal(Version, release.Version);
         Assert.Equal(channel.LauncherUrl, release.LauncherUrl);
         Assert.Equal("no-store", response.Headers.CacheControl?.ToString());
+        var publicJson = await response.Content.ReadAsStringAsync();
+        Assert.DoesNotContain("manifestUrl", publicJson, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("signatureUrl", publicJson, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("filesBaseUrl", publicJson, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task DownloadSessionRequiresAuthenticationAsync()
+    {
+        await using var factory = CreateFactory("{}");
+        using var client = factory.CreateClient();
+
+        using var response = await client.PostAsync(
+            "/v1/client-releases/windows/download-session", null);
+
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
     [Fact]

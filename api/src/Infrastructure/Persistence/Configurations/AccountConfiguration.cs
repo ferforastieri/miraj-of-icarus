@@ -21,5 +21,14 @@ public sealed class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(entry => entry.PasswordSalt)
             .HasColumnName("password_salt").HasMaxLength(100);
         builder.Property(entry => entry.CreatedAt).HasColumnName("created_at");
+        builder.Property(entry => entry.Role)
+            .HasColumnName("role").HasConversion<string>().HasMaxLength(24)
+            .HasDefaultValue(AccountRole.Player);
+        builder.Property(entry => entry.Status)
+            .HasColumnName("status").HasConversion<string>().HasMaxLength(24)
+            .HasDefaultValue(AccountStatus.Active);
+        builder.Property(entry => entry.SuspensionReason)
+            .HasColumnName("suspension_reason").HasMaxLength(500);
+        builder.Property(entry => entry.SuspendedAt).HasColumnName("suspended_at");
     }
 }

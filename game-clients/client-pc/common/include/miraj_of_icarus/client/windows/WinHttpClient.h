@@ -17,7 +17,8 @@ using DownloadProgress = std::function<void(std::uint64_t received, std::uint64_
 void DownloadFile(
     const std::string& url,
     const std::wstring& destination,
-    const DownloadProgress& progress = {});
+    const DownloadProgress& progress = {},
+    const std::string& bearer = {});
 [[nodiscard]] std::string EncodeUrlPath(std::string_view path);
 [[nodiscard]] std::string ToUtf8(const std::wstring& value);
 [[nodiscard]] std::wstring ToWide(const std::string& value);

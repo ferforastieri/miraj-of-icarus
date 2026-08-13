@@ -7,6 +7,7 @@ export type GameServer = {
   region: string;
   loginEndpoint: string;
   available: boolean;
+  maintenanceMessage: string | null;
 };
 
 export function getGameServers() {

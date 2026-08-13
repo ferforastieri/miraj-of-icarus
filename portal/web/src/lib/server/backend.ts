@@ -88,9 +88,15 @@ export async function proxyResponse(response: Response | null) {
     return Response.json({ error: "session_expired" }, { status: 401 });
   }
   const body = response.status === 204 ? null : await response.text();
+  const headers = new Headers();
+  if (body) headers.set("content-type", response.headers.get("content-type") ?? "application/json");
+  for (const name of ["retry-after", "ratelimit-limit", "ratelimit-remaining"]) {
+    const value = response.headers.get(name);
+    if (value) headers.set(name, value);
+  }
   return new Response(body, {
     status: response.status,
-    headers: body ? { "content-type": response.headers.get("content-type") ?? "application/json" } : undefined,
+    headers,
   });
 }
 

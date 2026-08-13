@@ -3,14 +3,14 @@ import { expect, test } from "@playwright/test";
 test("landing apresenta o mundo e o estado seguro de release", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /A passagem está aberta/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Acessar painel" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /Um mundo antigo/i })).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
 });
 
-test("painel visitante alterna para cadastro e valida os campos", async ({ page }) => {
-  await page.goto("/painel?modo=cadastro");
+test("cadastro público valida os campos", async ({ page }) => {
+  await page.goto("/criar-conta");
   await expect(page.getByRole("heading", { name: "Abra sua passagem." })).toBeVisible();
   await expect(page.getByRole("button", { name: "Criar conta e entrar" })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Conta" })).toHaveAttribute("minlength", "3");
@@ -22,7 +22,7 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
   const account = `Conta${suffix}`.slice(0, 32);
   const character = `Heroi${suffix}`.slice(0, 24);
 
-  await page.goto("/painel?modo=cadastro");
+  await page.goto("/criar-conta");
   await page.getByRole("textbox", { name: "Conta" }).fill(account);
   await page.getByLabel("Senha", { exact: true }).fill("uma senha de teste segura");
   await page.getByLabel("Confirmar senha").fill("uma senha de teste segura");
@@ -44,7 +44,7 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
   await expect(page.getByText(/Bloqueado\. Exclusão em/)).toHaveCount(0);
 
   await context.clearCookies({ name: "miraj_of_icarus_access" });
-  await page.goto("/painel");
+  await page.goto("/cliente");
   await expect(page.getByRole("heading", { name: new RegExp(account) })).toBeVisible();
   const cookies = await context.cookies();
   expect(cookies.some(cookie => cookie.name === "miraj_of_icarus_access" && cookie.httpOnly)).toBeTruthy();

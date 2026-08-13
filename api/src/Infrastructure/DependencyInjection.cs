@@ -1,15 +1,19 @@
 using MirajOfIcarus.Application.Accounts;
+using MirajOfIcarus.Application.Administration;
 using MirajOfIcarus.Application.Authentication;
 using MirajOfIcarus.Application.Characters;
 using MirajOfIcarus.Application.GameServers;
 using MirajOfIcarus.Application.Releases;
+using MirajOfIcarus.Application.Security;
 using MirajOfIcarus.Infrastructure.Accounts;
+using MirajOfIcarus.Infrastructure.Administration;
 using MirajOfIcarus.Infrastructure.Authentication;
 using MirajOfIcarus.Infrastructure.Characters;
 using MirajOfIcarus.Infrastructure.GameServers;
 using MirajOfIcarus.Infrastructure.Health;
 using MirajOfIcarus.Infrastructure.Persistence;
 using MirajOfIcarus.Infrastructure.Releases;
+using MirajOfIcarus.Infrastructure.Security;
 using MirajOfIcarus.Game.Runtime;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,10 +49,13 @@ public static class DependencyInjection
         });
         services.AddSingleton<OpaqueTokenStore>();
         services.AddSingleton<ITokenStore, GameTokenStoreAdapter>();
+        services.AddSingleton<IRateLimitStore, RedisRateLimitStore>();
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IAdministrationRepository, AdministrationRepository>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddSingleton<IGameServerCatalog, ConfiguredGameServerCatalog>();
         services.AddSingleton<IClientReleaseProvider, R2ClientReleaseProvider>();
+        services.AddSingleton<IDownloadTokenIssuer, HmacDownloadTokenIssuer>();
 
         healthChecks
             .AddCheck<PostgresHealthCheck>("postgres", tags: ["ready"])

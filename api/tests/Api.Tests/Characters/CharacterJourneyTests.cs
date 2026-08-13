@@ -61,7 +61,8 @@ public sealed class CharacterJourneyTests(
 
             var firstName = $"Hero{Guid.NewGuid():N}"[..20];
             using var first = await ApiTestSupport.CreateCharacterAsync(client, firstName);
-            Assert.Equal(HttpStatusCode.Created, first.StatusCode);
+            Assert.True(first.StatusCode == HttpStatusCode.Created,
+                await first.Content.ReadAsStringAsync());
             using var duplicate = await ApiTestSupport.CreateCharacterAsync(
                 client, firstName.ToUpperInvariant());
             Assert.Equal(HttpStatusCode.Conflict, duplicate.StatusCode);

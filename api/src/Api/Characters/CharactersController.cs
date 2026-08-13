@@ -4,6 +4,7 @@ using MirajOfIcarus.Api.Contracts;
 using MirajOfIcarus.Application.Characters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MirajOfIcarus.Api.Security;
 
 namespace MirajOfIcarus.Api.Characters;
 
@@ -13,6 +14,7 @@ namespace MirajOfIcarus.Api.Characters;
 public sealed class CharactersController(CharacterService characters) : ControllerBase
 {
     [HttpGet]
+    [RateLimit("account-read")]
     public async Task<ActionResult<IReadOnlyList<CharacterResponse>>> ListAsync(
         CancellationToken cancellationToken)
     {
@@ -22,6 +24,7 @@ public sealed class CharactersController(CharacterService characters) : Controll
     }
 
     [HttpPost]
+    [RateLimit("account-write")]
     public async Task<ActionResult<CharacterResponse>> CreateAsync(
         CreateCharacterRequest request,
         CancellationToken cancellationToken)
@@ -39,6 +42,7 @@ public sealed class CharactersController(CharacterService characters) : Controll
     }
 
     [HttpDelete("{id:guid}")]
+    [RateLimit("account-write")]
     public async Task<ActionResult<CharacterResponse>> ScheduleDeletionAsync(
         Guid id,
         CancellationToken cancellationToken)
@@ -51,6 +55,7 @@ public sealed class CharactersController(CharacterService characters) : Controll
     }
 
     [HttpPost("{id:guid}/restore")]
+    [RateLimit("account-write")]
     public async Task<ActionResult<CharacterResponse>> RestoreAsync(
         Guid id,
         CancellationToken cancellationToken)

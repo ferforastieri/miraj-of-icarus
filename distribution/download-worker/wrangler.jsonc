@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "miraj-of-icarus-downloads",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-13",
+  "r2_buckets": [
+    {
+      "binding": "RELEASES",
+      "bucket_name": "miraj-of-icarus-releases"
+    }
+  ],
+  "observability": { "enabled": true }
+}

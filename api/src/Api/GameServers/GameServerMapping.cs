@@ -10,5 +10,6 @@ internal static class GameServerMapping
         server.Name,
         server.Region,
         server.LoginEndpoint,
-        server.Available);
+        server.Available,
+        server.MaintenanceMessage);
 }

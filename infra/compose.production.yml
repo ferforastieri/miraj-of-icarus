@@ -1,3 +1,9 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   api:
     image: ghcr.io/${MIRAJ_OF_ICARUS_GHCR_NAMESPACE:?Set MIRAJ_OF_ICARUS_GHCR_NAMESPACE}/${MIRAJ_OF_ICARUS_API_IMAGE:-miraj-of-icarus-api}:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG}
@@ -35,6 +41,7 @@ services:
       - caddy-data:/data
       - caddy-config:/config
     networks: [backend]
+    logging: *default-logging
 
 volumes:
   caddy-data:

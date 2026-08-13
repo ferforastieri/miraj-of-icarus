@@ -1,5 +1,11 @@
 name: miraj-of-icarus
 
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   postgres:
     image: postgres:18.4-bookworm
@@ -16,6 +22,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   redis:
     image: redis:8.8.1-alpine3.23
@@ -29,6 +36,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   api:
     image: miraj-of-icarus-api:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
@@ -42,6 +50,8 @@ services:
       Cache__ConnectionString: redis:6379
       Database__ApplyMigrations: "true"
       ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com/channels/alpha.json}
+      DownloadAuthorization__SigningKey: ${DOWNLOAD_AUTHORIZATION_SIGNING_KEY:?Set DOWNLOAD_AUTHORIZATION_SIGNING_KEY in infra/.env}
+      Turnstile__SecretKey: ${TURNSTILE_SECRET_KEY:?Set TURNSTILE_SECRET_KEY in infra/.env}
       GameServers__0__Id: miraj-of-icarus-alpha
       GameServers__0__Name: Miraj of Icarus Alpha
       GameServers__0__Region: BR
@@ -60,6 +70,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   main-server:
     image: miraj-of-icarus-main-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
@@ -81,6 +92,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   login-server:
     image: miraj-of-icarus-login-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
@@ -103,6 +115,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   lobby-server:
     image: miraj-of-icarus-lobby-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
@@ -127,12 +140,15 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
   portal:
     image: miraj-of-icarus-portal:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
     build:
       context: ..
       dockerfile: portal/web/Dockerfile
+      args:
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
     restart: unless-stopped
     depends_on:
       api:
@@ -147,6 +163,7 @@ services:
       timeout: 5s
       retries: 5
     networks: [backend]
+    logging: *default-logging
 
 networks:
   backend:

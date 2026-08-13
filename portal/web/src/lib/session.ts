@@ -1,7 +1,12 @@
 export const ACCESS_COOKIE = "miraj_of_icarus_access";
 export const REFRESH_COOKIE = "miraj_of_icarus_refresh";
 
-export type Account = { accountId: number; userName: string };
+export type Account = {
+  accountId: number;
+  userName: string;
+  role: "Player" | "Administrator";
+  status: "Active" | "Suspended";
+};
 export type Session = {
   accessToken: string;
   expiresAt: string;

@@ -31,7 +31,7 @@ function session(account) {
     expiresAt: new Date(Date.now() + 15 * 60_000).toISOString(),
     refreshToken,
     refreshExpiresAt: new Date(Date.now() + 30 * 86_400_000).toISOString(),
-    account: { accountId: account.id, userName: account.userName },
+    account: { accountId: account.id, userName: account.userName, role: account.role, status: account.status },
   };
 }
 
@@ -39,13 +39,13 @@ const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", "http://127.0.0.1:18080");
   if (url.pathname === "/health") return json(response, 200, { status: "ok" });
   if (url.pathname === "/v1/client-releases/windows/latest") return json(response, 404, { error: "release_not_found" });
-  if (url.pathname === "/v1/game-servers") return json(response, 200, [{ id: "alpha", name: "Alpha", region: "BR", loginEndpoint: "login.mirajoficarus.test", available: true }]);
+  if (url.pathname === "/v1/game-servers") return json(response, 200, [{ id: "alpha", name: "Alpha", region: "BR", loginEndpoint: "login.mirajoficarus.test", available: true, maintenanceMessage: null }]);
 
   if (url.pathname === "/v1/accounts" && request.method === "POST") {
     const input = await body(request);
     const normalized = String(input.userName).toUpperCase();
     if (accounts.has(normalized)) return json(response, 409, { error: "account_name_unavailable" });
-    const account = { id: accounts.size + 1, userName: input.userName, password: input.password, characters: [] };
+    const account = { id: accounts.size + 1, userName: input.userName, password: input.password, role: "Player", status: "Active", characters: [] };
     accounts.set(normalized, account);
     return json(response, 201, { accountId: account.id, userName: account.userName });
   }
@@ -75,7 +75,7 @@ const server = createServer(async (request, response) => {
 
   const account = accountFor(request);
   if (!account) return json(response, 401, { error: "unauthorized" });
-  if (url.pathname === "/v1/auth/me") return json(response, 200, { accountId: account.id, userName: account.userName });
+  if (url.pathname === "/v1/auth/me") return json(response, 200, { accountId: account.id, userName: account.userName, role: account.role, status: account.status });
   if (url.pathname === "/v1/account/characters" && request.method === "GET") return json(response, 200, account.characters);
   if (url.pathname === "/v1/account/characters" && request.method === "POST") {
     const input = await body(request);

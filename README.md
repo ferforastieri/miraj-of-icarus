@@ -49,10 +49,11 @@ personagens. O próximo marco é validar e ampliar essa jornada no ambiente
 hospedado.
 
 O portal público usa a mesma identidade do launcher em `https://mirajoficarus.com`.
-A rota `/painel` oferece cadastro, sessão persistente e gestão de personagens.
-A API pública é anunciada em `https://api.mirajoficarus.com`; releases assinadas
-do launcher e cliente são distribuídas pelo Cloudflare R2 em
-`https://downloads.mirajoficarus.com`.
+`/entrar` e `/criar-conta` iniciam a jornada, `/cliente` concentra conta,
+servidores e personagens e `/painel` é reservado à administração. A API pública
+é anunciada em `https://api.mirajoficarus.com`. O launcher é público; os arquivos
+do cliente passam por um Worker autenticado em
+`https://downloads.mirajoficarus.com`, com o bucket R2 privado.
 
 ## Publicação do cliente
 
@@ -67,13 +68,15 @@ Secrets exigidos no GitHub:
 - `MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64`;
 - `CLOUDFLARE_R2_ACCOUNT_ID`;
 - `CLOUDFLARE_R2_ACCESS_KEY_ID`;
-- `CLOUDFLARE_R2_SECRET_ACCESS_KEY`.
+- `CLOUDFLARE_R2_SECRET_ACCESS_KEY`;
+- `DOWNLOAD_AUTHORIZATION_SIGNING_KEY`.
 
-O bucket deve possuir o domínio próprio `downloads.mirajoficarus.com`, com
-acesso público somente por esse domínio. Objetos sob `releases/{git-sha}/`
-recebem cache imutável; `channels/alpha.json` recebe cache de 60 segundos. Para
-rollback, copie novamente o manifesto de uma release completa anterior para
-`channels/alpha.json`; os objetos versionados nunca são sobrescritos.
+O bucket permanece privado. O Worker libera apenas o canal e o ZIP do launcher;
+manifesto, assinatura e arquivos do cliente exigem uma autorização curta,
+vinculada à conta e ao SHA. Objetos sob `releases/{git-sha}/` recebem cache
+imutável; `channels/alpha.json` recebe cache curto. Para rollback, copie
+novamente o manifesto de uma release completa anterior para o canal; os objetos
+versionados nunca são sobrescritos.
 
 ## Entrega contínua e produção
 
@@ -87,10 +90,14 @@ O GitHub Actions é o único coordenador das pipelines:
   rollback;
 - `client-release.yml` recompila os executáveis Windows quando o cliente ou o
   launcher muda e publica a release assinada no R2.
+- `download-worker-deploy.yml` publica primeiro em `workers.dev`; a associação
+  do domínio de produção é um cutover manual.
 
 O portal não roda no Lightsail em produção. Ele continua disponível no Compose
 base apenas para desenvolvimento local. O guia completo de DNS, secrets,
 primeiro deploy e rollback está em [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+As medidas de segurança e as etapas que exigem console estão em
+[docs/SECURITY-HARDENING.md](docs/SECURITY-HARDENING.md).
 
 ## Desenvolvimento local
 

@@ -27,12 +27,11 @@ using byte = unsigned char;
 
 namespace
 {
-constexpr COLORREF Abyss = RGB(7, 11, 16);
-constexpr COLORREF Iron = RGB(21, 28, 34);
-constexpr COLORREF Moonsteel = RGB(217, 228, 232);
-constexpr COLORREF Mist = RGB(154, 169, 176);
-constexpr COLORREF Frost = RGB(82, 212, 231);
-constexpr COLORREF AncientGold = RGB(168, 139, 82);
+constexpr COLORREF Iron = RGB(8, 39, 34);
+constexpr COLORREF Moonsteel = RGB(239, 235, 209);
+constexpr COLORREF Mist = RGB(184, 194, 174);
+constexpr COLORREF Jade = RGB(52, 212, 132);
+constexpr COLORREF AncientGold = RGB(190, 158, 80);
 constexpr COLORREF Failure = RGB(197, 90, 98);
 
 constexpr int UsernameId = 101;
@@ -76,11 +75,8 @@ int RunDiagnostic(std::wstring_view command)
         const auto apiEndpoint = LoadApiEndpoint();
         if (command == L"--update-client")
         {
-            const auto result = miraj_of_icarus::launcher::EnsureClientReady(
-                apiEndpoint, miraj_of_icarus::launcher::GameInstallDirectory());
-            WriteDiagnostic("client-update=ok version=" + result.version +
-                " downloaded-bytes=" + std::to_string(result.downloadedBytes) + "\n");
-            return 0;
+            WriteDiagnostic("client-update=authentication-required\n");
+            return 4;
         }
 
         miraj_of_icarus::launcher::VerifyInstalledRelease(
@@ -126,6 +122,13 @@ struct WindowState
     HWND close = nullptr;
     std::unique_ptr<Gdiplus::Image> background;
     std::unique_ptr<Gdiplus::Image> mark;
+    std::unique_ptr<Gdiplus::Image> frame;
+    std::unique_ptr<Gdiplus::Image> buttonDefault;
+    std::unique_ptr<Gdiplus::Image> buttonFocused;
+    std::unique_ptr<Gdiplus::Image> buttonPressed;
+    std::unique_ptr<Gdiplus::Image> buttonDisabled;
+    std::unique_ptr<Gdiplus::Image> windowControls;
+    std::wstring privateFontPath;
     std::vector<miraj_of_icarus::launcher::GameServer> servers;
     std::string apiEndpoint;
     std::wstring status = L"VERIFICANDO INSTALAÇÃO";
@@ -135,6 +138,7 @@ struct WindowState
     bool busy = true;
     bool launching = false;
     bool failed = false;
+    int pulse = 0;
 };
 
 std::wstring ReadControl(HWND control)
@@ -180,6 +184,13 @@ void LoadImage(std::unique_ptr<Gdiplus::Image>& target, const std::wstring& rela
     }
 }
 
+std::wstring AssetPath(const std::wstring& relativePath)
+{
+    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
+    if (!path.empty()) path += L'\\';
+    return path + relativePath;
+}
+
 void Refresh(HWND window, WindowState& state, std::wstring status, std::wstring detail,
     int progress, bool failed = false)
 {
@@ -209,10 +220,10 @@ void Layout(WindowState& state, int width, int height)
     MoveWindow(state.username, fieldLeft + 2, 293, fieldWidth - 4, 42, TRUE);
     MoveWindow(state.password, fieldLeft + 2, 377, fieldWidth - 4, 42, TRUE);
     MoveWindow(state.server, fieldLeft, 209, fieldWidth, 46, TRUE);
-    MoveWindow(state.play, fieldLeft, 474, fieldWidth, 54, TRUE);
+    MoveWindow(state.play, width / 2 - 62, height - 180, 124, 132, TRUE);
     MoveWindow(state.minimize, width - 104, 14, 42, 38, TRUE);
     MoveWindow(state.close, width - 56, 14, 42, 38, TRUE);
-    for (const auto control : {state.username, state.password, state.server, state.play})
+    for (const auto control : {state.username, state.password, state.server})
     {
         RECT area{};
         GetClientRect(control, &area);
@@ -264,7 +275,7 @@ LRESULT CALLBACK ComboSubclass(HWND control, UINT message, WPARAM wParam, LPARAM
             DrawTextLine(dc, state->controlFont, selected >= 0 ? label : L"Escolha um servidor",
                 text, selected >= 0 ? Moonsteel : Mist,
                 DT_LEFT | DT_SINGLELINE | DT_VCENTER | DT_END_ELLIPSIS);
-            const auto pen = CreatePen(PS_SOLID, 2, GetFocus() == control ? Frost : AncientGold);
+            const auto pen = CreatePen(PS_SOLID, 2, GetFocus() == control ? Jade : AncientGold);
             const auto oldPen = SelectObject(dc, pen);
             MoveToEx(dc, client.right - 29, client.bottom / 2 - 3, nullptr);
             LineTo(dc, client.right - 22, client.bottom / 2 + 4);
@@ -316,15 +327,15 @@ void DrawBackground(Gdiplus::Graphics& graphics, WindowState& state, int width, 
         graphics.FillRectangle(&fallback, 0, 0, width, height);
     }
 
-    Gdiplus::SolidBrush veil(Gdiplus::Color(88, 7, 11, 16));
+    Gdiplus::SolidBrush veil(Gdiplus::Color(36, 4, 17, 15));
     graphics.FillRectangle(&veil, 0, 0, width, height);
     Gdiplus::LinearGradientBrush sideShade(
         Gdiplus::Point(0, 0), Gdiplus::Point(width, 0),
-        Gdiplus::Color(170, 7, 11, 16), Gdiplus::Color(38, 7, 11, 16));
+        Gdiplus::Color(115, 4, 17, 15), Gdiplus::Color(20, 4, 17, 15));
     graphics.FillRectangle(&sideShade, 0, 0, width, height);
-    Gdiplus::SolidBrush topBar(Gdiplus::Color(218, 7, 11, 16));
+    Gdiplus::SolidBrush topBar(Gdiplus::Color(205, 4, 17, 15));
     graphics.FillRectangle(&topBar, 0, 0, width, 68);
-    Gdiplus::SolidBrush bottomBar(Gdiplus::Color(232, 7, 11, 16));
+    Gdiplus::SolidBrush bottomBar(Gdiplus::Color(230, 4, 17, 15));
     graphics.FillRectangle(&bottomBar, 0, height - 56, width, 56);
 }
 
@@ -334,10 +345,16 @@ void DrawPanel(Gdiplus::Graphics& graphics, WindowState& state, int width, int h
     const float left = static_cast<float>(width - panelWidth - 38);
     const float right = static_cast<float>(width - 38);
     const auto panelPath = RoundedPath(left, 92.0F, right, static_cast<float>(height - 76), 18.0F);
-    Gdiplus::SolidBrush panel(Gdiplus::Color(230, 13, 19, 24));
-    Gdiplus::Pen edge(Gdiplus::Color(165, 120, 144, 151), 1.0F);
-    graphics.FillPath(&panel, panelPath.get());
-    graphics.DrawPath(&edge, panelPath.get());
+    if (state.frame != nullptr)
+        graphics.DrawImage(state.frame.get(), Gdiplus::Rect(static_cast<int>(left), 92,
+            static_cast<int>(right-left), height - 168));
+    else
+    {
+        Gdiplus::SolidBrush panel(Gdiplus::Color(230, 6, 38, 32));
+        Gdiplus::Pen edge(Gdiplus::Color(220, 190, 158, 80), 2.0F);
+        graphics.FillPath(&panel, panelPath.get());
+        graphics.DrawPath(&edge, panelPath.get());
+    }
 
     const float fieldLeft = left + 34.0F;
     const float fieldRight = right - 34.0F;
@@ -345,12 +362,12 @@ void DrawPanel(Gdiplus::Graphics& graphics, WindowState& state, int width, int h
     for (std::size_t index = 0; index < fields.size(); ++index)
     {
         const auto path = RoundedPath(fieldLeft, fields[index].first, fieldRight, fields[index].second, 10.0F);
-        Gdiplus::SolidBrush fill(Gdiplus::Color(242, 21, 28, 34));
+        Gdiplus::SolidBrush fill(Gdiplus::Color(238, 8, 39, 34));
         const bool focused = (index == 0 && GetFocus() == state.server) ||
             (index == 1 && GetFocus() == state.username) ||
             (index == 2 && GetFocus() == state.password);
-        Gdiplus::Pen border(focused ? Gdiplus::Color(255, 82, 212, 231)
-                                    : Gdiplus::Color(190, 80, 98, 105),
+        Gdiplus::Pen border(focused ? Gdiplus::Color(255, 52, 212, 132)
+                                    : Gdiplus::Color(205, 190, 158, 80),
             focused ? 1.5F : 1.0F);
         graphics.FillPath(&fill, path.get());
         graphics.DrawPath(&border, path.get());
@@ -359,6 +376,31 @@ void DrawPanel(Gdiplus::Graphics& graphics, WindowState& state, int width, int h
     Gdiplus::Pen gate(Gdiplus::Color(130, 168, 139, 82), 1.0F);
     graphics.DrawLine(&gate, left + 1.0F, 137.0F, left + 15.0F, 123.0F);
     graphics.DrawLine(&gate, left + 15.0F, 123.0F, left + 15.0F, static_cast<float>(height - 91));
+}
+
+void DrawWindowFrame(Gdiplus::Graphics& graphics, WindowState& state, int width, int height)
+{
+    if (state.frame == nullptr) return;
+    const int sw = static_cast<int>(state.frame->GetWidth());
+    const int sh = static_cast<int>(state.frame->GetHeight());
+    constexpr int sourceX = 82;
+    constexpr int sourceY = 64;
+    constexpr int edge = 18;
+    const int middleSourceWidth = sw - sourceX * 2;
+    const int middleSourceHeight = sh - sourceY * 2;
+    auto draw = [&](int dx, int dy, int dw, int dh, int sx, int sy, int sourceWidth, int sourceHeight)
+    {
+        graphics.DrawImage(state.frame.get(), Gdiplus::Rect(dx, dy, dw, dh),
+            sx, sy, sourceWidth, sourceHeight, Gdiplus::UnitPixel);
+    };
+    draw(0, 0, edge, edge, 0, 0, sourceX, sourceY);
+    draw(edge, 0, width-edge*2, edge, sourceX, 0, middleSourceWidth, sourceY);
+    draw(width-edge, 0, edge, edge, sw-sourceX, 0, sourceX, sourceY);
+    draw(0, edge, edge, height-edge*2, 0, sourceY, sourceX, middleSourceHeight);
+    draw(width-edge, edge, edge, height-edge*2, sw-sourceX, sourceY, sourceX, middleSourceHeight);
+    draw(0, height-edge, edge, edge, 0, sh-sourceY, sourceX, sourceY);
+    draw(edge, height-edge, width-edge*2, edge, sourceX, sh-sourceY, middleSourceWidth, sourceY);
+    draw(width-edge, height-edge, edge, edge, sw-sourceX, sh-sourceY, sourceX, sourceY);
 }
 
 void PaintWindow(HWND window, WindowState& state, HDC target)
@@ -376,12 +418,13 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
         graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         DrawBackground(graphics, state, width, height);
         DrawPanel(graphics, state, width, height);
+        DrawWindowFrame(graphics, state, width, height);
 
         if (state.mark != nullptr)
         {
             graphics.DrawImage(state.mark.get(), Gdiplus::Rect(26, 14, 42, 42));
         }
-        Gdiplus::Pen titleRule(Gdiplus::Color(150, 82, 212, 231), 1.0F);
+        Gdiplus::Pen titleRule(Gdiplus::Color(180, 52, 212, 132), 1.0F);
         graphics.DrawLine(&titleRule, 0, 67, width, 67);
 
         constexpr int progressLeft = 44;
@@ -391,7 +434,7 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
         graphics.FillRectangle(&track, progressLeft, progressTop, progressRight - progressLeft, 3);
         const auto progressWidth = (progressRight - progressLeft) * state.progress / 100;
         Gdiplus::SolidBrush progressBrush(state.failed ? Gdiplus::Color(255, 197, 90, 98)
-                                                       : Gdiplus::Color(255, 82, 212, 231));
+                                                       : Gdiplus::Color(255, 52, 212, 132));
         graphics.FillRectangle(&progressBrush, progressLeft, progressTop, progressWidth, 3);
     }
 
@@ -400,10 +443,10 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
     RECT brand{80, 18, 310, 51};
     DrawTextLine(memory, state.brandFont, L"MIRAJ OF ICARUS", brand, Moonsteel, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
     RECT release{218, 21, 420, 48};
-    DrawTextLine(memory, state.utilityFont, L"ALPHA  /  ACESSO", release, Frost, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
+    DrawTextLine(memory, state.utilityFont, L"ALPHA  /  ACESSO", release, Jade, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
 
     RECT eyebrow{44, height - 246, panelLeft - 50, height - 218};
-    DrawTextLine(memory, state.utilityFont, L"O REINO ALÉM DO PORTÃO", eyebrow, Frost, DT_LEFT | DT_SINGLELINE);
+    DrawTextLine(memory, state.utilityFont, L"O REINO ALÉM DO PORTÃO", eyebrow, Jade, DT_LEFT | DT_SINGLELINE);
     RECT title{44, height - 207, panelLeft - 52, height - 144};
     DrawTextLine(memory, state.displayFont, L"A passagem está aberta.", title, Moonsteel, DT_LEFT | DT_SINGLELINE);
     RECT subtitle{46, height - 137, panelLeft - 68, height - 84};
@@ -422,7 +465,7 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
     DrawTextLine(memory, state.labelFont, L"CONTA", accountLabel, Mist, DT_LEFT | DT_SINGLELINE);
     DrawTextLine(memory, state.labelFont, L"SENHA", passwordLabel, Mist, DT_LEFT | DT_SINGLELINE);
 
-    const auto statusColor = state.failed ? Failure : Frost;
+    const auto statusColor = state.failed ? Failure : Jade;
     RECT status{panelLeft + 34, 436, width - 72, 458};
     DrawTextLine(memory, state.utilityFont, state.status.c_str(), status, statusColor, DT_LEFT | DT_SINGLELINE | DT_END_ELLIPSIS);
     RECT detail{panelLeft + 34, 548, width - 72, 580};
@@ -433,7 +476,7 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
     DrawTextLine(memory, state.utilityFont, L"ATUALIZAÇÃO / INTEGRIDADE", updateLabel, Mist, DT_LEFT | DT_SINGLELINE);
     const auto progressText = std::to_wstring(state.progress) + L"%";
     RECT progressLabel{width - 110, height - 49, width - 44, height - 31};
-    DrawTextLine(memory, state.utilityFont, progressText.c_str(), progressLabel, state.failed ? Failure : Frost,
+    DrawTextLine(memory, state.utilityFont, progressText.c_str(), progressLabel, state.failed ? Failure : Jade,
         DT_RIGHT | DT_SINGLELINE);
 
     BitBlt(target, 0, 0, width, height, memory, 0, 0, SRCCOPY);
@@ -451,32 +494,42 @@ void DrawButton(const DRAWITEMSTRUCT& item, WindowState& state)
 
     if (item.CtlID == PlayId)
     {
+        Gdiplus::Graphics graphics(item.hDC);
+        graphics.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+        if (state.mark != nullptr)
         {
-            Gdiplus::Graphics graphics(item.hDC);
-            graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
-            const auto path = RoundedPath(0.0F, 0.0F, static_cast<float>(width), static_cast<float>(height), 10.0F);
-            const auto fillColor = disabled ? Gdiplus::Color(255, 43, 50, 54)
-                : pressed ? Gdiplus::Color(255, 44, 152, 170)
-                          : Gdiplus::Color(255, 62, 183, 202);
-            Gdiplus::SolidBrush fill(fillColor);
-            Gdiplus::Pen border(disabled ? Gdiplus::Color(255, 72, 81, 85)
-                                         : Gdiplus::Color(255, 157, 236, 244), 1.0F);
-            graphics.FillPath(&fill, path.get());
-            graphics.DrawPath(&border, path.get());
+            const float glow = state.launching ? 0.55F + static_cast<float>(state.pulse) / 450.0F
+                : disabled ? 0.34F : pressed ? 0.72F
+                : 0.82F + static_cast<float>(state.pulse) / 1000.0F;
+            Gdiplus::ColorMatrix matrix{{
+                {1,0,0,0,0},{0,1,0,0,0},{0,0,1,0,0},{0,0,0,glow,0},{0,0,0,0,1}}};
+            Gdiplus::ImageAttributes attributes;
+            attributes.SetColorMatrix(&matrix);
+            const int inset = pressed ? 8 : 3;
+            graphics.DrawImage(state.mark.get(), Gdiplus::Rect(inset, inset, width-inset*2, height-inset*2),
+                0, 0, state.mark->GetWidth(), state.mark->GetHeight(), Gdiplus::UnitPixel, &attributes);
+            if (state.launching)
+            {
+                Gdiplus::Pen passage(Gdiplus::Color(225, 52, 212, 132), 3.0F);
+                graphics.DrawArc(&passage, 5, 9, width - 10, height - 18,
+                    static_cast<float>(state.pulse * 4), 112.0F);
+            }
         }
-        RECT text{0, 0, width, height};
-        DrawTextLine(item.hDC, state.brandFont, state.launching ? L"ABRINDO..." : L"JOGAR",
-            text, disabled ? Mist : Abyss, DT_CENTER | DT_SINGLELINE | DT_VCENTER);
         return;
     }
 
     const bool close = item.CtlID == CloseId;
-    if (pressed)
+    if (state.windowControls != nullptr)
     {
         Gdiplus::Graphics graphics(item.hDC);
-        Gdiplus::SolidBrush pressedFill(close ? Gdiplus::Color(220, 147, 57, 66)
-                                              : Gdiplus::Color(170, 45, 58, 64));
-        graphics.FillRectangle(&pressedFill, 0, 0, width, height);
+        graphics.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+        const int column = pressed ? 2 : ((item.itemState & ODS_FOCUS) != 0 ? 1 : 0);
+        const int row = close ? 1 : 0;
+        const int cellWidth = static_cast<int>(state.windowControls->GetWidth()) / 3;
+        const int cellHeight = static_cast<int>(state.windowControls->GetHeight()) / 2;
+        graphics.DrawImage(state.windowControls.get(), Gdiplus::Rect(0, 0, width, height),
+            column * cellWidth, row * cellHeight, cellWidth, cellHeight, Gdiplus::UnitPixel);
+        return;
     }
     RECT text{0, 0, width, height};
     DrawTextLine(item.hDC, state.bodyFont, close ? L"×" : L"—", text,
@@ -487,7 +540,7 @@ void DrawServerItem(const DRAWITEMSTRUCT& item, WindowState& state)
 {
     if (item.itemID == static_cast<UINT>(-1)) return;
     const bool selected = (item.itemState & ODS_SELECTED) != 0;
-    const auto brush = CreateSolidBrush(selected ? RGB(31, 52, 60) : Iron);
+    const auto brush = CreateSolidBrush(selected ? RGB(15, 75, 58) : Iron);
     FillRect(item.hDC, &item.rcItem, brush);
     DeleteObject(brush);
     wchar_t text[256]{};
@@ -498,7 +551,7 @@ void DrawServerItem(const DRAWITEMSTRUCT& item, WindowState& state)
     DrawTextLine(item.hDC, state.controlFont, text, area, selected ? Moonsteel : Mist,
         DT_LEFT | DT_SINGLELINE | DT_VCENTER | DT_END_ELLIPSIS);
     RECT arrow{item.rcItem.right - 34, item.rcItem.top, item.rcItem.right - 12, item.rcItem.bottom};
-    DrawTextLine(item.hDC, state.controlFont, L"⌄", arrow, selected ? Frost : Mist,
+    DrawTextLine(item.hDC, state.controlFont, L"⌄", arrow, selected ? Jade : Mist,
         DT_CENTER | DT_SINGLELINE | DT_VCENTER);
 }
 
@@ -511,27 +564,35 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
     {
         auto* created = new WindowState{};
         SetWindowLongPtrW(window, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(created));
+        created->privateFontPath = AssetPath(L"assets\\launcher\\fonts\\miraj-display.ttf");
+        AddFontResourceExW(created->privateFontPath.c_str(), FR_PRIVATE, nullptr);
         created->displayFont = CreateFontW(34, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Palatino Linotype");
+            DEFAULT_PITCH, L"Miraj Display");
         created->brandFont = CreateFontW(21, 0, 0, 0, FW_SEMIBOLD, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Palatino Linotype");
+            DEFAULT_PITCH, L"Miraj Display");
         created->bodyFont = CreateFontW(17, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Segoe UI Variable Text");
+            DEFAULT_PITCH, L"Miraj Display");
         created->controlFont = CreateFontW(18, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Palatino Linotype");
+            DEFAULT_PITCH, L"Miraj Display");
         created->labelFont = CreateFontW(13, 0, 0, 0, FW_SEMIBOLD, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Segoe UI Variable Text");
+            DEFAULT_PITCH, L"Miraj Display");
         created->utilityFont = CreateFontW(12, 0, 0, 0, FW_MEDIUM, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Cascadia Mono");
+            DEFAULT_PITCH, L"Miraj Display");
         created->editBrush = CreateSolidBrush(Iron);
-        LoadImage(created->background, L"assets\\launcher\\backgrounds\\miraj-of-icarus-citadel.png");
-        LoadImage(created->mark, L"assets\\global\\branding\\miraj-of-icarus-mi.png");
+        LoadImage(created->background, L"assets\\launcher\\backgrounds\\miraj-of-icarus-hero.png");
+        LoadImage(created->mark, L"assets\\global\\branding\\miraj-of-icarus-mj.png");
+        LoadImage(created->frame, L"assets\\launcher\\frames\\jade-card.png");
+        LoadImage(created->buttonDefault, L"assets\\launcher\\controls\\button-default.png");
+        LoadImage(created->buttonFocused, L"assets\\launcher\\controls\\button-focused.png");
+        LoadImage(created->buttonPressed, L"assets\\launcher\\controls\\button-pressed.png");
+        LoadImage(created->buttonDisabled, L"assets\\launcher\\controls\\button-disabled.png");
+        LoadImage(created->windowControls, L"assets\\launcher\\controls\\window-controls-atlas.png");
 
         created->username = CreateWindowExW(0, L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL,
             0, 0, 0, 0, window, reinterpret_cast<HMENU>(UsernameId), nullptr, nullptr);
@@ -540,7 +601,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
         created->server = CreateWindowExW(0, WC_COMBOBOXW, L"",
             WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_HASSTRINGS,
             0, 0, 0, 0, window, reinterpret_cast<HMENU>(ServerId), nullptr, nullptr);
-        created->play = CreateWindowExW(0, L"BUTTON", L"JOGAR",
+        created->play = CreateWindowExW(WS_EX_TRANSPARENT, L"BUTTON", L"JOGAR",
             WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_OWNERDRAW,
             0, 0, 0, 0, window, reinterpret_cast<HMENU>(PlayId), nullptr, nullptr);
         created->minimize = CreateWindowExW(0, L"BUTTON", L"",
@@ -561,6 +622,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
         SetWindowSubclass(created->password, InputSubclass, 2, 0);
         SetWindowSubclass(created->server, ComboSubclass, 3, 0);
         EnableWindow(created->play, FALSE);
+        SetTimer(window, 1, 45, nullptr);
         PostMessageW(window, LoadEnvironmentMessage, 0, 0);
         return 0;
     }
@@ -570,16 +632,8 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             try
             {
                 state->apiEndpoint = LoadApiEndpoint();
-                static_cast<void>(miraj_of_icarus::launcher::EnsureClientReady(
-                    state->apiEndpoint, miraj_of_icarus::launcher::GameInstallDirectory(),
-                    [&](const miraj_of_icarus::launcher::UpdateProgress& update)
-                    {
-                        const auto percent = update.total == 0 ? 0 : static_cast<int>(
-                            std::min<std::uint64_t>(100, update.completed * 100 / update.total));
-                        Refresh(window, *state, update.status, update.detail, percent);
-                    }));
-                Refresh(window, *state, L"CLIENTE VERIFICADO",
-                    L"Procurando reinos disponíveis", 100);
+                Refresh(window, *state, L"PROCURANDO REINOS",
+                    L"Consultando os servidores disponíveis", 24);
                 state->servers = miraj_of_icarus::launcher::BackendClient(state->apiEndpoint).GetServers();
                 std::erase_if(state->servers, [](const auto& server) { return !server.available; });
                 for (const auto& server : state->servers)
@@ -592,14 +646,14 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                     SendMessageW(state->server, CB_SETCURSEL, 0, 0);
                     state->environmentReady = true;
                     state->busy = false;
-                    Refresh(window, *state, L"PRONTO PARA JOGAR",
-                        L"Arquivos atuais · servidor disponível", 100);
+                    Refresh(window, *state, L"INFORME SUAS CREDENCIAIS",
+                        L"O cliente será validado após a autenticação", 32);
                 }
                 else
                 {
                     state->busy = false;
                     Refresh(window, *state, L"NENHUM REINO DISPONÍVEL",
-                        L"A instalação está íntegra; tente novamente mais tarde", 100, true);
+                        L"Tente novamente mais tarde", 0, true);
                 }
             }
             catch (const std::exception& exception)
@@ -614,6 +668,14 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
         return 0;
     case WM_SIZE:
         if (state != nullptr) Layout(*state, LOWORD(lParam), HIWORD(lParam));
+        return 0;
+    case WM_TIMER:
+        if (state != nullptr && wParam == 1)
+        {
+            state->pulse = (state->pulse + 14) % 180;
+            if (state->pulse > 90) state->pulse = 180 - state->pulse;
+            InvalidateRect(state->play, nullptr, FALSE);
+        }
         return 0;
     case WM_NCHITTEST:
     {
@@ -699,11 +761,33 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             Refresh(window, *state, L"ABRINDO PASSAGEM", L"Autenticando sua conta", 100);
             try
             {
-                const auto admission = miraj_of_icarus::launcher::BackendClient(state->apiEndpoint).Authenticate(
+                const auto backend = miraj_of_icarus::launcher::BackendClient(state->apiEndpoint);
+                auto session = backend.Login(
                     miraj_of_icarus::client::windows::ToUtf8(ReadControl(state->username)),
-                    miraj_of_icarus::client::windows::ToUtf8(ReadControl(state->password)),
-                    state->servers[static_cast<std::size_t>(selected)]);
+                    miraj_of_icarus::client::windows::ToUtf8(ReadControl(state->password)));
                 SetWindowTextW(state->password, L"");
+                bool firstAccessToken = true;
+                static_cast<void>(miraj_of_icarus::launcher::EnsureClientReady(
+                    state->apiEndpoint, miraj_of_icarus::launcher::GameInstallDirectory(),
+                    [&]
+                    {
+                        if (firstAccessToken)
+                        {
+                            firstAccessToken = false;
+                            return session.accessToken;
+                        }
+                        session = backend.Refresh(session);
+                        return session.accessToken;
+                    },
+                    [&](const miraj_of_icarus::launcher::UpdateProgress& update)
+                    {
+                        const auto percent = update.total == 0 ? 0 : static_cast<int>(
+                            std::min<std::uint64_t>(100, update.completed * 100 / update.total));
+                        Refresh(window, *state, update.status, update.detail, percent);
+                    }));
+                session = backend.Refresh(session);
+                const auto admission = backend.EnterGame(
+                    session, state->servers[static_cast<std::size_t>(selected)]);
                 miraj_of_icarus::launcher::LaunchGame(
                     miraj_of_icarus::launcher::GameInstallDirectory() + L"\\MirajOfIcarusClient.exe",
                     {.sessionId = admission.sessionId,
@@ -737,6 +821,7 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
     case WM_DESTROY:
         if (state != nullptr)
         {
+            KillTimer(window, 1);
             RemoveWindowSubclass(state->username, InputSubclass, 1);
             RemoveWindowSubclass(state->password, InputSubclass, 2);
             RemoveWindowSubclass(state->server, ComboSubclass, 3);
@@ -747,6 +832,8 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             DeleteObject(state->labelFont);
             DeleteObject(state->utilityFont);
             DeleteObject(state->editBrush);
+            if (!state->privateFontPath.empty())
+                RemoveFontResourceExW(state->privateFontPath.c_str(), FR_PRIVATE, nullptr);
             delete state;
             SetWindowLongPtrW(window, GWLP_USERDATA, 0);
         }

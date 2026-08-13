@@ -4,6 +4,7 @@ using MirajOfIcarus.Api.Contracts;
 using MirajOfIcarus.Application.GameServers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MirajOfIcarus.Api.Security;
 
 namespace MirajOfIcarus.Api.GameServers;
 
@@ -13,6 +14,7 @@ namespace MirajOfIcarus.Api.GameServers;
 public sealed class GameTicketsController(GameServerService servers) : ControllerBase
 {
     [HttpPost]
+    [RateLimit("game-ticket")]
     public async Task<ActionResult<GameTicketResponse>> IssueAsync(
         GameTicketRequest request,
         CancellationToken cancellationToken)

@@ -22,4 +22,8 @@ public interface ITokenStore
         string purpose,
         string token,
         CancellationToken cancellationToken = default);
+
+    ValueTask RevokeAccountAsync(
+        long accountId,
+        CancellationToken cancellationToken = default);
 }

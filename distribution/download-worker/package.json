@@ -1,0 +1,16 @@
+{
+  "name": "@miraj-of-icarus/download-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260813.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.122.0"
+  }
+}

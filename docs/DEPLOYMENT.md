@@ -4,8 +4,8 @@
 
 | Endereço | Execução | Função |
 | --- | --- | --- |
-| `mirajoficarus.com` | Cloudflare Worker/OpenNext | landing e painel Next.js |
-| `downloads.mirajoficarus.com` | Cloudflare R2 | launcher, cliente e manifestos |
+| `mirajoficarus.com` | Cloudflare Worker/OpenNext | landing, cliente e administração Next.js |
+| `downloads.mirajoficarus.com` | Cloudflare Worker + R2 privado | launcher público e cliente autenticado |
 | `api.mirajoficarus.com` | Lightsail, via Caddy | contas, sessão, personagens e releases |
 | `login.mirajoficarus.com` | Lightsail, via Caddy | entrada do cliente no jogo |
 | `lobby.mirajoficarus.com` | Lightsail, via Caddy | seleção de personagens |
@@ -26,17 +26,18 @@ em cookies `HttpOnly`, nunca em `localStorage`.
 
 1. Crie o bucket `miraj-of-icarus-releases`, classe **Standard** e localização
    automática.
-2. Em **Settings > Custom Domains**, conecte
-   `downloads.mirajoficarus.com`.
-3. Deixe o acesso `r2.dev` desativado em produção.
-4. Crie um token R2 restrito a esse bucket, com leitura e gravação de objetos.
+2. Deixe o bucket privado e o acesso `r2.dev` desativado em produção.
+3. Crie um token R2 restrito a esse bucket, com leitura e gravação de objetos.
+4. Não conecte ainda `downloads.mirajoficarus.com`: primeiro valide o Worker no
+   domínio temporário, conforme [CLOUDFLARE-R2.md](CLOUDFLARE-R2.md).
 
 Cadastre em **GitHub > Settings > Secrets and variables > Actions**:
 
 - `CLOUDFLARE_R2_ACCOUNT_ID`;
 - `CLOUDFLARE_R2_ACCESS_KEY_ID`;
 - `CLOUDFLARE_R2_SECRET_ACCESS_KEY`;
-- `MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64`.
+- `MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64`;
+- `DOWNLOAD_AUTHORIZATION_SIGNING_KEY`, Base64 com pelo menos 32 bytes.
 
 A chave pública correspondente já é empacotada no launcher. Trocar apenas a
 chave privada no GitHub quebra a validação; uma rotação exige atualizar e
@@ -50,6 +51,9 @@ Workers Scripts e Workers Routes. Cadastre:
 - `CLOUDFLARE_ACCOUNT_ID`;
 - `CLOUDFLARE_API_TOKEN`.
 
+Cadastre também a variable `CLOUDFLARE_TURNSTILE_SITE_KEY`. O secret do widget
+fica apenas na API do Lightsail, como `TURNSTILE_SECRET_KEY`.
+
 O arquivo `portal/web/wrangler.jsonc` declara o Worker
 `miraj-of-icarus-portal`, a rota customizada `mirajoficarus.com` e a API interna como
 `https://api.mirajoficarus.com`. O workflow publica o portal somente depois que
@@ -58,9 +62,9 @@ a CI da mesma revisão passa. Não crie um projeto Pages separado.
 ## 4. Preparar o Lightsail
 
 1. Crie uma instância Ubuntu com IP estático e associe esse IP à instância.
-2. No firewall do Lightsail, libere TCP 80 e 443 e UDP 443. Restrinja TCP 22 ao
-   IP administrativo sempre que possível. Não exponha 5432, 6379, 8080, 8081
-   ou 8083.
+2. No firewall do Lightsail, libere inicialmente TCP 80 e 443. Restrinja TCP 22
+   ao IP administrativo sempre que possível. UDP 443 é opcional para HTTP/3.
+   Não exponha 5432, 6379, 8080, 8081 ou 8083.
 3. Instale Docker Engine com o plugin Compose e permita que o usuário de deploy
    execute Docker.
 4. Crie `/opt/miraj_of_icarus/infra` e copie
@@ -91,13 +95,16 @@ imagem anterior se a saúde não estabilizar.
 
 ## 6. Primeiro deploy e verificação
 
-Depois que secrets, DNS, R2 e Lightsail estiverem prontos, faça push em `main`.
+Depois que secrets, DNS, R2 e Lightsail estiverem prontos, revise as alterações.
+Push e deploy dependem de autorização explícita do proprietário.
 A sequência esperada é:
 
 1. `CI` fica verde;
-2. `Portal deploy` publica o Worker;
+2. `Portal deploy` publica o Worker do portal;
 3. `Backend deploy` envia quatro imagens ao GHCR e atualiza o Lightsail;
-4. se houve mudança em `game-clients/client-pc/**`, `Windows client release`
+4. com autorização explícita, execute manualmente `Download worker deploy` para
+   disponibilizar a revisão em `workers.dev`, sem alterar o domínio;
+5. se houve mudança em `game-clients/client-pc/**`, `Windows client release`
    publica `channels/alpha.json` por último.
 
 Verifique:
@@ -116,8 +123,8 @@ docker compose --env-file .env.production --env-file .release.env \
   -f compose.yml -f compose.production.yml ps
 ```
 
-O terceiro `curl` só fica verde depois da primeira release do cliente; antes
-disso, a landing mostra corretamente que a release está em preparação.
+O terceiro `curl` só deve ser usado depois do cutover manual do Worker e da
+primeira release; antes disso, a landing mostra que a release está em preparação.
 
 ## Rollback
 
@@ -132,3 +139,6 @@ disso, a landing mostra corretamente que a release está em preparação.
 
 Faça backup periódico dos volumes PostgreSQL e Redis do Lightsail antes de
 atualizações de infraestrutura ou migrações relevantes.
+
+As configurações de Access, regras gratuitas, Origin CA, SSH, alarmes e budget
+estão em [SECURITY-HARDENING.md](SECURITY-HARDENING.md).

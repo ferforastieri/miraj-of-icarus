@@ -1,6 +1,7 @@
 using MirajOfIcarus.Api.Contracts;
 using MirajOfIcarus.Application.GameServers;
 using Microsoft.AspNetCore.Mvc;
+using MirajOfIcarus.Api.Security;
 
 namespace MirajOfIcarus.Api.GameServers;
 
@@ -9,6 +10,8 @@ namespace MirajOfIcarus.Api.GameServers;
 public sealed class GameServersController(GameServerService servers) : ControllerBase
 {
     [HttpGet]
-    public ActionResult<IReadOnlyList<GameServerResponse>> List() =>
-        Ok(servers.GetAll().Select(server => server.ToResponse()).ToArray());
+    [RateLimit("public-read")]
+    public async Task<ActionResult<IReadOnlyList<GameServerResponse>>> List(
+        CancellationToken cancellationToken) =>
+        Ok((await servers.GetAllAsync(cancellationToken)).Select(server => server.ToResponse()).ToArray());
 }

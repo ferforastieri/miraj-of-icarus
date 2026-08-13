@@ -1,6 +1,7 @@
 using MirajOfIcarus.Domain.Accounts;
 using MirajOfIcarus.Domain.Characters;
 using MirajOfIcarus.Domain.Platform;
+using MirajOfIcarus.Domain.Administration;
 using Microsoft.EntityFrameworkCore;
 
 namespace MirajOfIcarus.Infrastructure.Persistence;
@@ -12,6 +13,8 @@ public sealed class PlatformDbContext(
 
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<Character> Characters => Set<Character>();
+    public DbSet<AdministrationAudit> AdministrationAudits => Set<AdministrationAudit>();
+    public DbSet<GameServerOverride> GameServerOverrides => Set<GameServerOverride>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) =>
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(PlatformDbContext).Assembly);

@@ -27,6 +27,9 @@ internal static class ApiTestSupport
         HttpClient client,
         string userName)
     {
+        client.DefaultRequestHeaders.Remove("CF-Connecting-IP");
+        client.DefaultRequestHeaders.Add("CF-Connecting-IP",
+            $"198.51.100.{Random.Shared.Next(1, 255)}");
         using var registration = await client.PostAsJsonAsync(
             "/v1/accounts", new RegisterAccountRequest(userName, Password));
         registration.EnsureSuccessStatusCode();

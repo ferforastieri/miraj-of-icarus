@@ -37,16 +37,29 @@ std::vector<GameServer> BackendClient::GetServers() const
     return result;
 }
 
-LobbyAdmission BackendClient::Authenticate(const std::string& user, const std::string& password, const GameServer& server) const
+AccountSession BackendClient::Login(const std::string& user, const std::string& password) const
 {
     const auto login = RunStage("Account authentication", [&] {
         return nlohmann::json::parse(RequestJson("POST", JoinEndpoint(apiEndpoint_, "/v1/auth/login"),
             nlohmann::json{{"userName", user}, {"password", password}}.dump()));
     });
-    const auto accessToken = login.at("accessToken").get<std::string>();
+    return {login.at("accessToken"), login.at("refreshToken")};
+}
+
+AccountSession BackendClient::Refresh(const AccountSession& session) const
+{
+    const auto refreshed = RunStage("Session renewal", [&] {
+        return nlohmann::json::parse(RequestJson("POST", JoinEndpoint(apiEndpoint_, "/v1/auth/refresh"),
+            nlohmann::json{{"refreshToken", session.refreshToken}}.dump()));
+    });
+    return {refreshed.at("accessToken"), refreshed.at("refreshToken")};
+}
+
+LobbyAdmission BackendClient::EnterGame(const AccountSession& session, const GameServer& server) const
+{
     const auto game = RunStage("Game ticket", [&] {
         return nlohmann::json::parse(RequestJson("POST", JoinEndpoint(apiEndpoint_, "/v1/game-tickets"),
-            nlohmann::json{{"serverId", server.id}}.dump(), accessToken));
+            nlohmann::json{{"serverId", server.id}}.dump(), session.accessToken));
     });
     const auto admission = RunStage("Login admission", [&] {
         return nlohmann::json::parse(RequestJson("POST", JoinEndpoint(server.loginEndpoint, "/v1/sessions"),

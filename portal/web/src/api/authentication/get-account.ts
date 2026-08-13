@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-export type Account = { accountId: number; userName: string };
+export type Account = {
+  accountId: number;
+  userName: string;
+  role: "Player" | "Administrator";
+  status: "Active" | "Suspended";
+};
 
 export const accountQueryKey = ["account"] as const;
 

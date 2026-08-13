@@ -4,6 +4,7 @@
 #include <winhttp.h>
 
 #include <cerrno>
+#include <algorithm>
 #include <cstdint>
 #include <memory>
 #include <stdexcept>
@@ -14,6 +15,7 @@ namespace miraj_of_icarus::client::windows
 namespace
 {
 constexpr std::size_t MaximumResponseSize = 4 * 1024 * 1024;
+thread_local int RateLimitRetries = 0;
 
 struct Closer
 {
@@ -36,6 +38,19 @@ using FileHandle = std::unique_ptr<void, FileCloser>;
 void Require(bool condition, const char* message)
 {
     if (!condition) throw std::runtime_error(message);
+}
+
+DWORD RetryAfterMilliseconds(void* request)
+{
+    wchar_t value[32]{};
+    DWORD size = sizeof(value);
+    if (!WinHttpQueryHeaders(request, WINHTTP_QUERY_CUSTOM, L"Retry-After", value, &size,
+            WINHTTP_NO_HEADER_INDEX)) return 1000;
+    wchar_t* end = nullptr;
+    const auto seconds = wcstoul(value, &end, 10);
+    return end != value && *end == L'\0'
+        ? static_cast<DWORD>(std::clamp<unsigned long>(seconds, 1, 60) * 1000)
+        : 1000;
 }
 
 }
@@ -127,6 +142,24 @@ std::string RequestJson(
                 WINHTTP_NO_HEADER_INDEX) != FALSE,
         "The service returned an invalid response.");
 
+    if (status == 429 && RateLimitRetries < 3)
+    {
+        const auto delay = RetryAfterMilliseconds(request.get());
+        ++RateLimitRetries;
+        Sleep(delay);
+        try
+        {
+            auto result = RequestJson(method, url, body, bearer);
+            --RateLimitRetries;
+            return result;
+        }
+        catch (...)
+        {
+            --RateLimitRetries;
+            throw;
+        }
+    }
+
     std::string response;
     for (;;)
     {
@@ -154,7 +187,7 @@ std::string RequestJson(
 }
 
 void DownloadFile(const std::string& url, const std::wstring& destination,
-    const DownloadProgress& progress)
+    const DownloadProgress& progress, const std::string& bearer)
 {
     const auto wideUrl = ToWide(url);
     URL_COMPONENTSW parts{};
@@ -180,7 +213,12 @@ void DownloadFile(const std::string& url, const std::wstring& destination,
         WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES,
         parts.nScheme == INTERNET_SCHEME_HTTPS ? WINHTTP_FLAG_SECURE : 0));
     Require(request != nullptr, "Unable to create the download request.");
-    Require(WinHttpSendRequest(request.get(), WINHTTP_NO_ADDITIONAL_HEADERS, 0,
+    const auto headers = bearer.empty()
+        ? std::wstring{}
+        : L"Authorization: Bearer " + ToWide(bearer) + L"\r\n";
+    Require(WinHttpSendRequest(request.get(),
+                headers.empty() ? WINHTTP_NO_ADDITIONAL_HEADERS : headers.c_str(),
+                static_cast<DWORD>(headers.size()),
                 WINHTTP_NO_REQUEST_DATA, 0, 0, 0) != FALSE &&
             WinHttpReceiveResponse(request.get(), nullptr) != FALSE,
         "The download service did not respond.");
@@ -190,7 +228,26 @@ void DownloadFile(const std::string& url, const std::wstring& destination,
     Require(WinHttpQueryHeaders(request.get(),
                 WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER,
                 WINHTTP_HEADER_NAME_BY_INDEX, &status, &statusSize,
-                WINHTTP_NO_HEADER_INDEX) != FALSE && status >= 200 && status < 300,
+                WINHTTP_NO_HEADER_INDEX) != FALSE,
+        "The download service returned an invalid response.");
+    if (status == 429 && RateLimitRetries < 3)
+    {
+        const auto delay = RetryAfterMilliseconds(request.get());
+        ++RateLimitRetries;
+        Sleep(delay);
+        try
+        {
+            DownloadFile(url, destination, progress, bearer);
+            --RateLimitRetries;
+            return;
+        }
+        catch (...)
+        {
+            --RateLimitRetries;
+            throw;
+        }
+    }
+    Require(status >= 200 && status < 300,
         "The download service rejected the file request.");
 
     wchar_t lengthBuffer[32]{};

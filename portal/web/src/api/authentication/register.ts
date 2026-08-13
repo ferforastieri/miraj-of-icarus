@@ -1,9 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { request } from "@/api/http";
 import { accountQueryKey } from "@/api/authentication/get-account";
-import type { LoginInput } from "@/api/authentication/login";
+export type RegisterInput = {
+  userName: string;
+  password: string;
+  turnstileToken?: string;
+};
 
-export function register(input: LoginInput) {
+export function register(input: RegisterInput) {
   return request<{ authenticated: true }>("/api/auth/register", {
     method: "POST",
     body: JSON.stringify(input),

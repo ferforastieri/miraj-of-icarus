@@ -44,10 +44,8 @@ void Report(const UpdateProgressCallback& callback, std::wstring status,
     if (callback) callback({std::move(status), std::move(detail), completed, total});
 }
 
-PublishedRelease GetPublishedRelease(const std::string& apiEndpoint)
+PublishedRelease ParsePublishedRelease(const nlohmann::json& document)
 {
-    const auto document = nlohmann::json::parse(RequestJson("GET",
-        JoinEndpoint(apiEndpoint, "/v1/client-releases/windows/latest")));
     PublishedRelease result{
         .version = document.at("version").get<std::string>(),
         .totalSize = document.at("totalSize").get<std::uint64_t>(),
@@ -145,7 +143,8 @@ void Activate(const std::filesystem::path& active, const std::filesystem::path& 
 }
 
 UpdateResult EnsureClientReady(const std::string& apiEndpoint,
-    const std::wstring& installDirectory, const UpdateProgressCallback& progress)
+    const std::wstring& installDirectory, const AccessTokenProvider& accessTokenProvider,
+    const UpdateProgressCallback& progress)
 {
     const std::filesystem::path active(installDirectory);
     const auto parent = active.parent_path();
@@ -153,7 +152,26 @@ UpdateResult EnsureClientReady(const std::string& apiEndpoint,
     CreateDirectories(parent);
 
     Report(progress, L"CONSULTANDO O REINO", L"Procurando a versão mais recente", 0, 1);
-    const auto published = GetPublishedRelease(apiEndpoint);
+    auto authorization = nlohmann::json::parse(RequestJson("POST",
+        JoinEndpoint(apiEndpoint, "/v1/client-releases/windows/download-session"), "{}",
+        accessTokenProvider()));
+    auto downloadToken = authorization.at("accessToken").get<std::string>();
+    auto published = ParsePublishedRelease(authorization);
+    auto authorizationIssuedAt = GetTickCount64();
+    const auto renewDownloadAuthorization = [&]
+    {
+        constexpr ULONGLONG RenewalInterval = 10ULL * 60ULL * 1000ULL;
+        if (GetTickCount64() - authorizationIssuedAt < RenewalInterval) return;
+        authorization = nlohmann::json::parse(RequestJson("POST",
+            JoinEndpoint(apiEndpoint, "/v1/client-releases/windows/download-session"), "{}",
+            accessTokenProvider()));
+        auto renewed = ParsePublishedRelease(authorization);
+        if (renewed.version != published.version)
+            Fail("The published release changed while the client was being installed.");
+        downloadToken = authorization.at("accessToken").get<std::string>();
+        published = std::move(renewed);
+        authorizationIssuedAt = GetTickCount64();
+    };
     const auto installedVersion = ReadVersion(active);
     if (installedVersion == published.version)
     {
@@ -178,9 +196,9 @@ UpdateResult EnsureClientReady(const std::string& apiEndpoint,
     Report(progress, L"VALIDANDO ATUALIZAÇÃO", L"Conferindo a assinatura da release", 0,
         published.totalSize);
     WriteBinary(staging / "release-manifest.json",
-        RequestJson("GET", JoinEndpoint(apiEndpoint, published.manifestUrl)));
+        RequestJson("GET", published.manifestUrl, {}, downloadToken));
     WriteBinary(staging / "release-manifest.sig",
-        RequestJson("GET", JoinEndpoint(apiEndpoint, published.signatureUrl)));
+        RequestJson("GET", published.signatureUrl, {}, downloadToken));
     const auto manifest = ReadVerifiedReleaseManifest(staging.wstring());
     std::uint64_t manifestTotal = 0;
     for (const auto& file : manifest.files) manifestTotal += file.size;
@@ -194,6 +212,7 @@ UpdateResult EnsureClientReady(const std::string& apiEndpoint,
     std::uint64_t downloaded = 0;
     for (const auto& expected : manifest.files)
     {
+        renewDownloadAuthorization();
         const auto destination = staging / ToWide(expected.path);
         CreateDirectories(destination.parent_path());
         if (IsReleaseFileValid(active.wstring(), expected))
@@ -212,8 +231,7 @@ UpdateResult EnsureClientReady(const std::string& apiEndpoint,
         bool valid = false;
         for (int attempt = 0; attempt < 3 && !valid; ++attempt)
         {
-            const auto url = JoinEndpoint(apiEndpoint,
-                published.filesBaseUrl + EncodeUrlPath(expected.path));
+            const auto url = published.filesBaseUrl + EncodeUrlPath(expected.path);
             try
             {
                 DownloadFile(url, destination.wstring(), [&](const std::uint64_t received,
@@ -221,7 +239,7 @@ UpdateResult EnsureClientReady(const std::string& apiEndpoint,
                 {
                     Report(progress, L"BAIXANDO ATUALIZAÇÃO", ToWide(expected.path),
                         completed + received, manifestTotal);
-                });
+                }, downloadToken);
                 valid = IsReleaseFileValid(staging.wstring(), expected);
             }
             catch (const std::exception&)

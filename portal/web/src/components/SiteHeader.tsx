@@ -15,13 +15,13 @@ export function SiteHeader({ compact = false }: Props) {
       "z-30 w-full pt-6 max-[700px]:pt-3",
       compact ? "relative" : "absolute inset-x-0 top-0",
     )}>
-      <div className="mb-1 flex justify-end gap-1 pr-5 font-miraj-of-icarus text-[.64rem] font-semibold uppercase tracking-[.08em] text-[#e2edf0] [text-shadow:0_1px_5px_#061322] max-[700px]:hidden">
-        <Link className={accountItem} href={routes.panel}>Entrar</Link>
-        <Link className={accountItem} href={`${routes.panel}?modo=cadastro`}>Criar conta</Link>
+      <div className="mb-1 flex justify-end gap-1 pr-5 font-miraj-of-icarus text-[.64rem] font-semibold uppercase tracking-[.08em] text-[#eee7d6] [text-shadow:0_1px_5px_#061d18] max-[700px]:hidden">
+        <Link className={accountItem} href={routes.login}>Entrar</Link>
+        <Link className={accountItem} href={routes.register}>Criar conta</Link>
       </div>
 
       <nav className="relative grid h-[92px] grid-cols-[1fr_240px_1fr] items-center max-[1050px]:grid-cols-[1fr_200px_1fr] max-[900px]:h-[82px] max-[900px]:grid-cols-[1fr_160px_1fr] max-[700px]:h-[68px] max-[700px]:grid-cols-[1fr_92px_1fr]" aria-label="Navegação principal">
-        <div className="col-start-1 flex items-center justify-end max-[700px]:pr-0">
+        <div className="col-start-1 flex items-center justify-end max-[700px]:hidden">
           <Link className={navItem} href={routes.home}>Início</Link>
           <Link className={`${navItem} max-[700px]:hidden`} href={routes.game}>O jogo</Link>
         </div>
@@ -31,10 +31,21 @@ export function SiteHeader({ compact = false }: Props) {
           <Image className="relative z-10 h-[82%] w-[82%] object-contain drop-shadow-[0_8px_7px_rgba(2,24,20,.78)]" src="/media/branding/miraj-mj-mark-jade.png" alt="" width={1052} height={1167} priority />
         </Link>
 
-        <div className="col-start-3 flex items-center max-[700px]:justify-end max-[700px]:pl-0">
+        <div className="col-start-3 flex items-center max-[700px]:hidden">
           <Link className={`${navItem} max-[700px]:hidden`} href={routes.realms}>Reinos</Link>
           <Link className={navItem} href={routes.download}>Download</Link>
         </div>
+        <details className="group absolute right-3 top-2 z-30 hidden max-[700px]:block">
+          <summary className="grid min-h-12 min-w-24 list-none place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] px-5 text-xs uppercase tracking-[.08em] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]">Menu</summary>
+          <div className="jade-card absolute right-0 top-12 grid w-[min(300px,calc(100vw-24px))] gap-1 p-2">
+            <Link className={navItem} href={routes.home}>Início</Link>
+            <Link className={navItem} href={routes.game}>O jogo</Link>
+            <Link className={navItem} href={routes.realms}>Reinos</Link>
+            <Link className={navItem} href={routes.download}>Download</Link>
+            <Link className={navItem} href={routes.login}>Entrar</Link>
+            <Link className={navItem} href={routes.register}>Criar conta</Link>
+          </div>
+        </details>
       </nav>
     </header>
   );

@@ -4,9 +4,6 @@ import { ApiError, request } from "@/api/http";
 export type ClientRelease = {
   version: string;
   totalSize: number;
-  manifestUrl: string;
-  signatureUrl: string;
-  filesBaseUrl: string;
   launcherUrl: string;
   publishedAt: string;
 };

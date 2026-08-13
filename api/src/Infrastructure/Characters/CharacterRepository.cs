@@ -27,31 +27,33 @@ public sealed class CharacterRepository(
         CancellationToken cancellationToken = default)
     {
         await using var database = await databaseFactory.CreateDbContextAsync(cancellationToken);
-        await using var transaction = await database.Database.BeginTransactionAsync(cancellationToken);
-        await database.Database.ExecuteSqlInterpolatedAsync(
-            $"SELECT pg_advisory_xact_lock({character.AccountId})", cancellationToken);
-        var count = await database.Characters.CountAsync(
-            value => value.AccountId == character.AccountId, cancellationToken);
-        if (count >= maximumCharacters)
+        var strategy = database.Database.CreateExecutionStrategy();
+        return await strategy.ExecuteAsync(async () =>
         {
-            return new CharacterCreationResult(CharacterCreationStatus.SlotsFull, null);
-        }
+            await using var transaction = await database.Database.BeginTransactionAsync(cancellationToken);
+            await database.Database.ExecuteSqlInterpolatedAsync(
+                $"SELECT pg_advisory_xact_lock({character.AccountId})", cancellationToken);
+            var count = await database.Characters.CountAsync(
+                value => value.AccountId == character.AccountId, cancellationToken);
+            if (count >= maximumCharacters)
+                return new CharacterCreationResult(CharacterCreationStatus.SlotsFull, null);
 
-        database.Characters.Add(character);
-        try
-        {
-            await database.SaveChangesAsync(cancellationToken);
-            await transaction.CommitAsync(cancellationToken);
-            return new CharacterCreationResult(CharacterCreationStatus.Created, character);
-        }
-        catch (DbUpdateException exception)
-            when (exception.InnerException is PostgresException
+            database.Characters.Add(character);
+            try
             {
-                SqlState: PostgresErrorCodes.UniqueViolation
-            })
-        {
-            return new CharacterCreationResult(CharacterCreationStatus.NameUnavailable, null);
-        }
+                await database.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync(cancellationToken);
+                return new CharacterCreationResult(CharacterCreationStatus.Created, character);
+            }
+            catch (DbUpdateException exception)
+                when (exception.InnerException is PostgresException
+                {
+                    SqlState: PostgresErrorCodes.UniqueViolation
+                })
+            {
+                return new CharacterCreationResult(CharacterCreationStatus.NameUnavailable, null);
+            }
+        });
     }
 
     public async Task<Character?> ScheduleDeletionAsync(
