@@ -46,8 +46,8 @@ export default function HomePage() {
 
         <div className="relative flex w-[min(920px,calc(100%-32px))] flex-col items-center pb-20 pt-44 text-center max-[700px]:pt-32">
           <div className="pointer-events-none absolute left-1/2 top-[47%] -z-10 h-[min(720px,78vw)] w-[min(620px,68vw)] -translate-x-1/2 -translate-y-1/2 rounded-[48%_48%_12%_12%] border border-[#a8e5bc]/25 shadow-[inset_0_0_70px_rgba(40,185,111,.14),0_0_80px_rgba(3,24,20,.65)] before:absolute before:inset-5 before:rounded-[48%_48%_12%_12%] before:border before:border-[#d9c788]/30" aria-hidden="true" />
+          <p className="mb-2 font-miraj-of-icarus text-[clamp(.7rem,1.3vw,.92rem)] uppercase tracking-[.32em] text-[#b8ecc9] [text-shadow:0_2px_8px_#031b16]">O chamado dos reinos</p>
           <Image className="mb-0 h-auto w-[min(730px,92vw)] drop-shadow-[0_14px_22px_rgba(2,20,17,.8)]" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} priority />
-          <p className="-mt-8 font-miraj-of-icarus text-[clamp(.75rem,1.4vw,1rem)] uppercase tracking-[.28em] text-[#b8ecc9] [text-shadow:0_2px_8px_#031b16] max-[600px]:-mt-2">O chamado dos reinos</p>
           <h1 id="hero-title" className="mt-5 font-miraj-of-icarus text-[clamp(3.1rem,7.8vw,7.3rem)] font-semibold leading-[.8] text-[#f6f1d9] [text-shadow:0_4px_3px_#04271f,0_0_22px_#04271f]">O céu não é<br />o limite.</h1>
           <p className="mt-7 max-w-[650px] text-[clamp(1rem,1.6vw,1.25rem)] leading-8 text-[#f3f5eb] [text-shadow:0_2px_8px_#031b16]">Atravesse o grande portal, escolha entre oito caminhos e escreva uma jornada capaz de transformar o próprio brasão.</p>
           <div className="mt-9 flex gap-3 max-[560px]:w-full max-[560px]:flex-col">
@@ -136,15 +136,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="relative isolate grid min-h-[780px] place-items-center overflow-hidden px-6 py-28 text-center" id="download">
+        <section className="relative isolate grid min-h-[650px] place-items-center overflow-hidden px-6 py-28 text-center max-[700px]:min-h-[580px] max-[700px]:px-4" id="download">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(3,25,21,.62),rgba(3,25,21,.92)),radial-gradient(circle_at_50%_38%,rgba(45,157,99,.18),transparent_42%)]" aria-hidden="true" />
-          <div className="max-w-3xl">
-            <Image className="mx-auto h-auto w-[min(680px,92vw)]" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} />
-            <ChapterTitle eyebrow="Para Windows" light>A próxima passagem começa aqui.</ChapterTitle>
-            <p className="mx-auto mt-7 max-w-xl leading-7 text-[#d9e5da]">O launcher instala, verifica e mantém o cliente preparado antes de conectar sua conta aos reinos.</p>
-            <div className="mt-9">
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(3,25,21,.7),rgba(3,25,21,.94)),radial-gradient(circle_at_50%_44%,rgba(45,157,99,.24),transparent_44%)]" aria-hidden="true" />
+          <div className="w-[min(880px,100%)]">
+            <ChapterTitle eyebrow="A próxima jornada" light>Prepare sua passagem para os reinos.</ChapterTitle>
+            <p className="mx-auto mt-8 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-8 text-[#d9e5da]">Baixe o launcher para instalar o cliente, verificar os arquivos e manter sua jornada pronta para começar.</p>
+            <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[560px]:w-full max-[560px]:flex-col">
               {release ? <a className={buttonStyles("primary", true)} href={release.launcherUrl}>Baixar launcher</a> : <span className={buttonStyles("primary", true)} aria-disabled="true">Release em preparação</span>}
+              <Link className={buttonStyles("ghost", true)} href={routes.register}>Criar conta</Link>
             </div>
             {release && <p className="mt-5 font-miraj-of-icarus text-xs uppercase tracking-[.12em] text-[#c9d8ca]">Versão {release.version.slice(0, 8)} · {formatBytes(release.totalSize)} · {new Intl.DateTimeFormat("pt-BR").format(new Date(release.publishedAt))}</p>}
           </div>

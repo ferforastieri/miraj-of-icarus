@@ -22,6 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth">
+      <head>
+        <link rel="preload" href="/media/game-ui/jade/button-default.png" as="image" />
+        <link rel="preload" href="/media/game-ui/jade/button-focused.png" as="image" />
+        <link rel="preload" href="/media/game-ui/jade/button-pressed.png" as="image" />
+        <link rel="preload" href="/media/game-ui/jade/button-disabled.png" as="image" />
+      </head>
       <body>
         <QueryProvider>{children}</QueryProvider>
         <JadeCursor />

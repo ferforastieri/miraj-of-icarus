@@ -109,6 +109,36 @@
 }
 
 @layer components {
+  .miraj-button {
+    --miraj-button-state: url("/media/game-ui/jade/button-default.png");
+    background-image: var(--miraj-button-state), url("/media/game-ui/jade/button-default.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: clamp(.68rem, .55rem + .36vw, .92rem);
+    line-height: 1.05;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .miraj-button:hover,
+  .miraj-button:focus-visible,
+  .miraj-button[aria-selected="true"] {
+    --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
+  }
+
+  .miraj-button:active {
+    --miraj-button-state: url("/media/game-ui/jade/button-pressed.png");
+  }
+
+  .miraj-button:disabled,
+  .miraj-button[aria-disabled="true"] {
+    --miraj-button-state: url("/media/game-ui/jade/button-disabled.png");
+  }
+
   .jade-card {
     border: 42px solid transparent;
     border-image-source: url("/media/game-ui/jade/card.png");

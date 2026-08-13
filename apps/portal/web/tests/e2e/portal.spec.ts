@@ -3,6 +3,11 @@ import { expect, test } from "@playwright/test";
 test("landing apresenta o portal, as classes, o prestígio e o estado seguro de release", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /O céu não é o limite/i })).toBeVisible();
+
+  if ((page.viewportSize()?.width ?? 0) <= 700) {
+    await page.getByText("Menu", { exact: true }).click();
+  }
+
   await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
