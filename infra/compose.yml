@@ -48,7 +48,6 @@ services:
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
-      Database__ApplyMigrations: "true"
       ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com/channels/alpha.json}
       DownloadAuthorization__SigningKey: ${DOWNLOAD_AUTHORIZATION_SIGNING_KEY:?Set DOWNLOAD_AUTHORIZATION_SIGNING_KEY in infra/.env}
       Turnstile__SecretKey: ${TURNSTILE_SECRET_KEY:?Set TURNSTILE_SECRET_KEY in infra/.env}

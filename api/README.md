@@ -45,6 +45,10 @@ Login, Main e Lobby compartilhem formato, chave Redis e consumo atômico.
 - `GameServers`: catálogo público e emissão do ticket de login compartilhado;
 - `Releases`: leitura e validação do canal publicado no Cloudflare R2.
 
+A API é a autoridade de escrita e a única responsável pelas migrations de
+contas e personagens. O Lobby compartilha identidade e contratos necessários,
+mas acessa `game_characters` apenas para listar personagens disponíveis no jogo.
+
 ## Validação
 
 ```bash

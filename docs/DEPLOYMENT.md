@@ -14,6 +14,11 @@ PostgreSQL, Redis e Main/Coordinator ficam apenas na rede Docker do Lightsail.
 O portal acessa a API pública pelo lado servidor; access e refresh tokens ficam
 em cookies `HttpOnly`, nunca em `localStorage`.
 
+A API é a única proprietária das escritas e migrations de contas e personagens.
+O Lobby consulta a mesma tabela somente para montar a seleção do jogo e sempre
+filtra personagens com exclusão agendada. Criação, exclusão e restauração passam
+exclusivamente pela API, evitando regras e transações concorrentes.
+
 ## 1. Ativar o domínio no Cloudflare
 
 1. Adicione `mirajoficarus.com` como uma zona no Cloudflare.
@@ -28,8 +33,8 @@ em cookies `HttpOnly`, nunca em `localStorage`.
    automática.
 2. Deixe o bucket privado e o acesso `r2.dev` desativado em produção.
 3. Crie um token R2 restrito a esse bucket, com leitura e gravação de objetos.
-4. Não conecte ainda `downloads.mirajoficarus.com`: primeiro valide o Worker no
-   domínio temporário, conforme [CLOUDFLARE-R2.md](CLOUDFLARE-R2.md).
+4. Remova a ligação direta do domínio ao R2 antes de publicar o Worker; o
+   Custom Domain final é declarado em `cloudflare/download-worker/wrangler.jsonc`.
 
 Cadastre em **GitHub > Settings > Secrets and variables > Actions**:
 
@@ -103,7 +108,7 @@ A sequência esperada é:
 2. `Portal deploy` publica o Worker do portal;
 3. `Backend deploy` envia quatro imagens ao GHCR e atualiza o Lightsail;
 4. com autorização explícita, execute manualmente `Download worker deploy` para
-   disponibilizar a revisão em `workers.dev`, sem alterar o domínio;
+   publicar `downloads.mirajoficarus.com`;
 5. se houve mudança em `game-clients/client-pc/**`, `Windows client release`
    publica `channels/alpha.json` por último.
 

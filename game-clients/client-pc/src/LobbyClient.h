@@ -26,12 +26,6 @@ class LobbyClient
 public:
     explicit LobbyClient(std::string endpoint);
     [[nodiscard]] LobbyState Enter(const std::string& oneTimeTicket) const;
-    [[nodiscard]] Character CreateCharacter(
-        const std::string& sessionToken,
-        const std::string& name,
-        const std::string& archetype,
-        const std::string& gender,
-        const std::string& customization) const;
     [[nodiscard]] std::vector<Character> ListCharacters(const std::string& sessionToken) const;
 
 private:

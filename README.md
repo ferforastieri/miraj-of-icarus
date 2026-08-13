@@ -90,8 +90,8 @@ O GitHub Actions é o único coordenador das pipelines:
   rollback;
 - `client-release.yml` recompila os executáveis Windows quando o cliente ou o
   launcher muda e publica a release assinada no R2.
-- `download-worker-deploy.yml` publica primeiro em `workers.dev`; a associação
-  do domínio de produção é um cutover manual.
+- `download-worker-deploy.yml` publica o serviço de download no domínio
+  `downloads.mirajoficarus.com`, com acesso privado ao R2.
 
 O portal não roda no Lightsail em produção. Ele continua disponível no Compose
 base apenas para desenvolvimento local. O guia completo de DNS, secrets,

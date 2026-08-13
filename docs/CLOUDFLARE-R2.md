@@ -10,9 +10,14 @@
 - cliente protegido: `releases/{sha}/client/**`.
 
 O domínio não deve permanecer ligado diretamente ao bucket. O código em
-`distribution/download-worker` lê o R2 por binding privado, não oferece
+`cloudflare/download-worker` lê o R2 por binding privado, não oferece
 listagem e exige um token HS256 de 15 minutos para manifesto, assinatura e
 arquivos do cliente. O launcher obtém esse token somente depois de autenticar.
+
+O próprio Worker aplica o binding oficial de rate limit da Cloudflare: 100
+requisições por 10 segundos. Arquivos privados são particionados por conta e
+SHA da release; canal e launcher públicos são particionados por IP e objeto.
+Respostas limitadas retornam `429`, `Retry-After` e `RateLimit-Limit`.
 
 ## Publicação
 
@@ -33,13 +38,12 @@ Lightsail e no Worker. Ele não substitui a chave Ed25519 que assina o manifesto
 
 1. Mantenha o bucket privado e desative `r2.dev`.
 2. Cadastre `DOWNLOAD_AUTHORIZATION_SIGNING_KEY` nos secrets do GitHub.
-3. Execute manualmente o workflow `Download worker deploy` sem rota customizada.
-4. Valide o endereço temporário `*.workers.dev`: canal e launcher retornam
-   `200`; caminhos `client/**` retornam `401` sem token e `200/206` com token.
-5. Somente após a revisão, remova a ligação R2 direta e associe
-   `downloads.mirajoficarus.com` ao Worker.
-
-O cutover não é feito por este repositório automaticamente.
+3. Remova a ligação direta de `downloads.mirajoficarus.com` nas configurações
+   do bucket R2.
+4. Execute o workflow `Download worker deploy`. A configuração associa o
+   Custom Domain diretamente ao Worker.
+5. Valide: canal e launcher retornam `200`; caminhos `client/**` retornam `401`
+   sem token e `200/206` com token válido.
 
 ## Cache e rollback
 

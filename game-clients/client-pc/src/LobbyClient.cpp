@@ -38,26 +38,6 @@ LobbyState LobbyClient::Enter(const std::string& oneTimeTicket) const
     return state;
 }
 
-Character LobbyClient::CreateCharacter(
-    const std::string& sessionToken,
-    const std::string& name,
-    const std::string& archetype,
-    const std::string& gender,
-    const std::string& customization) const
-{
-    const auto response = miraj_of_icarus::client::windows::RequestJson(
-        "POST",
-        miraj_of_icarus::client::windows::JoinEndpoint(endpoint_, "/v1/characters"),
-        nlohmann::json{
-            {"name", name},
-            {"archetype", archetype},
-            {"gender", gender},
-            {"customization", customization},
-        }.dump(),
-        sessionToken);
-    return ReadCharacter(nlohmann::json::parse(response));
-}
-
 std::vector<Character> LobbyClient::ListCharacters(const std::string& sessionToken) const
 {
     const auto response = nlohmann::json::parse(miraj_of_icarus::client::windows::RequestJson(

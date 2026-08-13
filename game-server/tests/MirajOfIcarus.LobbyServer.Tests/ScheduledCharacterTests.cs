@@ -13,7 +13,6 @@ public sealed class ScheduledCharacterTests
         var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__Database")
             ?? throw new InvalidOperationException("ConnectionStrings__Database is required.");
         await using var dataSource = NpgsqlDataSource.Create(connectionString);
-        await LobbyDatabase.MigrateAsync(dataSource);
         var suffix = Guid.NewGuid().ToString("N");
         long accountId;
 
@@ -38,7 +37,7 @@ public sealed class ScheduledCharacterTests
                 $"Blocked{suffix}"[..20],
                 DateTimeOffset.UtcNow.AddDays(7));
 
-            var visible = await new CharacterRepository(dataSource).ListAsync(accountId);
+            var visible = await new CharacterReadRepository(dataSource).ListAsync(accountId);
 
             var character = Assert.Single(visible);
             Assert.StartsWith("Active", character.Name, StringComparison.Ordinal);

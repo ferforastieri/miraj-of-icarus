@@ -1,8 +1,9 @@
 import { verifyDownloadToken } from "./token";
 
-interface Env {
+export interface DownloadWorkerEnv {
   RELEASES: R2Bucket;
   DOWNLOAD_AUTHORIZATION_SIGNING_KEY: string;
+  DOWNLOAD_RATE_LIMITER: RateLimit;
 }
 
 const releasePattern = /^releases\/([0-9a-f]{40})\/(launcher|client)\/(.+)$/;
@@ -11,14 +12,33 @@ function error(status: number, code: string): Response {
   return Response.json({ error: code }, { status, headers: { "Cache-Control": "no-store" } });
 }
 
+function rateLimited(): Response {
+  return Response.json({ error: "rate_limited" }, {
+    status: 429,
+    headers: {
+      "Cache-Control": "no-store",
+      "RateLimit-Limit": "100",
+      "Retry-After": "10",
+    },
+  });
+}
+
+async function enforceRateLimit(
+  env: DownloadWorkerEnv,
+  key: string,
+): Promise<Response | null> {
+  const result = await env.DOWNLOAD_RATE_LIMITER.limit({ key });
+  return result.success ? null : rateLimited();
+}
+
 function cacheControl(key: string): string {
   return key === "channels/alpha.json"
     ? "public, max-age=30, must-revalidate"
     : "public, max-age=31536000, immutable";
 }
 
-export default {
-  async fetch(request: Request, env: Env, context: ExecutionContext): Promise<Response> {
+const worker = {
+  async fetch(request: Request, env: DownloadWorkerEnv, context: ExecutionContext): Promise<Response> {
     if (request.method !== "GET" && request.method !== "HEAD") return error(405, "method_not_allowed");
     const url = new URL(request.url);
     const key = decodeURIComponent(url.pathname.replace(/^\/+/, ""));
@@ -34,6 +54,12 @@ export default {
       const claims = await verifyDownloadToken(
         authorization.slice(7).trim(), env.DOWNLOAD_AUTHORIZATION_SIGNING_KEY, release[1]);
       if (!claims) return error(403, "invalid_download_authorization");
+      const limited = await enforceRateLimit(env, `client:${claims.sub}:${release[1]}`);
+      if (limited) return limited;
+    } else {
+      const address = request.headers.get("CF-Connecting-IP") ?? "unknown";
+      const limited = await enforceRateLimit(env, `public:${address}:${key}`);
+      if (limited) return limited;
     }
 
     const ranged = request.headers.has("Range");
@@ -65,4 +91,6 @@ export default {
     if (!ranged && request.method === "GET") context.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   },
-} satisfies ExportedHandler<Env>;
+} satisfies ExportedHandler<DownloadWorkerEnv>;
+
+export default worker;

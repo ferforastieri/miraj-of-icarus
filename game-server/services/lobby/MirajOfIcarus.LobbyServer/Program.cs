@@ -1,4 +1,3 @@
-using System.Text.Json;
 using MirajOfIcarus.Game.Runtime;
 using MirajOfIcarus.Game.Contracts;
 using MirajOfIcarus.LobbyServer;
@@ -19,15 +18,10 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(_ =>
     return ConnectionMultiplexer.Connect(options);
 });
 builder.Services.AddSingleton<OpaqueTokenStore>();
-builder.Services.AddSingleton<CharacterRepository>();
+builder.Services.AddSingleton<CharacterReadRepository>();
 builder.Services.AddSingleton(TimeProvider.System);
 
 var app = builder.Build();
-
-if (app.Configuration.GetValue("Database:ApplyMigrations", true))
-{
-    await LobbyDatabase.MigrateAsync(app.Services.GetRequiredService<NpgsqlDataSource>());
-}
 
 app.MapGet("/health/live", () => Results.Ok(new { status = "healthy" }));
 app.MapGet("/health/ready", async (
@@ -76,7 +70,7 @@ app.MapPost("/v1/sessions", async (
 app.MapGet("/v1/characters", async (
     HttpRequest request,
     OpaqueTokenStore tokens,
-    CharacterRepository characters,
+    CharacterReadRepository characters,
     TimeProvider timeProvider,
     CancellationToken cancellationToken) =>
 {
@@ -88,48 +82,6 @@ app.MapGet("/v1/characters", async (
     return session is null
         ? Results.Unauthorized()
         : Results.Ok(await characters.ListAsync(session.AccountId, cancellationToken));
-});
-
-app.MapPost("/v1/characters", async (
-    HttpRequest httpRequest,
-    CreateCharacterRequest request,
-    OpaqueTokenStore tokens,
-    CharacterRepository characters,
-    TimeProvider timeProvider,
-    CancellationToken cancellationToken) =>
-{
-    var session = await LobbyAuthentication.AuthenticateAsync(
-        httpRequest,
-        tokens,
-        timeProvider,
-        cancellationToken);
-    if (session is null)
-    {
-        return Results.Unauthorized();
-    }
-
-    var validationError = CharacterValidator.Validate(request);
-    if (validationError is not null)
-    {
-        return Results.BadRequest(new { error = validationError });
-    }
-
-    var result = await characters.CreateAsync(
-        session.AccountId,
-        request with { Name = request.Name.Trim() },
-        timeProvider.GetUtcNow(),
-        cancellationToken);
-    return result.Status switch
-    {
-        CreateCharacterStatus.Created => Results.Created(
-            $"/v1/characters/{result.Character!.Id}",
-            result.Character),
-        CreateCharacterStatus.NameUnavailable => Results.Conflict(
-            new { error = "character_name_unavailable" }),
-        CreateCharacterStatus.SlotsFull => Results.Conflict(
-            new { error = "character_slots_full" }),
-        _ => Results.Problem(),
-    };
 });
 
 app.Run();
@@ -156,31 +108,6 @@ internal static class LobbyAuthentication
         return session is not null && session.ExpiresAt > timeProvider.GetUtcNow()
             ? session
             : null;
-    }
-}
-
-internal static class CharacterValidator
-{
-    public static string? Validate(CreateCharacterRequest request)
-    {
-        var rulesError = CharacterRules.Validate(request.Name, request.Archetype, request.Gender);
-        if (rulesError is not null) return rulesError;
-
-        try
-        {
-            using var document = JsonDocument.Parse(request.Customization);
-            if (document.RootElement.ValueKind != JsonValueKind.Object ||
-                request.Customization.Length > 4096)
-            {
-                return "invalid_customization";
-            }
-        }
-        catch (JsonException)
-        {
-            return "invalid_customization";
-        }
-
-        return null;
     }
 }
 
