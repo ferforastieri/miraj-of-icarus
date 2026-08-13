@@ -6,11 +6,13 @@ public sealed class CharacterRulesTests
 {
     [Theory]
     [InlineData("warrior", "male")]
+    [InlineData("guardian", "female")]
+    [InlineData("thief", "male")]
     [InlineData("priest", "female")]
     [InlineData("wizard", "male")]
-    [InlineData("nature", "female")]
-    [InlineData("thief", "male")]
-    [InlineData("guardian", "female")]
+    [InlineData("archer", "female")]
+    [InlineData("idoll", "female")]
+    [InlineData("magician", "female")]
     public void EveryPublishedArchetypeAndGenderIsAccepted(string archetype, string gender)
     {
         Assert.Null(CharacterRules.Validate("Viajante1", archetype, gender));

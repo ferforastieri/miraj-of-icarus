@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
 
-const classes: Record<string, string> = { warrior: "Guerreiro", priest: "Sacerdote", wizard: "Mago", nature: "Naturalista", thief: "Ladino", guardian: "Guardião" };
+const classes: Record<string, string> = { warrior: "Guerreiro", guardian: "Guardião", thief: "Ladino", priest: "Sacerdote", wizard: "Mago", archer: "Arqueiro", idoll: "Idol", magician: "Magician" };
 const messages: Record<string, string> = {
   invalid_character_name: "Use de 3 a 24 letras ou números no nome.",
   invalid_archetype: "Escolha uma classe válida.",
@@ -79,7 +79,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
       <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
         {values.map(character => (
           <article className={`jade-card relative grid min-h-[280px] grid-cols-[76px_1fr] content-start gap-5 px-3 py-3 drop-shadow-[0_18px_28px_rgba(3,27,22,.3)] max-[620px]:grid-cols-[62px_1fr] max-[620px]:px-0 max-[620px]:py-2 ${character.deletionScheduledAt ? "opacity-75" : ""}`} key={character.id}>
-            <Image className="h-[71px] w-[71px] object-contain max-[620px]:size-[62px]" src={`/media/game-ui/classes/${character.archetype}.png`} alt="" width={71} height={71} />
+            <Image className="h-[71px] w-[71px] object-contain max-[620px]:size-[62px]" src={`/media/game-ui/classes/bronze/${character.archetype}.png`} alt="" width={256} height={256} />
             <div><p className="mb-1 text-xs uppercase tracking-[.14em] text-ancient-gold">{classes[character.archetype] ?? character.archetype} · Nível {character.level}</p><h3 className="mb-1 font-display text-3xl font-medium">{character.name}</h3><p className="text-xs text-mist">Criado em {formatDate(character.createdAt)}</p></div>
             {character.deletionScheduledAt ? (
               <div className="col-span-full mt-4 flex items-center justify-between gap-5 border-t border-moonsteel/20 pt-4 max-[620px]:flex-col max-[620px]:items-start">
@@ -104,12 +104,12 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
               <label className={labelClass}>Nome<Input name="name" minLength={3} maxLength={24} pattern="[A-Za-zÀ-ÿ0-9]+" required /></label>
               <fieldset className="border-0 p-0">
                 <legend className="mb-3 text-xs uppercase tracking-[.1em] text-mist">Classe</legend>
-                <div className="grid grid-cols-6 items-start gap-1 max-[620px]:grid-cols-3">
+                <div className="grid grid-cols-4 items-start gap-1 max-[620px]:grid-cols-2">
                   {Object.entries(classes).map(([value, label], index) => (
                     <label className="group grid min-h-[136px] cursor-pointer grid-rows-[113px_auto] justify-items-center text-center" key={value}>
                       <input className="peer sr-only" type="radio" name="archetype" value={value} defaultChecked={index === 0} />
-                      <Image className="mt-3 size-[71px] object-contain peer-checked:hidden" src={`/media/game-ui/classes/${value}.png`} alt="" width={71} height={71} />
-                      <Image className="hidden h-auto w-[89px] object-contain drop-shadow-[0_4px_8px_rgba(22,164,235,.4)] peer-checked:block" src={`/media/game-ui/classes/${value}-selected.png`} alt="" width={89} height={113} />
+                      <Image className="mt-3 size-[71px] object-contain peer-checked:hidden" src={`/media/game-ui/classes/bronze/${value}.png`} alt="" width={256} height={256} />
+                      <Image className="hidden h-auto w-[89px] object-contain peer-checked:block" src={`/media/game-ui/classes/bronze/${value}-selected.png`} alt="" width={256} height={256} />
                       <span className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.03em] text-mist peer-checked:text-jade peer-checked:[text-shadow:0_0_7px_rgba(40,185,111,.75)]">{label}</span>
                     </label>
                   ))}

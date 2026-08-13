@@ -15,7 +15,9 @@ const paths = [
   { id: "thief", label: "Assassino" },
   { id: "priest", label: "Sacerdote" },
   { id: "wizard", label: "Mago" },
-  { id: "nature", label: "Naturalista" },
+  { id: "archer", label: "Arqueiro" },
+  { id: "idoll", label: "Idol" },
+  { id: "magician", label: "Magician" },
 ] as const;
 
 function formatBytes(bytes: number) {
@@ -88,7 +90,7 @@ export default function HomePage() {
           <div className="mx-auto flex h-[124px] w-[min(760px,calc(100%-24px))] items-center justify-center gap-5 max-[700px]:h-[112px] max-[700px]:gap-1" aria-label="Caminhos disponíveis">
             {paths.map((path, index) => (
               <a className="group relative grid w-[96px] shrink-0 place-items-center pt-2 max-[700px]:w-[15.5vw]" href="#jogo" key={path.id} aria-label={path.label}>
-                <Image className="size-[71px] object-contain max-[700px]:size-[56px]" src={`/media/game-ui/classes/${path.id}.png`} alt="" width={71} height={71} />
+                <Image className="size-[71px] object-contain max-[700px]:size-[56px]" src={`/media/game-ui/classes/bronze/${path.id}.png`} alt="" width={256} height={256} />
                 <span className={`font-miraj-of-icarus text-[.68rem] uppercase tracking-[.04em] text-[#b8c8bc] max-[700px]:hidden ${index === 0 ? "text-[#70d69d]" : ""}`}>{path.label}</span>
               </a>
             ))}
@@ -118,11 +120,11 @@ export default function HomePage() {
 
           <div className="mx-auto mt-24 w-[min(1060px,100%)] text-center">
             <OrnamentTitle>Escolha seu caminho</OrnamentTitle>
-            <h3 className="mt-5 font-miraj-of-icarus text-[clamp(2.3rem,4vw,3.8rem)] uppercase text-[#18372f]">Seis classes. Uma aventura.</h3>
-            <div className="mt-10 grid grid-cols-6 border-y border-[#9a8551] bg-[#082d27] px-7 py-8 shadow-[inset_0_0_0_5px_#145143,0_18px_40px_rgba(28,65,50,.24)] max-[760px]:grid-cols-3 max-[760px]:gap-y-7 max-[480px]:px-2">
+            <h3 className="mt-5 font-miraj-of-icarus text-[clamp(2.3rem,4vw,3.8rem)] uppercase text-[#18372f]">Oito classes. Uma aventura.</h3>
+            <div className="mt-10 grid grid-cols-8 border-y border-[#9a8551] bg-[#082d27] px-7 py-8 shadow-[inset_0_0_0_5px_#145143,0_18px_40px_rgba(28,65,50,.24)] max-[900px]:grid-cols-4 max-[760px]:gap-y-7 max-[480px]:grid-cols-2 max-[480px]:px-2">
               {paths.map((path, index) => (
                 <div className="group grid min-h-32 place-items-center content-center" key={path.id}>
-                  <Image className="h-auto w-[89px] object-contain" src={`/media/game-ui/classes/${path.id}${index === 0 ? "-selected" : ""}.png`} alt="" width={index === 0 ? 89 : 71} height={index === 0 ? 113 : 71} />
+                  <Image className="h-auto w-[89px] object-contain" src={`/media/game-ui/classes/bronze/${path.id}${index === 0 ? "-selected" : ""}.png`} alt="" width={256} height={256} />
                   <span className={`font-miraj-of-icarus text-xs uppercase tracking-[.08em] ${index === 0 ? "-mt-2 text-[#70d69d]" : "mt-2 text-[#c7d5ca]"}`}>{path.label}</span>
                 </div>
               ))}

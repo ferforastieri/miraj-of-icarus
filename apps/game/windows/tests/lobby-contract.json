@@ -48,10 +48,12 @@
   ],
   "classes": [
     "warrior",
+    "guardian",
+    "thief",
     "priest",
     "wizard",
-    "nature",
-    "thief",
-    "guardian"
+    "archer",
+    "idoll",
+    "magician"
   ]
 }

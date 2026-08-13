@@ -60,11 +60,11 @@ test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", 
   await expect(page.getByRole("heading", { name: new RegExp(account) })).toBeVisible();
 
   await page.getByLabel("Nome").fill(character);
-  await page.getByText("Naturalista", { exact: true }).click();
-  await expect(page.getByRole("radio", { name: "Naturalista" })).toBeChecked();
+  await page.getByText("Arqueiro", { exact: true }).click();
+  await expect(page.getByRole("radio", { name: "Arqueiro" })).toBeChecked();
   await page.getByRole("button", { name: "Criar personagem" }).click();
   await expect(page.getByRole("heading", { name: character })).toBeVisible();
-  await expect(page.getByText(/Naturalista · Nível 1/)).toBeVisible();
+  await expect(page.getByText(/Arqueiro · Nível 1/)).toBeVisible();
 
   await page.getByText("Agendar exclusão").click();
   await page.getByLabel(new RegExp(`Digite ${character}`)).fill(character);

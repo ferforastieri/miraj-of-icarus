@@ -5,7 +5,7 @@ public static class CharacterRules
     public const int MaximumCharactersPerAccount = 4;
     public static readonly TimeSpan DeletionGracePeriod = TimeSpan.FromDays(7);
     public static readonly IReadOnlySet<string> Archetypes =
-        new HashSet<string>(["warrior", "priest", "wizard", "nature", "thief", "guardian"]);
+        new HashSet<string>(["warrior", "guardian", "thief", "priest", "wizard", "archer", "idoll", "magician"]);
     public static readonly IReadOnlySet<string> Genders = new HashSet<string>(["male", "female"]);
 
     public static string? Validate(string name, string archetype, string gender)
