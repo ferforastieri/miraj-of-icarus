@@ -11,8 +11,9 @@ import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
+import { gameClasses } from "@/data/game-classes";
 
-const classes: Record<string, string> = { warrior: "Guerreiro", guardian: "Guardião", thief: "Ladino", priest: "Sacerdote", wizard: "Mago", archer: "Arqueiro", idoll: "Idol", magician: "Magician" };
+const classes = Object.fromEntries(gameClasses.map(gameClass => [gameClass.id, gameClass.name]));
 const messages: Record<string, string> = {
   invalid_character_name: "Use de 3 a 24 letras ou números no nome.",
   invalid_archetype: "Escolha uma classe válida.",

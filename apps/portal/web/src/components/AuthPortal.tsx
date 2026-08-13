@@ -62,9 +62,9 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
   const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
   const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.055em] text-[#dce8de] [text-shadow:0_2px_2px_#041b16] hover:bg-[url('/media/game-ui/jade/button-focused.png')] hover:text-white hover:drop-shadow-[0_0_9px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] focus-visible:text-white focus-visible:drop-shadow-[0_0_9px_rgba(40,185,111,.7)]";
   return (
-    <main className="relative grid min-h-screen place-items-center px-6 pb-20 pt-52 max-[700px]:pt-32 max-[620px]:px-2 max-[620px]:pb-12">
+    <main className="relative grid min-h-screen place-items-center px-6 pb-20 pt-52 max-[700px]:pt-32 max-[620px]:px-3 max-[620px]:pb-12">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,232,157,.12),transparent_35%)]" aria-hidden="true" />
-      <section className="jade-card relative w-[min(620px,100%)] px-8 py-7 drop-shadow-[0_30px_60px_rgba(3,27,22,.48)] max-[620px]:px-2 max-[620px]:py-5" aria-labelledby="auth-title">
+      <section className="auth-panel relative w-[min(620px,100%)] px-[clamp(34px,8vw,74px)] pb-[clamp(48px,8vw,78px)] pt-[clamp(62px,10vw,94px)] drop-shadow-[0_30px_60px_rgba(3,27,22,.48)]" aria-labelledby="auth-title">
         <Kicker>Portal do jogador</Kicker>
         <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
         <p className="leading-relaxed text-mist">{registering ? "Crie sua conta para preparar seus personagens e acompanhar os reinos." : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}</p>

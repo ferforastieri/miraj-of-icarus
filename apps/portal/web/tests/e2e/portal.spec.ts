@@ -1,12 +1,26 @@
 import { expect, test } from "@playwright/test";
 
-test("landing apresenta o mundo e o estado seguro de release", async ({ page }) => {
+test("landing apresenta o portal, as classes, o prestígio e o estado seguro de release", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /A passagem está aberta/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /O céu não é o limite/i })).toBeVisible();
   await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Um mundo antigo/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Sua força tem nível/i })).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
+});
+
+test("cada uma das oito classes possui uma página própria", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#classes a")).toHaveCount(8);
+  await page.locator('#classes a[href="/classes/guerreiro"]').click();
+  await expect(page).toHaveURL(/\/classes\/guerreiro$/);
+  await expect(page.getByRole("heading", { name: "Guerreiro", exact: true })).toBeVisible();
+  await expect(page.getByText("Bronze", { exact: true })).toBeVisible();
+  await expect(page.getByText("Prata", { exact: true })).toBeVisible();
+  await expect(page.getByText("Ouro", { exact: true })).toBeVisible();
+  await expect(page.getByText("Jade", { exact: true })).toBeVisible();
 });
 
 test("botões usam focused somente enquanto o ponteiro está sobre eles", async ({ page }) => {

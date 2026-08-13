@@ -117,12 +117,26 @@
     border-image-repeat: stretch;
     background: #073a35;
   }
+
+  .auth-panel {
+    border: 58px solid transparent;
+    border-image-source: url("/media/game-ui/jade/auth-panel.png");
+    border-image-slice: 190 160 fill;
+    border-image-width: 72px 62px;
+    border-image-repeat: stretch;
+    background: #063a34;
+  }
 }
 
 @media (max-width: 620px) {
   .jade-card {
     border-width: 28px;
     border-image-width: 30px 38px;
+  }
+
+  .auth-panel {
+    border-width: 38px 24px;
+    border-image-width: 48px 34px;
   }
 }
 
