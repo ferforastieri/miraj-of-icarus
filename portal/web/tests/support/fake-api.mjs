@@ -43,6 +43,7 @@ const server = createServer(async (request, response) => {
 
   if (url.pathname === "/v1/accounts" && request.method === "POST") {
     const input = await body(request);
+    if (!input.turnstileToken) return json(response, 400, { error: "turnstile_failed" });
     const normalized = String(input.userName).toUpperCase();
     if (accounts.has(normalized)) return json(response, 409, { error: "account_name_unavailable" });
     const account = { id: accounts.size + 1, userName: input.userName, password: input.password, role: "Player", status: "Active", characters: [] };

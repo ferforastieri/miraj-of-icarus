@@ -90,7 +90,7 @@ jobs:
           remote="${LIGHTSAIL_USER}@${LIGHTSAIL_HOST}"
           ssh -i "$HOME/.ssh/miraj-of-icarus-deploy" "$remote" 'mkdir -p /opt/miraj_of_icarus/infra'
           scp -i "$HOME/.ssh/miraj-of-icarus-deploy" \
-            infra/compose.yml infra/compose.production.yml infra/Caddyfile infra/deploy-backend.sh infra/promote-administrator.sh infra/harden-lightsail.sh \
+            infra/compose.yml infra/compose.production.yml infra/Caddyfile infra/deploy-backend.sh infra/promote-administrator.sh infra/provision-administrator.sh infra/harden-lightsail.sh \
             "${remote}:/opt/miraj_of_icarus/infra/"
 
       - name: Authenticate the server to the private container registry

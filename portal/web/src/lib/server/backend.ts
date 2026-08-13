@@ -23,6 +23,13 @@ export function backendFetch(path: string, init: RequestInit = {}) {
   });
 }
 
+export function clientAddressHeaders(request: Request) {
+  const headers = new Headers();
+  const clientAddress = request.headers.get("cf-connecting-ip");
+  if (clientAddress) headers.set("cf-connecting-ip", clientAddress);
+  return headers;
+}
+
 export async function saveSession(session: Session) {
   const store = await cookies();
   store.set(ACCESS_COOKIE, session.accessToken, {

@@ -46,6 +46,39 @@ if (app.Configuration.GetValue<bool>("Database:ApplyMigrations"))
     await app.Services.ApplyDatabaseMigrationsAsync();
 }
 
+if (args is ["admin", "provision", var newAdministrator])
+{
+    var password = await Console.In.ReadLineAsync();
+    if (string.IsNullOrWhiteSpace(password))
+    {
+        Console.Error.WriteLine("administrator_password_required");
+        Environment.ExitCode = 1;
+        return;
+    }
+
+    await using var scope = app.Services.CreateAsyncScope();
+    var account = await scope.ServiceProvider.GetRequiredService<AccountService>()
+        .RegisterAsync(newAdministrator, password);
+    if (!account.Succeeded)
+    {
+        Console.Error.WriteLine(account.Error!.Code);
+        Environment.ExitCode = 1;
+        return;
+    }
+
+    var promotion = await scope.ServiceProvider.GetRequiredService<AdministrationService>()
+        .PromoteAsync(newAdministrator);
+    if (!promotion.Succeeded)
+    {
+        Console.Error.WriteLine(promotion.Error!.Code);
+        Environment.ExitCode = 1;
+        return;
+    }
+
+    Console.WriteLine($"administrator={promotion.Value!.UserName}");
+    return;
+}
+
 if (args is ["admin", "promote", var userName])
 {
     await using var scope = app.Services.CreateAsyncScope();

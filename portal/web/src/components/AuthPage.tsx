@@ -12,7 +12,7 @@ export function AuthPage({ registering }: { registering: boolean }) {
     if (account.data) window.location.replace(routes.client);
   }, [account.data]);
   return (
-    <div className="min-h-screen overflow-hidden bg-abyss">
+    <div className="min-h-screen overflow-hidden bg-[linear-gradient(90deg,rgba(4,31,26,.82),rgba(4,31,26,.25),rgba(4,31,26,.68)),url('/media/portal-hero-v3.png')] bg-cover bg-center bg-fixed">
       <SiteHeader compact />
       {account.isLoading || account.data
         ? <main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">Abrindo a passagem...</main>

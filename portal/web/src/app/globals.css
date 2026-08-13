@@ -35,8 +35,8 @@
 }
 
 @keyframes jade-cursor-pointer {
-  0%, 100% { transform: rotate(-18deg) scale(1); filter: drop-shadow(0 0 2px rgb(40 185 111 / .55)); }
-  50% { transform: rotate(-12deg) scale(1.14); filter: drop-shadow(0 0 8px rgb(78 240 150 / .95)); }
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgb(40 185 111 / .45)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 7px rgb(78 240 150 / .9)); }
 }
 
 @layer base {
@@ -44,10 +44,10 @@
   html {
     scroll-behavior: smooth;
     background: var(--color-abyss);
-    cursor: url("/media/branding/miraj-jade-cursor-crystal.png") 16 2, auto;
+    cursor: url("/media/branding/miraj-jade-cursor-pointer.png") 3 3, auto;
   }
   a, button, label, select, summary, [role="button"] {
-    cursor: url("/media/branding/miraj-jade-cursor-crystal.png") 16 2, pointer;
+    cursor: url("/media/branding/miraj-jade-cursor-pointer.png") 3 3, pointer;
   }
   input, textarea, [contenteditable="true"] { cursor: text; }
   body {
@@ -86,11 +86,11 @@
     z-index: 9999;
     top: 0;
     left: 0;
-    width: 32px;
-    height: 48px;
+    width: 30px;
+    height: 44px;
     pointer-events: none;
     opacity: 0;
-    transform: translate3d(calc(var(--cursor-x) - 10px), calc(var(--cursor-y) - 5px), 0);
+    transform: translate3d(calc(var(--cursor-x) - 3px), calc(var(--cursor-y) - 3px), 0);
     transition: opacity 80ms linear;
   }
 
@@ -100,10 +100,9 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: url("/media/branding/miraj-jade-cursor-crystal.png") center / contain no-repeat;
-    transform: rotate(-18deg);
-    transform-origin: 50% 18%;
-    filter: drop-shadow(0 0 2px rgb(40 185 111 / .55));
+    background: url("/media/branding/miraj-jade-cursor-pointer.png") left top / contain no-repeat;
+    transform-origin: 10% 8%;
+    filter: drop-shadow(0 0 2px rgb(40 185 111 / .45));
   }
 
   .jade-cursor[data-interactive="true"] .jade-cursor__crystal {
@@ -137,6 +136,6 @@
     transition-duration: .01ms !important;
   }
   .jade-cursor[data-interactive="true"] .jade-cursor__crystal {
-    transform: rotate(-18deg) scale(1.08);
+    transform: scale(1.06);
   }
 }

@@ -37,12 +37,14 @@ export function Turnstile({ onToken }: { onToken(token: string): void }) {
     if (!siteKey && process.env.NODE_ENV !== "production") onToken("development-bypass");
   }, [onToken, siteKey]);
 
-  if (!siteKey) return process.env.NODE_ENV === "production"
-    ? <p role="alert" className="text-sm text-danger">A verificação de segurança não foi configurada.</p>
-    : <p className="text-xs uppercase tracking-[.08em] text-mist">Verificação de desenvolvimento ativa</p>;
+  if (!siteKey) return <div className="flex min-h-[65px] w-full items-center justify-center" aria-label="Verificação de segurança">
+    {process.env.NODE_ENV === "production"
+      ? <p role="alert" className="text-sm text-danger">A verificação de segurança não foi configurada.</p>
+      : <p className="text-xs uppercase tracking-[.08em] text-mist">Verificação de desenvolvimento ativa</p>}
+  </div>;
 
-  return <>
+  return <div className="flex min-h-[65px] w-full justify-center overflow-hidden" aria-label="Verificação de segurança">
     <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={render} />
-    <div ref={target} className="min-h-[65px]" aria-label="Verificação de segurança" />
-  </>;
+    <div ref={target} className="min-h-[65px] max-w-full" />
+  </div>;
 }

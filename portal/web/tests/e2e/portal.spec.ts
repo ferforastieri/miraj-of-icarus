@@ -15,6 +15,20 @@ test("cadastro público valida os campos", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Criar conta e entrar" })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Conta" })).toHaveAttribute("minlength", "3");
   await expect(page.getByLabel("Senha", { exact: true })).toHaveAttribute("minlength", "10");
+  await expect(page.getByLabel("Verificação de segurança")).toBeVisible();
+});
+
+test("cadastro encaminha Turnstile e IP real para a API", async ({ request }) => {
+  const suffix = `${Date.now()}${Math.floor(Math.random() * 10000)}`;
+  const response = await request.post("/api/auth/register", {
+    data: {
+      userName: `Conta${suffix}`.slice(0, 32),
+      password: "uma senha de teste segura",
+      turnstileToken: "development-bypass",
+    },
+    headers: { "cf-connecting-ip": "198.51.100.44" },
+  });
+  expect(response.status()).toBe(201);
 });
 
 test("cadastro mantém sessão, renova token e gerencia o ciclo do personagem", async ({ page, context }) => {

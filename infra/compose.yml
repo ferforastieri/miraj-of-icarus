@@ -51,6 +51,7 @@ services:
       ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com/channels/alpha.json}
       DownloadAuthorization__SigningKey: ${DOWNLOAD_AUTHORIZATION_SIGNING_KEY:?Set DOWNLOAD_AUTHORIZATION_SIGNING_KEY in infra/.env}
       Turnstile__SecretKey: ${TURNSTILE_SECRET_KEY:?Set TURNSTILE_SECRET_KEY in infra/.env}
+      Database__ApplyMigrations: "true"
       GameServers__0__Id: miraj-of-icarus-alpha
       GameServers__0__Name: Miraj of Icarus Alpha
       GameServers__0__Region: BR
@@ -125,7 +126,6 @@ services:
     environment:
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
-      Database__ApplyMigrations: "true"
     depends_on:
       api:
         condition: service_healthy
