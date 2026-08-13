@@ -9,6 +9,20 @@ test("landing apresenta o mundo e o estado seguro de release", async ({ page }) 
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
 });
 
+test("botões usam focused somente enquanto o ponteiro está sobre eles", async ({ page }) => {
+  await page.goto("/");
+  test.skip(!await page.evaluate(() => matchMedia("(hover: hover) and (pointer: fine)").matches),
+    "dispositivos de toque não possuem hover");
+  const login = page.getByRole("link", { name: "Entrar", exact: true }).first();
+  await expect(login).toHaveCSS("background-image", /button-default\.png/);
+  await login.hover();
+  await expect(login).toHaveCSS("background-image", /button-focused\.png/);
+  await login.evaluate(element => element.addEventListener("click", event => event.preventDefault(), { once: true }));
+  await login.click();
+  await page.mouse.move(10, 500);
+  await expect(login).toHaveCSS("background-image", /button-default\.png/);
+});
+
 test("cadastro público valida os campos", async ({ page }) => {
   await page.goto("/criar-conta");
   await expect(page.getByRole("navigation", { name: "Navegação principal" })).toBeVisible();

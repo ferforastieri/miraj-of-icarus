@@ -34,14 +34,28 @@ gravar `channels/alpha.json` por último. Os secrets são:
 mínimo 32 bytes codificada em Base64. O mesmo valor deve existir na API do
 Lightsail e no Worker. Ele não substitui a chave Ed25519 que assina o manifesto.
 
+## Assinatura dos executáveis Windows
+
+A assinatura RSA de `release-manifest.json` protege a integridade da instalação,
+mas não substitui Authenticode. A publicação em `main` exige um certificado de
+assinatura de código emitido por uma autoridade confiável, exportado em PFX:
+
+- `MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64`: conteúdo do PFX em Base64;
+- `MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD`: senha do PFX.
+
+A pipeline assina e carimba temporalmente o launcher e o cliente, verifica as
+assinaturas e só então recria e assina o manifesto. Sem esses secrets, a release
+falha antes da publicação para impedir novos executáveis sem identidade de editor.
+
 ## Validação e cutover
 
 1. Mantenha o bucket privado e desative `r2.dev`.
 2. Cadastre `DOWNLOAD_AUTHORIZATION_SIGNING_KEY` nos secrets do GitHub.
 3. Remova a ligação direta de `downloads.mirajoficarus.com` nas configurações
    do bucket R2.
-4. Execute o workflow `Download worker deploy`. A configuração associa o
-   Custom Domain diretamente ao Worker.
+4. Após o CI de `main` concluir com sucesso, o workflow `Download worker deploy`
+   publica automaticamente a mesma revisão validada. O disparo manual permanece
+   disponível para recuperação operacional informando o SHA completo.
 5. Valide: canal e launcher retornam `200`; caminhos `client/**` retornam `401`
    sem token e `200/206` com token válido.
 

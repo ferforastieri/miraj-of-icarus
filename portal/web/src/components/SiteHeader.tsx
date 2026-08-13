@@ -3,9 +3,9 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { routes } from "@/routes";
 
-const navItem = "relative z-10 grid min-h-[58px] min-w-[176px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-miraj-of-icarus text-[.78rem] font-semibold uppercase tracking-[.08em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] max-[1050px]:min-w-[150px] max-[900px]:min-w-[126px] max-[900px]:px-5 max-[700px]:min-w-[118px] max-[700px]:px-3";
+const navItem = "relative z-10 grid min-h-[58px] min-w-[176px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-miraj-of-icarus text-[.78rem] font-semibold uppercase tracking-[.08em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:bg-[url('/media/game-ui/jade/button-focused.png')] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[1050px]:min-w-[150px] max-[900px]:min-w-[126px] max-[900px]:px-5 max-[700px]:min-w-[118px] max-[700px]:px-3";
 
-const accountItem = "grid min-h-9 min-w-[116px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]";
+const accountItem = "grid min-h-9 min-w-[116px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 hover:bg-[url('/media/game-ui/jade/button-focused.png')] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
 
 export function SiteHeader() {
   return (
@@ -31,7 +31,7 @@ export function SiteHeader() {
           <Link className={navItem} href={routes.download}>Download</Link>
         </div>
         <details className="group absolute right-3 top-2 z-30 hidden max-[700px]:block">
-          <summary className="grid min-h-12 min-w-24 list-none place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] px-5 text-xs uppercase tracking-[.08em] focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]">Menu</summary>
+          <summary className="grid min-h-12 min-w-24 list-none place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] px-5 text-xs uppercase tracking-[.08em] hover:bg-[url('/media/game-ui/jade/button-focused.png')] hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]">Menu</summary>
           <div className="jade-card absolute right-0 top-12 grid w-[min(300px,calc(100vw-24px))] gap-1 p-2">
             <Link className={navItem} href={routes.home}>Início</Link>
             <Link className={navItem} href={routes.game}>O jogo</Link>

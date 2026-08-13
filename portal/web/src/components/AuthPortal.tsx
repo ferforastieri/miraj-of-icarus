@@ -60,7 +60,7 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
   }
 
   const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
-  const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.055em] text-[#dce8de] [text-shadow:0_2px_2px_#041b16] focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_9px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]";
+  const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.055em] text-[#dce8de] [text-shadow:0_2px_2px_#041b16] hover:bg-[url('/media/game-ui/jade/button-focused.png')] hover:text-white hover:drop-shadow-[0_0_9px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] focus-visible:text-white focus-visible:drop-shadow-[0_0_9px_rgba(40,185,111,.7)]";
   return (
     <main className="relative grid min-h-screen place-items-center px-6 pb-20 pt-52 max-[700px]:pt-32 max-[620px]:px-2 max-[620px]:pb-12">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,232,157,.12),transparent_35%)]" aria-hidden="true" />
@@ -69,8 +69,8 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
         <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
         <p className="leading-relaxed text-mist">{registering ? "Crie sua conta para preparar seus personagens e acompanhar os reinos." : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}</p>
         <div className="my-6 grid grid-cols-2 gap-2" role="tablist" aria-label="Acesso à conta">
-          <Link className={`${tabClass} ${!registering ? "text-white drop-shadow-[0_0_8px_rgba(40,185,111,.65)]" : ""}`} style={{ backgroundImage: `url('/media/game-ui/jade/button-${!registering ? "focused" : "default"}.png')` }} role="tab" aria-selected={!registering} href={routes.login}>Entrar</Link>
-          <Link className={`${tabClass} ${registering ? "text-white drop-shadow-[0_0_8px_rgba(40,185,111,.65)]" : ""}`} style={{ backgroundImage: `url('/media/game-ui/jade/button-${registering ? "focused" : "default"}.png')` }} role="tab" aria-selected={registering} href={routes.register}>Criar conta</Link>
+          <Link className={`${tabClass} ${!registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={!registering} href={routes.login}>Entrar</Link>
+          <Link className={`${tabClass} ${registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={registering} href={routes.register}>Criar conta</Link>
         </div>
         {error && <Alert className="mb-4" role="alert">
           {messages[error] ?? "Não foi possível concluir a ação."}

@@ -31,7 +31,7 @@ jobs:
       - name: Install pinned build prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ca-certificates cmake curl file gnupg ninja-build openssl python3
+          sudo apt-get install --yes --no-install-recommends ca-certificates cmake curl file gnupg ninja-build openssl osslsigncode python3
           aws --version
           curl --fail --location --silent --show-error https://apt.llvm.org/llvm-snapshot.gpg.key \
             | sudo gpg --dearmor --batch --yes --output /usr/share/keyrings/llvm-archive-keyring.gpg
@@ -67,6 +67,30 @@ jobs:
           file "$RUNNER_TEMP/miraj-of-icarus-release/client/MirajOfIcarusClient.exe" | grep -F 'PE32+ executable (GUI) x86-64'
           python3 -m json.tool "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.json" >/dev/null
           game-clients/client-pc/tools/verify-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
+
+      - name: Authenticode sign Windows executables
+        if: github.event_name == 'push'
+        env:
+          MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64: ${{ secrets.MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64 }}
+          MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD: ${{ secrets.MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD }}
+        run: |
+          test -n "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64" || {
+            echo '::error::MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64 is required to publish trusted Windows executables'
+            exit 1
+          }
+          test -n "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD" || {
+            echo '::error::MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD is required to publish trusted Windows executables'
+            exit 1
+          }
+          printf '%s' "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64" \
+            | base64 --decode > "$RUNNER_TEMP/miraj-of-icarus-code-signing.pfx"
+          game-clients/client-pc/tools/sign-windows-binaries.sh \
+            "$RUNNER_TEMP/miraj-of-icarus-code-signing.pfx" \
+            "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD" \
+            "$RUNNER_TEMP/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe" \
+            "$RUNNER_TEMP/miraj-of-icarus-release/client/MirajOfIcarusClient.exe"
+          game-clients/client-pc/tools/create-release-manifest.py \
+            "$RUNNER_TEMP/miraj-of-icarus-release/client"
 
       - name: Sign and verify release
         if: github.event_name == 'push'
