@@ -113,7 +113,8 @@ jobs:
           AWS_DEFAULT_REGION: auto
           MIRAJ_OF_ICARUS_R2_BUCKET: miraj-of-icarus-releases
           MIRAJ_OF_ICARUS_DOWNLOAD_BASE_URL: https://downloads.mirajoficarus.com
-        run: game-clients/client-pc/tools/publish-r2-release.sh \
-          "${{ github.sha }}" \
-          "$RUNNER_TEMP/miraj-of-icarus-release/client" \
-          "$RUNNER_TEMP/miraj-of-icarus-release/MirajOfIcarusLauncher.zip"
+        run: |
+          game-clients/client-pc/tools/publish-r2-release.sh \
+            "${{ github.sha }}" \
+            "$RUNNER_TEMP/miraj-of-icarus-release/client" \
+            "$RUNNER_TEMP/miraj-of-icarus-release/MirajOfIcarusLauncher.zip"
