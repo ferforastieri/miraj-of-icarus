@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "MirajOfIcarus Display";
-  src: url("/fonts/miraj-of-icarus-display.woff2") format("woff2");
+  font-family: "Marcellus";
+  src: url("/fonts/marcellus-regular.ttf") format("truetype");
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -23,9 +23,9 @@
   --color-parchment: #eee7d6;
   --color-skywash: #eee7d6;
   --color-danger: #a34247;
-  --font-display: "MirajOfIcarus Display";
-  --font-miraj-of-icarus: "MirajOfIcarus Display";
-  --font-interface: "MirajOfIcarus Display";
+  --font-display: "Marcellus";
+  --font-miraj-of-icarus: "Marcellus";
+  --font-interface: "Marcellus";
   --animate-hero-arrival: hero-arrival 2.2s cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -49,9 +49,10 @@
     margin: 0;
     background: var(--color-abyss);
     color: var(--color-moonsteel);
-    font-family: "MirajOfIcarus Display";
+    font-family: "Marcellus";
     -webkit-font-smoothing: antialiased;
   }
+  button, input, select, textarea { font: inherit; }
   ::selection { color: var(--color-abyss); background: var(--color-jade); }
   :focus-visible { outline: 2px solid var(--color-jade); outline-offset: 4px; }
 }
@@ -146,6 +147,7 @@
     border-image-width: 42px 58px;
     border-image-repeat: stretch;
     background: #073a35;
+    padding: clamp(1.25rem, 2.4vw, 2rem);
   }
 
   .auth-panel {

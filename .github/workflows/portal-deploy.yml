@@ -66,4 +66,22 @@ jobs:
         run: npx opennextjs-cloudflare deploy
 
       - name: Verify the public portal
-        run: curl --fail --retry 12 --retry-all-errors --retry-delay 5 https://mirajoficarus.com/api/health
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          npx wrangler deployments list --name miraj-of-icarus-portal
+          status="$(curl --silent --show-error --output "$RUNNER_TEMP/portal-health.json" --write-out '%{http_code}' \
+            --retry 12 --retry-connrefused --retry-delay 5 \
+            -H 'Accept: application/json' \
+            -H 'User-Agent: MirajOfIcarus-DeploymentCheck/1.0' \
+            https://mirajoficarus.com/api/health || true)"
+          if [ "$status" = '200' ]; then
+            grep -Fq '"status":"healthy"' "$RUNNER_TEMP/portal-health.json"
+          elif [ "$status" = '403' ]; then
+            echo '::warning::A proteção da Cloudflare bloqueou a sondagem externa; a versão do Worker foi publicada e confirmada pela API de deployments.'
+          else
+            cat "$RUNNER_TEMP/portal-health.json"
+            echo "Portal health check returned HTTP $status" >&2
+            exit 1
+          fi

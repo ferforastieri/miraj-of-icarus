@@ -63,6 +63,7 @@ test("serves the standalone launcher as a public executable attachment", async (
         body: executable,
         size: executable.length,
         httpEtag: '"launcher"',
+        range: { offset: 0, length: executable.length },
         writeHttpMetadata() {},
       }),
     },
@@ -78,8 +79,40 @@ test("serves the standalone launcher as a public executable attachment", async (
     context,
   );
 
-  assert.equal(response.status, 200);
+  assert.equal(response.status, 206);
+  assert.equal(response.headers.get("Content-Range"), "bytes 0-1/2");
   assert.equal(response.headers.get("Content-Type"), "application/vnd.microsoft.portable-executable");
   assert.equal(response.headers.get("Content-Disposition"), 'attachment; filename="MirajOfIcarusLauncher.exe"');
   assert.deepEqual(new Uint8Array(await response.arrayBuffer()), executable);
+});
+
+test("serves a complete object as 200 even when R2 exposes a range descriptor", async () => {
+  const manifest = new TextEncoder().encode('{"version":"alpha"}');
+  Object.defineProperty(globalThis, "caches", {
+    configurable: true,
+    value: { default: { match: async () => undefined, put: async () => undefined } },
+  });
+  const environment = {
+    RELEASES: {
+      get: async () => ({
+        body: manifest,
+        size: manifest.length,
+        httpEtag: '"manifest"',
+        range: { offset: 0, length: manifest.length },
+        writeHttpMetadata() {},
+      }),
+    },
+    DOWNLOAD_AUTHORIZATION_SIGNING_KEY: Buffer.alloc(32, 7).toString("base64"),
+    DOWNLOAD_RATE_LIMITER: { limit: async () => ({ success: true }) },
+  } as unknown as DownloadWorkerEnv;
+  const context = { waitUntil() {} } as unknown as ExecutionContext;
+  const response = await worker.fetch(
+    new Request("https://downloads.mirajoficarus.com/channels/alpha.json"),
+    environment,
+    context,
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("Content-Range"), null);
+  assert.equal(response.headers.get("Content-Length"), String(manifest.length));
 });

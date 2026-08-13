@@ -636,22 +636,22 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
                 const_cast<void*>(fontBytes.data), fontBytes.size, nullptr, &loadedFonts);
         created->displayFont = CreateFontW(34, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->brandFont = CreateFontW(21, 0, 0, 0, FW_SEMIBOLD, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->bodyFont = CreateFontW(17, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->controlFont = CreateFontW(18, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->labelFont = CreateFontW(13, 0, 0, 0, FW_SEMIBOLD, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->utilityFont = CreateFontW(12, 0, 0, 0, FW_MEDIUM, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
-            DEFAULT_PITCH, L"Miraj Display");
+            DEFAULT_PITCH, L"Marcellus");
         created->editBrush = CreateSolidBrush(Iron);
         LoadEmbeddedImage(created->background, *created, IDR_LAUNCHER_BACKGROUND);
         LoadEmbeddedImage(created->mark, *created, IDR_LAUNCHER_MARK);

@@ -81,7 +81,10 @@ const worker = {
     headers.set("ETag", object.httpEtag);
     headers.set("Accept-Ranges", "bytes");
     headers.set("Cache-Control", cacheControl(key));
-    const range = "range" in object ? object.range : undefined;
+    // R2 may expose a full-object range descriptor even when the caller did
+    // not send a Range header. Only emit partial-content metadata for an
+    // actual ranged request; otherwise caches can retain a misleading 206.
+    const range = ranged && "range" in object ? object.range : undefined;
     if (range && "offset" in range && range.offset !== undefined && range.length !== undefined) {
       headers.set("Content-Range", `bytes ${range.offset}-${range.offset + range.length - 1}/${object.size}`);
       headers.set("Content-Length", String(range.length));
