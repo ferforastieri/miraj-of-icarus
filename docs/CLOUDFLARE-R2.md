@@ -36,16 +36,13 @@ Lightsail e no Worker. Ele não substitui a chave Ed25519 que assina o manifesto
 
 ## Assinatura dos executáveis Windows
 
-A assinatura RSA de `release-manifest.json` protege a integridade da instalação,
-mas não substitui Authenticode. A publicação em `main` exige um certificado de
-assinatura de código emitido por uma autoridade confiável, exportado em PFX:
+A assinatura RSA de `release-manifest.json` continua obrigatória e protege a
+integridade da instalação e das atualizações. Por enquanto, o launcher e o cliente
+serão publicados sem Authenticode e, portanto, sem uma identidade de editor
+reconhecida pelo Windows. Isso pode fazer o SmartScreen exibir um aviso ao usuário.
 
-- `MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64`: conteúdo do PFX em Base64;
-- `MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD`: senha do PFX.
-
-A pipeline assina e carimba temporalmente o launcher e o cliente, verifica as
-assinaturas e só então recria e assina o manifesto. Sem esses secrets, a release
-falha antes da publicação para impedir novos executáveis sem identidade de editor.
+Quando houver um certificado de assinatura de código, a etapa de Authenticode deve
+ser reintroduzida antes da assinatura do manifesto e da publicação no R2.
 
 ## Validação e cutover
 
