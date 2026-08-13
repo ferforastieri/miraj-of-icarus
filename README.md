@@ -9,11 +9,13 @@ servers evoluem juntos até formar jornadas completas e testáveis.
 
 ## Componentes
 
-- `api/`: contas, autenticação, sessões e catálogo de releases;
-- `game-server/`: Login, Main/Coordinator, Lobby e o futuro World Server;
-- `game-clients/client-pc/`: launcher, cliente Windows e assets do jogo;
-- `portal/web/`: landing page, download e área autenticada da conta;
-- `infra/`: ambiente local reproduzível com containers.
+- `backend/api/`: contas, autenticação, sessões e catálogo de releases;
+- `backend/game-server/`: Login, Main/Coordinator, Lobby e o futuro World Server;
+- `backend/download-worker/`: entrega pública do launcher e entrega autenticada do cliente;
+- `backend/infra/`: ambiente local, implantação e operação dos serviços persistentes;
+- `apps/game/windows/`: launcher, cliente Windows e assets do jogo;
+- `apps/portal/web/`: landing page, download e áreas autenticadas;
+- `apps/portal/mobile/` e `apps/game/mobile/`: espaços reservados aos aplicativos móveis.
 
 ## Tecnologias
 
@@ -31,7 +33,7 @@ servers evoluem juntos até formar jornadas completas e testáveis.
 
 O cliente concentra renderização, animação, física local, predição e
 interpolação em C++ para priorizar FPS e resposta imediata aos comandos. O
-futuro `game-server/world-server/` também será um processo C++ independente,
+futuro `backend/game-server/world-server/` também será um processo C++ independente,
 voltado ao loop de simulação de tick fixo, movimentação, combate, NPCs,
 visibilidade e instâncias de mapas com latência previsível.
 
@@ -57,7 +59,7 @@ do cliente passam por um Worker autenticado em
 
 ## Publicação do cliente
 
-Mudanças em `game-clients/client-pc/` acionam o workflow
+Mudanças em `apps/game/windows/` acionam o workflow
 `client-release.yml`. Pull requests apenas compilam e validam. Em `main`, o
 workflow assina o manifesto, publica objetos imutáveis no bucket R2
 `miraj-of-icarus-releases` e atualiza `channels/alpha.json` somente depois de validar
@@ -104,20 +106,20 @@ As medidas de segurança e as etapas que exigem console estão em
 Requer .NET SDK 10, CMake 3.25+, Ninja, compilador C++20, Node.js e Docker.
 
 ```bash
-dotnet test api/MirajOfIcarus.slnx
-dotnet test game-server/MirajOfIcarus.GameServer.slnx
+dotnet test backend/api/MirajOfIcarus.slnx
+dotnet test backend/game-server/MirajOfIcarus.GameServer.slnx
 
-cmake -S game-clients/client-pc -B build/client -G Ninja \
+cmake -S apps/game/windows -B build/client -G Ninja \
   -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
 cmake --build build/client
 ctest --test-dir build/client --output-on-failure
 
-npm --prefix portal/web ci
-npm --prefix portal/web run lint
-npm --prefix portal/web run typecheck
-npm --prefix portal/web run build
-npm --prefix portal/web run build:cloudflare
-npm --prefix portal/web run test:e2e
+npm --prefix apps/portal/web ci
+npm --prefix apps/portal/web run lint
+npm --prefix apps/portal/web run typecheck
+npm --prefix apps/portal/web run build
+npm --prefix apps/portal/web run build:cloudflare
+npm --prefix apps/portal/web run test:e2e
 ```
 
 O launcher e o cliente Windows são compilados por cross-compilation na pipeline

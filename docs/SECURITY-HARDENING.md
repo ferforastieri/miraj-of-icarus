@@ -31,7 +31,7 @@ HttpOnly e papel `Administrator` em todas as rotas administrativas.
 
 ## Lightsail
 
-Copie e revise `infra/harden-lightsail.sh`, depois execute uma única vez com
+Copie e revise `backend/infra/harden-lightsail.sh`, depois execute uma única vez com
 `sudo`. Ele recusa prosseguir sem uma chave autorizada para `ubuntu`, desativa
 login SSH por senha e root, instala fail2ban e habilita atualizações automáticas
 de segurança. Teste uma segunda conexão SSH antes de fechar a primeira.

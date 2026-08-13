@@ -3,12 +3,12 @@ name: Windows client release
 on:
   pull_request:
     paths:
-      - game-clients/client-pc/**
+      - apps/game/windows/**
       - .github/workflows/client-release.yml
   push:
     branches: [main]
     paths:
-      - game-clients/client-pc/**
+      - apps/game/windows/**
       - .github/workflows/client-release.yml
 
 permissions:
@@ -48,8 +48,8 @@ jobs:
 
       - name: Prepare Windows SDK
         run: |
-          chmod +x game-clients/client-pc/tools/*.sh
-          game-clients/client-pc/tools/prepare-xwin.sh \
+          chmod +x apps/game/windows/tools/*.sh
+          apps/game/windows/tools/prepare-xwin.sh \
             "$RUNNER_TEMP/miraj-of-icarus-xwin" "$RUNNER_TEMP/miraj-of-icarus-xwin-cache"
 
       - name: Build launcher and client
@@ -57,7 +57,7 @@ jobs:
           MIRAJ_OF_ICARUS_RELEASE_VERSION: ${{ github.sha }}
           MIRAJ_OF_ICARUS_PUBLIC_API_URL: https://api.mirajoficarus.com
         run: |
-          game-clients/client-pc/tools/build-windows.sh \
+          apps/game/windows/tools/build-windows.sh \
             "$RUNNER_TEMP/miraj-of-icarus-xwin" \
             "$RUNNER_TEMP/miraj-of-icarus-windows-build" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client" \
@@ -66,7 +66,7 @@ jobs:
           test "$(find "$RUNNER_TEMP/miraj-of-icarus-release/launcher" -mindepth 1 -maxdepth 1 | wc -l)" -eq 1
           file "$RUNNER_TEMP/miraj-of-icarus-release/client/MirajOfIcarusClient.exe" | grep -F 'PE32+ executable (GUI) x86-64'
           python3 -m json.tool "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.json" >/dev/null
-          game-clients/client-pc/tools/verify-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
+          apps/game/windows/tools/verify-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
 
       - name: Authenticode sign Windows executables
         if: github.event_name == 'push'
@@ -84,12 +84,12 @@ jobs:
           }
           printf '%s' "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_BASE64" \
             | base64 --decode > "$RUNNER_TEMP/miraj-of-icarus-code-signing.pfx"
-          game-clients/client-pc/tools/sign-windows-binaries.sh \
+          apps/game/windows/tools/sign-windows-binaries.sh \
             "$RUNNER_TEMP/miraj-of-icarus-code-signing.pfx" \
             "$MIRAJ_OF_ICARUS_CODE_SIGNING_PFX_PASSWORD" \
             "$RUNNER_TEMP/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client/MirajOfIcarusClient.exe"
-          game-clients/client-pc/tools/create-release-manifest.py \
+          apps/game/windows/tools/create-release-manifest.py \
             "$RUNNER_TEMP/miraj-of-icarus-release/client"
 
       - name: Sign and verify release
@@ -97,9 +97,9 @@ jobs:
         env:
           MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64: ${{ secrets.MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64 }}
         run: |
-          game-clients/client-pc/tools/sign-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
+          apps/game/windows/tools/sign-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
           openssl dgst -sha256 \
-            -verify game-clients/client-pc/launcher/keys/release-signing-public.pem \
+            -verify apps/game/windows/launcher/keys/release-signing-public.pem \
             -signature "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.sig" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.json"
 
@@ -108,7 +108,7 @@ jobs:
         run: |
           openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out "$RUNNER_TEMP/pr-release-key.pem"
           export MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64="$(base64 -w0 "$RUNNER_TEMP/pr-release-key.pem")"
-          game-clients/client-pc/tools/sign-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
+          apps/game/windows/tools/sign-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
           openssl pkey -in "$RUNNER_TEMP/pr-release-key.pem" -pubout -out "$RUNNER_TEMP/pr-release-public.pem"
           openssl dgst -sha256 \
             -verify "$RUNNER_TEMP/pr-release-public.pem" \
@@ -135,7 +135,7 @@ jobs:
           MIRAJ_OF_ICARUS_R2_BUCKET: miraj-of-icarus-releases
           MIRAJ_OF_ICARUS_DOWNLOAD_BASE_URL: https://downloads.mirajoficarus.com
         run: |
-          game-clients/client-pc/tools/publish-r2-release.sh \
+          apps/game/windows/tools/publish-r2-release.sh \
             "${{ github.sha }}" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client" \
             "$RUNNER_TEMP/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe"

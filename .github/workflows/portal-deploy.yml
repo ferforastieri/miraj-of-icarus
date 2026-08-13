@@ -6,6 +6,7 @@ on:
     types: [completed]
 
 permissions:
+  actions: read
   contents: read
 
 concurrency:
@@ -13,16 +14,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  changes:
     if: >-
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-24.04
+    outputs:
+      portal: ${{ steps.components.outputs.portal }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-changes-${{ github.event.workflow_run.head_sha }}
+          path: ${{ runner.temp }}/deployment-changes
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Read deployment selection
+        id: components
+        run: grep -Fqx 'portal=true' "$RUNNER_TEMP/deployment-changes/components.env" && echo 'portal=true' >> "$GITHUB_OUTPUT" || echo 'portal=false' >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: changes
+    if: needs.changes.outputs.portal == 'true'
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: portal/web
+        working-directory: apps/portal/web
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,7 +51,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: portal/web/package-lock.json
+          cache-dependency-path: apps/portal/web/package-lock.json
 
       - run: npm ci
       - name: Build the Cloudflare portal

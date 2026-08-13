@@ -1,43 +1,43 @@
-# Binary and heavyweight game-client assets are stored through Git LFS.
-game-clients/**/*.[eE][xX][eE] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[dD][lL][lL] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[pP][aA][kK] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[nN][pP][kK] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[zZ][iI][pP] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[rR][aA][rR] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[7][zZ] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[dD][dD][sS] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[tT][gG][aA] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[oO][gG][gG] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[wW][aA][vV] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[bB][iI][kK] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[bB][iI][nN] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[sS][xX][bB] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[uU][sS][mM] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[hH][mM][bB] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[bB][mM][bB] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[dD][eE][sS] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[sS][wW][fF] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[bB][mM][pP] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[cC][uU][rR] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[aA][nN][iI] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[sS][hH][aA] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[sS][yY][sS] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[mM][lL][bB] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[tT][bB][lL] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[eE][rR][lL] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[lL][sS][tT] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[cC][gG][fF] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[cC][gG][aA] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[cC][hH][rR] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[sS][kK][iI][nN] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[cC][aA][fF] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[dD][bB][aA] filter=lfs diff=lfs merge=lfs -text
-game-clients/**/*.[gG][lL][bB] filter=lfs diff=lfs merge=lfs -text
-portal/web/public/media/*.png filter=lfs diff=lfs merge=lfs -text
+# Binary and heavyweight game assets are stored through Git LFS.
+apps/game/**/*.[eE][xX][eE] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[dD][lL][lL] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[pP][aA][kK] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[nN][pP][kK] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[zZ][iI][pP] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[rR][aA][rR] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[7][zZ] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[dD][dD][sS] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[tT][gG][aA] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[oO][gG][gG] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[wW][aA][vV] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[bB][iI][kK] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[bB][iI][nN] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[sS][xX][bB] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[uU][sS][mM] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[hH][mM][bB] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[bB][mM][bB] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[dD][eE][sS] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[sS][wW][fF] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[bB][mM][pP] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[cC][uU][rR] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[aA][nN][iI] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[sS][hH][aA] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[sS][yY][sS] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[mM][lL][bB] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[tT][bB][lL] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[eE][rR][lL] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[lL][sS][tT] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[cC][gG][fF] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[cC][gG][aA] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[cC][hH][rR] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[sS][kK][iI][nN] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[cC][aA][fF] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[dD][bB][aA] filter=lfs diff=lfs merge=lfs -text
+apps/game/**/*.[gG][lL][bB] filter=lfs diff=lfs merge=lfs -text
+apps/portal/web/public/media/*.png filter=lfs diff=lfs merge=lfs -text
 
 # Promoted scene assets preserve their original bytes and line endings.
-game-clients/client-pc/assets/*/levels/** -text -diff
-game-clients/client-pc/assets/*/objects/** -text -diff
+apps/game/windows/assets/*/levels/** -text -diff
+apps/game/windows/assets/*/objects/** -text -diff

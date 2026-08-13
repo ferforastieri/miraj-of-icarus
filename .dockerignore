@@ -6,6 +6,6 @@
 **/TestResults
 **/*.tsbuildinfo
 legacy
-game-clients
+apps/game
 tools
-portal/mobile
+apps/portal/mobile

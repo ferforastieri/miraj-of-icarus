@@ -12,6 +12,7 @@ on:
         type: string
 
 permissions:
+  actions: read
   contents: read
 
 concurrency:
@@ -19,16 +20,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  changes:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.event == 'push' &&
-       github.event.workflow_run.head_branch == 'main')
+      github.event_name != 'workflow_dispatch' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-24.04
+    outputs:
+      download_worker: ${{ steps.components.outputs.download_worker }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-changes-${{ github.event.workflow_run.head_sha }}
+          path: ${{ runner.temp }}/deployment-changes
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Read deployment selection
+        id: components
+        run: grep -Fqx 'download_worker=true' "$RUNNER_TEMP/deployment-changes/components.env" && echo 'download_worker=true' >> "$GITHUB_OUTPUT" || echo 'download_worker=false' >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: changes
+    if: >-
+      always() &&
+      (github.event_name == 'workflow_dispatch' ||
+       needs.changes.outputs.download_worker == 'true')
     runs-on: ubuntu-24.04
     defaults:
       run:
-        working-directory: cloudflare/download-worker
+        working-directory: backend/download-worker
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,7 +58,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: cloudflare/download-worker/package-lock.json
+          cache-dependency-path: backend/download-worker/package-lock.json
       - run: npm ci
       - run: npm run typecheck
       - name: Install download authorization secret

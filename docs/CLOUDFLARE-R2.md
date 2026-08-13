@@ -10,7 +10,7 @@
 - cliente protegido: `releases/{sha}/client/**`.
 
 O domínio não deve permanecer ligado diretamente ao bucket. O código em
-`cloudflare/download-worker` lê o R2 por binding privado, não oferece
+`backend/download-worker` lê o R2 por binding privado, não oferece
 listagem e exige um token HS256 de 15 minutos para manifesto, assinatura e
 arquivos do cliente. O launcher obtém esse token somente depois de autenticar.
 

@@ -34,7 +34,7 @@ exclusivamente pela API, evitando regras e transações concorrentes.
 2. Deixe o bucket privado e o acesso `r2.dev` desativado em produção.
 3. Crie um token R2 restrito a esse bucket, com leitura e gravação de objetos.
 4. Remova a ligação direta do domínio ao R2 antes de publicar o Worker; o
-   Custom Domain final é declarado em `cloudflare/download-worker/wrangler.jsonc`.
+   Custom Domain final é declarado em `backend/download-worker/wrangler.jsonc`.
 
 Cadastre em **GitHub > Settings > Secrets and variables > Actions**:
 
@@ -59,7 +59,7 @@ Workers Scripts e Workers Routes. Cadastre:
 Cadastre também a variable `CLOUDFLARE_TURNSTILE_SITE_KEY`. O secret do widget
 fica apenas na API do Lightsail, como `TURNSTILE_SECRET_KEY`.
 
-O arquivo `portal/web/wrangler.jsonc` declara o Worker
+O arquivo `apps/portal/web/wrangler.jsonc` declara o Worker
 `miraj-of-icarus-portal`, a rota customizada `mirajoficarus.com` e a API interna como
 `https://api.mirajoficarus.com`. O workflow publica o portal somente depois que
 a CI da mesma revisão passa. Não crie um projeto Pages separado.
@@ -73,7 +73,7 @@ a CI da mesma revisão passa. Não crie um projeto Pages separado.
 3. Instale Docker Engine com o plugin Compose e permita que o usuário de deploy
    execute Docker.
 4. Crie `/opt/miraj_of_icarus/infra` e copie
-   `infra/.env.production.example` para
+   `backend/infra/.env.production.example` para
    `/opt/miraj_of_icarus/infra/.env.production`.
 5. Preencha o arquivo com senhas aleatórias, e-mail TLS, namespace GHCR em
    minúsculas e endpoints públicos. Restrinja-o com `chmod 600`.
@@ -95,7 +95,7 @@ repositório e cadastre estes secrets:
 
 Não use `StrictHostKeyChecking=no`: o workflow fixa a identidade SSH informada.
 As imagens são identificadas pelo SHA completo do commit. O script
-`infra/deploy-backend.sh` sobe a revisão, aguarda todos os serviços e retorna à
+`backend/infra/deploy-backend.sh` sobe a revisão, aguarda todos os serviços e retorna à
 imagem anterior se a saúde não estabilizar.
 
 ## 6. Primeiro deploy e verificação
@@ -107,9 +107,9 @@ A sequência esperada é:
 1. `CI` fica verde;
 2. `Portal deploy` publica o Worker do portal;
 3. `Backend deploy` envia quatro imagens ao GHCR e atualiza o Lightsail;
-4. com autorização explícita, execute manualmente `Download worker deploy` para
-   publicar `downloads.mirajoficarus.com`;
-5. se houve mudança em `game-clients/client-pc/**`, `Windows client release`
+4. se o Worker mudou, `Download worker deploy` publica automaticamente a mesma
+   revisão validada em `downloads.mirajoficarus.com`;
+5. se houve mudança em `apps/game/windows/**`, `Windows client release`
    publica `channels/alpha.json` por último.
 
 Verifique:

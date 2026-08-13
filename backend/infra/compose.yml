@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_DB: miraj-of-icarus
       POSTGRES_USER: miraj-of-icarus
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in backend/infra/.env}
     volumes:
       - postgres-data:/var/lib/postgresql
     healthcheck:
@@ -39,18 +39,18 @@ services:
     logging: *default-logging
 
   api:
-    image: miraj-of-icarus-api:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-api:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in backend/infra/.env}
     build:
-      context: ..
-      dockerfile: api/Dockerfile
+      context: ../..
+      dockerfile: backend/api/Dockerfile
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
       Cache__ConnectionString: redis:6379
       ClientReleases__ChannelManifestUrl: ${MIRAJ_OF_ICARUS_RELEASE_CHANNEL_URL:-https://downloads.mirajoficarus.com/channels/alpha.json}
-      DownloadAuthorization__SigningKey: ${DOWNLOAD_AUTHORIZATION_SIGNING_KEY:?Set DOWNLOAD_AUTHORIZATION_SIGNING_KEY in infra/.env}
-      Turnstile__SecretKey: ${TURNSTILE_SECRET_KEY:?Set TURNSTILE_SECRET_KEY in infra/.env}
+      DownloadAuthorization__SigningKey: ${DOWNLOAD_AUTHORIZATION_SIGNING_KEY:?Set DOWNLOAD_AUTHORIZATION_SIGNING_KEY in backend/infra/.env}
+      Turnstile__SecretKey: ${TURNSTILE_SECRET_KEY:?Set TURNSTILE_SECRET_KEY in backend/infra/.env}
       Database__ApplyMigrations: "true"
       GameServers__0__Id: miraj-of-icarus-alpha
       GameServers__0__Name: Miraj of Icarus Alpha
@@ -73,16 +73,16 @@ services:
     logging: *default-logging
 
   main-server:
-    image: miraj-of-icarus-main-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-main-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in backend/infra/.env}
     build:
-      context: ..
-      dockerfile: game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
+      context: ../..
+      dockerfile: backend/game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
     restart: unless-stopped
     environment:
       Cache__ConnectionString: redis:6379
-      Internal__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in infra/.env}
+      Internal__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in backend/infra/.env}
       Server__Id: miraj-of-icarus-alpha
-      Lobby__Endpoint: ${MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL:?Set MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL in infra/.env}
+      Lobby__Endpoint: ${MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL:?Set MIRAJ_OF_ICARUS_PUBLIC_LOBBY_URL in backend/infra/.env}
     depends_on:
       redis:
         condition: service_healthy
@@ -95,15 +95,15 @@ services:
     logging: *default-logging
 
   login-server:
-    image: miraj-of-icarus-login-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-login-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in backend/infra/.env}
     build:
-      context: ..
-      dockerfile: game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
+      context: ../..
+      dockerfile: backend/game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
     restart: unless-stopped
     environment:
       Cache__ConnectionString: redis:6379
       Main__Endpoint: http://main-server:8080
-      Main__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in infra/.env}
+      Main__ServiceKey: ${GAME_SERVICE_KEY:?Set GAME_SERVICE_KEY in backend/infra/.env}
     depends_on:
       main-server:
         condition: service_healthy
@@ -118,10 +118,10 @@ services:
     logging: *default-logging
 
   lobby-server:
-    image: miraj-of-icarus-lobby-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-lobby-server:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in backend/infra/.env}
     build:
-      context: ..
-      dockerfile: game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
+      context: ../..
+      dockerfile: backend/game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
     restart: unless-stopped
     environment:
       ConnectionStrings__Database: Host=postgres;Port=5432;Database=miraj-of-icarus;Username=miraj-of-icarus;Password=${POSTGRES_PASSWORD};GSS Encryption Mode=Disable
@@ -142,10 +142,10 @@ services:
     logging: *default-logging
 
   portal:
-    image: miraj-of-icarus-portal:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in infra/.env}
+    image: miraj-of-icarus-portal:${MIRAJ_OF_ICARUS_IMAGE_TAG:?Set MIRAJ_OF_ICARUS_IMAGE_TAG in backend/infra/.env}
     build:
-      context: ..
-      dockerfile: portal/web/Dockerfile
+      context: ../..
+      dockerfile: apps/portal/web/Dockerfile
       args:
         NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
     restart: unless-stopped

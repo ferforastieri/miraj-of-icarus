@@ -9,6 +9,65 @@ permissions:
   contents: read
 
 jobs:
+  deployment-changes:
+    name: Deployment changes
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Classify changed production components
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          backend=false
+          portal=false
+          download_worker=false
+
+          if git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            changed_files="$(git diff --name-only "$BEFORE_SHA" "$HEAD_SHA")"
+          else
+            changed_files="$(git diff-tree --root --no-commit-id --name-only -r "$HEAD_SHA")"
+          fi
+
+          while IFS= read -r file; do
+            case "$file" in
+              backend/api/*|backend/game-server/*|backend/infra/*|global.json|.dockerignore|.github/workflows/backend-deploy.yml)
+                backend=true
+                ;;
+            esac
+
+            case "$file" in
+              apps/portal/web/*|.github/workflows/portal-deploy.yml)
+                portal=true
+                ;;
+            esac
+
+            case "$file" in
+              backend/download-worker/*|.github/workflows/download-worker-deploy.yml)
+                download_worker=true
+                ;;
+            esac
+          done <<< "$changed_files"
+
+          mkdir -p "$RUNNER_TEMP/deployment-changes"
+          {
+            printf 'backend=%s\n' "$backend"
+            printf 'portal=%s\n' "$portal"
+            printf 'download_worker=%s\n' "$download_worker"
+          } | tee "$RUNNER_TEMP/deployment-changes/components.env"
+
+      - name: Publish deployment selection
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-changes-${{ github.sha }}
+          path: ${{ runner.temp }}/deployment-changes/components.env
+          if-no-files-found: error
+          retention-days: 7
+
   dotnet:
     name: .NET
     runs-on: ubuntu-latest
@@ -46,12 +105,12 @@ jobs:
           dotnet-version: 10.0.x
           cache: true
           cache-dependency-path: |
-            api/**/packages.lock.json
-            game-server/**/packages.lock.json
-      - run: dotnet restore api/MirajOfIcarus.slnx --locked-mode
-      - run: dotnet restore game-server/MirajOfIcarus.GameServer.slnx --locked-mode
-      - run: dotnet test api/MirajOfIcarus.slnx --configuration Release --no-restore
-      - run: dotnet test game-server/MirajOfIcarus.GameServer.slnx --configuration Release --no-restore
+            backend/api/**/packages.lock.json
+            backend/game-server/**/packages.lock.json
+      - run: dotnet restore backend/api/MirajOfIcarus.slnx --locked-mode
+      - run: dotnet restore backend/game-server/MirajOfIcarus.GameServer.slnx --locked-mode
+      - run: dotnet test backend/api/MirajOfIcarus.slnx --configuration Release --no-restore
+      - run: dotnet test backend/game-server/MirajOfIcarus.GameServer.slnx --configuration Release --no-restore
 
   client-contracts:
     name: Client contracts
@@ -60,17 +119,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
-      - run: cmake -S game-clients/client-pc -B build/client -G Ninja -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
+      - run: cmake -S apps/game/windows -B build/client -G Ninja -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
       - run: cmake --build build/client
       - run: ctest --test-dir build/client --output-on-failure
-      - run: game-clients/client-pc/tools/test-publish-r2-release.sh
+      - run: apps/game/windows/tools/test-publish-r2-release.sh
 
   portal:
     name: Portal
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: portal/web
+        working-directory: apps/portal/web
     steps:
       - uses: actions/checkout@v4
         with:
@@ -79,7 +138,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: portal/web/package-lock.json
+          cache-dependency-path: apps/portal/web/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
@@ -93,14 +152,14 @@ jobs:
     runs-on: ubuntu-24.04
     defaults:
       run:
-        working-directory: cloudflare/download-worker
+        working-directory: backend/download-worker
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: cloudflare/download-worker/package-lock.json
+          cache-dependency-path: backend/download-worker/package-lock.json
       - run: npm ci
       - run: npm run typecheck
       - run: npm test

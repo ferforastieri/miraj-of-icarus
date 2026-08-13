@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(MirajOfIcarusClientPC VERSION 0.1.0 LANGUAGES C CXX)
+project(MirajOfIcarusWindows VERSION 0.1.0 LANGUAGES C CXX)
 
 include(CTest)
 include(FetchContent)
@@ -64,6 +64,6 @@ if(MIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS)
       add_subdirectory("${MIRAJ_OF_ICARUS_WICKED_ROOT}" "${CMAKE_BINARY_DIR}/wicked-engine")
     endif()
 
-    add_subdirectory(src)
+    add_subdirectory(client)
   endif()
 endif()

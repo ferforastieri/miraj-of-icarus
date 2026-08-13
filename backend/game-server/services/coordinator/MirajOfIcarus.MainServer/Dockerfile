@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0.302-noble AS build
 WORKDIR /source
 COPY global.json ./
-COPY game-server ./game-server
-RUN dotnet restore game-server/services/coordinator/MirajOfIcarus.MainServer/MirajOfIcarus.MainServer.csproj --locked-mode
-RUN dotnet publish game-server/services/coordinator/MirajOfIcarus.MainServer/MirajOfIcarus.MainServer.csproj \
+COPY backend/game-server ./backend/game-server
+RUN dotnet restore backend/game-server/services/coordinator/MirajOfIcarus.MainServer/MirajOfIcarus.MainServer.csproj --locked-mode
+RUN dotnet publish backend/game-server/services/coordinator/MirajOfIcarus.MainServer/MirajOfIcarus.MainServer.csproj \
     --configuration Release --no-restore --output /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0.10-noble AS runtime

@@ -52,9 +52,9 @@ mas acessa `game_characters` apenas para listar personagens disponíveis no jogo
 ## Validação
 
 ```bash
-dotnet restore api/MirajOfIcarus.slnx --locked-mode
-dotnet build api/MirajOfIcarus.slnx --configuration Release --no-restore
-dotnet test api/MirajOfIcarus.slnx --configuration Release --no-restore
+dotnet restore backend/api/MirajOfIcarus.slnx --locked-mode
+dotnet build backend/api/MirajOfIcarus.slnx --configuration Release --no-restore
+dotnet test backend/api/MirajOfIcarus.slnx --configuration Release --no-restore
 ```
 
 Os testes marcados como `Infrastructure` exigem PostgreSQL e Redis. O workflow

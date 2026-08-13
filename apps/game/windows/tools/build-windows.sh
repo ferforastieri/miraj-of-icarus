@@ -47,9 +47,9 @@ cmake --build "$build_directory" \
 rm -rf -- "$client_output_directory" "$launcher_output_directory"
 mkdir -p -- "$client_output_directory" "$launcher_output_directory"
 
-install -m 0755 "${build_directory}/src/MirajOfIcarusClient.exe" "$client_output_directory/"
-install -m 0644 "${build_directory}/src/dxcompiler.dll" "$client_output_directory/"
-cp -a "${build_directory}/src/shaders" "$client_output_directory/"
+install -m 0755 "${build_directory}/client/MirajOfIcarusClient.exe" "$client_output_directory/"
+install -m 0644 "${build_directory}/client/dxcompiler.dll" "$client_output_directory/"
+cp -a "${build_directory}/client/shaders" "$client_output_directory/"
 cmake -E copy_directory "${source_directory}/assets/lobby" "$client_output_directory/assets/lobby"
 
 release_version="${MIRAJ_OF_ICARUS_RELEASE_VERSION:-0000000000000000000000000000000000000000}"

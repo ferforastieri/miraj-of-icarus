@@ -6,6 +6,7 @@ on:
     types: [completed]
 
 permissions:
+  actions: read
   contents: read
   packages: write
 
@@ -14,11 +15,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  changes:
     if: >-
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-24.04
+    outputs:
+      backend: ${{ steps.components.outputs.backend }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-changes-${{ github.event.workflow_run.head_sha }}
+          path: ${{ runner.temp }}/deployment-changes
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Read deployment selection
+        id: components
+        run: grep -Fqx 'backend=true' "$RUNNER_TEMP/deployment-changes/components.env" && echo 'backend=true' >> "$GITHUB_OUTPUT" || echo 'backend=false' >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     strategy:
@@ -26,13 +44,13 @@ jobs:
       matrix:
         include:
           - image: miraj-of-icarus-api
-            dockerfile: api/Dockerfile
+            dockerfile: backend/api/Dockerfile
           - image: miraj-of-icarus-main-server
-            dockerfile: game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
+            dockerfile: backend/game-server/services/coordinator/MirajOfIcarus.MainServer/Dockerfile
           - image: miraj-of-icarus-login-server
-            dockerfile: game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
+            dockerfile: backend/game-server/services/login/MirajOfIcarus.LoginServer/Dockerfile
           - image: miraj-of-icarus-lobby-server
-            dockerfile: game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
+            dockerfile: backend/game-server/services/lobby/MirajOfIcarus.LobbyServer/Dockerfile
     steps:
       - uses: actions/checkout@v4
         with:
@@ -90,7 +108,7 @@ jobs:
           remote="${LIGHTSAIL_USER}@${LIGHTSAIL_HOST}"
           ssh -i "$HOME/.ssh/miraj-of-icarus-deploy" "$remote" 'mkdir -p /opt/miraj_of_icarus/infra'
           scp -i "$HOME/.ssh/miraj-of-icarus-deploy" \
-            infra/compose.yml infra/compose.production.yml infra/Caddyfile infra/deploy-backend.sh infra/promote-administrator.sh infra/provision-administrator.sh infra/harden-lightsail.sh \
+            backend/infra/compose.yml backend/infra/compose.production.yml backend/infra/Caddyfile backend/infra/deploy-backend.sh backend/infra/promote-administrator.sh backend/infra/provision-administrator.sh backend/infra/harden-lightsail.sh \
             "${remote}:/opt/miraj_of_icarus/infra/"
 
       - name: Authenticate the server to the private container registry

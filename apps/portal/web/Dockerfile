@@ -1,6 +1,6 @@
 FROM node:24.18.0-bookworm-slim AS dependencies
 WORKDIR /app
-COPY portal/web/package.json portal/web/package-lock.json ./
+COPY apps/portal/web/package.json apps/portal/web/package-lock.json ./
 RUN npm ci
 
 FROM node:24.18.0-bookworm-slim AS build
@@ -10,7 +10,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     MIRAJ_OF_ICARUS_STANDALONE_BUILD=true \
     NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}
 COPY --from=dependencies /app/node_modules ./node_modules
-COPY portal/web/ .
+COPY apps/portal/web/ .
 RUN npm run build
 
 FROM node:24.18.0-bookworm-slim AS runtime
