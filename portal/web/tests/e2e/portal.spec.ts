@@ -11,6 +11,8 @@ test("landing apresenta o mundo e o estado seguro de release", async ({ page }) 
 
 test("cadastro público valida os campos", async ({ page }) => {
   await page.goto("/criar-conta");
+  await expect(page.getByRole("navigation", { name: "Navegação principal" })).toBeVisible();
+  await expect(page.getByText("Uma reconstrução independente em andamento")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Abra sua passagem." })).toBeVisible();
   await expect(page.getByRole("button", { name: "Criar conta e entrar" })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Conta" })).toHaveAttribute("minlength", "3");

@@ -31,7 +31,7 @@ jobs:
       - name: Install pinned build prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ca-certificates cmake curl file gnupg ninja-build openssl python3 zip
+          sudo apt-get install --yes --no-install-recommends ca-certificates cmake curl file gnupg ninja-build openssl python3
           aws --version
           curl --fail --location --silent --show-error https://apt.llvm.org/llvm-snapshot.gpg.key \
             | sudo gpg --dearmor --batch --yes --output /usr/share/keyrings/llvm-archive-keyring.gpg
@@ -63,6 +63,7 @@ jobs:
             "$RUNNER_TEMP/miraj-of-icarus-release/client" \
             "$RUNNER_TEMP/miraj-of-icarus-release/launcher"
           file "$RUNNER_TEMP/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe" | grep -F 'PE32+ executable (GUI) x86-64'
+          test "$(find "$RUNNER_TEMP/miraj-of-icarus-release/launcher" -mindepth 1 -maxdepth 1 | wc -l)" -eq 1
           file "$RUNNER_TEMP/miraj-of-icarus-release/client/MirajOfIcarusClient.exe" | grep -F 'PE32+ executable (GUI) x86-64'
           python3 -m json.tool "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.json" >/dev/null
           game-clients/client-pc/tools/verify-release-manifest.py "$RUNNER_TEMP/miraj-of-icarus-release/client"
@@ -90,16 +91,12 @@ jobs:
             -signature "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.sig" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client/release-manifest.json"
 
-      - name: Package launcher
-        working-directory: ${{ runner.temp }}/miraj-of-icarus-release
-        run: cmake -E tar cf MirajOfIcarusLauncher.zip --format=zip launcher
-
       - name: Upload validation artifact
         uses: actions/upload-artifact@v4
         with:
           name: miraj-of-icarus-windows-${{ github.sha }}
           path: |
-            ${{ runner.temp }}/miraj-of-icarus-release/MirajOfIcarusLauncher.zip
+            ${{ runner.temp }}/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe
             ${{ runner.temp }}/miraj-of-icarus-release/client/release-manifest.json
           if-no-files-found: error
           retention-days: 14
@@ -117,4 +114,4 @@ jobs:
           game-clients/client-pc/tools/publish-r2-release.sh \
             "${{ github.sha }}" \
             "$RUNNER_TEMP/miraj-of-icarus-release/client" \
-            "$RUNNER_TEMP/miraj-of-icarus-release/MirajOfIcarusLauncher.zip"
+            "$RUNNER_TEMP/miraj-of-icarus-release/launcher/MirajOfIcarusLauncher.exe"

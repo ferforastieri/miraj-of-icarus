@@ -62,7 +62,7 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
   const labelClass = "grid gap-2 text-xs uppercase tracking-[.1em] text-mist";
   const tabClass = "relative grid min-h-[54px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 font-miraj-of-icarus text-xs font-semibold uppercase tracking-[.055em] text-[#dce8de] [text-shadow:0_2px_2px_#041b16] focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_9px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]";
   return (
-    <main className="relative grid min-h-[calc(100vh-142px)] place-items-center px-6 py-20 max-[620px]:px-2 max-[620px]:py-10">
+    <main className="relative grid min-h-screen place-items-center px-6 pb-20 pt-52 max-[700px]:pt-32 max-[620px]:px-2 max-[620px]:pb-12">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,232,157,.12),transparent_35%)]" aria-hidden="true" />
       <section className="jade-card relative w-[min(620px,100%)] px-8 py-7 drop-shadow-[0_30px_60px_rgba(3,27,22,.48)] max-[620px]:px-2 max-[620px]:py-5" aria-labelledby="auth-title">
         <Kicker>Portal do jogador</Kicker>

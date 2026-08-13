@@ -49,3 +49,37 @@ test("returns 429 with retry metadata when the download limiter rejects", async 
   assert.equal(response.headers.get("RateLimit-Limit"), "100");
   assert.deepEqual(await response.json(), { error: "rate_limited" });
 });
+
+test("serves the standalone launcher as a public executable attachment", async () => {
+  const version = "a".repeat(40);
+  const executable = new Uint8Array([0x4d, 0x5a]);
+  Object.defineProperty(globalThis, "caches", {
+    configurable: true,
+    value: { default: { match: async () => undefined, put: async () => undefined } },
+  });
+  const environment = {
+    RELEASES: {
+      get: async () => ({
+        body: executable,
+        size: executable.length,
+        httpEtag: '"launcher"',
+        writeHttpMetadata() {},
+      }),
+    },
+    DOWNLOAD_AUTHORIZATION_SIGNING_KEY: Buffer.alloc(32, 7).toString("base64"),
+    DOWNLOAD_RATE_LIMITER: { limit: async () => ({ success: true }) },
+  } as unknown as DownloadWorkerEnv;
+  const context = { waitUntil() {} } as unknown as ExecutionContext;
+  const response = await worker.fetch(
+    new Request(`https://downloads.mirajoficarus.com/releases/${version}/launcher/MirajOfIcarusLauncher.exe`, {
+      headers: { Range: "bytes=0-1" },
+    }),
+    environment,
+    context,
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("Content-Type"), "application/vnd.microsoft.portable-executable");
+  assert.equal(response.headers.get("Content-Disposition"), 'attachment; filename="MirajOfIcarusLauncher.exe"');
+  assert.deepEqual(new Uint8Array(await response.arrayBuffer()), executable);
+});

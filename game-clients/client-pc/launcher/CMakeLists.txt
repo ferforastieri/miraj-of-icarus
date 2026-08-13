@@ -19,8 +19,13 @@ target_link_libraries(MirajOfIcarusLauncher
     d2d1
     dwrite
     gdiplus
+    ole32
     shell32
 )
-target_compile_definitions(MirajOfIcarusLauncher PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+set(MIRAJ_OF_ICARUS_PUBLIC_API_URL "http://localhost:8080" CACHE STRING "Public API used by the launcher")
+target_compile_definitions(MirajOfIcarusLauncher PRIVATE
+  UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX
+  MIRAJ_OF_ICARUS_PUBLIC_API_URL="${MIRAJ_OF_ICARUS_PUBLIC_API_URL}"
+)
 target_compile_options(MirajOfIcarusLauncher PRIVATE /W4 /WX /utf-8)
 set_target_properties(MirajOfIcarusLauncher PROPERTIES OUTPUT_NAME "MirajOfIcarusLauncher")

@@ -1,3 +1,13 @@
 #include "resource.h"
 
 IDI_MIRAJ_OF_ICARUS ICON "miraj-of-icarus.ico"
+
+IDR_LAUNCHER_BACKGROUND RCDATA "../../assets/launcher/backgrounds/miraj-of-icarus-hero.png"
+IDR_LAUNCHER_MARK RCDATA "../../assets/global/branding/miraj-of-icarus-mj.png"
+IDR_LAUNCHER_FRAME RCDATA "../../assets/launcher/frames/jade-card.png"
+IDR_BUTTON_DEFAULT RCDATA "../../assets/launcher/controls/button-default.png"
+IDR_BUTTON_FOCUSED RCDATA "../../assets/launcher/controls/button-focused.png"
+IDR_BUTTON_PRESSED RCDATA "../../assets/launcher/controls/button-pressed.png"
+IDR_BUTTON_DISABLED RCDATA "../../assets/launcher/controls/button-disabled.png"
+IDR_WINDOW_CONTROLS RCDATA "../../assets/launcher/controls/window-controls-atlas.png"
+IDR_MIRAJ_DISPLAY_FONT RCDATA "../../assets/launcher/fonts/miraj-display.ttf"

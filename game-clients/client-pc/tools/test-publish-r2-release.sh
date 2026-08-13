@@ -7,7 +7,7 @@ trap 'rm -rf -- "$temporary_directory"' EXIT
 
 mkdir -p "$temporary_directory/bin" "$temporary_directory/client"
 printf 'client' > "$temporary_directory/client/MirajOfIcarusClient.exe"
-printf 'launcher' > "$temporary_directory/MirajOfIcarusLauncher.zip"
+printf 'launcher' > "$temporary_directory/MirajOfIcarusLauncher.exe"
 "$tools_directory/create-release-manifest.py" "$temporary_directory/client"
 printf 'signature' > "$temporary_directory/client/release-manifest.sig"
 
@@ -29,7 +29,7 @@ export MIRAJ_OF_ICARUS_AWS_CALLS="$temporary_directory/aws-success.log"
 readonly version=0123456789abcdef0123456789abcdef01234567
 
 "$tools_directory/publish-r2-release.sh" \
-  "$version" "$temporary_directory/client" "$temporary_directory/MirajOfIcarusLauncher.zip"
+  "$version" "$temporary_directory/client" "$temporary_directory/MirajOfIcarusLauncher.exe"
 
 tail -n 1 "$MIRAJ_OF_ICARUS_AWS_CALLS" | grep -F 'channels/alpha.json' >/dev/null
 grep -F 'public,max-age=31536000,immutable' "$MIRAJ_OF_ICARUS_AWS_CALLS" >/dev/null
@@ -38,7 +38,7 @@ tail -n 1 "$MIRAJ_OF_ICARUS_AWS_CALLS" | grep -F 'public,max-age=60,must-revalid
 export MIRAJ_OF_ICARUS_AWS_CALLS="$temporary_directory/aws-failure.log"
 export MIRAJ_OF_ICARUS_AWS_FAIL_ON="releases/${version}/client/release-manifest.sig"
 if "$tools_directory/publish-r2-release.sh" \
-  "$version" "$temporary_directory/client" "$temporary_directory/MirajOfIcarusLauncher.zip"; then
+  "$version" "$temporary_directory/client" "$temporary_directory/MirajOfIcarusLauncher.exe"; then
   echo "an interrupted upload unexpectedly succeeded" >&2
   exit 1
 fi

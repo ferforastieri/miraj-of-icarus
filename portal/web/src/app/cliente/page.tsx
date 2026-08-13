@@ -8,6 +8,7 @@ import { useGameServers } from "@/api/game-servers/get-game-servers";
 import { useLatestRelease } from "@/api/releases/get-latest-release";
 import { CharacterPanel } from "@/components/CharacterPanel";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
 import { routes } from "@/routes";
@@ -26,14 +27,14 @@ export default function ClientPage() {
   useEffect(() => {
     if (!account.isLoading && !account.data) window.location.replace(`${routes.login}?retorno=${encodeURIComponent(routes.client)}`);
   }, [account.data, account.isLoading]);
-  if (account.isLoading || !account.data) return <div className="min-h-screen bg-abyss"><SiteHeader compact /><main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">Abrindo a área do cliente...</main></div>;
+  if (account.isLoading || !account.data) return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">Abrindo a área do cliente...</main><SiteFooter /></div>;
 
   const availableServers = (servers.data ?? []).filter(server => server.available).length;
   const card = "jade-card flex min-h-[180px] flex-col justify-between drop-shadow-[0_14px_20px_rgba(3,27,22,.28)]";
   return (
     <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(40,185,111,.16),transparent_28%)] bg-abyss">
-      <SiteHeader compact />
-      <main className="mx-auto w-[min(1180px,calc(100%-48px))] py-20 max-[620px]:w-[calc(100%-20px)] max-[620px]:pt-10">
+      <SiteHeader />
+      <main className="mx-auto w-[min(1180px,calc(100%-48px))] pb-20 pt-52 max-[700px]:pt-32 max-[620px]:w-[calc(100%-20px)]">
         <header className="flex min-h-[230px] items-center justify-between gap-8 border-b border-jade/25 max-[700px]:flex-col max-[700px]:items-start max-[700px]:py-10">
           <div><Kicker>Área do cliente</Kicker><h1 className="mb-3 font-display text-[clamp(2.7rem,6vw,5.5rem)] leading-[.9]">Bem-vindo, <em className="font-normal text-jade">{account.data.userName}</em>.</h1><p className="text-mist">Gerencie seus viajantes e prepare a próxima entrada no reino.</p></div>
           <Button type="button" disabled={logout.isPending} onClick={() => logout.mutate(undefined, { onSuccess: () => window.location.assign(routes.login) })}>Sair da conta</Button>
@@ -47,7 +48,7 @@ export default function ClientPage() {
         <CharacterPanel enabled />
         {account.data.role === "Administrator" && <Link className="mb-8 inline-block text-jade" href={routes.panel}>Abrir administração →</Link>}
         <section className="mb-20 flex items-center justify-between gap-8 border-y border-jade/25 p-8 max-[620px]:flex-col max-[620px]:items-start max-[620px]:px-0"><div><Kicker>Segurança</Kicker><h2 className="text-4xl">Sua sessão</h2><p className="max-w-[580px] text-mist">Sessão persistente por até 30 dias, armazenada somente em cookies HttpOnly.</p></div><Button onClick={() => logout.mutate(undefined, { onSuccess: () => window.location.assign(routes.login) })}>Encerrar sessão</Button></section>
-      </main>
+      </main><SiteFooter />
     </div>
   );
 }

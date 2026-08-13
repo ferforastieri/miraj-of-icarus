@@ -24,7 +24,7 @@ public sealed class ClientReleaseEndpointsTests
             $"https://downloads.mirajoficarus.com/releases/{Version}/client/release-manifest.json",
             $"https://downloads.mirajoficarus.com/releases/{Version}/client/release-manifest.sig",
             $"https://downloads.mirajoficarus.com/releases/{Version}/client/files/",
-            $"https://downloads.mirajoficarus.com/releases/{Version}/launcher/MirajOfIcarusLauncher.zip",
+            $"https://downloads.mirajoficarus.com/releases/{Version}/launcher/MirajOfIcarusLauncher.exe",
             DateTimeOffset.Parse("2026-08-12T12:00:00Z", CultureInfo.InvariantCulture));
         await using var factory = CreateFactory(JsonSerializer.Serialize(channel));
         using var client = factory.CreateClient();

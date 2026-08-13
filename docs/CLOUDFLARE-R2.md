@@ -6,7 +6,7 @@
 - Worker: `miraj-of-icarus-downloads`;
 - domínio final: `downloads.mirajoficarus.com`;
 - canal público: `channels/alpha.json`;
-- launcher público: `releases/{sha}/launcher/MirajOfIcarusLauncher.zip`;
+- launcher público e autônomo: `releases/{sha}/launcher/MirajOfIcarusLauncher.exe`;
 - cliente protegido: `releases/{sha}/client/**`.
 
 O domínio não deve permanecer ligado diretamente ao bucket. O código em

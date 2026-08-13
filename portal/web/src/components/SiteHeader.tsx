@@ -3,18 +3,13 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { routes } from "@/routes";
 
-type Props = { compact?: boolean };
-
 const navItem = "relative z-10 grid min-h-[58px] min-w-[176px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-8 font-miraj-of-icarus text-[.78rem] font-semibold uppercase tracking-[.08em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')] max-[1050px]:min-w-[150px] max-[900px]:min-w-[126px] max-[900px]:px-5 max-[700px]:min-w-[118px] max-[700px]:px-3";
 
 const accountItem = "grid min-h-9 min-w-[116px] place-items-center bg-[url('/media/game-ui/jade/button-default.png')] bg-[length:100%_100%] bg-center bg-no-repeat px-5 focus:bg-[url('/media/game-ui/jade/button-focused.png')] focus:text-white focus:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:bg-[url('/media/game-ui/jade/button-focused.png')]";
 
-export function SiteHeader({ compact = false }: Props) {
+export function SiteHeader() {
   return (
-    <header className={cn(
-      "z-30 w-full pt-6 max-[700px]:pt-3",
-      compact ? "relative border-b border-[#8b794f]/70 bg-[linear-gradient(180deg,rgba(5,47,39,.88),rgba(3,28,24,.95)),url('/media/portal-hero-v3.png')] bg-cover bg-top shadow-[0_12px_28px_rgba(2,24,20,.38)]" : "absolute inset-x-0 top-0",
-    )}>
+    <header className={cn("absolute inset-x-0 top-0 z-30 w-full pt-6 max-[700px]:pt-3")}>
       <div className="mb-1 flex justify-end gap-1 pr-5 font-miraj-of-icarus text-[.64rem] font-semibold uppercase tracking-[.08em] text-[#eee7d6] [text-shadow:0_1px_5px_#061d18] max-[700px]:hidden">
         <Link className={accountItem} href={routes.login}>Entrar</Link>
         <Link className={accountItem} href={routes.register}>Criar conta</Link>

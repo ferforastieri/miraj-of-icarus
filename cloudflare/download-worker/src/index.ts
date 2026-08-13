@@ -46,7 +46,7 @@ const worker = {
 
     const release = releasePattern.exec(key);
     const publicObject = key === "channels/alpha.json" ||
-      (release?.[2] === "launcher" && release[3] === "MirajOfIcarusLauncher.zip");
+      (release?.[2] === "launcher" && release[3] === "MirajOfIcarusLauncher.exe");
     if (!publicObject) {
       if (!release || release[2] !== "client") return error(404, "not_found");
       const authorization = request.headers.get("Authorization");
@@ -74,6 +74,10 @@ const worker = {
     if (!object) return error(404, "not_found");
     const headers = new Headers();
     object.writeHttpMetadata(headers);
+    if (release?.[2] === "launcher") {
+      headers.set("Content-Type", "application/vnd.microsoft.portable-executable");
+      headers.set("Content-Disposition", 'attachment; filename="MirajOfIcarusLauncher.exe"');
+    }
     headers.set("ETag", object.httpEtag);
     headers.set("Accept-Ranges", "bytes");
     headers.set("Cache-Control", cacheControl(key));

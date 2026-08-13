@@ -5,6 +5,7 @@ import { useAccount } from "@/api/authentication/get-account";
 import { useAdminAccounts, useAdminAudit, useAdminCharacters, useAdminDeleteCharacter, useAdminOverview, useAdminRestoreCharacter, useSetMaintenance, useSuspendAccount, useRestoreAccount } from "@/api/administration/admin";
 import { useGameServers } from "@/api/game-servers/get-game-servers";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -30,12 +31,12 @@ export default function AdministrationPage() {
     if (!account.isLoading && !account.data) window.location.replace(`${routes.login}?retorno=${encodeURIComponent(routes.panel)}`);
     if (account.data && account.data.role !== "Administrator") window.location.replace(routes.client);
   }, [account.data, account.isLoading]);
-  if (account.isLoading || account.data?.role !== "Administrator") return <div className="min-h-screen bg-abyss"><SiteHeader compact /><main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">Validando administração...</main></div>;
+  if (account.isLoading || account.data?.role !== "Administrator") return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">Validando administração...</main><SiteFooter /></div>;
 
   const stat = "jade-card flex min-h-[160px] flex-col justify-between";
   return (
-    <div className="min-h-screen bg-abyss"><SiteHeader compact />
-      <main className="mx-auto w-[min(1180px,calc(100%-40px))] py-16 max-[560px]:w-[calc(100%-18px)] max-[560px]:py-9">
+    <div className="min-h-screen bg-abyss"><SiteHeader />
+      <main className="mx-auto w-[min(1180px,calc(100%-40px))] pb-16 pt-52 max-[700px]:pt-32 max-[560px]:w-[calc(100%-18px)]">
         <Kicker>Administração do jogo</Kicker>
         <h1 className="mb-4 text-[clamp(3rem,7vw,6rem)] leading-[.88]">Painel dos reinos</h1>
         <p className="max-w-2xl text-mist">Contas, personagens, estado dos servidores e release ativa. Publicações e rollbacks continuam restritos ao GitHub.</p>
@@ -54,7 +55,7 @@ export default function AdministrationPage() {
         {selectedAccount !== null && <section className="jade-card mb-16"><div className="mb-5 flex items-center justify-between"><div><Kicker>Conta #{selectedAccount}</Kicker><h2 className="text-4xl">Personagens</h2></div><Button onClick={() => setSelectedAccount(null)}>Fechar</Button></div><div className="grid gap-2">{characters.data?.map(character => <article className="flex items-center justify-between gap-4 border-y border-jade/20 p-4 max-[560px]:flex-col max-[560px]:items-start" key={character.id}><div><strong className="text-xl">{character.name}</strong><p className="text-sm text-mist">{character.archetype} · nível {character.level}{character.deletionScheduledAt ? " · exclusão agendada" : ""}</p></div>{character.deletionScheduledAt ? <Button onClick={() => restoreCharacter.mutate({ accountId: selectedAccount, characterId: character.id })}>Cancelar exclusão</Button> : <Button variant="danger" onClick={() => { if (window.confirm(`Agendar exclusão de ${character.name}?`)) deleteCharacter.mutate({ accountId: selectedAccount, characterId: character.id }); }}>Agendar exclusão</Button>}</article>)}</div></section>}
         <section className="jade-card mb-16"><Kicker>Operação</Kicker><h2 className="mb-5 text-4xl">Manutenção dos reinos</h2><div className="grid gap-2">{servers.data?.map(server => <article className="flex items-center justify-between gap-5 border-y border-jade/20 p-4 max-[620px]:flex-col max-[620px]:items-start" key={server.id}><div><strong className="text-xl">{server.name}</strong><p className="text-sm text-mist">{server.available ? "Disponível" : server.maintenanceMessage || "Indisponível"}</p></div>{server.maintenanceMessage ? <Button onClick={() => maintenance.mutate({ serverId: server.id, enabled: false })}>Encerrar manutenção</Button> : <Button variant="danger" onClick={() => { const message = window.prompt("Mensagem pública de manutenção"); if (message) maintenance.mutate({ serverId: server.id, enabled: true, message }); }}>Ativar manutenção</Button>}</article>)}</div></section>
         <section className="jade-card mb-16"><Kicker>Segurança</Kicker><h2 className="mb-5 text-4xl">Auditoria</h2><div className="grid gap-2">{audit.data?.map(entry => <article className="border-y border-jade/20 p-4" key={entry.id}><strong>{entry.action}</strong><span className="mx-2 text-ancient-gold">{entry.target}</span><time className="block text-sm text-mist">{new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" }).format(new Date(entry.createdAt))}</time></article>)}</div></section>
-      </main>
+      </main><SiteFooter />
     </div>
   );
 }

@@ -17,10 +17,10 @@ using byte = unsigned char;
 
 #include <algorithm>
 #include <array>
+#include <cstring>
 #include <exception>
-#include <fstream>
 #include <memory>
-#include <nlohmann/json.hpp>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -44,12 +44,7 @@ constexpr UINT LoadEnvironmentMessage = WM_APP + 1;
 
 std::string LoadApiEndpoint()
 {
-    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
-    if (!path.empty()) path += L'\\';
-    path += L"assets\\launcher\\config.json";
-    std::ifstream input(path, std::ios::binary);
-    if (!input) throw std::runtime_error("Launcher API configuration is missing.");
-    const auto endpoint = nlohmann::json::parse(input).at("apiEndpoint").get<std::string>();
+    const std::string endpoint = MIRAJ_OF_ICARUS_PUBLIC_API_URL;
     const bool secure = endpoint.starts_with("https://");
     const bool local = endpoint.starts_with("http://localhost:") ||
         endpoint.starts_with("http://127.0.0.1:");
@@ -128,7 +123,8 @@ struct WindowState
     std::unique_ptr<Gdiplus::Image> buttonPressed;
     std::unique_ptr<Gdiplus::Image> buttonDisabled;
     std::unique_ptr<Gdiplus::Image> windowControls;
-    std::wstring privateFontPath;
+    std::vector<IStream*> resourceStreams;
+    HANDLE privateFont = nullptr;
     std::vector<miraj_of_icarus::launcher::GameServer> servers;
     std::string apiEndpoint;
     std::wstring status = L"VERIFICANDO INSTALAÇÃO";
@@ -172,23 +168,50 @@ std::unique_ptr<Gdiplus::GraphicsPath> RoundedPath(
     return path;
 }
 
-void LoadImage(std::unique_ptr<Gdiplus::Image>& target, const std::wstring& relativePath)
+struct ResourceBytes
 {
-    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
-    if (!path.empty()) path += L'\\';
-    path += relativePath;
-    auto image = std::make_unique<Gdiplus::Image>(path.c_str());
-    if (image->GetLastStatus() == Gdiplus::Ok)
-    {
-        target = std::move(image);
-    }
+    const void* data = nullptr;
+    DWORD size = 0;
+};
+
+ResourceBytes LoadResourceBytes(int resourceId)
+{
+    const auto instance = GetModuleHandleW(nullptr);
+    const auto resource = FindResourceW(instance, MAKEINTRESOURCEW(resourceId), RT_RCDATA);
+    if (resource == nullptr) return {};
+    const auto loaded = LoadResource(instance, resource);
+    if (loaded == nullptr) return {};
+    return {LockResource(loaded), SizeofResource(instance, resource)};
 }
 
-std::wstring AssetPath(const std::wstring& relativePath)
+void LoadEmbeddedImage(std::unique_ptr<Gdiplus::Image>& target, WindowState& state, int resourceId)
 {
-    auto path = miraj_of_icarus::launcher::ExecutableDirectory();
-    if (!path.empty()) path += L'\\';
-    return path + relativePath;
+    const auto bytes = LoadResourceBytes(resourceId);
+    if (bytes.data == nullptr || bytes.size == 0) return;
+    const auto memory = GlobalAlloc(GMEM_MOVEABLE, bytes.size);
+    if (memory == nullptr) return;
+    const auto destination = GlobalLock(memory);
+    if (destination == nullptr)
+    {
+        GlobalFree(memory);
+        return;
+    }
+    std::memcpy(destination, bytes.data, bytes.size);
+    GlobalUnlock(memory);
+    IStream* stream = nullptr;
+    if (CreateStreamOnHGlobal(memory, TRUE, &stream) != S_OK)
+    {
+        GlobalFree(memory);
+        return;
+    }
+    auto image = std::make_unique<Gdiplus::Image>(stream);
+    if (image->GetLastStatus() == Gdiplus::Ok)
+    {
+        state.resourceStreams.push_back(stream);
+        target = std::move(image);
+        return;
+    }
+    stream->Release();
 }
 
 void Refresh(HWND window, WindowState& state, std::wstring status, std::wstring detail,
@@ -213,22 +236,23 @@ void UpdatePlayState(WindowState& state)
 
 void Layout(WindowState& state, int width, int height)
 {
-    constexpr int panelWidth = 430;
-    const int panelLeft = width - panelWidth - 38;
-    const int fieldLeft = panelLeft + 34;
-    const int fieldWidth = panelWidth - 68;
-    MoveWindow(state.username, fieldLeft + 2, 293, fieldWidth - 4, 42, TRUE);
-    MoveWindow(state.password, fieldLeft + 2, 377, fieldWidth - 4, 42, TRUE);
-    MoveWindow(state.server, fieldLeft, 209, fieldWidth, 46, TRUE);
-    MoveWindow(state.play, width / 2 - 62, height - 180, 124, 132, TRUE);
-    MoveWindow(state.minimize, width - 104, 14, 42, 38, TRUE);
-    MoveWindow(state.close, width - 56, 14, 42, 38, TRUE);
+    constexpr int panelWidth = 400;
+    const int panelLeft = width - panelWidth - 32;
+    const int fieldLeft = panelLeft + 38;
+    const int fieldWidth = panelWidth - 76;
+    MoveWindow(state.server, fieldLeft, 222, fieldWidth, 44, TRUE);
+    MoveWindow(state.username, fieldLeft + 1, 305, fieldWidth - 2, 42, TRUE);
+    MoveWindow(state.password, fieldLeft + 1, 388, fieldWidth - 2, 42, TRUE);
+    MoveWindow(state.play, width / 2 - 68, height - 190, 136, 142, TRUE);
+    MoveWindow(state.minimize, width - 86, 18, 30, 28, TRUE);
+    MoveWindow(state.close, width - 50, 18, 30, 28, TRUE);
     for (const auto control : {state.username, state.password, state.server})
     {
         RECT area{};
         GetClientRect(control, &area);
         SetWindowRgn(control, CreateRoundRectRgn(0, 0, area.right + 1, area.bottom + 1, 16, 16), TRUE);
     }
+    SetWindowRgn(state.play, CreateEllipticRgn(0, 0, 136, 142), TRUE);
     (void)height;
 }
 
@@ -341,24 +365,59 @@ void DrawBackground(Gdiplus::Graphics& graphics, WindowState& state, int width, 
 
 void DrawPanel(Gdiplus::Graphics& graphics, WindowState& state, int width, int height)
 {
-    constexpr int panelWidth = 430;
-    const float left = static_cast<float>(width - panelWidth - 38);
-    const float right = static_cast<float>(width - 38);
-    const auto panelPath = RoundedPath(left, 92.0F, right, static_cast<float>(height - 76), 18.0F);
+    constexpr int panelWidth = 400;
+    const float left = static_cast<float>(width - panelWidth - 32);
+    const float right = static_cast<float>(width - 32);
+    const float top = 102.0F;
+    const float bottom = static_cast<float>(height - 74);
+    const auto panelPath = RoundedPath(left, top, right, bottom, 18.0F);
+    Gdiplus::SolidBrush panel(Gdiplus::Color(236, 4, 39, 32));
+    Gdiplus::Pen edge(Gdiplus::Color(225, 190, 158, 80), 1.5F);
+    Gdiplus::Pen jadeEdge(Gdiplus::Color(185, 52, 212, 132), 1.0F);
+    graphics.FillPath(&panel, panelPath.get());
+    graphics.DrawPath(&edge, panelPath.get());
+    graphics.DrawRectangle(&jadeEdge, static_cast<int>(left + 9), static_cast<int>(top + 9),
+        static_cast<int>(right - left - 18), static_cast<int>(bottom - top - 18));
+
     if (state.frame != nullptr)
-        graphics.DrawImage(state.frame.get(), Gdiplus::Rect(static_cast<int>(left), 92,
-            static_cast<int>(right-left), height - 168));
-    else
     {
-        Gdiplus::SolidBrush panel(Gdiplus::Color(230, 6, 38, 32));
-        Gdiplus::Pen edge(Gdiplus::Color(220, 190, 158, 80), 2.0F);
-        graphics.FillPath(&panel, panelPath.get());
-        graphics.DrawPath(&edge, panelPath.get());
+        const int sourceWidth = static_cast<int>(state.frame->GetWidth());
+        const int sourceHeight = static_cast<int>(state.frame->GetHeight());
+        constexpr int sourceCornerX = 150;
+        constexpr int sourceCornerY = 90;
+        constexpr int corner = 34;
+        auto draw = [&](int dx, int dy, int dw, int dh, int sx, int sy, int sw, int sh)
+        {
+            graphics.DrawImage(state.frame.get(), Gdiplus::Rect(dx, dy, dw, dh),
+                sx, sy, sw, sh, Gdiplus::UnitPixel);
+        };
+        const int x = static_cast<int>(left);
+        const int y = static_cast<int>(top);
+        const int w = static_cast<int>(right - left);
+        const int h = static_cast<int>(bottom - top);
+        draw(x, y, corner, corner, 0, 0, sourceCornerX, sourceCornerY);
+        draw(x + corner, y, w - corner * 2, corner, sourceCornerX, 0,
+            sourceWidth - sourceCornerX * 2, sourceCornerY);
+        draw(x + w - corner, y, corner, corner, sourceWidth - sourceCornerX, 0,
+            sourceCornerX, sourceCornerY);
+        draw(x, y + corner, corner, h - corner * 2, 0, sourceCornerY,
+            sourceCornerX, sourceHeight - sourceCornerY * 2);
+        draw(x + w - corner, y + corner, corner, h - corner * 2,
+            sourceWidth - sourceCornerX, sourceCornerY, sourceCornerX,
+            sourceHeight - sourceCornerY * 2);
+        draw(x, y + h - corner, corner, corner, 0, sourceHeight - sourceCornerY,
+            sourceCornerX, sourceCornerY);
+        draw(x + corner, y + h - corner, w - corner * 2, corner,
+            sourceCornerX, sourceHeight - sourceCornerY,
+            sourceWidth - sourceCornerX * 2, sourceCornerY);
+        draw(x + w - corner, y + h - corner, corner, corner,
+            sourceWidth - sourceCornerX, sourceHeight - sourceCornerY,
+            sourceCornerX, sourceCornerY);
     }
 
-    const float fieldLeft = left + 34.0F;
-    const float fieldRight = right - 34.0F;
-    const std::array<std::pair<float, float>, 3> fields{{{207.0F, 257.0F}, {291.0F, 337.0F}, {375.0F, 421.0F}}};
+    const float fieldLeft = left + 38.0F;
+    const float fieldRight = right - 38.0F;
+    const std::array<std::pair<float, float>, 3> fields{{{220.0F, 268.0F}, {303.0F, 349.0F}, {386.0F, 432.0F}}};
     for (std::size_t index = 0; index < fields.size(); ++index)
     {
         const auto path = RoundedPath(fieldLeft, fields[index].first, fieldRight, fields[index].second, 10.0F);
@@ -373,9 +432,6 @@ void DrawPanel(Gdiplus::Graphics& graphics, WindowState& state, int width, int h
         graphics.DrawPath(&border, path.get());
     }
 
-    Gdiplus::Pen gate(Gdiplus::Color(130, 168, 139, 82), 1.0F);
-    graphics.DrawLine(&gate, left + 1.0F, 137.0F, left + 15.0F, 123.0F);
-    graphics.DrawLine(&gate, left + 15.0F, 123.0F, left + 15.0F, static_cast<float>(height - 91));
 }
 
 void DrawWindowFrame(Gdiplus::Graphics& graphics, WindowState& state, int width, int height)
@@ -438,8 +494,8 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
         graphics.FillRectangle(&progressBrush, progressLeft, progressTop, progressWidth, 3);
     }
 
-    constexpr int panelWidth = 430;
-    const int panelLeft = width - panelWidth - 38;
+    constexpr int panelWidth = 400;
+    const int panelLeft = width - panelWidth - 32;
     RECT brand{80, 18, 310, 51};
     DrawTextLine(memory, state.brandFont, L"MIRAJ OF ICARUS", brand, Moonsteel, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
     RECT release{218, 21, 420, 48};
@@ -453,22 +509,22 @@ void PaintWindow(HWND window, WindowState& state, HDC target)
     DrawTextLine(memory, state.bodyFont,
         L"Entre e siga diretamente para seus personagens.", subtitle, Moonsteel, DT_LEFT | DT_WORDBREAK);
 
-    RECT panelEyebrow{panelLeft + 34, 121, width - 72, 146};
+    RECT panelEyebrow{panelLeft + 38, 135, width - 70, 157};
     DrawTextLine(memory, state.utilityFont, L"PORTÃO DE ACESSO", panelEyebrow, AncientGold, DT_LEFT | DT_SINGLELINE);
-    RECT panelTitle{panelLeft + 34, 150, width - 72, 185};
+    RECT panelTitle{panelLeft + 38, 162, width - 70, 194};
     DrawTextLine(memory, state.brandFont, L"Escolha seu reino", panelTitle, Moonsteel, DT_LEFT | DT_SINGLELINE);
 
-    RECT serverLabel{panelLeft + 34, 187, width - 72, 207};
-    RECT accountLabel{panelLeft + 34, 271, width - 72, 291};
-    RECT passwordLabel{panelLeft + 34, 355, width - 72, 375};
+    RECT serverLabel{panelLeft + 38, 201, width - 70, 220};
+    RECT accountLabel{panelLeft + 38, 284, width - 70, 303};
+    RECT passwordLabel{panelLeft + 38, 367, width - 70, 386};
     DrawTextLine(memory, state.labelFont, L"SERVIDOR", serverLabel, Mist, DT_LEFT | DT_SINGLELINE);
     DrawTextLine(memory, state.labelFont, L"CONTA", accountLabel, Mist, DT_LEFT | DT_SINGLELINE);
     DrawTextLine(memory, state.labelFont, L"SENHA", passwordLabel, Mist, DT_LEFT | DT_SINGLELINE);
 
     const auto statusColor = state.failed ? Failure : Jade;
-    RECT status{panelLeft + 34, 436, width - 72, 458};
+    RECT status{panelLeft + 38, 458, width - 70, 478};
     DrawTextLine(memory, state.utilityFont, state.status.c_str(), status, statusColor, DT_LEFT | DT_SINGLELINE | DT_END_ELLIPSIS);
-    RECT detail{panelLeft + 34, 548, width - 72, 580};
+    RECT detail{panelLeft + 38, 486, width - 70, 520};
     DrawTextLine(memory, state.labelFont, state.detail.c_str(), detail, state.failed ? Failure : Mist,
         DT_LEFT | DT_SINGLELINE | DT_END_ELLIPSIS);
 
@@ -495,7 +551,14 @@ void DrawButton(const DRAWITEMSTRUCT& item, WindowState& state)
     if (item.CtlID == PlayId)
     {
         Gdiplus::Graphics graphics(item.hDC);
+        graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         graphics.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+        Gdiplus::SolidBrush medallion(disabled ? Gdiplus::Color(246, 5, 25, 22)
+                                              : Gdiplus::Color(250, 4, 39, 32));
+        Gdiplus::Pen ring(disabled ? Gdiplus::Color(155, 111, 116, 104)
+                                  : Gdiplus::Color(235, 52, 212, 132), pressed ? 2.0F : 3.0F);
+        graphics.FillEllipse(&medallion, 2, 2, width - 4, height - 4);
+        graphics.DrawEllipse(&ring, 4, 4, width - 8, height - 8);
         if (state.mark != nullptr)
         {
             const float glow = state.launching ? 0.55F + static_cast<float>(state.pulse) / 450.0F
@@ -505,7 +568,7 @@ void DrawButton(const DRAWITEMSTRUCT& item, WindowState& state)
                 {1,0,0,0,0},{0,1,0,0,0},{0,0,1,0,0},{0,0,0,glow,0},{0,0,0,0,1}}};
             Gdiplus::ImageAttributes attributes;
             attributes.SetColorMatrix(&matrix);
-            const int inset = pressed ? 8 : 3;
+            const int inset = pressed ? 14 : 9;
             graphics.DrawImage(state.mark.get(), Gdiplus::Rect(inset, inset, width-inset*2, height-inset*2),
                 0, 0, state.mark->GetWidth(), state.mark->GetHeight(), Gdiplus::UnitPixel, &attributes);
             if (state.launching)
@@ -522,6 +585,8 @@ void DrawButton(const DRAWITEMSTRUCT& item, WindowState& state)
     if (state.windowControls != nullptr)
     {
         Gdiplus::Graphics graphics(item.hDC);
+        Gdiplus::SolidBrush surface(Gdiplus::Color(255, 4, 28, 24));
+        graphics.FillRectangle(&surface, 0, 0, width, height);
         graphics.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
         const int column = pressed ? 2 : ((item.itemState & ODS_FOCUS) != 0 ? 1 : 0);
         const int row = close ? 1 : 0;
@@ -564,8 +629,11 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
     {
         auto* created = new WindowState{};
         SetWindowLongPtrW(window, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(created));
-        created->privateFontPath = AssetPath(L"assets\\launcher\\fonts\\miraj-display.ttf");
-        AddFontResourceExW(created->privateFontPath.c_str(), FR_PRIVATE, nullptr);
+        const auto fontBytes = LoadResourceBytes(IDR_MIRAJ_DISPLAY_FONT);
+        DWORD loadedFonts = 0;
+        if (fontBytes.data != nullptr && fontBytes.size != 0)
+            created->privateFont = AddFontMemResourceEx(
+                const_cast<void*>(fontBytes.data), fontBytes.size, nullptr, &loadedFonts);
         created->displayFont = CreateFontW(34, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
             DEFAULT_PITCH, L"Miraj Display");
@@ -585,14 +653,14 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
             DEFAULT_PITCH, L"Miraj Display");
         created->editBrush = CreateSolidBrush(Iron);
-        LoadImage(created->background, L"assets\\launcher\\backgrounds\\miraj-of-icarus-hero.png");
-        LoadImage(created->mark, L"assets\\global\\branding\\miraj-of-icarus-mj.png");
-        LoadImage(created->frame, L"assets\\launcher\\frames\\jade-card.png");
-        LoadImage(created->buttonDefault, L"assets\\launcher\\controls\\button-default.png");
-        LoadImage(created->buttonFocused, L"assets\\launcher\\controls\\button-focused.png");
-        LoadImage(created->buttonPressed, L"assets\\launcher\\controls\\button-pressed.png");
-        LoadImage(created->buttonDisabled, L"assets\\launcher\\controls\\button-disabled.png");
-        LoadImage(created->windowControls, L"assets\\launcher\\controls\\window-controls-atlas.png");
+        LoadEmbeddedImage(created->background, *created, IDR_LAUNCHER_BACKGROUND);
+        LoadEmbeddedImage(created->mark, *created, IDR_LAUNCHER_MARK);
+        LoadEmbeddedImage(created->frame, *created, IDR_LAUNCHER_FRAME);
+        LoadEmbeddedImage(created->buttonDefault, *created, IDR_BUTTON_DEFAULT);
+        LoadEmbeddedImage(created->buttonFocused, *created, IDR_BUTTON_FOCUSED);
+        LoadEmbeddedImage(created->buttonPressed, *created, IDR_BUTTON_PRESSED);
+        LoadEmbeddedImage(created->buttonDisabled, *created, IDR_BUTTON_DISABLED);
+        LoadEmbeddedImage(created->windowControls, *created, IDR_WINDOW_CONTROLS);
 
         created->username = CreateWindowExW(0, L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL,
             0, 0, 0, 0, window, reinterpret_cast<HMENU>(UsernameId), nullptr, nullptr);
@@ -832,8 +900,16 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wParam, LPARA
             DeleteObject(state->labelFont);
             DeleteObject(state->utilityFont);
             DeleteObject(state->editBrush);
-            if (!state->privateFontPath.empty())
-                RemoveFontResourceExW(state->privateFontPath.c_str(), FR_PRIVATE, nullptr);
+            state->background.reset();
+            state->mark.reset();
+            state->frame.reset();
+            state->buttonDefault.reset();
+            state->buttonFocused.reset();
+            state->buttonPressed.reset();
+            state->buttonDisabled.reset();
+            state->windowControls.reset();
+            for (auto* stream : state->resourceStreams) stream->Release();
+            if (state->privateFont != nullptr) RemoveFontMemResourceEx(state->privateFont);
             delete state;
             SetWindowLongPtrW(window, GWLP_USERDATA, 0);
         }

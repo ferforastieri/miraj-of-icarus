@@ -12,6 +12,12 @@ readonly client_output_directory="$3"
 readonly launcher_output_directory="$4"
 readonly source_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly parallel_jobs="${MIRAJ_OF_ICARUS_BUILD_JOBS:-4}"
+readonly public_api_url="${MIRAJ_OF_ICARUS_PUBLIC_API_URL:-http://localhost:8080}"
+
+if [[ "$public_api_url" != https://* && "$public_api_url" != http://localhost:* && "$public_api_url" != http://127.0.0.1:* ]]; then
+  echo "MIRAJ_OF_ICARUS_PUBLIC_API_URL must use HTTPS (except localhost development URLs)" >&2
+  exit 1
+fi
 
 for tool in cmake ninja clang-cl-20 lld-link-20 llvm-lib-20 llvm-rc-20 llvm-mt-20; do
   if ! command -v "$tool" >/dev/null; then
@@ -30,6 +36,7 @@ cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_TOOLCHAIN_FILE="${source_directory}/cmake/windows-msvc.cmake" \
   -DMIRAJ_OF_ICARUS_XWIN_ROOT="$xwin_root" \
+  -DMIRAJ_OF_ICARUS_PUBLIC_API_URL="$public_api_url" \
   -DMIRAJ_OF_ICARUS_BUILD_TESTS=OFF \
   -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=ON
 
@@ -53,22 +60,5 @@ release_version="${MIRAJ_OF_ICARUS_RELEASE_VERSION:-0000000000000000000000000000
 printf '%s\n' "$release_version" > "$client_output_directory/release-version.txt"
 
 install -m 0755 "${build_directory}/launcher/MirajOfIcarusLauncher.exe" "$launcher_output_directory/"
-cmake -E copy_directory "${source_directory}/assets/launcher" "$launcher_output_directory/assets/launcher"
-cmake -E copy_directory "${source_directory}/assets/global/branding" "$launcher_output_directory/assets/global/branding"
-
-public_api_url="${MIRAJ_OF_ICARUS_PUBLIC_API_URL:-http://localhost:8080}"
-if [[ "$public_api_url" != https://* && "$public_api_url" != http://localhost:* && "$public_api_url" != http://127.0.0.1:* ]]; then
-  echo "MIRAJ_OF_ICARUS_PUBLIC_API_URL must use HTTPS (except localhost development URLs)" >&2
-  exit 1
-fi
-python3 - "$public_api_url" "$launcher_output_directory/assets/launcher/config.json" <<'PY'
-import json
-import pathlib
-import sys
-
-destination = pathlib.Path(sys.argv[2])
-destination.parent.mkdir(parents=True, exist_ok=True)
-destination.write_text(json.dumps({"apiEndpoint": sys.argv[1]}, separators=(",", ":")) + "\n")
-PY
 
 python3 "${source_directory}/tools/create-release-manifest.py" "$client_output_directory"
