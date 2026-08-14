@@ -6,6 +6,7 @@ import { routes } from "@/routes";
 const navItem = "miraj-button relative z-10 grid min-h-[50px] w-[clamp(116px,10.5vw,154px)] min-w-0 shrink-0 place-items-center px-4 font-miraj-of-icarus text-[clamp(.54rem,.49rem+.13vw,.67rem)] font-semibold uppercase tracking-[.04em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[980px]:w-[116px] max-[980px]:px-3";
 const accountItem = "miraj-button grid min-h-10 min-w-[142px] place-items-center px-8 text-[.6rem] tracking-[.035em] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
 const menuLink = "block border-b border-[#416d5d]/55 px-5 py-3 text-center font-miraj-of-icarus text-[.68rem] uppercase tracking-[.08em] text-[#e8eadc] last:border-0 hover:text-white focus-visible:text-white";
+const dropdownMenuLink = "miraj-button grid min-h-[48px] w-[210px] place-items-center px-10 text-center font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white";
 
 type DropdownProps = {
   label: string;
@@ -21,8 +22,8 @@ function NavDropdown({ label, items }: DropdownProps) {
           <span className="text-[.58rem] text-[#cdb573]" aria-hidden="true">◆</span>
         </span>
       </summary>
-      <div className="miraj-nav-menu jade-card absolute left-1/2 top-[52px] z-40 w-[220px] -translate-x-1/2 p-2">
-        {items.map(item => <Link className={menuLink} href={item.href} key={item.href}>{item.label}</Link>)}
+      <div className="miraj-nav-menu absolute left-1/2 top-[48px] z-40 grid w-[220px] -translate-x-1/2 justify-items-center pt-5">
+        {items.map(item => <Link className={dropdownMenuLink} href={item.href} key={item.href}>{item.label}</Link>)}
       </div>
     </details>
   );

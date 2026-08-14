@@ -147,6 +147,36 @@
   .miraj-nav-menu {
     transform-origin: top center;
     animation: miraj-menu-open 140ms ease-out both;
+    filter: drop-shadow(0 14px 13px rgb(1 15 12 / 62%));
+  }
+
+  .miraj-nav-menu::before {
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    width: 2px;
+    height: 21px;
+    background: linear-gradient(180deg, #eee4c2, #9b7f41 48%, #1b8858);
+    box-shadow: 0 0 0 1px rgb(3 26 21 / 80%), 0 0 8px rgb(49 196 115 / 45%);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .miraj-nav-menu::after {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    border: 1px solid #e9d9a4;
+    background: #28b96f;
+    box-shadow: inset 0 0 0 2px #0b5d3f, 0 0 8px rgb(60 225 133 / 72%);
+    content: "";
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .miraj-nav-menu > .miraj-button + .miraj-button {
+    margin-top: -5px;
   }
 
   @keyframes miraj-menu-open {
