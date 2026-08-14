@@ -22,7 +22,7 @@ function NavDropdown({ label, items }: DropdownProps) {
           <span className="text-[.58rem] text-[#cdb573]" aria-hidden="true">◆</span>
         </span>
       </summary>
-      <div className="miraj-nav-menu absolute left-1/2 top-[48px] z-40 grid w-[220px] -translate-x-1/2 justify-items-center pt-5">
+      <div className="miraj-nav-menu absolute left-1/2 top-[48px] z-40 grid w-[220px] justify-items-center pt-5">
         {items.map(item => <Link className={dropdownMenuLink} href={item.href} key={item.href}>{item.label}</Link>)}
       </div>
     </details>
