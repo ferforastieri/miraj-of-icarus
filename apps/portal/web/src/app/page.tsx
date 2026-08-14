@@ -50,9 +50,10 @@ export default function HomePage() {
           <Image className="mb-0 h-auto w-[min(730px,92vw)] drop-shadow-[0_14px_22px_rgba(2,20,17,.8)]" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} priority />
           <h1 id="hero-title" className="mt-5 font-miraj-of-icarus text-[clamp(3.1rem,7.8vw,7.3rem)] font-semibold leading-[.8] text-[#f6f1d9] [text-shadow:0_4px_3px_#04271f,0_0_22px_#04271f]">O céu não é<br />o limite.</h1>
           <p className="mt-7 max-w-[650px] text-[clamp(1rem,1.6vw,1.25rem)] leading-8 text-[#f3f5eb] [text-shadow:0_2px_8px_#031b16]">Atravesse o grande portal, escolha entre oito caminhos e escreva uma jornada capaz de transformar o próprio brasão.</p>
-          <div className="mt-9 flex gap-3 max-[560px]:w-full max-[560px]:flex-col">
-            <a className={buttonStyles("primary", true)} href="#classes">Conhecer as classes</a>
-            <Link className={buttonStyles("ghost", true)} href={routes.register}>Criar conta</Link>
+          <div className="mt-9 grid w-[min(900px,100%)] grid-cols-3 gap-3 max-[760px]:w-full max-[760px]:grid-cols-1">
+            <a className={`${buttonStyles("primary", true)} w-full`} style={{ minWidth: 0 }} href="#classes">Conhecer as classes</a>
+            <a className={`${buttonStyles("secondary", true)} w-full`} style={{ minWidth: 0 }} href="#download">Download</a>
+            <Link className={`${buttonStyles("ghost", true)} w-full`} style={{ minWidth: 0 }} href={routes.register}>Criar conta</Link>
           </div>
         </div>
         <a className="absolute bottom-6 left-1/2 grid -translate-x-1/2 place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7]" href="#mundo">
@@ -61,6 +62,17 @@ export default function HomePage() {
       </section>
 
       <main>
+        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-32 max-[700px]:px-4 max-[700px]:py-24" id="classes">
+          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.13]" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(35,129,87,.22),rgba(3,26,22,.97)_68%)]" aria-hidden="true" />
+          <header className="mx-auto w-[min(1240px,100%)] text-center">
+            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#a9e9c4]">O Salão dos Oito</p>
+            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]">Escolha seu caminho. Conquiste seu prestígio.</h2>
+            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#c9d9ce]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
+          </header>
+          <PrestigeEvolution />
+        </section>
+
         <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#e8eddd,#f7f0dd_54%,#dbe7d6)] px-6 py-32 text-[#173b32] max-[700px]:px-4 max-[700px]:py-24" id="mundo">
           <div className="absolute inset-x-0 top-0 -z-10 h-28 bg-[linear-gradient(180deg,#041d19,transparent)] opacity-30" aria-hidden="true" />
           <ChapterTitle eyebrow="Além da passagem">Um reino acima das nuvens.</ChapterTitle>
@@ -81,17 +93,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-32 max-[700px]:px-4 max-[700px]:py-24" id="classes">
-          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.13]" aria-hidden="true" />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(35,129,87,.22),rgba(3,26,22,.97)_68%)]" aria-hidden="true" />
-          <header className="mx-auto w-[min(1240px,100%)] text-center">
-            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#a9e9c4]">O Salão dos Oito</p>
-            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]">Escolha seu caminho. Conquiste seu prestígio.</h2>
-            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#c9d9ce]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
-          </header>
-          <PrestigeEvolution />
         </section>
 
         <section className="relative isolate overflow-hidden bg-[#052720] px-6 py-28 text-center text-white max-[700px]:px-4" id="reinos">

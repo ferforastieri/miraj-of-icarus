@@ -9,12 +9,25 @@ test("landing apresenta o portal, as classes, o prestígio e o estado seguro de 
   }
 
   await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Download", exact: true }).first()).toHaveAttribute("href", "#download");
   await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Escolha seu caminho. Conquiste seu prestígio." })).toBeVisible();
   await expect(page.getByTestId("prestige-evolution")).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
+  const classesTop = await page.locator("#classes").evaluate(element => element.getBoundingClientRect().top + window.scrollY);
+  const worldTop = await page.locator("#mundo").evaluate(element => element.getBoundingClientRect().top + window.scrollY);
+  expect(classesTop).toBeLessThan(worldTop);
+});
+
+test("O jogo possui uma página informativa própria", async ({ page }) => {
+  await page.goto("/o-jogo");
+  await expect(page.getByRole("heading", { name: "Um mundo reconstruído para voltar a viver." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Um mundo persistente" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Oito caminhos" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Jornadas pelos céus" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Conhecer as classes" }).first()).toHaveAttribute("href", "/#classes");
 });
 
 test("cada uma das oito classes possui uma página própria", async ({ page }) => {

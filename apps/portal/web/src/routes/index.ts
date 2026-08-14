@@ -4,7 +4,7 @@ export const routes = {
   register: "/criar-conta",
   client: "/cliente",
   panel: "/painel",
-  game: "/#mundo",
+  game: "/o-jogo",
   reconstruction: "/#reconstrucao",
   realms: "/#reinos",
   download: "/#download",
