@@ -37,9 +37,8 @@ export function SiteFooter() {
       <span className="absolute left-1/2 top-0 h-px w-[min(900px,88vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d1b36f] to-transparent" aria-hidden="true" />
 
       <div className="mx-auto flex w-[min(1220px,100%)] items-center justify-between gap-7 max-[900px]:flex-wrap max-[700px]:flex-col max-[700px]:text-center">
-        <Link className="flex shrink-0 items-center gap-3" href={routes.home} aria-label="Miraj of Icarus — início">
-          <Image className="h-16 w-14 object-contain" src="/media/branding/miraj-mj-mark-jade.png" alt="" width={1052} height={1167} />
-          <span className="max-w-[170px] text-left font-miraj-of-icarus text-sm uppercase leading-5 tracking-[.08em] text-[#eee7d6] max-[700px]:text-center">Miraj of Icarus</span>
+        <Link className="flex h-16 w-[220px] shrink-0 items-center max-[700px]:justify-center" href={routes.home} aria-label="Miraj of Icarus — início">
+          <Image className="h-full w-full object-contain object-left max-[700px]:object-center" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} />
         </Link>
 
         <nav className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[.72rem] uppercase tracking-[.08em]" aria-label="Navegação do rodapé">

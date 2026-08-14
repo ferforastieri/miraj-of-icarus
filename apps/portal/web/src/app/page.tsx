@@ -53,12 +53,12 @@ export default function HomePage() {
       </section>
 
       <main>
-        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-32 max-[700px]:px-4 max-[700px]:py-24" id="classes">
+        <section className="relative isolate overflow-hidden bg-[#052721] px-6 pb-28 pt-14 max-[700px]:px-4 max-[700px]:pb-20 max-[700px]:pt-10" id="classes">
           <div className="absolute inset-0 -z-20 bg-[url('/media/landing/classes-hall-v1.webp')] bg-[length:100%_100%] bg-center bg-no-repeat" aria-hidden="true" />
-          <header className="mx-auto w-[min(1020px,100%)] px-8 py-7 text-center max-[700px]:px-5 max-[700px]:py-6">
-            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#174d3d] [text-shadow:0_1px_4px_#eef0df]">O Salão dos Oito</p>
-            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#082f28] [text-shadow:0_2px_5px_#f5f1df]">Escolha seu caminho. Conquiste seu prestígio.</h2>
-            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#173b32] [text-shadow:0_1px_4px_#f5f1df]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
+          <header className="mx-auto w-[min(1020px,100%)] px-8 py-3 text-center [text-shadow:0_2px_4px_#021713,0_0_12px_#021713] max-[700px]:px-5 max-[700px]:py-2">
+            <p className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.22em] text-[#f1d789]">O Salão dos Oito</p>
+            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#fffbed]">Escolha seu caminho. Conquiste seu prestígio.</h2>
+            <p className="mx-auto mt-5 max-w-3xl font-medium leading-7 text-[#f4f1e5]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
           </header>
           <PrestigeEvolution />
         </section>
