@@ -6,6 +6,7 @@ import { routes } from "@/routes";
 const navItem = "miraj-button relative z-10 grid min-h-[58px] min-w-[188px] place-items-center px-10 font-miraj-of-icarus text-[clamp(.6rem,.54rem+.16vw,.72rem)] font-semibold uppercase tracking-[.045em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[1050px]:min-w-[156px] max-[900px]:min-w-[132px] max-[900px]:px-7 max-[700px]:min-w-[150px] max-[700px]:px-8";
 
 const accountItem = "miraj-button grid min-h-10 min-w-[142px] place-items-center px-8 text-[.6rem] tracking-[.035em] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
+const rightNavItem = `${navItem} min-w-[168px] px-8 max-[1050px]:min-w-[145px] max-[1050px]:px-6 max-[900px]:min-w-[120px] max-[900px]:px-5 max-[900px]:text-[.55rem]`;
 
 export function SiteHeader() {
   return (
@@ -27,8 +28,9 @@ export function SiteHeader() {
         </Link>
 
         <div className="col-start-3 flex items-center max-[700px]:hidden">
-          <Link className={`${navItem} max-[700px]:hidden`} href={routes.realms}>Reinos</Link>
-          <Link className={navItem} href={routes.download}>Download</Link>
+          <Link className={rightNavItem} href={routes.realms}>Reinos</Link>
+          <Link className={rightNavItem} href={routes.download}>Download</Link>
+          <Link className={rightNavItem} href={routes.community}>Comunidade</Link>
         </div>
         <details className="group absolute right-3 top-2 z-30 hidden max-[700px]:block">
           <summary className="miraj-button grid min-h-12 min-w-24 list-none place-items-center px-5 text-xs uppercase tracking-[.08em] hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]">Menu</summary>
@@ -37,6 +39,7 @@ export function SiteHeader() {
             <Link className={navItem} href={routes.game}>O jogo</Link>
             <Link className={navItem} href={routes.realms}>Reinos</Link>
             <Link className={navItem} href={routes.download}>Download</Link>
+            <Link className={navItem} href={routes.community}>Comunidade</Link>
             <Link className={navItem} href={routes.login}>Entrar</Link>
             <Link className={navItem} href={routes.register}>Criar conta</Link>
           </div>

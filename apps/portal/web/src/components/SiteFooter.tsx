@@ -24,6 +24,7 @@ export function SiteFooter() {
           <Link className={footerLink} href={routes.classes}>Classes</Link>
           <Link className={footerLink} href={routes.prestige}>Prestígio</Link>
           <Link className={footerLink} href={routes.realms}>Reinos</Link>
+          <Link className={footerLink} href={routes.community}>Comunidade</Link>
         </nav>
 
         <nav className="grid content-start gap-3 text-sm" aria-label="Conta e download">

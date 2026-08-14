@@ -30,6 +30,23 @@ test("O jogo possui uma página informativa própria", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Conhecer as classes" }).first()).toHaveAttribute("href", "/#classes");
 });
 
+test("Reinos possui uma página própria com clãs, guerras e territórios", async ({ page }) => {
+  await page.goto("/reinos");
+  await expect(page.getByRole("heading", { name: "Cada reino guarda uma disputa." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Clãs" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Guerras" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Territórios" })).toBeVisible();
+  await expect(page.getByText("Sistemas em planejamento")).toBeVisible();
+});
+
+test("Comunidade apresenta o estado futuro do fórum", async ({ page }) => {
+  await page.goto("/comunidade");
+  await expect(page.getByRole("heading", { name: "O fórum ainda está sendo erguido." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Guias" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Clãs" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Desenvolvimento" })).toBeVisible();
+});
+
 test("cada uma das oito classes possui uma página própria", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("#classes a")).toHaveCount(8);
