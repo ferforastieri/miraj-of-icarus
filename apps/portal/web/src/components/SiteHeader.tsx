@@ -15,7 +15,12 @@ type DropdownProps = {
 function NavDropdown({ label, items }: DropdownProps) {
   return (
     <details className="miraj-nav-dropdown relative w-[clamp(116px,10.5vw,154px)] min-w-0 shrink-0 max-[980px]:w-[116px]" name="primary-navigation">
-      <summary className={`${navItem} w-full list-none`}>{label}<span className="ml-1 text-[.58rem] text-[#cdb573]" aria-hidden="true">◆</span></summary>
+      <summary className={`${navItem} w-full list-none`}>
+        <span className="flex items-center justify-center gap-1 leading-none">
+          <span>{label}</span>
+          <span className="text-[.58rem] text-[#cdb573]" aria-hidden="true">◆</span>
+        </span>
+      </summary>
       <div className="miraj-nav-menu jade-card absolute left-1/2 top-[52px] z-40 w-[220px] -translate-x-1/2 p-2">
         {items.map(item => <Link className={menuLink} href={item.href} key={item.href}>{item.label}</Link>)}
       </div>
