@@ -1,42 +1,33 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useGameServers } from "@/api/game-servers/get-game-servers";
-import { useLatestRelease } from "@/api/releases/get-latest-release";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeEvolution } from "@/components/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
 import { routes } from "@/routes";
 
-function formatBytes(bytes: number) {
-  if (bytes < 1024 ** 2) return `${Math.ceil(bytes / 1024)} KB`;
-  if (bytes < 1024 ** 3) return `${(bytes / 1024 ** 2).toFixed(1)} MB`;
-  return `${(bytes / 1024 ** 3).toFixed(1)} GB`;
-}
-
-function ChapterTitle({ eyebrow, children, light = false }: { eyebrow: string; children: React.ReactNode; light?: boolean }) {
-  return (
-    <div className="mx-auto max-w-4xl text-center">
-      <div className={`mb-5 flex items-center justify-center gap-4 font-miraj-of-icarus text-[.68rem] uppercase tracking-[.24em] ${light ? "text-[#a9e9c4]" : "text-[#8b682e]"}`}>
-        <i className="h-px w-[min(120px,16vw)] bg-current opacity-55" />
-        <span className="size-3 rotate-45 border border-[#d7c387] bg-[#16834f] shadow-[0_0_10px_#28b96f]" />
-        {eyebrow}
-        <span className="size-3 rotate-45 border border-[#d7c387] bg-[#16834f] shadow-[0_0_10px_#28b96f]" />
-        <i className="h-px w-[min(120px,16vw)] bg-current opacity-55" />
-      </div>
-      <h2 className={`font-miraj-of-icarus text-[clamp(3rem,6.5vw,6.5rem)] font-semibold leading-[.82] tracking-[-.025em] ${light ? "text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]" : "text-[#173b32]"}`}>{children}</h2>
-    </div>
-  );
-}
+const news = [
+  {
+    category: "Diário de reconstrução",
+    title: "O Salão dos Oito recebe uma progressão completa até o nível 110.",
+    description: "Classes, níveis e materiais de prestígio agora contam uma única história visual, do Bronze à Miriamita.",
+    href: routes.classes,
+  },
+  {
+    category: "Mundo",
+    title: "Reinos se preparam para clãs, guerras e territórios.",
+    description: "Conheça a estrutura planejada para as disputas que vão mover alianças pelo mapa.",
+    href: routes.realms,
+  },
+  {
+    category: "Desenvolvimento",
+    title: "Portal, launcher e Lobby formam a mesma passagem.",
+    description: "A reconstrução aproxima conta, personagens, atualização e entrada no jogo em uma jornada contínua.",
+    href: routes.game,
+  },
+] as const;
 
 export default function HomePage() {
-  const releaseQuery = useLatestRelease();
-  const serverQuery = useGameServers();
-  const release = releaseQuery.data ?? null;
-  const servers = serverQuery.data ?? [];
-
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#041d19]">
       <section className="relative isolate grid min-h-[100svh] place-items-center overflow-hidden" id="inicio" aria-labelledby="hero-title">
@@ -52,74 +43,61 @@ export default function HomePage() {
           <p className="mt-7 max-w-[650px] text-[clamp(1rem,1.6vw,1.25rem)] leading-8 text-[#f3f5eb] [text-shadow:0_2px_8px_#031b16]">Atravesse o grande portal, escolha entre oito caminhos e escreva uma jornada capaz de transformar o próprio brasão.</p>
           <div className="mt-9 grid w-[min(900px,100%)] grid-cols-3 gap-3 max-[760px]:w-full max-[760px]:grid-cols-1">
             <a className={`${buttonStyles("primary", true)} w-full`} style={{ minWidth: 0 }} href="#classes">Conhecer as classes</a>
-            <a className={`${buttonStyles("secondary", true)} w-full`} style={{ minWidth: 0 }} href="#download">Download</a>
+            <Link className={`${buttonStyles("secondary", true)} w-full`} style={{ minWidth: 0 }} href={routes.download}>Download</Link>
             <Link className={`${buttonStyles("ghost", true)} w-full`} style={{ minWidth: 0 }} href={routes.register}>Criar conta</Link>
           </div>
         </div>
-        <a className="absolute bottom-6 left-1/2 grid -translate-x-1/2 place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7]" href="#mundo">
-          Atravesse o portal<span className="text-xl text-[#72d99c]">↓</span>
+        <a className="absolute bottom-6 left-1/2 grid -translate-x-1/2 place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7]" href="#classes">
+          Escolha seu caminho<span className="text-xl text-[#72d99c]">↓</span>
         </a>
       </section>
 
       <main>
         <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-32 max-[700px]:px-4 max-[700px]:py-24" id="classes">
-          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.13]" aria-hidden="true" />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(35,129,87,.22),rgba(3,26,22,.97)_68%)]" aria-hidden="true" />
-          <header className="mx-auto w-[min(1240px,100%)] text-center">
-            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#a9e9c4]">O Salão dos Oito</p>
-            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]">Escolha seu caminho. Conquiste seu prestígio.</h2>
-            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#c9d9ce]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
+          <div className="absolute inset-0 -z-20 bg-[url('/media/landing/classes-hall-v1.webp')] bg-[length:100%_100%] bg-center bg-no-repeat" aria-hidden="true" />
+          <header className="mx-auto w-[min(1020px,100%)] px-8 py-7 text-center max-[700px]:px-5 max-[700px]:py-6">
+            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#174d3d] [text-shadow:0_1px_4px_#eef0df]">O Salão dos Oito</p>
+            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#082f28] [text-shadow:0_2px_5px_#f5f1df]">Escolha seu caminho. Conquiste seu prestígio.</h2>
+            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#173b32] [text-shadow:0_1px_4px_#f5f1df]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
           </header>
           <PrestigeEvolution />
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#e8eddd,#f7f0dd_54%,#dbe7d6)] px-6 py-32 text-[#173b32] max-[700px]:px-4 max-[700px]:py-24" id="mundo">
-          <div className="absolute inset-x-0 top-0 -z-10 h-28 bg-[linear-gradient(180deg,#041d19,transparent)] opacity-30" aria-hidden="true" />
-          <ChapterTitle eyebrow="Além da passagem">Um reino acima das nuvens.</ChapterTitle>
-          <div className="mx-auto mt-20 grid w-[min(1180px,100%)] grid-cols-[1.08fr_.92fr] items-center gap-16 max-[900px]:grid-cols-1">
-            <div className="relative min-h-[580px] overflow-hidden border-y border-[#8f7540] bg-[url('/media/portal-hero-v3.png')] bg-cover bg-[67%_center] shadow-[0_28px_65px_rgba(30,63,49,.25)] before:absolute before:inset-4 before:border before:border-[#f4ead0]/65 max-[700px]:min-h-[410px]" aria-hidden="true">
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#04241e]/95 via-[#04241e]/48 to-transparent px-8 pb-8 pt-36">
-                <p className="text-right font-miraj-of-icarus text-xl uppercase tracking-[.14em] text-[#f4efdc]">Cidadelas, montarias e horizontes livres</p>
+        <section className="relative isolate overflow-hidden bg-[url('/media/landing/news-frontier-v1.webp')] bg-cover bg-center px-6 py-28 text-[#f2f0e2] max-[700px]:bg-[62%_center] max-[700px]:px-4 max-[700px]:py-20" id="noticias" aria-labelledby="news-title">
+          <div className="mx-auto w-[min(1200px,100%)]">
+            <header className="mb-12 flex items-end justify-between gap-8 border-b border-[#d8c481] pb-7 [text-shadow:0_2px_7px_#031b16] max-[700px]:block">
+              <div>
+                <p className="font-miraj-of-icarus text-[.66rem] uppercase tracking-[.22em] text-[#b9f0cb]">Crônicas do mundo</p>
+                <h2 id="news-title" className="mt-2 font-miraj-of-icarus text-[clamp(2.6rem,5vw,5rem)] leading-none">Notícias de Miraj</h2>
               </div>
-            </div>
-            <div>
-              <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#957237]">O mundo de Miraj</p>
-              <h3 className="my-6 font-miraj-of-icarus text-[clamp(2.8rem,5vw,5rem)] leading-[.9]">A jornada começa no chão. A verdadeira aventura ganha os céus.</h3>
-              <p className="text-lg leading-8 text-[#4c675e]">Miraj of Icarus é um MMORPG de fantasia em reconstrução. Explore regiões suspensas, encontre criaturas lendárias e reúna companheiros para atravessar um mundo persistente.</p>
-              <div className="mt-9 grid grid-cols-3 gap-px border-y border-[#a08850] bg-[#a08850] max-[560px]:grid-cols-1">
-                {[["08", "caminhos"], ["04", "prestígios"], ["01", "mundo vivo"]].map(([number, label]) => (
-                  <div className="bg-[#f1eddb] px-4 py-6 text-center" key={label}><strong className="block font-miraj-of-icarus text-4xl text-[#176347]">{number}</strong><span className="text-xs uppercase tracking-[.14em] text-[#756642]">{label}</span></div>
+              <Link className="text-sm uppercase tracking-[.12em] text-[#e8d795] underline decoration-[#a8e5bc] underline-offset-8 max-[700px]:mt-5 max-[700px]:inline-block" href={routes.community}>Acompanhar a comunidade</Link>
+            </header>
+
+            <div className="grid grid-cols-[1.55fr_.85fr] gap-5 max-[900px]:grid-cols-1">
+              <Link className="group relative min-h-[600px] overflow-hidden border-y border-[#9c824b] bg-[#092d27] shadow-[0_24px_55px_rgba(2,20,16,.35)] max-[700px]:min-h-[620px]" href={news[0].href}>
+                <Image className="absolute inset-x-0 top-0 h-[58%] w-full object-cover object-center transition-transform duration-700 group-focus-visible:scale-[1.02]" src="/media/landing/news-frontier-v1.webp" alt="Aventureiros reunidos diante do portal de uma cidadela de Miraj" width={1881} height={836} sizes="(max-width: 900px) 100vw, 65vw" />
+                <span className="absolute inset-4 border border-[#efe0ad]/45" aria-hidden="true" />
+                <article className="absolute inset-x-0 bottom-0 z-10 min-h-[44%] bg-[#042a24] p-10 text-[#f1f0e2] max-[700px]:p-8">
+                  <p className="text-[.65rem] uppercase tracking-[.2em] text-[#9ce7b8]">{news[0].category}</p>
+                  <h3 className="mt-4 font-miraj-of-icarus text-[clamp(2.2rem,4vw,4.4rem)] leading-[.92]">{news[0].title}</h3>
+                  <p className="mt-5 max-w-xl leading-7 text-[#d3ddd4]">{news[0].description}</p>
+                  <span className="mt-7 inline-block text-xs uppercase tracking-[.14em] text-[#e0c986]">Ler atualização →</span>
+                </article>
+              </Link>
+
+              <div className="grid gap-5">
+                {news.slice(1).map(item => (
+                  <Link className="jade-card group flex min-h-[270px] flex-col justify-end" href={item.href} key={item.title}>
+                    <article>
+                      <p className="text-[.62rem] uppercase tracking-[.18em] text-[#99deb4]">{item.category}</p>
+                      <h3 className="mt-3 font-miraj-of-icarus text-[clamp(1.55rem,2.3vw,2.35rem)] leading-tight text-[#f1eddd]">{item.title}</h3>
+                      <p className="mt-4 text-sm leading-6 text-[#b9cbc0]">{item.description}</p>
+                      <span className="mt-5 inline-block text-[.65rem] uppercase tracking-[.12em] text-[#dac17c]">Descobrir →</span>
+                    </article>
+                  </Link>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="relative isolate overflow-hidden bg-[#052720] px-6 py-28 text-center text-white max-[700px]:px-4" id="reinos">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(51,150,99,.25),transparent_48%)]" aria-hidden="true" />
-          <ChapterTitle eyebrow="Estado dos reinos" light>A passagem está disponível?</ChapterTitle>
-          <div className="mx-auto mt-12 w-[min(850px,100%)] border-y border-[#8d794d] bg-[#041d19]/80 p-2">
-            {servers.map(server => (
-              <article className="flex min-h-24 items-center justify-between border-b border-[#326353] px-7 text-left last:border-0 max-[520px]:items-start max-[520px]:flex-col max-[520px]:justify-center" key={server.id}>
-                <div><span className="text-[.65rem] uppercase tracking-[.2em] text-[#85dca8]">{server.region}</span><h3 className="font-miraj-of-icarus text-2xl">{server.name}</h3></div>
-                <span className={`font-miraj-of-icarus text-sm uppercase tracking-[.12em] ${server.available ? "text-[#91efb8]" : "text-[#b6aaa1]"}`}>{server.available ? "Online" : "Manutenção"}</span>
-              </article>
-            ))}
-            {!serverQuery.isLoading && !servers.length && <p className="py-10 text-[#c8d6cb]">Não foi possível consultar os reinos agora.</p>}
-          </div>
-        </section>
-
-        <section className="relative isolate grid min-h-[650px] place-items-center overflow-hidden px-6 py-28 text-center max-[700px]:min-h-[580px] max-[700px]:px-4" id="download">
-          <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(3,25,21,.7),rgba(3,25,21,.94)),radial-gradient(circle_at_50%_44%,rgba(45,157,99,.24),transparent_44%)]" aria-hidden="true" />
-          <div className="w-[min(880px,100%)]">
-            <ChapterTitle eyebrow="A próxima jornada" light>Prepare sua passagem para os reinos.</ChapterTitle>
-            <p className="mx-auto mt-8 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-8 text-[#d9e5da]">Baixe o launcher para instalar o cliente, verificar os arquivos e manter sua jornada pronta para começar.</p>
-            <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[560px]:w-full max-[560px]:flex-col">
-              {release ? <a className={buttonStyles("primary", true)} href={release.launcherUrl}>Baixar launcher</a> : <span className={buttonStyles("primary", true)} aria-disabled="true">Release em preparação</span>}
-              <Link className={buttonStyles("ghost", true)} href={routes.register}>Criar conta</Link>
-            </div>
-            {release && <p className="mt-5 font-miraj-of-icarus text-xs uppercase tracking-[.12em] text-[#c9d8ca]">Versão {release.version.slice(0, 8)} · {formatBytes(release.totalSize)} · {new Intl.DateTimeFormat("pt-BR").format(new Date(release.publishedAt))}</p>}
           </div>
         </section>
       </main>

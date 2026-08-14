@@ -1,24 +1,38 @@
 import { expect, test } from "@playwright/test";
 
-test("landing apresenta o portal, as classes, o prestígio e o estado seguro de release", async ({ page }) => {
+test("landing apresenta o portal, as classes, o prestígio e as notícias", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /O céu não é o limite/i })).toBeVisible();
 
-  if ((page.viewportSize()?.width ?? 0) <= 700) {
+  if ((page.viewportSize()?.width ?? 0) <= 900) {
     await page.getByText("Menu", { exact: true }).click();
   }
 
   await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "Download", exact: true }).first()).toHaveAttribute("href", "#download");
-  await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Download", exact: true }).first()).toHaveAttribute("href", "/download");
   await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Escolha seu caminho. Conquiste seu prestígio." })).toBeVisible();
   await expect(page.getByTestId("prestige-evolution")).toBeVisible();
-  await expect(page.getByText("Release em preparação")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Notícias de Miraj" })).toBeVisible();
+  await expect(page.getByText("Um reino acima das nuvens.")).toHaveCount(0);
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
   const classesTop = await page.locator("#classes").evaluate(element => element.getBoundingClientRect().top + window.scrollY);
-  const worldTop = await page.locator("#mundo").evaluate(element => element.getBoundingClientRect().top + window.scrollY);
-  expect(classesTop).toBeLessThan(worldTop);
+  const newsTop = await page.locator("#noticias").evaluate(element => element.getBoundingClientRect().top + window.scrollY);
+  expect(classesTop).toBeLessThan(newsTop);
+});
+
+test("header equilibra reinos e os menus de jogo e shop", async ({ page }) => {
+  await page.goto("/");
+  test.skip((page.viewportSize()?.width ?? 0) <= 900, "o menu compacto apresenta os links em uma lista única");
+
+  await page.locator("summary").filter({ hasText: "O jogo" }).click();
+  await expect(page.getByRole("link", { name: "Sobre", exact: true })).toHaveAttribute("href", "/o-jogo#sobre");
+  await expect(page.getByRole("link", { name: "Personagens", exact: true }).first()).toHaveAttribute("href", "/#classes");
+  await expect(page.getByRole("link", { name: "Skills", exact: true })).toHaveAttribute("href", "/o-jogo#skills");
+
+  await page.locator("summary").filter({ hasText: "Shop" }).click();
+  await expect(page.getByRole("link", { name: "Trade", exact: true })).toHaveAttribute("href", "/trade");
+  await expect(page.getByRole("link", { name: "Shop", exact: true })).toHaveAttribute("href", "/shop");
 });
 
 test("O jogo possui uma página informativa própria", async ({ page }) => {

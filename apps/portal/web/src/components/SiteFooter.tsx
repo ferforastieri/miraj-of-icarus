@@ -2,53 +2,64 @@ import Image from "next/image";
 import Link from "next/link";
 import { routes } from "@/routes";
 
+const explore = [
+  ["O jogo", routes.game],
+  ["Personagens", routes.classes],
+  ["Reinos", routes.realms],
+  ["Comunidade", routes.community],
+  ["Download", routes.download],
+] as const;
+
+type SocialNetwork = "Discord" | "YouTube" | "Instagram" | "X";
+
+function SocialIcon({ network }: { network: SocialNetwork }) {
+  if (network === "YouTube") {
+    return <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z" /></svg>;
+  }
+
+  if (network === "Instagram") {
+    return <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>;
+  }
+
+  if (network === "X") {
+    return <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-6.8 7.8L23.2 22H17l-4.9-6.4L6.5 22H3.3l7.3-8.4L2.9 2h6.4l4.4 5.8L18.9 2Zm-1.1 17.8h1.7L8.4 4H6.6l11.2 15.8Z" /></svg>;
+  }
+
+  return <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 5.3A18 18 0 0 0 15.4 4l-.5 1a15 15 0 0 0-5.8 0l-.5-1a18 18 0 0 0-4.1 1.3C1.9 9.2 1.2 13 1.6 16.8A17 17 0 0 0 6.7 19l1.2-1.7c-.7-.3-1.4-.6-2-1l.5-.4a13.5 13.5 0 0 0 11.2 0l.5.4c-.6.4-1.3.7-2 1l1.2 1.7a17 17 0 0 0 5.1-2.2c.5-4.4-.8-8.2-2.9-11.5ZM8.7 14.7c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Zm6.6 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Z" /></svg>;
+}
+
 export function SiteFooter() {
-  const footerLink = "w-fit text-[#c8d8cc] transition-colors hover:text-[#8fe2b0] focus-visible:text-white";
+  const footerLink = "text-[#c8d8cc] hover:text-[#8fe2b0] focus-visible:text-white";
 
   return (
-    <footer className="relative isolate w-full overflow-hidden border-t border-[#9c824b] bg-[#031815] px-6 pb-8 pt-20 max-[700px]:px-4 max-[700px]:pb-6 max-[700px]:pt-14">
-      <div className="absolute inset-x-0 top-0 -z-10 h-44 bg-[radial-gradient(ellipse_at_50%_0%,rgba(40,185,111,.2),transparent_67%)]" aria-hidden="true" />
+    <footer className="relative isolate w-full overflow-hidden border-t border-[#9c824b] bg-[#031815] px-6 py-7 max-[700px]:px-4 max-[700px]:py-8">
+      <div className="absolute inset-x-0 top-0 -z-10 h-28 bg-[radial-gradient(ellipse_at_50%_0%,rgba(40,185,111,.18),transparent_70%)]" aria-hidden="true" />
       <span className="absolute left-1/2 top-0 h-px w-[min(900px,88vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d1b36f] to-transparent" aria-hidden="true" />
 
-      <div className="mx-auto grid w-[min(1180px,100%)] grid-cols-[1.45fr_repeat(3,1fr)] gap-x-14 gap-y-12 max-[960px]:grid-cols-2 max-[560px]:grid-cols-1">
-        <div className="max-w-sm">
-          <Link className="inline-block" href={routes.home} aria-label="Miraj of Icarus — início">
-            <Image className="h-auto w-[min(330px,76vw)]" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} />
-          </Link>
-          <p className="mt-1 max-w-xs text-sm leading-7 text-[#9fb3a6]">Um mundo reconstruído para reunir antigos aventureiros e abrir novas rotas pelos céus.</p>
-        </div>
+      <div className="mx-auto flex w-[min(1220px,100%)] items-center justify-between gap-7 max-[900px]:flex-wrap max-[700px]:flex-col max-[700px]:text-center">
+        <Link className="flex shrink-0 items-center gap-3" href={routes.home} aria-label="Miraj of Icarus — início">
+          <Image className="h-16 w-14 object-contain" src="/media/branding/miraj-mj-mark-jade.png" alt="" width={1052} height={1167} />
+          <span className="max-w-[170px] text-left font-miraj-of-icarus text-sm uppercase leading-5 tracking-[.08em] text-[#eee7d6] max-[700px]:text-center">Miraj of Icarus</span>
+        </Link>
 
-        <nav className="grid content-start gap-3 text-sm" aria-label="Navegação do rodapé">
-          <p className="mb-2 font-miraj-of-icarus text-xs uppercase tracking-[.18em] text-[#d1b36f]">Explore</p>
-          <Link className={footerLink} href={routes.game}>O jogo</Link>
-          <Link className={footerLink} href={routes.classes}>Classes</Link>
-          <Link className={footerLink} href={routes.prestige}>Prestígio</Link>
-          <Link className={footerLink} href={routes.realms}>Reinos</Link>
-          <Link className={footerLink} href={routes.community}>Comunidade</Link>
+        <nav className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[.72rem] uppercase tracking-[.08em]" aria-label="Navegação do rodapé">
+          {explore.map(([label, href]) => <Link className={footerLink} href={href} key={label}>{label}</Link>)}
         </nav>
 
-        <nav className="grid content-start gap-3 text-sm" aria-label="Conta e download">
-          <p className="mb-2 font-miraj-of-icarus text-xs uppercase tracking-[.18em] text-[#d1b36f]">Sua passagem</p>
-          <Link className={footerLink} href={routes.login}>Entrar</Link>
-          <Link className={footerLink} href={routes.register}>Criar conta</Link>
-          <Link className={footerLink} href={routes.client}>Área do cliente</Link>
-          <Link className={footerLink} href={routes.download}>Baixar launcher</Link>
-        </nav>
-
-        <div className="content-start">
-          <p className="mb-5 font-miraj-of-icarus text-xs uppercase tracking-[.18em] text-[#d1b36f]">Comunidade</p>
-          <div className="flex flex-wrap gap-2" aria-label="Redes sociais — em breve">
-            {["Discord", "YouTube", "Instagram", "X"].map(network => (
-              <span className="grid min-h-10 min-w-10 place-items-center border border-[#47705f] bg-[#082c26] px-3 text-[.65rem] uppercase tracking-[.08em] text-[#b9cabe]" key={network} title={`${network} — em breve`}>{network}</span>
-            ))}
-          </div>
-          <p className="mt-4 text-xs leading-5 text-[#718b7e]">Canais oficiais em preparação.</p>
+        <div className="flex shrink-0 items-center gap-2" aria-label="Redes sociais — em breve">
+          {(["Discord", "YouTube", "Instagram", "X"] as const).map(network => (
+            <span className="grid size-8 place-items-center text-[#bcd1c3] [&_svg]:size-5" key={network} title={`${network} — em breve`}>
+              <span className="sr-only">{network} — em breve</span>
+              <SocialIcon network={network} />
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="mx-auto mt-16 flex w-[min(1180px,100%)] items-center justify-between gap-6 border-t border-[#315548] pt-7 text-[.68rem] uppercase tracking-[.12em] text-[#718b7e] max-[700px]:mt-12 max-[700px]:flex-col max-[700px]:items-start">
+      <div className="mx-auto mt-5 flex w-[min(1220px,100%)] items-center justify-between gap-5 border-t border-[#315548]/80 pt-4 text-[.58rem] uppercase tracking-[.1em] text-[#718b7e] max-[700px]:flex-col max-[700px]:gap-2 max-[700px]:text-center">
         <p>© {new Date().getFullYear()} Miraj of Icarus</p>
         <p>Uma reconstrução independente em andamento</p>
+        <div className="flex gap-4"><Link className={footerLink} href={routes.login}>Entrar</Link><Link className={footerLink} href={routes.register}>Criar conta</Link></div>
       </div>
     </footer>
   );

@@ -48,7 +48,7 @@ export default function GamePage() {
       </section>
 
       <main>
-        <section className="bg-[linear-gradient(180deg,#eef0df,#f8f1de)] px-6 py-28 text-[#173b32] max-[700px]:px-4 max-[700px]:py-20">
+        <section className="scroll-mt-28 bg-[linear-gradient(180deg,#eef0df,#f8f1de)] px-6 py-28 text-[#173b32] max-[700px]:px-4 max-[700px]:py-20" id="sobre">
           <div className="mx-auto w-[min(1180px,100%)]">
             <header className="grid grid-cols-[.72fr_1.28fr] gap-14 border-b border-[#9b824c] pb-14 max-[800px]:grid-cols-1 max-[800px]:gap-6">
               <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#8c6c35]">A proposta do jogo</p>
@@ -56,7 +56,7 @@ export default function GamePage() {
             </header>
             <div className="mt-12 grid grid-cols-3 gap-px bg-[#a38a55] max-[800px]:grid-cols-1">
               {pillars.map(pillar => (
-                <article className="min-h-[330px] bg-[#edf0df] p-8 max-[700px]:min-h-0" key={pillar.mark}>
+                <article className="scroll-mt-32 min-h-[330px] bg-[#edf0df] p-8 max-[700px]:min-h-0" id={pillar.mark === "II" ? "skills" : undefined} key={pillar.mark}>
                   <span className="font-miraj-of-icarus text-sm text-[#9a793c]">{pillar.mark}</span>
                   <h3 className="mt-16 font-miraj-of-icarus text-4xl leading-none max-[700px]:mt-8">{pillar.title}</h3>
                   <p className="mt-6 leading-7 text-[#536b62]">{pillar.text}</p>

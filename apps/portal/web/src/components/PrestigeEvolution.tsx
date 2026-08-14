@@ -53,11 +53,11 @@ export function PrestigeEvolution() {
 
   return (
     <div className="mx-auto mt-16 w-[min(1240px,100%)]" data-testid="prestige-evolution">
-      <div className="border-y border-[#947a44] bg-[#092f29]/95 px-[clamp(1rem,2.4vw,2.5rem)] py-9 text-[#edf1e7] shadow-[0_26px_60px_rgba(1,18,15,.35)]">
+      <div className="border-y border-[#947a44] bg-transparent px-[clamp(1rem,2.4vw,2.5rem)] py-9 text-[#edf1e7] [text-shadow:0_2px_5px_#021713]">
         <div className="grid grid-cols-8 gap-2 max-[1050px]:grid-cols-4 max-[520px]:grid-cols-2" role="group" aria-label="Escolha uma classe">
           {gameClasses.map(gameClass => (
             <button
-              className={`relative grid min-h-[116px] cursor-pointer place-items-center border bg-[#041f1b]/72 px-2 py-2 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#e2c36b] shadow-[inset_0_0_18px_rgba(205,167,70,.18),0_0_14px_rgba(205,167,70,.2)]" : "border-[#8c784a]/45"}`}
+              className={`relative grid min-h-[116px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#e2c36b] shadow-[0_0_14px_rgba(205,167,70,.34)]" : "border-[#8c784a]/65"}`}
               key={gameClass.id}
               type="button"
               aria-pressed={classId === gameClass.id}
@@ -73,7 +73,7 @@ export function PrestigeEvolution() {
 
         <div className="mt-9 grid grid-cols-[minmax(310px,.9fr)_minmax(330px,1fr)] items-center gap-12 max-[720px]:grid-cols-1 max-[720px]:gap-7">
           <div className="prestige-ritual relative mx-auto grid w-[min(390px,82vw)] place-items-center" data-tier={tier.id}>
-            <div className="prestige-ritual__gate absolute size-[76%] rotate-45 border border-[#ceb975]/35 bg-[#0b463a]/45 shadow-[inset_0_0_50px_rgba(255,255,255,.05)]" style={{ boxShadow: `inset 0 0 50px rgba(255,255,255,.05), 0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
+            <div className="prestige-ritual__gate absolute size-[76%] rotate-45 border border-[#ceb975]/55 bg-transparent" style={{ boxShadow: `0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
             <div className="prestige-ritual__orbit absolute size-[86%] rounded-full border border-[#cfb765]/35" aria-hidden="true">
               <i /><i /><i /><i />
             </div>
