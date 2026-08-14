@@ -161,6 +161,78 @@
     clip-path: polygon(12% 0, 88% 0, 100% 30%, 92% 100%, 8% 100%, 0 30%);
   }
 
+  .prestige-ritual__gate {
+    transition: border-color 450ms ease, box-shadow 450ms ease;
+  }
+
+  .prestige-ritual__orbit {
+    box-shadow: inset 0 0 28px rgb(121 197 157 / 10%), 0 0 32px rgb(121 197 157 / 8%);
+  }
+
+  .prestige-ritual__orbit::before,
+  .prestige-ritual__orbit::after {
+    position: absolute;
+    inset: 8%;
+    border: 1px solid rgb(214 193 125 / 18%);
+    border-radius: inherit;
+    content: "";
+  }
+
+  .prestige-ritual__orbit::after {
+    inset: 16%;
+    border-color: rgb(112 183 148 / 20%);
+  }
+
+  .prestige-ritual__orbit i {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: 1px solid #d9c478;
+    background: #5baf83;
+    box-shadow: 0 0 12px #79c89b;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .prestige-ritual__orbit i:nth-child(1) { top: 0; left: 50%; }
+  .prestige-ritual__orbit i:nth-child(2) { top: 50%; left: 100%; }
+  .prestige-ritual__orbit i:nth-child(3) { top: 100%; left: 50%; }
+  .prestige-ritual__orbit i:nth-child(4) { top: 50%; left: 0; }
+
+  .prestige-ritual__reveal {
+    animation: prestige-ascension 900ms cubic-bezier(.18,.75,.2,1) both;
+  }
+
+  .prestige-ritual__beam {
+    z-index: 2;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgb(234 255 238 / 68%), transparent);
+    filter: blur(8px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: prestige-beam 900ms ease-out both;
+  }
+
+  @keyframes prestige-ascension {
+    0% { opacity: .15; filter: brightness(2.8) saturate(.35); transform: scale(.84); }
+    38% { opacity: 1; filter: brightness(1.8) saturate(.7); transform: scale(1.035); }
+    70% { filter: brightness(1.12) saturate(1); transform: scale(.992); }
+    100% { opacity: 1; filter: brightness(1) saturate(1); transform: scale(1); }
+  }
+
+  @keyframes prestige-beam {
+    0% { opacity: 0; transform: translateX(-50%) scaleX(.1); }
+    28% { opacity: .9; transform: translateX(-50%) scaleX(1); }
+    70% { opacity: 0; transform: translateX(-50%) scaleX(2.8); }
+    100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prestige-ritual__reveal,
+    .prestige-ritual__beam {
+      animation: none;
+    }
+  }
+
   .auth-panel {
     border: 58px solid transparent;
     border-image-source: url("/media/game-ui/jade/auth-panel.png");

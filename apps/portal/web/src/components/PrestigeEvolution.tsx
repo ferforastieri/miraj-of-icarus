@@ -42,9 +42,15 @@ export function PrestigeEvolution() {
   return (
     <div className="mx-auto mt-16 w-[min(1180px,100%)]" data-testid="prestige-evolution">
       <div className="grid grid-cols-[.88fr_1.12fr] items-center gap-14 border-y border-[#947a44] bg-[#092f29] px-[clamp(1.25rem,4vw,4rem)] py-10 text-[#edf1e7] shadow-[0_24px_50px_rgba(31,61,49,.18)] max-[800px]:grid-cols-1 max-[800px]:gap-5">
-        <div className="relative mx-auto grid w-[min(430px,88vw)] place-items-center">
-          <div className="absolute size-[73%] rotate-45 border border-[#ceb975]/30 bg-[#0b463a]/45 shadow-[inset_0_0_50px_rgba(255,255,255,.05)]" style={{ boxShadow: `inset 0 0 50px rgba(255,255,255,.05), 0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
-          <PrestigeBadge classId="warrior" className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected priority />
+        <div className="prestige-ritual relative mx-auto grid w-[min(430px,88vw)] place-items-center" data-tier={tier.id}>
+          <div className="prestige-ritual__gate absolute size-[76%] rotate-45 border border-[#ceb975]/35 bg-[#0b463a]/45 shadow-[inset_0_0_50px_rgba(255,255,255,.05)]" style={{ boxShadow: `inset 0 0 50px rgba(255,255,255,.05), 0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
+          <div className="prestige-ritual__orbit absolute size-[86%] rounded-full border border-[#cfb765]/35" aria-hidden="true">
+            <i /><i /><i /><i />
+          </div>
+          <div className="prestige-ritual__reveal relative z-10 grid w-full place-items-center" key={tier.id}>
+            <span className="prestige-ritual__beam absolute inset-y-[8%] left-1/2 w-[18%] -translate-x-1/2" aria-hidden="true" />
+            <PrestigeBadge classId="warrior" className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
+          </div>
         </div>
         <div className="text-left max-[800px]:text-center">
           <p className="text-xs uppercase tracking-[.2em] text-[#cdb778]">Nível atual</p>

@@ -6,14 +6,16 @@ type PrestigeBadgeProps = {
   classId: string;
   level: number;
   selected?: boolean;
+  interpolate?: boolean;
   className?: string;
   priority?: boolean;
 };
 
-export function PrestigeBadge({ classId, level, selected = false, className = "", priority = false }: PrestigeBadgeProps) {
+export function PrestigeBadge({ classId, level, selected = false, interpolate = true, className = "", priority = false }: PrestigeBadgeProps) {
   const normalizedLevel = Math.max(0, Math.min(MAX_CHARACTER_LEVEL, Math.floor(level)));
   const blend = prestigeBlendForLevel(normalizedLevel);
   const tier = prestigeTierForLevel(normalizedLevel);
+  const visibleTier = interpolate ? blend.from : tier;
   const suffix = selected ? "-selected" : "";
   const initialBrightness = normalizedLevel < 10 ? 0.55 + blend.progress * 0.45 : 1;
   const style = { "--prestige-color": tier.color } as CSSProperties;
@@ -29,14 +31,14 @@ export function PrestigeBadge({ classId, level, selected = false, className = ""
       <Image
         className="absolute inset-0 size-full object-contain transition-[filter] duration-300"
         style={{ filter: `brightness(${initialBrightness}) saturate(${0.45 + blend.progress * 0.55})` }}
-        src={`/media/game-ui/classes/${blend.from.id}/${classId}${suffix}.png`}
+        src={`/media/game-ui/classes/${visibleTier.id}/${classId}${suffix}.png`}
         alt=""
         width={256}
         height={256}
         priority={priority}
         unoptimized
       />
-      {blend.to.id !== blend.from.id && (
+      {interpolate && blend.to.id !== blend.from.id && (
         <Image
           className="absolute inset-0 size-full object-contain transition-opacity duration-300"
           style={{ opacity: blend.progress }}
