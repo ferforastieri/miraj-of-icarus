@@ -179,9 +179,52 @@
     margin-top: -5px;
   }
 
+  .miraj-mobile-drawer__close-label { display: none; }
+
+  .miraj-mobile-drawer[open] > .miraj-mobile-drawer__toggle {
+    position: fixed;
+    top: .75rem;
+    right: .75rem;
+    --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
+  }
+
+  .miraj-mobile-drawer[open] .miraj-mobile-drawer__open-label { display: none; }
+  .miraj-mobile-drawer[open] .miraj-mobile-drawer__close-label { display: inline; }
+
+  .miraj-mobile-drawer__panel {
+    animation: miraj-drawer-open 180ms ease-out both;
+  }
+
+  .miraj-mobile-submenu > summary {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .miraj-mobile-submenu > summary > span:first-child { grid-column: 2; }
+
+  .miraj-mobile-submenu__indicator {
+    grid-column: 3;
+    justify-self: start;
+    color: #cdb573;
+    font-size: .58rem;
+    transition: transform 120ms ease-out;
+  }
+
+  .miraj-mobile-submenu[open] > summary {
+    --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
+  }
+
+  .miraj-mobile-submenu[open] .miraj-mobile-submenu__indicator {
+    transform: rotate(45deg);
+  }
+
   @keyframes miraj-menu-open {
     from { opacity: 0; transform: translateX(-50%) translateY(-5px) scale(.97); }
     to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  }
+
+  @keyframes miraj-drawer-open {
+    from { opacity: .5; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   .jade-card {

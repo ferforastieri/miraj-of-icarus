@@ -73,30 +73,20 @@ export default function HomePage() {
               <Link className="text-sm uppercase tracking-[.12em] text-[#e8d795] underline decoration-[#a8e5bc] underline-offset-8 max-[700px]:mt-5 max-[700px]:inline-block" href={routes.community}>Acompanhar a comunidade</Link>
             </header>
 
-            <div className="grid grid-cols-[1.55fr_.85fr] gap-5 max-[900px]:grid-cols-1">
-              <Link className="group relative min-h-[600px] overflow-hidden border-y border-[#9c824b] bg-[#092d27] shadow-[0_24px_55px_rgba(2,20,16,.35)] max-[700px]:min-h-[620px]" href={news[0].href}>
-                <Image className="absolute inset-x-0 top-0 h-[58%] w-full object-cover object-center transition-transform duration-700 group-focus-visible:scale-[1.02]" src="/media/landing/news-frontier-v1.webp" alt="Aventureiros reunidos diante do portal de uma cidadela de Miraj" width={1881} height={836} sizes="(max-width: 900px) 100vw, 65vw" />
-                <span className="absolute inset-4 border border-[#efe0ad]/45" aria-hidden="true" />
-                <article className="absolute inset-x-0 bottom-0 z-10 min-h-[44%] bg-[#042a24] p-10 text-[#f1f0e2] max-[700px]:p-8">
-                  <p className="text-[.65rem] uppercase tracking-[.2em] text-[#9ce7b8]">{news[0].category}</p>
-                  <h3 className="mt-4 font-miraj-of-icarus text-[clamp(2.2rem,4vw,4.4rem)] leading-[.92]">{news[0].title}</h3>
-                  <p className="mt-5 max-w-xl leading-7 text-[#d3ddd4]">{news[0].description}</p>
-                  <span className="mt-7 inline-block text-xs uppercase tracking-[.14em] text-[#e0c986]">Ler atualização →</span>
-                </article>
-              </Link>
-
-              <div className="grid gap-5">
-                {news.slice(1).map(item => (
-                  <Link className="jade-card group flex min-h-[270px] flex-col justify-end" href={item.href} key={item.title}>
-                    <article>
-                      <p className="text-[.62rem] uppercase tracking-[.18em] text-[#99deb4]">{item.category}</p>
-                      <h3 className="mt-3 font-miraj-of-icarus text-[clamp(1.55rem,2.3vw,2.35rem)] leading-tight text-[#f1eddd]">{item.title}</h3>
-                      <p className="mt-4 text-sm leading-6 text-[#b9cbc0]">{item.description}</p>
-                      <span className="mt-5 inline-block text-[.65rem] uppercase tracking-[.12em] text-[#dac17c]">Descobrir →</span>
-                    </article>
-                  </Link>
-                ))}
-              </div>
+            <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-1">
+              {news.map((item, index) => (
+                <Link className="group flex min-h-[520px] flex-col overflow-hidden bg-[#042a24] shadow-[0_24px_55px_rgba(2,20,16,.35)]" href={item.href} key={item.title}>
+                  <div className="relative h-[230px] shrink-0 overflow-hidden">
+                    <Image className={`h-full w-full object-cover transition-transform duration-700 group-focus-visible:scale-[1.02] ${index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"}`} src="/media/landing/news-frontier-v1.webp" alt="Aventureiros reunidos diante do portal de uma cidadela de Miraj" width={1881} height={836} sizes="(max-width: 980px) 100vw, 33vw" />
+                  </div>
+                  <article className="flex flex-1 flex-col p-8 text-[#f1f0e2] max-[700px]:p-7">
+                    <p className="text-[.62rem] uppercase tracking-[.18em] text-[#99deb4]">{item.category}</p>
+                    <h3 className="mt-4 font-miraj-of-icarus text-[clamp(1.55rem,2.1vw,2.35rem)] leading-tight">{item.title}</h3>
+                    <p className="mt-5 text-sm leading-6 text-[#c6d4ca]">{item.description}</p>
+                    <span className="mt-auto pt-7 text-[.65rem] uppercase tracking-[.12em] text-[#dac17c]">Descobrir →</span>
+                  </article>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

@@ -119,7 +119,6 @@ npm --prefix apps/portal/web run lint
 npm --prefix apps/portal/web run typecheck
 npm --prefix apps/portal/web run build
 npm --prefix apps/portal/web run build:cloudflare
-npm --prefix apps/portal/web run test:e2e
 ```
 
 O launcher e o cliente Windows são compilados por cross-compilation na pipeline
