@@ -11,7 +11,7 @@ test("landing apresenta o portal, as classes, o prestígio e o estado seguro de 
   await expect(page.getByRole("link", { name: "Entrar", exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Sua força tem nível/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Escolha seu caminho. Conquiste seu prestígio." })).toBeVisible();
   await expect(page.getByTestId("prestige-evolution")).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
@@ -41,6 +41,26 @@ test("insígnia registra o nível e mantém o material conquistado entre dois ma
   await expect(badge.locator('img[src*="/topaz/"]')).toBeVisible();
   await expect(badge.locator('img[src*="/amethyst/"]')).toHaveCount(0);
   await expect(badge.getByText("55", { exact: true })).toBeVisible();
+});
+
+test("a classe escolhida controla a insígnia exibida no prestígio", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Exibir a evolução de Arqueiro" }).click();
+  await expect(page.getByRole("heading", { name: "Arqueiro", exact: true })).toBeVisible();
+  const evolution = page.getByTestId("prestige-evolution");
+  await evolution.getByLabel("Escolher nível").fill("50");
+  await expect(evolution.locator('img[src*="/topaz/archer-selected.png"]')).toBeVisible();
+});
+
+test("a evolução encerra em Miriamita sem reiniciar automaticamente", async ({ page }) => {
+  await page.goto("/");
+  const evolution = page.getByTestId("prestige-evolution");
+  await evolution.getByLabel("Escolher nível").fill("109");
+  await evolution.getByRole("button", { name: "Reproduzir evolução" }).click();
+  await expect(evolution.locator('[data-level="110"]')).toBeVisible();
+  await expect(evolution.getByRole("button", { name: "Evolução concluída" })).toBeDisabled();
+  await page.waitForTimeout(450);
+  await expect(evolution.locator('[data-level="110"]')).toBeVisible();
 });
 
 test("botões usam focused somente enquanto o ponteiro está sobre eles", async ({ page }) => {

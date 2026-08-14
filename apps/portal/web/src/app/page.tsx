@@ -8,7 +8,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeEvolution } from "@/components/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, gameClasses } from "@/data/game-classes";
 import { routes } from "@/routes";
 
 function formatBytes(bytes: number) {
@@ -87,25 +86,11 @@ export default function HomePage() {
         <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-32 max-[700px]:px-4 max-[700px]:py-24" id="classes">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.13]" aria-hidden="true" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(35,129,87,.22),rgba(3,26,22,.97)_68%)]" aria-hidden="true" />
-          <ChapterTitle eyebrow="O Salão dos Oito" light>Escolha seu caminho.</ChapterTitle>
-          <p className="mx-auto mt-7 max-w-2xl text-center leading-7 text-[#c9d9ce]">Cada classe muda a forma de atravessar o mundo. Conheça sua função, seu ritmo e o brasão que acompanhará toda a jornada.</p>
-          <div className="mx-auto mt-16 grid w-[min(1240px,100%)] grid-cols-4 gap-5 max-[950px]:grid-cols-2 max-[520px]:grid-cols-1">
-            {gameClasses.map(gameClass => (
-              <Link className="group relative min-h-[390px] overflow-hidden border border-[#887341]/60 bg-[linear-gradient(180deg,rgba(8,61,50,.9),rgba(3,28,24,.96))] p-5 text-center shadow-[inset_0_0_0_4px_rgba(39,142,90,.12)] focus-visible:border-[#91e5b4] focus-visible:shadow-[inset_0_0_0_4px_rgba(39,142,90,.2),0_0_24px_rgba(40,185,111,.38)]" href={classHref(gameClass)} key={gameClass.id}>
-                <span className="absolute inset-x-7 top-5 h-px bg-gradient-to-r from-transparent via-[#a98d53] to-transparent" />
-                <Image className="mx-auto h-52 w-52 object-contain drop-shadow-[0_16px_20px_rgba(1,16,13,.6)]" src={`/media/game-ui/classes/bronze/${gameClass.id}.png`} alt="" width={256} height={256} />
-                <p className="font-miraj-of-icarus text-[.64rem] uppercase tracking-[.2em] text-[#7ee2a7]">{gameClass.role}</p>
-                <h3 className="mt-2 font-miraj-of-icarus text-4xl text-[#f2eddc]">{gameClass.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#b9cbbf]">{gameClass.epithet}</p>
-                <span className="mt-6 inline-block font-miraj-of-icarus text-[.68rem] uppercase tracking-[.16em] text-[#d2ba7a]">Conhecer a classe →</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="overflow-hidden bg-[linear-gradient(180deg,#ececdd,#f8f1de)] px-6 py-32 text-[#183a32] max-[700px]:px-4 max-[700px]:py-24" id="prestigio">
-          <ChapterTitle eyebrow="Ascensão do brasão">Sua força tem nível.<br />Sua jornada tem prestígio.</ChapterTitle>
-          <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-8 text-[#526b61]">A cada dez níveis, o personagem conquista um novo material. Durante a evolução, a própria insígnia muda gradualmente de cor e registra o nível alcançado — de Bronze à lendária Miriamita.</p>
+          <header className="mx-auto w-[min(1240px,100%)] text-center">
+            <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.22em] text-[#a9e9c4]">O Salão dos Oito</p>
+            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]">Escolha seu caminho. Conquiste seu prestígio.</h2>
+            <p className="mx-auto mt-5 max-w-3xl leading-7 text-[#c9d9ce]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
+          </header>
           <PrestigeEvolution />
         </section>
 
