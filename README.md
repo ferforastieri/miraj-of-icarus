@@ -1,126 +1,100 @@
 # Miraj of Icarus
 
-Miraj of Icarus é um MMORPG em reconstrução, desenvolvido com código-fonte próprio e
-arquitetura moderna. O projeto preserva a identidade visual, os assets, mapas e
-mecânicas do jogo de referência enquanto substitui sua implementação técnica.
+Miraj of Icarus é um MMORPG de fantasia desenvolvido como uma plataforma
+multicomponente: portal, launcher, cliente nativo, API e serviços de jogo
+evoluem sobre contratos compartilhados e uma infraestrutura reproduzível.
 
-O desenvolvimento acontece em fatias verticais: launcher, cliente, API e game
-servers evoluem juntos até formar jornadas completas e testáveis.
+O repositório adota um monorepo para manter código, contratos, assets,
+automação e documentação próximos das partes que os utilizam. O README raiz
+apresenta o produto e sua arquitetura; cada componente mantém suas próprias
+instruções de instalação, execução, testes e publicação.
 
-## Componentes
+## Arquitetura
 
-- `backend/api/`: contas, autenticação, sessões e catálogo de releases;
-- `backend/game-server/`: Login, Main/Coordinator, Lobby e o futuro World Server;
-- `backend/download-worker/`: entrega pública do launcher e entrega autenticada do cliente;
-- `backend/infra/`: ambiente local, implantação e operação dos serviços persistentes;
-- `apps/game/windows/`: launcher, cliente Windows e assets do jogo;
-- `apps/portal/web/`: landing page, download e áreas autenticadas;
-- `apps/portal/mobile/` e `apps/game/mobile/`: espaços reservados aos aplicativos móveis.
+```mermaid
+flowchart LR
+    Browser[Portal web] --> API[API]
+    Launcher[Launcher Windows] --> API
+    Launcher --> Downloads[Download Worker]
+    Downloads --> R2[(Cloudflare R2)]
+    Client[Cliente Windows] --> Login[Login Server]
+    Login --> Main[Main / Coordinator]
+    Main --> Lobby[Lobby Server]
+    API --> PostgreSQL[(PostgreSQL)]
+    API --> Redis[(Redis)]
+    Login --> Redis
+    Main --> Redis
+    Lobby --> PostgreSQL
+    Lobby --> Redis
+```
+
+O sistema é separado em dois planos:
+
+- **plano de produto:** portal, launcher e cliente apresentam a experiência ao
+  jogador;
+- **plano de serviços:** API, Login, Main/Coordinator e Lobby controlam contas,
+  sessões, servidores e personagens.
+
+A API é a autoridade de escrita para contas e personagens. PostgreSQL mantém
+os dados persistentes; Redis armazena sessões, tickets e coordenação efêmera.
+O cliente recebe releases imutáveis do R2 por meio de um Worker que protege os
+arquivos privados e suporta downloads parciais.
 
 ## Tecnologias
 
-- C++20, CMake, Ninja e Wicked Engine no launcher, cliente e futuro World
-  Server;
-- .NET 10 na API e nos serviços de controle: Login, Main/Coordinator e Lobby;
-- PostgreSQL e Redis para dados e sessões;
-- Next.js 16, React 19 e Tailwind CSS no portal;
-- Docker e GitHub Actions para integração contínua;
-- Cloudflare Workers para o portal, R2 para downloads e AWS Lightsail para os
-  serviços persistentes;
-- Git LFS para assets binários grandes.
+| Área | Tecnologias principais |
+| --- | --- |
+| Portal | Next.js 16, React 19, TypeScript, Tailwind CSS e TanStack Query |
+| API e serviços | .NET 10, ASP.NET Core e Entity Framework Core |
+| Dados | PostgreSQL e Redis |
+| Launcher e cliente | C++20, CMake, Ninja e Wicked Engine |
+| Edge e distribuição | Cloudflare Workers, OpenNext e R2 |
+| Infraestrutura | Docker Compose, Caddy e AWS Lightsail |
+| Automação | GitHub Actions, GHCR e Git LFS |
 
-## Arquitetura de execução
+## Organização do repositório
 
-O cliente concentra renderização, animação, física local, predição e
-interpolação em C++ para priorizar FPS e resposta imediata aos comandos. O
-futuro `backend/game-server/world-server/` também será um processo C++ independente,
-voltado ao loop de simulação de tick fixo, movimentação, combate, NPCs,
-visibilidade e instâncias de mapas com latência previsível.
-
-API, Login, Main/Coordinator e Lobby permanecem em .NET porque atuam no plano
-de controle e não no ciclo crítico de renderização ou simulação. Os dois lados
-se comunicam por contratos de rede binários, explícitos e versionados. Banco de
-dados e serviços externos não participam diretamente do loop de simulação.
-
-## Estado atual
-
-O launcher já autentica, consulta servidores, valida releases assinadas, baixa
-e aplica atualizações e inicia o cliente transmitindo a sessão por canal local
-restrito. Login, Main e Lobby implementam a jornada inicial de sessão e
-personagens. O próximo marco é validar e ampliar essa jornada no ambiente
-hospedado.
-
-O portal público usa a mesma identidade do launcher em `https://mirajoficarus.com`.
-`/entrar` e `/criar-conta` iniciam a jornada, `/cliente` concentra conta,
-servidores e personagens e `/painel` é reservado à administração. A API pública
-é anunciada em `https://api.mirajoficarus.com`. O launcher é público; os arquivos
-do cliente passam por um Worker autenticado em
-`https://downloads.mirajoficarus.com`, com o bucket R2 privado.
-
-## Publicação do cliente
-
-Mudanças em `apps/game/windows/` acionam o workflow
-`client-release.yml`. Pull requests apenas compilam e validam. Em `main`, o
-workflow assina o manifesto, publica objetos imutáveis no bucket R2
-`miraj-of-icarus-releases` e atualiza `channels/alpha.json` somente depois de validar
-o upload completo.
-
-Secrets exigidos no GitHub:
-
-- `MIRAJ_OF_ICARUS_RELEASE_SIGNING_KEY_BASE64`;
-- `CLOUDFLARE_R2_ACCOUNT_ID`;
-- `CLOUDFLARE_R2_ACCESS_KEY_ID`;
-- `CLOUDFLARE_R2_SECRET_ACCESS_KEY`;
-- `DOWNLOAD_AUTHORIZATION_SIGNING_KEY`.
-
-O bucket permanece privado. O Worker libera apenas o canal e o ZIP do launcher;
-manifesto, assinatura e arquivos do cliente exigem uma autorização curta,
-vinculada à conta e ao SHA. Objetos sob `releases/{git-sha}/` recebem cache
-imutável; `channels/alpha.json` recebe cache curto. Para rollback, copie
-novamente o manifesto de uma release completa anterior para o canal; os objetos
-versionados nunca são sobrescritos.
-
-## Entrega contínua e produção
-
-O GitHub Actions é o único coordenador das pipelines:
-
-- `ci.yml` valida .NET, contratos C++ e portal em cada PR e push em `main`;
-- `portal-deploy.yml`, depois de uma CI aprovada em `main`, publica a mesma
-  revisão como Worker OpenNext no Cloudflare;
-- `backend-deploy.yml`, também depois da CI, cria imagens Linux no GHCR e
-  atualiza API, Main, Login e Lobby no Lightsail com verificação de saúde e
-  rollback;
-- `client-release.yml` recompila os executáveis Windows quando o cliente ou o
-  launcher muda e publica a release assinada no R2.
-- `download-worker-deploy.yml` publica o serviço de download no domínio
-  `downloads.mirajoficarus.com`, com acesso privado ao R2.
-
-O portal não roda no Lightsail em produção. Ele continua disponível no Compose
-base apenas para desenvolvimento local. O guia completo de DNS, secrets,
-primeiro deploy e rollback está em [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
-As medidas de segurança e as etapas que exigem console estão em
-[docs/SECURITY-HARDENING.md](docs/SECURITY-HARDENING.md).
-
-## Desenvolvimento local
-
-Requer .NET SDK 10, CMake 3.25+, Ninja, compilador C++20, Node.js e Docker.
-
-```bash
-dotnet test backend/api/MirajOfIcarus.slnx
-dotnet test backend/game-server/MirajOfIcarus.GameServer.slnx
-
-cmake -S apps/game/windows -B build/client -G Ninja \
-  -DMIRAJ_OF_ICARUS_BUILD_WINDOWS_APPS=OFF
-cmake --build build/client
-ctest --test-dir build/client --output-on-failure
-
-npm --prefix apps/portal/web ci
-npm --prefix apps/portal/web run lint
-npm --prefix apps/portal/web run typecheck
-npm --prefix apps/portal/web run build
-npm --prefix apps/portal/web run build:cloudflare
+```text
+apps/
+├── game/
+│   ├── mobile/          # cliente móvel
+│   └── windows/         # launcher e cliente Windows
+└── portal/
+    ├── mobile/          # aplicativo móvel do portal
+    └── web/             # landing page e áreas autenticadas
+backend/
+├── api/                 # contas, sessões, personagens e administração
+├── download-worker/     # distribuição pública e autenticada de releases
+├── game-server/         # Login, Main/Coordinator e Lobby
+└── infra/               # Compose, proxy, deploy e operação
+legacy/                  # material histórico isolado da aplicação atual
 ```
 
-O launcher e o cliente Windows são compilados por cross-compilation na pipeline
-Linux com LLVM e o Windows SDK. Configurações locais devem partir dos arquivos `.env.example`; nenhum
-segredo deve ser versionado.
+## Documentação por componente
+
+- [API](backend/api/README.md)
+- [Download Worker](backend/download-worker/README.md)
+- [Game Server](backend/game-server/README.md)
+- [Infraestrutura](backend/infra/README.md)
+- [Portal web](apps/portal/web/README.md)
+- [Portal mobile](apps/portal/mobile/README.md)
+- [Cliente Windows](apps/game/windows/README.md)
+- [Cliente mobile](apps/game/mobile/README.md)
+
+## Princípios técnicos
+
+- contratos de rede explícitos e versionados;
+- credenciais e tokens fora do código e do armazenamento do navegador;
+- releases versionadas por Git SHA e publicadas de forma atômica;
+- serviços persistentes isolados da internet sempre que possível;
+- regras de domínio centralizadas para evitar implementações divergentes;
+- integração contínua proporcional a cada componente alterado.
+
+## Desenvolvimento
+
+Os requisitos e comandos variam por componente. Comece pelo README do módulo
+em que irá trabalhar. Para executar a plataforma completa localmente, consulte
+o [guia de infraestrutura](backend/infra/README.md).
+
+Não versione arquivos `.env`, chaves privadas, tokens ou credenciais. Assets
+binários grandes devem permanecer sob Git LFS.
