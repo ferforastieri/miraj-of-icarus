@@ -4,8 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
-import { Button, buttonStyles } from "@/components/ui/Button";
+import { buttonStyles } from "@/components/ui/Button";
 import { classHref, gameClasses, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClass } from "@/data/game-classes";
+
+const prestigeSteps = [
+  { id: "beginning", name: "Início", level: 0 },
+  ...prestigeTiers,
+] as const;
 
 export function PrestigeEvolution() {
   const [classId, setClassId] = useState<GameClass["id"]>("warrior");
@@ -52,63 +57,66 @@ export function PrestigeEvolution() {
   const meterStyle = { "--prestige-progress": `${level / MAX_CHARACTER_LEVEL * 100}%` } as CSSProperties;
 
   return (
-    <div className="mx-auto mt-8 w-[min(1240px,100%)]" data-testid="prestige-evolution">
-      <div className="border-y border-[#d4b867] bg-transparent px-[clamp(1rem,2.4vw,2.5rem)] py-9 text-[#f7f4e8] [text-shadow:0_2px_4px_#010e0c,0_0_10px_#021713]">
+    <div className="mx-auto mt-0 w-[min(1240px,100%)]" data-testid="prestige-evolution">
+      <div className="border-b border-[#d4b867] bg-transparent px-[clamp(1rem,2.4vw,2.5rem)] pb-9 pt-2 text-[#f7f4e8] [text-shadow:0_2px_4px_#010e0c,0_0_10px_#021713]">
         <div className="grid grid-cols-8 gap-2 max-[1050px]:grid-cols-4 max-[520px]:grid-cols-2" role="group" aria-label="Escolha uma classe">
           {gameClasses.map(gameClass => (
             <button
-              className={`relative grid min-h-[116px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center drop-shadow-[0_3px_5px_rgba(1,16,13,.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#f2d477] shadow-[0_0_16px_rgba(205,167,70,.6)]" : "border-[#d9c37e]/85"}`}
+              className={`relative grid min-h-[138px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center drop-shadow-[0_3px_5px_rgba(1,16,13,.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#f2d477] shadow-[0_0_16px_rgba(205,167,70,.6)]" : "border-[#d9c37e]/85"}`}
               key={gameClass.id}
               type="button"
               aria-pressed={classId === gameClass.id}
               aria-label={`Exibir a evolução de ${gameClass.name}`}
               onClick={() => setClassId(gameClass.id)}
             >
-              <Image className="size-[72px] object-contain drop-shadow-[0_2px_5px_#031713]" src={`/media/game-ui/classes/gold/${gameClass.id}.png`} alt="" width={96} height={96} />
+              <Image className="size-[94px] object-contain drop-shadow-[0_2px_5px_#031713]" src={`/media/game-ui/classes/gold/${gameClass.id}.png`} alt="" width={112} height={112} />
               <span className="font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#fff0b7]">{gameClass.name}</span>
               {classId === gameClass.id && <span className="absolute inset-x-3 bottom-0 h-px bg-[#f0d171] shadow-[0_0_7px_#d7ad43]" />}
             </button>
           ))}
         </div>
 
-        <div className="mt-9 grid grid-cols-[minmax(310px,.9fr)_minmax(330px,1fr)] items-center gap-12 max-[720px]:grid-cols-1 max-[720px]:gap-7">
-          <div className="prestige-ritual relative mx-auto grid w-[min(390px,82vw)] place-items-center" data-tier={tier.id}>
-            <div className="prestige-ritual__gate absolute size-[76%] rotate-45 border border-[#ceb975]/55 bg-transparent" style={{ boxShadow: `0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
-            <div className="prestige-ritual__orbit absolute size-[86%] rounded-full border border-[#cfb765]/35" aria-hidden="true">
-              <i /><i /><i /><i />
+        <div className="mt-10 grid grid-cols-[minmax(0,460px)_minmax(0,460px)] items-center justify-center gap-12 max-[900px]:grid-cols-1 max-[900px]:gap-7">
+          <div className="grid justify-items-center">
+            <div className="prestige-ritual relative mx-auto grid w-[min(460px,88vw)] place-items-center" data-tier={tier.id}>
+              <div className="prestige-ritual__gate absolute size-[76%] rotate-45 border border-[#ceb975]/55 bg-transparent" style={{ boxShadow: `0 0 55px color-mix(in srgb, ${tier.color}, transparent 62%)` }} aria-hidden="true" />
+              <div className="prestige-ritual__orbit absolute size-[86%] rounded-full border border-[#cfb765]/35" aria-hidden="true">
+                <i /><i /><i /><i />
+              </div>
+              <div className="prestige-ritual__reveal relative z-10 grid w-full place-items-center" key={`${classId}-${tier.id}`}>
+                <span className="prestige-ritual__beam absolute inset-y-[8%] left-1/2 w-[18%] -translate-x-1/2" aria-hidden="true" />
+                <PrestigeBadge classId={classId} className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
+              </div>
             </div>
-            <div className="prestige-ritual__reveal relative z-10 grid w-full place-items-center" key={`${classId}-${tier.id}`}>
-              <span className="prestige-ritual__beam absolute inset-y-[8%] left-1/2 w-[18%] -translate-x-1/2" aria-hidden="true" />
-              <PrestigeBadge classId={classId} className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
-            </div>
+            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass)}>Conhecer a classe</Link>
           </div>
-          <div className="text-left max-[720px]:text-center">
+          <div className="w-full text-left max-[900px]:mx-auto max-[900px]:max-w-[460px] max-[900px]:text-center">
           <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{selectedClass.role}</p>
           <h3 className="mt-2 font-miraj-of-icarus text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[.9] text-[#f4efdc]">{selectedClass.name}</h3>
           <p className="mt-3 text-sm font-medium leading-6 text-[#eef2e9]">{selectedClass.epithet}</p>
-          <div className="mt-5 flex items-end gap-5 max-[720px]:justify-center">
+          <div className="mt-5 max-[900px]:text-center">
             <strong className="text-[clamp(4.5rem,10vw,8rem)] font-normal leading-none text-white">{level}</strong>
-            <span className="mb-3 text-sm uppercase tracking-[.14em] text-[#dce9df]">de {MAX_CHARACTER_LEVEL}</span>
           </div>
           <p className="mt-6 text-xs uppercase tracking-[.18em]" style={{ color: tier.color }}>{tier.stage}</p>
           <h4 className="mt-1 text-[clamp(2rem,3.5vw,3.5rem)] leading-none text-[#f4efdc]">{tier.name}</h4>
-          <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-[#f0f3ea] max-[720px]:mx-auto">{tier.description}</p>
+          <p className="mt-4 max-w-[460px] text-sm font-medium leading-6 text-[#f0f3ea] max-[900px]:mx-auto">{tier.description}</p>
           <p className="mt-5 text-sm text-[#d7e5dc]">{nextTier ? `Próximo brasão: ${nextTier.name}, conquistado no nível ${nextTier.level}.` : "O brasão alcançou sua forma lendária definitiva."}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3 max-[720px]:justify-center max-[520px]:flex-col">
-            <Button disabled={level >= MAX_CHARACTER_LEVEL} onClick={() => setPlaying(current => !current)}>{level >= MAX_CHARACTER_LEVEL ? "Evolução concluída" : playing ? "Pausar evolução" : "Reproduzir evolução"}</Button>
             <label className="grid min-w-[240px] gap-2 text-[.65rem] font-semibold uppercase tracking-[.12em] text-[#edf3eb] max-[520px]:w-full">
               Escolher nível
               <input className="accent-[#78b79a]" type="range" min="0" max={MAX_CHARACTER_LEVEL} value={level} onChange={event => { setPlaying(false); setLevel(Number(event.target.value)); }} />
             </label>
-            <Link className={buttonStyles("ghost")} href={classHref(selectedClass)}>Conhecer a classe</Link>
           </div>
           </div>
         </div>
       </div>
 
       <div className="prestige-meter mt-7 overflow-x-auto pb-3" style={meterStyle}>
-        <div className="relative grid min-w-[930px] grid-cols-11 gap-2 before:absolute before:left-[4.5%] before:right-[4.5%] before:top-[15px] before:h-px before:bg-[linear-gradient(90deg,#a96743_var(--prestige-progress),#b9aa7d55_var(--prestige-progress))]">
-          {prestigeTiers.map(item => (
+        <div className="relative grid min-w-[1180px] grid-cols-12 gap-2">
+          <span className="absolute left-[4.15%] right-[4.15%] top-[29px] h-[7px] overflow-hidden border-y border-[#dbc67f]/80 bg-[#071c18] shadow-[0_0_0_1px_#352d1c,0_0_12px_rgba(3,22,18,.85)]" aria-hidden="true">
+            <span className="block h-full bg-[linear-gradient(90deg,#b77a43,#d9bc65_28%,#5ec48a_72%,#d9dfd3)] shadow-[0_0_10px_rgba(102,218,148,.75)] transition-[width] duration-300" style={{ width: "var(--prestige-progress)" }} />
+          </span>
+          {prestigeSteps.map(item => (
             <button
               className="relative z-10 grid cursor-pointer justify-items-center gap-2 border-0 bg-transparent font-medium text-[#eef2e9] [text-shadow:0_2px_4px_#010e0c,0_0_8px_#021713] focus-visible:text-white"
               key={item.id}
@@ -116,8 +124,7 @@ export function PrestigeEvolution() {
               onClick={() => { setPlaying(false); setLevel(item.level); }}
               aria-label={`Exibir ${item.name}, nível ${item.level}`}
             >
-              <span className="size-8 rotate-45 border border-[#9d8755] bg-[#f4efde] shadow-[inset_0_0_0_5px_#e5dfca]" style={level >= item.level ? { background: item.color, boxShadow: `inset 0 0 0 5px #f4efde, 0 0 12px ${item.color}` } : undefined} />
-              <span className="text-[.62rem] uppercase tracking-[.08em]">{item.level}</span>
+              <PrestigeBadge classId={classId} className={`w-16 transition-[filter,opacity] ${level >= item.level ? "opacity-100" : "opacity-65 grayscale-[.45]"}`} level={item.level} selected interpolate={false} />
               <strong className="text-xs font-normal">{item.name}</strong>
             </button>
           ))}

@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeEvolution } from "@/components/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
+import { SectionTitlePlaque } from "@/components/ui/SectionTitlePlaque";
 import { routes } from "@/routes";
 
 const news = [
@@ -53,35 +54,31 @@ export default function HomePage() {
       </section>
 
       <main>
-        <section className="relative isolate overflow-hidden bg-[#052721] px-6 pb-28 pt-14 max-[700px]:px-4 max-[700px]:pb-20 max-[700px]:pt-10" id="classes">
-          <div className="absolute inset-0 -z-20 bg-[url('/media/landing/classes-hall-v1.webp')] bg-[length:100%_100%] bg-center bg-no-repeat" aria-hidden="true" />
-          <header className="mx-auto w-[min(1020px,100%)] px-8 py-3 text-center [text-shadow:0_2px_4px_#021713,0_0_12px_#021713] max-[700px]:px-5 max-[700px]:py-2">
-            <p className="font-miraj-of-icarus text-[.68rem] font-semibold uppercase tracking-[.22em] text-[#f1d789]">O Salão dos Oito</p>
-            <h2 className="mt-3 font-miraj-of-icarus text-[clamp(2.15rem,4vw,4rem)] font-semibold leading-none text-[#fffbed]">Escolha seu caminho. Conquiste seu prestígio.</h2>
-            <p className="mx-auto mt-5 max-w-3xl font-medium leading-7 text-[#f4f1e5]">Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita.</p>
-          </header>
+        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-6 max-[700px]:px-4 max-[700px]:py-4" id="classes">
+          <div className="absolute inset-0 -z-20 bg-[url('/media/landing/classes-hall-v1.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[700px]:bg-cover" aria-hidden="true" />
+          <SectionTitlePlaque
+            title="Personagens"
+            description="Escolha uma classe e acompanhe, no mesmo brasão, cada material conquistado do primeiro chamado à lendária Miriamita."
+          />
           <PrestigeEvolution />
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[url('/media/landing/news-frontier-v1.webp')] bg-cover bg-center px-6 py-28 text-[#f2f0e2] max-[700px]:bg-[62%_center] max-[700px]:px-4 max-[700px]:py-20" id="noticias" aria-labelledby="news-title">
+        <section className="relative isolate overflow-hidden bg-[url('/media/landing/news-frontier-v1.webp')] bg-cover bg-center px-6 py-6 text-[#f2f0e2] max-[700px]:bg-[62%_center] max-[700px]:px-4 max-[700px]:py-4" id="noticias" aria-labelledby="news-title">
           <div className="mx-auto w-[min(1200px,100%)]">
-            <header className="mb-12 flex items-end justify-between gap-8 border-b border-[#d8c481] pb-7 [text-shadow:0_2px_7px_#031b16] max-[700px]:block">
-              <div>
-                <p className="font-miraj-of-icarus text-[.66rem] uppercase tracking-[.22em] text-[#b9f0cb]">Crônicas do mundo</p>
-                <h2 id="news-title" className="mt-2 font-miraj-of-icarus text-[clamp(2.6rem,5vw,5rem)] leading-none">Notícias de Miraj</h2>
-              </div>
-              <Link className="text-sm uppercase tracking-[.12em] text-[#e8d795] underline decoration-[#a8e5bc] underline-offset-8 max-[700px]:mt-5 max-[700px]:inline-block" href={routes.community}>Acompanhar a comunidade</Link>
-            </header>
+            <SectionTitlePlaque title="Notícias" titleId="news-title" />
+            <div className="mb-10 mt-1 text-center">
+              <Link className="text-sm uppercase tracking-[.12em] text-[#e8d795] underline decoration-[#a8e5bc] underline-offset-8" href={routes.community}>Acompanhar a comunidade</Link>
+            </div>
 
-            <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-1">
+            <div className="grid grid-cols-[1.5fr_.85fr] gap-5 max-[980px]:grid-cols-1">
               {news.map((item, index) => (
-                <Link className="group flex min-h-[520px] flex-col overflow-hidden bg-[#042a24] shadow-[0_24px_55px_rgba(2,20,16,.35)]" href={item.href} key={item.title}>
-                  <div className="relative h-[230px] shrink-0 overflow-hidden">
-                    <Image className={`h-full w-full object-cover transition-transform duration-700 group-focus-visible:scale-[1.02] ${index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"}`} src="/media/landing/news-frontier-v1.webp" alt="Aventureiros reunidos diante do portal de uma cidadela de Miraj" width={1881} height={836} sizes="(max-width: 980px) 100vw, 33vw" />
+                <Link className={`group flex flex-col overflow-hidden bg-[#042a24] shadow-[0_24px_55px_rgba(2,20,16,.35)] ${index === 0 ? "row-span-2 min-h-[660px]" : "min-h-[320px]"} max-[980px]:min-h-[520px]`} href={item.href} key={item.title}>
+                  <div className={`relative shrink-0 overflow-hidden ${index === 0 ? "h-[360px]" : "h-[132px]"} max-[980px]:h-[230px]`}>
+                    <Image className={`h-full w-full object-cover transition-transform duration-700 group-focus-visible:scale-[1.02] ${index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"}`} src="/media/landing/news-frontier-v1.webp" alt="Aventureiros reunidos diante do portal de uma cidadela de Miraj" width={1881} height={836} sizes={index === 0 ? "(max-width: 980px) 100vw, 62vw" : "(max-width: 980px) 100vw, 35vw"} />
                   </div>
-                  <article className="flex flex-1 flex-col p-8 text-[#f1f0e2] max-[700px]:p-7">
+                  <article className={`flex flex-1 flex-col text-[#f1f0e2] ${index === 0 ? "p-10" : "p-6"} max-[700px]:p-7`}>
                     <p className="text-[.62rem] uppercase tracking-[.18em] text-[#99deb4]">{item.category}</p>
-                    <h3 className="mt-4 font-miraj-of-icarus text-[clamp(1.55rem,2.1vw,2.35rem)] leading-tight">{item.title}</h3>
+                    <h3 className={`mt-4 font-miraj-of-icarus leading-tight ${index === 0 ? "text-[clamp(2rem,3vw,3.4rem)]" : "text-[clamp(1.25rem,1.65vw,1.8rem)]"}`}>{item.title}</h3>
                     <p className="mt-5 text-sm leading-6 text-[#c6d4ca]">{item.description}</p>
                     <span className="mt-auto pt-7 text-[.65rem] uppercase tracking-[.12em] text-[#dac17c]">Descobrir →</span>
                   </article>
