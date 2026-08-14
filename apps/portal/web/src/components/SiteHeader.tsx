@@ -3,9 +3,9 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { routes } from "@/routes";
 
-const navItem = "miraj-button relative z-10 grid min-h-[58px] min-w-[176px] place-items-center px-8 font-miraj-of-icarus text-[.78rem] font-semibold uppercase tracking-[.08em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[1050px]:min-w-[150px] max-[900px]:min-w-[126px] max-[900px]:px-5 max-[700px]:min-w-[118px] max-[700px]:px-3";
+const navItem = "miraj-button relative z-10 grid min-h-[58px] min-w-[188px] place-items-center px-10 font-miraj-of-icarus text-[clamp(.6rem,.54rem+.16vw,.72rem)] font-semibold uppercase tracking-[.045em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[1050px]:min-w-[156px] max-[900px]:min-w-[132px] max-[900px]:px-7 max-[700px]:min-w-[150px] max-[700px]:px-8";
 
-const accountItem = "miraj-button grid min-h-9 min-w-[116px] place-items-center px-5 hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
+const accountItem = "miraj-button grid min-h-10 min-w-[142px] place-items-center px-8 text-[.6rem] tracking-[.035em] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
 
 export function SiteHeader() {
   return (

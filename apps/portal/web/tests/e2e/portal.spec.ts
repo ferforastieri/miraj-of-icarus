@@ -32,14 +32,14 @@ test("cada uma das oito classes possui uma página própria", async ({ page }) =
   await expect(page.getByText(/Nível 110 · A transcendência/)).toBeVisible();
 });
 
-test("insígnia registra o nível e mistura os materiais entre dois marcos", async ({ page }) => {
+test("insígnia registra o nível e mantém o material conquistado entre dois marcos", async ({ page }) => {
   await page.goto("/");
   const evolution = page.getByTestId("prestige-evolution");
   await evolution.getByLabel("Escolher nível").fill("55");
   const badge = evolution.locator('[data-level="55"]');
   await expect(badge).toBeVisible();
   await expect(badge.locator('img[src*="/topaz/"]')).toBeVisible();
-  await expect(badge.locator('img[src*="/amethyst/"]')).toBeVisible();
+  await expect(badge.locator('img[src*="/amethyst/"]')).toHaveCount(0);
   await expect(badge.getByText("55", { exact: true })).toBeVisible();
 });
 
