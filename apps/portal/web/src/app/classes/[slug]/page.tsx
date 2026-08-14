@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
 import { classHref, findGameClass, gameClasses, prestigeTiers } from "@/data/game-classes";
 import { routes } from "@/routes";
@@ -39,7 +39,7 @@ export default async function ClassPage({ params }: { params: Promise<{ slug: st
           </div>
           <div className="relative grid min-h-[580px] place-items-center max-[700px]:min-h-[390px]">
             <div className="absolute size-[72%] rotate-45 border border-[#a9dcb9]/20 bg-[#0c4b3c]/16 shadow-[0_0_65px_rgba(40,185,111,.18)]" aria-hidden="true" />
-            <Image className="relative h-auto w-[min(540px,88vw)] object-contain drop-shadow-[0_30px_35px_rgba(1,13,11,.75)]" src={`/media/game-ui/classes/jade/${gameClass.id}-selected.png`} alt={`Brasão Jade de ${gameClass.name}`} width={256} height={256} priority />
+            <PrestigeBadge classId={gameClass.id} className="relative w-[min(540px,88vw)] drop-shadow-[0_30px_35px_rgba(1,13,11,.75)]" level={110} selected priority />
           </div>
         </div>
       </section>
@@ -65,13 +65,13 @@ export default async function ClassPage({ params }: { params: Promise<{ slug: st
 
         <section className="bg-[#052720] px-6 py-28 text-center max-[700px]:px-4 max-[700px]:py-20">
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#92e5b2]">Ascensão do brasão</p>
-          <h2 className="mx-auto mt-5 max-w-4xl font-miraj-of-icarus text-[clamp(3.2rem,6vw,6rem)] leading-[.84] text-[#f4efdc]">Uma identidade. Quatro momentos.</h2>
-          <div className="mx-auto mt-16 grid w-[min(1120px,100%)] grid-cols-4 gap-3 max-[850px]:grid-cols-2 max-[480px]:grid-cols-1">
+          <h2 className="mx-auto mt-5 max-w-4xl font-miraj-of-icarus text-[clamp(3.2rem,6vw,6rem)] leading-[.84] text-[#f4efdc]">Uma identidade. Onze conquistas.</h2>
+          <div className="mx-auto mt-16 grid w-[min(1220px,100%)] grid-cols-4 gap-3 max-[950px]:grid-cols-3 max-[700px]:grid-cols-2 max-[430px]:grid-cols-1">
             {prestigeTiers.map(tier => (
               <article className="border-y border-[#8e7848] bg-[#072f28] px-4 pb-7 pt-3" key={tier.id}>
-                <Image className="mx-auto size-52 object-contain" src={`/media/game-ui/classes/${tier.id}/${gameClass.id}.png`} alt={`Prestígio ${tier.name}`} width={256} height={256} />
+                <PrestigeBadge classId={gameClass.id} className="mx-auto size-52" level={tier.level} />
                 <h3 className="font-miraj-of-icarus text-3xl text-[#f1ebda]">{tier.name}</h3>
-                <p className="mt-2 text-sm text-[#aacab7]">{tier.stage}</p>
+                <p className="mt-2 text-sm text-[#aacab7]">Nível {tier.level} · {tier.stage}</p>
               </article>
             ))}
           </div>

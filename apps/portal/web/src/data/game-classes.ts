@@ -23,11 +23,41 @@ export const gameClasses: readonly GameClass[] = [
 ] as const;
 
 export const prestigeTiers = [
-  { id: "bronze", name: "Bronze", stage: "O chamado", description: "Todo viajante começa formando sua identidade e aprendendo o caminho da classe." },
-  { id: "silver", name: "Prata", stage: "A experiência", description: "A jornada ganha forma e o brasão passa a registrar domínio e constância." },
-  { id: "gold", name: "Ouro", stage: "O reconhecimento", description: "O personagem deixa sua marca nos reinos e carrega um símbolo mais nobre." },
-  { id: "jade", name: "Jade", stage: "A ascensão", description: "O prestígio máximo transforma o brasão na expressão viva da trajetória do personagem." },
+  { id: "bronze", name: "Bronze", level: 10, color: "#a96743", stage: "O primeiro passo", description: "O chamado ganha forma e o primeiro brasão reconhece o caminho escolhido." },
+  { id: "silver", name: "Prata", level: 20, color: "#b9c8cb", stage: "A disciplina", description: "Técnica e constância começam a aparecer no metal da insígnia." },
+  { id: "gold", name: "Ouro", level: 30, color: "#d2a53f", stage: "O reconhecimento", description: "O personagem deixa sua primeira marca permanente nos reinos." },
+  { id: "platinum", name: "Platina", level: 40, color: "#d6e2e4", stage: "O domínio", description: "A experiência refina o brasão até um brilho frio e preciso." },
+  { id: "topaz", name: "Topázio", level: 50, color: "#d8842e", stage: "A chama", description: "A vontade do viajante passa a irradiar calor através da insígnia." },
+  { id: "amethyst", name: "Ametista", level: 60, color: "#955dcc", stage: "A visão arcana", description: "O brasão registra uma ligação mais profunda com a energia dos reinos." },
+  { id: "obsidian", name: "Obsidiana", level: 70, color: "#536172", stage: "A resistência", description: "Escuro e lapidado, o símbolo carrega a força de quem não cedeu." },
+  { id: "jade", name: "Jade", level: 80, color: "#679a84", stage: "A harmonia", description: "A pedra mineral revela equilíbrio, experiência e controle." },
+  { id: "ruby", name: "Rubi", level: 90, color: "#bd334c", stage: "A conquista", description: "O vermelho profundo registra feitos que já atravessaram os reinos." },
+  { id: "fernandium", name: "Fernandium", level: 100, color: "#5f88a6", stage: "O legado", description: "Um metal arcano raro, reservado aos nomes que se tornaram história." },
+  { id: "miriamite", name: "Miriamita", level: 110, color: "#eadfd3", stage: "A transcendência", description: "O mineral lendário transforma toda a jornada em luz, memória e permanência." },
 ] as const;
+
+export const MAX_CHARACTER_LEVEL = prestigeTiers.at(-1)!.level;
+export type PrestigeTier = (typeof prestigeTiers)[number];
+
+export function prestigeTierForLevel(value: number): PrestigeTier {
+  const level = Math.min(MAX_CHARACTER_LEVEL, Math.max(0, Math.floor(value)));
+  const attained = [...prestigeTiers].reverse().find(tier => level >= tier.level);
+  return attained ?? prestigeTiers[0];
+}
+
+export function prestigeBlendForLevel(value: number) {
+  const level = Math.min(MAX_CHARACTER_LEVEL, Math.max(0, value));
+  if (level <= prestigeTiers[0].level) {
+    return { from: prestigeTiers[0], to: prestigeTiers[0], progress: level / prestigeTiers[0].level };
+  }
+
+  const exact = prestigeTiers.find(tier => tier.level === level);
+  if (exact) return { from: exact, to: exact, progress: 1 };
+
+  const from = prestigeTierForLevel(level);
+  const to = prestigeTiers.find(tier => tier.level > level) ?? from;
+  return { from, to, progress: (level - from.level) / (to.level - from.level || 1) };
+}
 
 export function classHref(gameClass: GameClass) {
   return `/classes/${gameClass.slug}`;

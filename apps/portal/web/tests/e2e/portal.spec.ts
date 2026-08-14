@@ -12,6 +12,7 @@ test("landing apresenta o portal, as classes, o prestígio e o estado seguro de 
   await expect(page.getByRole("heading", { name: /Um reino acima das nuvens/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Escolha seu caminho/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Sua força tem nível/i })).toBeVisible();
+  await expect(page.getByTestId("prestige-evolution")).toBeVisible();
   await expect(page.getByText("Release em preparação")).toBeVisible();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(6, 31, 32)");
 });
@@ -26,6 +27,20 @@ test("cada uma das oito classes possui uma página própria", async ({ page }) =
   await expect(page.getByText("Prata", { exact: true })).toBeVisible();
   await expect(page.getByText("Ouro", { exact: true })).toBeVisible();
   await expect(page.getByText("Jade", { exact: true })).toBeVisible();
+  await expect(page.getByText("Fernandium", { exact: true })).toBeVisible();
+  await expect(page.getByText("Miriamita", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Nível 110 · A transcendência/)).toBeVisible();
+});
+
+test("insígnia registra o nível e mistura os materiais entre dois marcos", async ({ page }) => {
+  await page.goto("/");
+  const evolution = page.getByTestId("prestige-evolution");
+  await evolution.getByLabel("Escolher nível").fill("55");
+  const badge = evolution.locator('[data-level="55"]');
+  await expect(badge).toBeVisible();
+  await expect(badge.locator('img[src*="/topaz/"]')).toBeVisible();
+  await expect(badge.locator('img[src*="/amethyst/"]')).toBeVisible();
+  await expect(badge.getByText("55", { exact: true })).toBeVisible();
 });
 
 test("botões usam focused somente enquanto o ponteiro está sobre eles", async ({ page }) => {
@@ -111,4 +126,5 @@ test("movimento reduzido desativa a chegada cinematográfica", async ({ page }) 
     (element) => Number.parseFloat(getComputedStyle(element).animationDuration),
   );
   expect(duration).toBeLessThan(.001);
+  await expect(page.getByTestId("prestige-evolution").locator('[data-level="110"]')).toBeVisible();
 });

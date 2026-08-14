@@ -7,6 +7,7 @@ import { useDeleteCharacter } from "@/api/characters/delete-character";
 import { useCharacters, type Character } from "@/api/characters/get-characters";
 import { useRestoreCharacter } from "@/api/characters/restore-character";
 import { ApiError } from "@/api/http";
+import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -80,7 +81,7 @@ export function CharacterPanel({ enabled }: { enabled: boolean }) {
       <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
         {values.map(character => (
           <article className={`jade-card relative grid min-h-[280px] grid-cols-[76px_1fr] content-start gap-5 px-3 py-3 drop-shadow-[0_18px_28px_rgba(3,27,22,.3)] max-[620px]:grid-cols-[62px_1fr] max-[620px]:px-0 max-[620px]:py-2 ${character.deletionScheduledAt ? "opacity-75" : ""}`} key={character.id}>
-            <Image className="h-[71px] w-[71px] object-contain max-[620px]:size-[62px]" src={`/media/game-ui/classes/bronze/${character.archetype}.png`} alt="" width={256} height={256} />
+            <PrestigeBadge classId={character.archetype} className="size-[76px] max-[620px]:size-[64px]" level={character.level} />
             <div><p className="mb-1 text-xs uppercase tracking-[.14em] text-ancient-gold">{classes[character.archetype] ?? character.archetype} · Nível {character.level}</p><h3 className="mb-1 font-display text-3xl font-medium">{character.name}</h3><p className="text-xs text-mist">Criado em {formatDate(character.createdAt)}</p></div>
             {character.deletionScheduledAt ? (
               <div className="col-span-full mt-4 flex items-center justify-between gap-5 border-t border-moonsteel/20 pt-4 max-[620px]:flex-col max-[620px]:items-start">

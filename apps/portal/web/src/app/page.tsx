@@ -6,8 +6,9 @@ import { useGameServers } from "@/api/game-servers/get-game-servers";
 import { useLatestRelease } from "@/api/releases/get-latest-release";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PrestigeEvolution } from "@/components/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, gameClasses, prestigeTiers } from "@/data/game-classes";
+import { classHref, gameClasses } from "@/data/game-classes";
 import { routes } from "@/routes";
 
 function formatBytes(bytes: number) {
@@ -104,22 +105,8 @@ export default function HomePage() {
 
         <section className="overflow-hidden bg-[linear-gradient(180deg,#ececdd,#f8f1de)] px-6 py-32 text-[#183a32] max-[700px]:px-4 max-[700px]:py-24" id="prestigio">
           <ChapterTitle eyebrow="Ascensão do brasão">Sua força tem nível.<br />Sua jornada tem prestígio.</ChapterTitle>
-          <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-8 text-[#526b61]">O nível representa o desenvolvimento do personagem dentro do jogo. O prestígio registra o caminho percorrido e transforma visualmente o brasão da classe — de Bronze até Jade.</p>
-          <div className="mx-auto mt-20 grid w-[min(1200px,100%)] grid-cols-4 gap-4 max-[900px]:grid-cols-2 max-[520px]:grid-cols-1">
-            {prestigeTiers.map((tier, index) => (
-              <article className="relative border-y border-[#907640] bg-[#f4efde] px-6 pb-8 pt-4 text-center shadow-[0_18px_35px_rgba(31,61,49,.12)]" key={tier.id}>
-                <span className="absolute left-4 top-4 font-miraj-of-icarus text-xs text-[#9b824e]">0{index + 1}</span>
-                <Image className="mx-auto h-48 w-48 object-contain" src={`/media/game-ui/classes/${tier.id}/warrior${index === 3 ? "-selected" : ""}.png`} alt={`Brasão Guerreiro em prestígio ${tier.name}`} width={256} height={256} />
-                <p className="font-miraj-of-icarus text-[.65rem] uppercase tracking-[.18em] text-[#16834f]">{tier.stage}</p>
-                <h3 className="my-2 font-miraj-of-icarus text-4xl">{tier.name}</h3>
-                <p className="text-sm leading-6 text-[#607268]">{tier.description}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mx-auto mt-12 max-w-4xl border-y border-[#967b45] bg-[#0a3a35] px-8 py-7 text-center text-[#e5eee4] shadow-[inset_0_0_0_4px_rgba(40,185,111,.13)]">
-            <strong className="font-miraj-of-icarus text-xl uppercase tracking-[.08em] text-[#a1e5bb]">Uma identidade que cresce com você</strong>
-            <p className="mt-2 text-sm leading-6 text-[#c8d8cc]">O estado iluminado indica apenas a seleção na interface. Bronze, Prata, Ouro e Jade representam os quatro estágios reais da progressão visual.</p>
-          </div>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-8 text-[#526b61]">A cada dez níveis, o personagem conquista um novo material. Durante a evolução, a própria insígnia muda gradualmente de cor e registra o nível alcançado — de Bronze à lendária Miriamita.</p>
+          <PrestigeEvolution />
         </section>
 
         <section className="relative isolate overflow-hidden bg-[#052720] px-6 py-28 text-center text-white max-[700px]:px-4" id="reinos">
