@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_43%,rgba(235,255,226,.05)_0_18%,rgba(5,38,31,.12)_44%,rgba(3,24,20,.82)_100%),linear-gradient(180deg,rgba(2,19,16,.2),transparent_35%,rgba(3,24,20,.82)_100%)]" aria-hidden="true" />
         <SiteHeader />
 
-        <div className="relative flex w-[min(920px,calc(100%-32px))] flex-col items-center pb-20 pt-44 text-center max-[700px]:pt-32">
+        <div className="relative flex w-[min(920px,calc(100%-32px))] flex-col items-center pb-20 pt-44 text-center max-[700px]:min-h-[100svh] max-[700px]:self-start max-[700px]:justify-between max-[700px]:pb-4 max-[700px]:pt-4">
           <div className="pointer-events-none absolute left-1/2 top-[47%] -z-10 h-[min(720px,78vw)] w-[min(620px,68vw)] -translate-x-1/2 -translate-y-1/2 rounded-[48%_48%_12%_12%] border border-[#a8e5bc]/25 shadow-[inset_0_0_70px_rgba(40,185,111,.14),0_0_80px_rgba(3,24,20,.65)] before:absolute before:inset-5 before:rounded-[48%_48%_12%_12%] before:border before:border-[#d9c788]/30" aria-hidden="true" />
           <p className="mb-2 font-miraj-of-icarus text-[clamp(.7rem,1.3vw,.92rem)] uppercase tracking-[.32em] text-[#b8ecc9] [text-shadow:0_2px_8px_#031b16]">O chamado dos reinos</p>
           <Image className="mb-0 h-auto w-[min(730px,92vw)] drop-shadow-[0_14px_22px_rgba(2,20,17,.8)]" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} priority />
@@ -47,8 +47,11 @@ export default function HomePage() {
             <Link className={`${buttonStyles("secondary", true)} w-full`} style={{ minWidth: 0 }} href={routes.download}>Download</Link>
             <Link className={`${buttonStyles("ghost", true)} w-full`} style={{ minWidth: 0 }} href={routes.register}>Criar conta</Link>
           </div>
+          <a className="mt-6 hidden place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7] max-[700px]:grid" href="#classes">
+            Escolha seu caminho<span className="text-xl text-[#72d99c]">↓</span>
+          </a>
         </div>
-        <a className="absolute bottom-6 left-1/2 grid -translate-x-1/2 place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7]" href="#classes">
+        <a className="absolute bottom-6 left-1/2 grid -translate-x-1/2 place-items-center gap-1 font-miraj-of-icarus text-[.62rem] uppercase tracking-[.2em] text-[#d7e6d7] max-[700px]:hidden" href="#classes">
           Escolha seu caminho<span className="text-xl text-[#72d99c]">↓</span>
         </a>
       </section>

@@ -139,15 +139,23 @@
     --miraj-button-state: url("/media/game-ui/jade/button-disabled.png");
   }
 
-  .miraj-nav-dropdown > summary::-webkit-details-marker { display: none; }
-  .miraj-nav-dropdown[open] > summary {
+  .miraj-nav-dropdown:hover > button,
+  .miraj-nav-dropdown:has(> button:focus-visible) > button,
+  .miraj-nav-dropdown:has(.miraj-nav-menu:focus-within) > button {
     --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
   }
 
   .miraj-nav-menu {
+    display: none;
     transform-origin: top center;
-    animation: miraj-menu-open 140ms ease-out both;
     filter: drop-shadow(0 14px 13px rgb(1 15 12 / 62%));
+  }
+
+  .miraj-nav-dropdown:hover > .miraj-nav-menu,
+  .miraj-nav-dropdown:has(> button:focus-visible) > .miraj-nav-menu,
+  .miraj-nav-dropdown:has(.miraj-nav-menu:focus-within) > .miraj-nav-menu {
+    display: grid;
+    animation: miraj-menu-open 140ms ease-out both;
   }
 
   .miraj-nav-menu::before {
@@ -179,42 +187,125 @@
     margin-top: -5px;
   }
 
-  .miraj-mobile-drawer__close-label { display: none; }
-
-  .miraj-mobile-drawer[open] > .miraj-mobile-drawer__toggle {
-    position: fixed;
-    top: .75rem;
-    right: .75rem;
-    --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
+  .miraj-mobile-nav__trigger {
+    position: relative;
+    display: grid;
+    width: 58px;
+    height: 58px;
+    place-content: center;
+    gap: 6px;
+    border: 2px solid rgb(238 219 157 / 88%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 34%, #229465, #07523d 55%, #021d18 82%);
+    box-shadow: inset 0 0 0 4px rgb(3 35 28 / 76%), 0 0 0 4px rgb(57 210 126 / 18%), 0 0 24px rgb(49 224 131 / 72%), 0 8px 24px rgb(1 15 12 / 72%);
+    animation: miraj-mobile-trigger-glow 2.2s ease-in-out infinite;
   }
 
-  .miraj-mobile-drawer[open] .miraj-mobile-drawer__open-label { display: none; }
-  .miraj-mobile-drawer[open] .miraj-mobile-drawer__close-label { display: inline; }
-
-  .miraj-mobile-drawer__panel {
-    animation: miraj-drawer-open 180ms ease-out both;
+  .miraj-mobile-nav__trigger::before {
+    position: absolute;
+    inset: -8px;
+    border: 1px solid rgb(102 240 163 / 48%);
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgb(54 226 137 / 42%);
+    content: "";
+    pointer-events: none;
   }
 
-  .miraj-mobile-submenu > summary {
-    grid-template-columns: 1fr auto 1fr;
+  .miraj-mobile-nav__trigger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #f0e4bb;
+    box-shadow: 0 0 7px rgb(152 255 196 / 86%);
   }
 
-  .miraj-mobile-submenu > summary > span:first-child { grid-column: 2; }
+  .miraj-mobile-nav__trigger span:nth-child(2) { width: 15px; justify-self: end; }
 
-  .miraj-mobile-submenu__indicator {
-    grid-column: 3;
-    justify-self: start;
-    color: #cdb573;
+  @keyframes miraj-mobile-trigger-glow {
+    0%, 100% {
+      box-shadow: inset 0 0 0 4px rgb(3 35 28 / 76%), 0 0 0 4px rgb(57 210 126 / 16%), 0 0 18px rgb(49 224 131 / 58%), 0 8px 24px rgb(1 15 12 / 72%);
+    }
+    50% {
+      box-shadow: inset 0 0 0 4px rgb(3 35 28 / 76%), 0 0 0 7px rgb(72 235 143 / 23%), 0 0 34px rgb(63 239 145 / 88%), 0 8px 27px rgb(1 15 12 / 76%);
+    }
+  }
+
+  .miraj-mobile-sheet__backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgb(1 13 11 / 78%);
+    backdrop-filter: blur(3px);
+    animation: miraj-backdrop-open 180ms ease-out both;
+  }
+
+  .miraj-mobile-sheet {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    max-height: min(88svh, 680px);
+    flex-direction: column;
+    overflow: hidden;
+    border-top: 1px solid #cdb573;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(180deg, #082f28, #041d19 78%);
+    box-shadow: 0 -24px 60px rgb(1 13 10 / 76%), inset 0 1px rgb(239 223 168 / 18%);
+    transition: transform 180ms ease-out;
+    will-change: transform;
+    animation: miraj-sheet-open 260ms cubic-bezier(.2,.78,.2,1) both;
+  }
+
+  .miraj-mobile-sheet[data-dragging="true"] { transition: none; }
+
+  .miraj-mobile-sheet__drag-handle {
+    display: grid;
+    min-height: 28px;
+    flex: 0 0 auto;
+    place-items: center;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .miraj-mobile-sheet__drag-handle span {
+    display: block;
+    width: 48px;
+    height: 5px;
+    border: 1px solid rgb(238 220 161 / 45%);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #d8c384, #7d6b3d);
+    box-shadow: 0 1px 5px rgb(1 14 11 / 65%), 0 0 8px rgb(75 206 133 / 22%);
+  }
+
+  .miraj-mobile-sheet__close {
+    min-height: 40px;
+    width: 108px;
+    padding-inline: 1.25rem;
+    color: #eee7d6;
     font-size: .58rem;
-    transition: transform 120ms ease-out;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
-  .miraj-mobile-submenu[open] > summary {
+  .miraj-mobile-sheet__link,
+  .miraj-mobile-sheet__account {
+    display: grid;
+    min-height: 50px;
+    place-items: center;
+    padding-inline: 1rem;
+    color: #eef1e5;
+    font-size: .62rem;
+    letter-spacing: .06em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .miraj-mobile-sheet__account--primary {
     --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
-  }
-
-  .miraj-mobile-submenu[open] .miraj-mobile-submenu__indicator {
-    transform: rotate(45deg);
+    color: white;
   }
 
   @keyframes miraj-menu-open {
@@ -222,9 +313,14 @@
     to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
   }
 
-  @keyframes miraj-drawer-open {
-    from { opacity: .5; transform: translateX(100%); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes miraj-sheet-open {
+    from { opacity: .72; translate: 0 100%; }
+    to { opacity: 1; translate: 0 0; }
+  }
+
+  @keyframes miraj-backdrop-open {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .jade-card {
