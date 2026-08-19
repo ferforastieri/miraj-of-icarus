@@ -4,7 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { QueryProvider } from "@/app/api/_react-query/QueryProvider";
 import { JadeCursor } from "@/components/ui/JadeCursor";
-import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { ServiceWorkerRegistration } from "@/components/system/ServiceWorkerRegistration";
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import { localeDetails, routing, type Locale } from "@/i18n/routing";
 import "../globals.css";

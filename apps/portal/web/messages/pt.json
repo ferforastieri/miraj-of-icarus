@@ -330,6 +330,7 @@
     "nextCrest": "Próximo brasão: {name}, conquistado no nível {level}.",
     "finalCrest": "O brasão alcançou sua forma lendária definitiva.",
     "beginning": "Início",
+    "slugs": { "warrior": "guerreiro", "guardian": "guardiao", "thief": "ladino", "priest": "sacerdote", "wizard": "mago", "archer": "arqueiro", "idoll": "idol", "magician": "magician" },
     "items": {
       "warrior": { "name": "Guerreiro", "epithet": "A lâmina que abre o caminho", "summary": "Avança sem hesitar e transforma pressão constante em espaço para seus aliados.", "role": "Ofensiva frontal", "range": "Corpo a corpo", "rhythm": "Direto e intenso", "specialty": "Armas pesadas", "calling": "Para quem prefere liderar cada investida e sustentar o combate pela força." },
       "guardian": { "name": "Guardião", "epithet": "O escudo que não cede", "summary": "Controla o campo, protege o grupo e permanece firme quando o reino exige resistência.", "role": "Proteção", "range": "Corpo a corpo", "rhythm": "Seguro e calculado", "specialty": "Defesa do grupo", "calling": "Para quem encontra sua força protegendo outros viajantes." },

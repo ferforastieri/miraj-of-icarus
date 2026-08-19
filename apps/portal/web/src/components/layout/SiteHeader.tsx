@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
-import { MobileNavigation } from "@/components/MobileNavigation";
-import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { MobileNavigation } from "@/components/layout/MobileNavigation";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { cn } from "@/lib/cn";
 import { routes } from "@/i18n/routing";
 

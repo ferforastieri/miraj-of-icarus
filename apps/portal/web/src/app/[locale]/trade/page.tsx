@@ -1,4 +1,4 @@
-import { CommercePage } from "@/components/CommercePage";
+import { CommerceScreen } from "@/app/[locale]/_components/CommerceScreen";
 import { pageMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
@@ -13,5 +13,5 @@ export async function generateMetadata({ params }: Props) {
 export default async function TradePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Commerce" });
-  return <CommercePage eyebrow={t("tradeEyebrow")} title={t("tradeTitle")} description={t("tradeDescription")} />;
+  return <CommerceScreen eyebrow={t("tradeEyebrow")} title={t("tradeTitle")} description={t("tradeDescription")} />;
 }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
-import { MAX_CHARACTER_LEVEL, prestigeBlendForLevel, prestigeTierForLevel } from "@/game";
+import { MAX_CHARACTER_LEVEL, prestigeBlendForLevel, prestigeTierForLevel } from "@/components/game/model";
 
 type PrestigeBadgeProps = {
   classId: string;

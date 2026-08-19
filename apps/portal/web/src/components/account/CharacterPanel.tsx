@@ -8,18 +8,18 @@ import { useDeleteCharacter } from "@/app/api/_react-query/characters/delete-cha
 import { useCharacters, type Character } from "@/app/api/_react-query/characters/get-characters";
 import { useRestoreCharacter } from "@/app/api/_react-query/characters/restore-character";
 import { ApiError } from "@/app/api/_react-query/http";
-import { PrestigeBadge } from "@/components/PrestigeBadge";
+import { PrestigeBadge } from "@/components/game/PrestigeBadge";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
-import { gameClasses } from "@/game";
+import { gameClassIds } from "@/components/game/model";
 
 export function CharacterPanel({ enabled }: { enabled: boolean }) {
   const t = useTranslations("Characters");
   const classesT = useTranslations("Classes");
   const format = useFormatter();
-  const classes = Object.fromEntries(gameClasses.map(gameClass => [gameClass.id, classesT(`items.${gameClass.id}.name`)]));
+  const classes = Object.fromEntries(gameClassIds.map(classId => [classId, classesT(`items.${classId}.name`)]));
   const formatDate = (value: string) => format.dateTime(new Date(value), { dateStyle: "medium" });
   const characters = useCharacters(enabled);
   const create = useCreateCharacter();

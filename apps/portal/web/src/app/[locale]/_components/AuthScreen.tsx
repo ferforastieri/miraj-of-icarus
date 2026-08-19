@@ -1,15 +1,15 @@
 "use client";
 
 import { useAccount } from "@/app/api/_react-query/authentication/get-account";
-import { AuthPortal } from "@/components/AuthPortal";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { AuthPortal } from "@/components/auth/AuthPortal";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { routes } from "@/i18n/routing";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 
-export function AuthPage({ registering }: { registering: boolean }) {
+export function AuthScreen({ registering }: { registering: boolean }) {
   const t = useTranslations("Auth");
   const router = useRouter();
   const account = useAccount();

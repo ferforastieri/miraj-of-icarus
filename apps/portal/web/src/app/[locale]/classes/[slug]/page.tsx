@@ -1,41 +1,50 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { PrestigeBadge } from "@/components/PrestigeBadge";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { PrestigeBadge } from "@/components/game/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, findGameClass, gameClasses, prestigeTiers } from "@/game";
+import { classHref, gameClassIds, prestigeTiers } from "@/components/game/model";
 import { pageMetadata } from "@/lib/seo";
-import { routes } from "@/i18n/routing";
+import { routes, routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 
-export function generateStaticParams() {
-  return [...new Set(gameClasses.flatMap(gameClass => Object.values(gameClass.slugs)))].map(slug => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await Promise.all(routing.locales.map(async locale => {
+    const t = await getTranslations({ locale, namespace: "Classes" });
+    return gameClassIds.map(classId => t(`slugs.${classId}`));
+  }));
+  return [...new Set(slugs.flat())].map(slug => ({ slug }));
 }
 
 type Props = { params: Promise<{ locale: Locale; slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const gameClass = findGameClass(slug, locale);
-  if (!gameClass) return {};
   const metadata = await getTranslations({ locale, namespace: "Metadata" });
   const t = await getTranslations({ locale, namespace: "Classes" });
+  const gameClass = gameClassIds.map(id => ({ id, slug: t(`slugs.${id}`) })).find(item => item.slug === slug);
+  if (!gameClass) return {};
+  const localizedSlugs = Object.fromEntries(await Promise.all(routing.locales.map(async item => {
+    const translations = await getTranslations({ locale: item, namespace: "Classes" });
+    return [item, translations(`slugs.${gameClass.id}`)] as const;
+  }))) as Record<Locale, string>;
   const name = t(`items.${gameClass.id}.name`);
   return pageMetadata({
     locale,
     title: metadata("classTitle", { name }),
     description: metadata("classDescription", { name, epithet: t(`items.${gameClass.id}.epithet`), summary: t(`items.${gameClass.id}.summary`) }),
-    path: item => classHref(gameClass, item),
+    path: item => classHref(localizedSlugs[item]),
     imageAlt: metadata("socialAlt"),
   });
 }
 
 export default async function ClassPage({ params }: Props) {
   const { locale, slug } = await params;
-  const gameClass = findGameClass(slug, locale);
-  if (!gameClass) notFound();
   const t = await getTranslations({ locale, namespace: "Classes" });
+  const gameClasses = gameClassIds.map(id => ({ id, slug: t(`slugs.${id}`) }));
+  const gameClass = gameClasses.find(item => item.slug === slug);
+  if (!gameClass) notFound();
   const prestigeT = await getTranslations({ locale, namespace: "Prestige" });
   const field = (id: typeof gameClass.id, key: string) => t(`items.${id}.${key}`);
 
@@ -101,8 +110,8 @@ export default async function ClassPage({ params }: Props) {
         </section>
 
         <nav className="grid grid-cols-2 bg-[#eee9d8] text-[#173a31]" aria-label={t("otherAria")}>
-          <Link className="border-r border-[#9c8755] px-8 py-12 text-left focus-visible:bg-[#dce8d9] max-[600px]:px-4" href={classHref(previous, locale)}><span className="text-xs uppercase tracking-[.16em] text-[#8c733e]">← {t("previous")}</span><strong className="mt-2 block font-miraj-of-icarus text-[clamp(1.8rem,4vw,3.5rem)]">{field(previous.id, "name")}</strong></Link>
-          <Link className="px-8 py-12 text-right focus-visible:bg-[#dce8d9] max-[600px]:px-4" href={classHref(next, locale)}><span className="text-xs uppercase tracking-[.16em] text-[#8c733e]">{t("next")} →</span><strong className="mt-2 block font-miraj-of-icarus text-[clamp(1.8rem,4vw,3.5rem)]">{field(next.id, "name")}</strong></Link>
+          <Link className="border-r border-[#9c8755] px-8 py-12 text-left focus-visible:bg-[#dce8d9] max-[600px]:px-4" href={classHref(previous.slug)}><span className="text-xs uppercase tracking-[.16em] text-[#8c733e]">← {t("previous")}</span><strong className="mt-2 block font-miraj-of-icarus text-[clamp(1.8rem,4vw,3.5rem)]">{field(previous.id, "name")}</strong></Link>
+          <Link className="px-8 py-12 text-right focus-visible:bg-[#dce8d9] max-[600px]:px-4" href={classHref(next.slug)}><span className="text-xs uppercase tracking-[.16em] text-[#8c733e]">{t("next")} →</span><strong className="mt-2 block font-miraj-of-icarus text-[clamp(1.8rem,4vw,3.5rem)]">{field(next.id, "name")}</strong></Link>
         </nav>
       </main>
       <SiteFooter />

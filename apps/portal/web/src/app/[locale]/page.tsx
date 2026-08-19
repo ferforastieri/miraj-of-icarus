@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { PrestigeEvolution } from "@/components/PrestigeEvolution";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { PrestigeEvolution } from "@/components/game/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
 import { SectionTitlePlaque } from "@/components/ui/SectionTitlePlaque";
-import { JsonLd } from "@/components/JsonLd";
+import { JsonLd } from "@/components/system/JsonLd";
 import { siteConfig } from "@/lib/seo";
 import { localeDetails, type Locale } from "@/i18n/routing";
 import { routes } from "@/i18n/routing";

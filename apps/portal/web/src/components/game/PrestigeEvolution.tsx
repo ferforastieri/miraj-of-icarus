@@ -1,25 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
-import { PrestigeBadge } from "@/components/PrestigeBadge";
+import { PrestigeBadge } from "@/components/game/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, gameClasses, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClass } from "@/game";
-import type { Locale } from "@/i18n/routing";
+import { classHref, gameClassIds, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClassId } from "@/components/game/model";
 
 export function PrestigeEvolution() {
-  const locale = useLocale() as Locale;
   const classesT = useTranslations("Classes");
   const prestigeT = useTranslations("Prestige");
-  const [classId, setClassId] = useState<GameClass["id"]>("warrior");
+  const [classId, setClassId] = useState<GameClassId>("warrior");
   const [level, setLevel] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const selectedClass = gameClasses.find(gameClass => gameClass.id === classId) ?? gameClasses[0];
   const tier = prestigeTierForLevel(level);
   const nextTier = prestigeTiers.find(item => item.level > level);
-  const className = (id: GameClass["id"]) => classesT(`items.${id}.name`);
+  const className = (id: GameClassId) => classesT(`items.${id}.name`);
   const tierName = (id: string) => id === "beginning" ? classesT("beginning") : prestigeT(`tiers.${id}.name`);
   const prestigeSteps = [{ id: "beginning", level: 0 }, ...prestigeTiers];
 
@@ -63,18 +60,18 @@ export function PrestigeEvolution() {
     <div className="mx-auto mt-0 w-[min(1240px,100%)]" data-testid="prestige-evolution">
       <div className="border-b border-[#d4b867] bg-transparent px-[clamp(1rem,2.4vw,2.5rem)] pb-9 pt-2 text-[#f7f4e8] [text-shadow:0_2px_4px_#010e0c,0_0_10px_#021713]">
         <div className="grid grid-cols-8 gap-2 max-[1050px]:grid-cols-4 max-[520px]:grid-cols-2" role="group" aria-label={classesT("chooseAria")}>
-          {gameClasses.map(gameClass => (
+          {gameClassIds.map(gameClassId => (
             <button
-              className={`relative grid min-h-[138px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center drop-shadow-[0_3px_5px_rgba(1,16,13,.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#f2d477] shadow-[0_0_16px_rgba(205,167,70,.6)]" : "border-[#d9c37e]/85"}`}
-              key={gameClass.id}
+              className={`relative grid min-h-[138px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center drop-shadow-[0_3px_5px_rgba(1,16,13,.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClassId ? "border-[#f2d477] shadow-[0_0_16px_rgba(205,167,70,.6)]" : "border-[#d9c37e]/85"}`}
+              key={gameClassId}
               type="button"
-              aria-pressed={classId === gameClass.id}
-              aria-label={classesT("showEvolution", { name: className(gameClass.id) })}
-              onClick={() => setClassId(gameClass.id)}
+              aria-pressed={classId === gameClassId}
+              aria-label={classesT("showEvolution", { name: className(gameClassId) })}
+              onClick={() => setClassId(gameClassId)}
             >
-              <Image className="size-[94px] object-contain drop-shadow-[0_2px_5px_#031713]" src={`/media/game-ui/classes/gold/${gameClass.id}.png`} alt="" width={112} height={112} />
-              <span className="font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#fff0b7]">{className(gameClass.id)}</span>
-              {classId === gameClass.id && <span className="absolute inset-x-3 bottom-0 h-px bg-[#f0d171] shadow-[0_0_7px_#d7ad43]" />}
+              <Image className="size-[94px] object-contain drop-shadow-[0_2px_5px_#031713]" src={`/media/game-ui/classes/gold/${gameClassId}.png`} alt="" width={112} height={112} />
+              <span className="font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#fff0b7]">{className(gameClassId)}</span>
+              {classId === gameClassId && <span className="absolute inset-x-3 bottom-0 h-px bg-[#f0d171] shadow-[0_0_7px_#d7ad43]" />}
             </button>
           ))}
         </div>
@@ -91,12 +88,12 @@ export function PrestigeEvolution() {
                 <PrestigeBadge classId={classId} className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
               </div>
             </div>
-            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass, locale)}>{classesT("meet")}</Link>
+            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(classesT(`slugs.${classId}`))}>{classesT("meet")}</Link>
           </div>
           <div className="w-full text-left max-[900px]:mx-auto max-[900px]:max-w-[460px] max-[900px]:text-center">
-          <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{classesT(`items.${selectedClass.id}.role`)}</p>
-          <h3 className="mt-2 font-miraj-of-icarus text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[.9] text-[#f4efdc]">{className(selectedClass.id)}</h3>
-          <p className="mt-3 text-sm font-medium leading-6 text-[#eef2e9]">{classesT(`items.${selectedClass.id}.epithet`)}</p>
+          <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{classesT(`items.${classId}.role`)}</p>
+          <h3 className="mt-2 font-miraj-of-icarus text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[.9] text-[#f4efdc]">{className(classId)}</h3>
+          <p className="mt-3 text-sm font-medium leading-6 text-[#eef2e9]">{classesT(`items.${classId}.epithet`)}</p>
           <div className="mt-5 max-[900px]:text-center">
             <strong className="text-[clamp(4.5rem,10vw,8rem)] font-normal leading-none text-white">{level}</strong>
           </div>

@@ -330,6 +330,7 @@
     "nextCrest": "Next crest: {name}, earned at level {level}.",
     "finalCrest": "The crest has reached its definitive legendary form.",
     "beginning": "Beginning",
+    "slugs": { "warrior": "warrior", "guardian": "guardian", "thief": "thief", "priest": "priest", "wizard": "wizard", "archer": "archer", "idoll": "idol", "magician": "magician" },
     "items": {
       "warrior": { "name": "Warrior", "epithet": "The blade that opens the way", "summary": "Advances without hesitation and turns constant pressure into space for allies.", "role": "Frontline offense", "range": "Melee", "rhythm": "Direct and intense", "specialty": "Heavy weapons", "calling": "For those who prefer to lead every charge and sustain combat through strength." },
       "guardian": { "name": "Guardian", "epithet": "The shield that never yields", "summary": "Controls the field, protects the group, and stands firm when the realm demands resilience.", "role": "Protection", "range": "Melee", "rhythm": "Steady and calculated", "specialty": "Group defense", "calling": "For those who find their strength in protecting fellow travelers." },

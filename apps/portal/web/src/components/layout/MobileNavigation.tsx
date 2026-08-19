@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { routes } from "@/i18n/routing";
 
 export function MobileNavigation() {

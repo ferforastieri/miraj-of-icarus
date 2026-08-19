@@ -330,6 +330,7 @@
     "nextCrest": "Siguiente blasón: {name}, conquistado en el nivel {level}.",
     "finalCrest": "El blasón ha alcanzado su forma legendaria definitiva.",
     "beginning": "Inicio",
+    "slugs": { "warrior": "guerrero", "guardian": "guardian", "thief": "picaro", "priest": "sacerdote", "wizard": "mago", "archer": "arquero", "idoll": "idolo", "magician": "magician" },
     "items": {
       "warrior": { "name": "Guerrero", "epithet": "La espada que abre el camino", "summary": "Avanza sin dudar y transforma la presión constante en espacio para sus aliados.", "role": "Ofensiva frontal", "range": "Cuerpo a cuerpo", "rhythm": "Directo e intenso", "specialty": "Armas pesadas", "calling": "Para quienes prefieren liderar cada ofensiva y sostener el combate con su fuerza." },
       "guardian": { "name": "Guardián", "epithet": "El escudo que no cede", "summary": "Controla el campo, protege al grupo y se mantiene firme cuando el reino exige resistencia.", "role": "Protección", "range": "Cuerpo a cuerpo", "rhythm": "Seguro y calculado", "specialty": "Defensa del grupo", "calling": "Para quienes encuentran su fuerza protegiendo a otros viajeros." },

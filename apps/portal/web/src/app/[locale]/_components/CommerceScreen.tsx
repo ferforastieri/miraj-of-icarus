@@ -1,17 +1,17 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
 import { routes } from "@/i18n/routing";
 
-type CommercePageProps = {
+type CommerceScreenProps = {
   eyebrow: string;
   title: string;
   description: string;
 };
 
-export function CommercePage({ eyebrow, title, description }: CommercePageProps) {
+export function CommerceScreen({ eyebrow, title, description }: CommerceScreenProps) {
   const t = useTranslations("Commerce");
   return (
     <div className="min-h-screen bg-[#041d19]">
