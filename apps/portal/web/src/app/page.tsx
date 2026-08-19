@@ -5,7 +5,33 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeEvolution } from "@/components/PrestigeEvolution";
 import { buttonStyles } from "@/components/ui/Button";
 import { SectionTitlePlaque } from "@/components/ui/SectionTitlePlaque";
+import { JsonLd } from "@/components/JsonLd";
+import { siteConfig } from "@/lib/seo";
 import { routes } from "@/routes";
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    inLanguage: "pt-BR",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    image: `${siteConfig.url}${siteConfig.socialImage.url}`,
+    description: siteConfig.description,
+    genre: ["MMORPG", "Fantasia"],
+    gamePlatform: "PC",
+    operatingSystem: "Windows",
+    playMode: "MultiPlayer",
+    inLanguage: "pt-BR",
+  },
+] as const;
 
 const news = [
   {
@@ -31,6 +57,7 @@ const news = [
 export default function HomePage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#041d19]">
+      <JsonLd data={structuredData} />
       <section className="relative isolate grid min-h-[100svh] place-items-center overflow-hidden" id="inicio" aria-labelledby="hero-title">
         <div data-testid="hero-image" className="absolute inset-0 -z-30 animate-hero-arrival bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center max-[700px]:bg-[58%_center]" aria-hidden="true" />
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_43%,rgba(235,255,226,.05)_0_18%,rgba(5,38,31,.12)_44%,rgba(3,24,20,.82)_100%),linear-gradient(180deg,rgba(2,19,16,.2),transparent_35%,rgba(3,24,20,.82)_100%)]" aria-hidden="true" />

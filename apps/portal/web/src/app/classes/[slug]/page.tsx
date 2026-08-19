@@ -5,10 +5,23 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
 import { classHref, findGameClass, gameClasses, prestigeTiers } from "@/data/game-classes";
+import { pageMetadata } from "@/lib/seo";
 import { routes } from "@/routes";
 
 export function generateStaticParams() {
   return gameClasses.map(gameClass => ({ slug: gameClass.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const gameClass = findGameClass(slug);
+  if (!gameClass) return {};
+
+  return pageMetadata({
+    title: `${gameClass.name} - Classe`,
+    description: `${gameClass.epithet}. ${gameClass.summary} Conheça a progressão e o papel de ${gameClass.name} em Miraj of Icarus.`,
+    path: `/classes/${gameClass.slug}`,
+  });
 }
 
 export default async function ClassPage({ params }: { params: Promise<{ slug: string }> }) {

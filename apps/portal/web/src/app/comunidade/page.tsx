@@ -2,7 +2,15 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
+import { pageMetadata } from "@/lib/seo";
 import { routes } from "@/routes";
+
+export const metadata = pageMetadata({
+  title: "Comunidade",
+  description: "O futuro ponto de encontro de jogadores, clãs e equipe de desenvolvimento de Miraj of Icarus.",
+  path: "/comunidade",
+  index: false,
+});
 
 const futureRooms = [
   ["Guias", "Descobertas, builds e caminhos escritos por quem atravessa os reinos."],

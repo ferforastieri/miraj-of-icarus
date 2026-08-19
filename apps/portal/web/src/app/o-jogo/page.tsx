@@ -3,7 +3,14 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
+import { pageMetadata } from "@/lib/seo";
 import { routes } from "@/routes";
+
+export const metadata = pageMetadata({
+  title: "Sobre o jogo",
+  description: "Conheça o mundo, as classes e a reconstrução de Miraj of Icarus, um MMORPG de fantasia criado para jornadas em comunidade.",
+  path: "/o-jogo",
+});
 
 const pillars = [
   {

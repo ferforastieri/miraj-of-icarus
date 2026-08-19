@@ -60,8 +60,7 @@ apps/
 │   ├── mobile/          # cliente móvel
 │   └── windows/         # launcher e cliente Windows
 └── portal/
-    ├── mobile/          # aplicativo móvel do portal
-    └── web/             # landing page e áreas autenticadas
+    └── web/             # PWA, landing page e áreas autenticadas
 backend/
 ├── api/                 # contas, sessões, personagens e administração
 ├── download-worker/     # distribuição pública e autenticada de releases
@@ -77,7 +76,6 @@ legacy/                  # material histórico isolado da aplicação atual
 - [Game Server](backend/game-server/README.md)
 - [Infraestrutura](backend/infra/README.md)
 - [Portal web](apps/portal/web/README.md)
-- [Portal mobile](apps/portal/mobile/README.md)
 - [Cliente Windows](apps/game/windows/README.md)
 - [Cliente mobile](apps/game/mobile/README.md)
 

@@ -1,8 +1,9 @@
 # Portal web
 
-Aplicação Next.js do Miraj of Icarus. Reúne landing page, autenticação, área do
+PWA em Next.js do Miraj of Icarus. Reúne landing page, autenticação, área do
 jogador e painel administrativo, usando a API como backend por meio de rotas
-BFF no próprio portal.
+BFF no próprio portal. Pode ser instalada na tela inicial em navegadores
+compatíveis.
 
 ## Tecnologias
 
@@ -11,6 +12,18 @@ BFF no próprio portal.
 - Tailwind CSS 4;
 - TanStack Query;
 - OpenNext e Cloudflare Workers.
+
+## PWA e descoberta
+
+- `src/app/manifest.ts` define instalação, ícones e atalhos;
+- `public/sw.js` oferece fallback offline sem armazenar APIs ou áreas privadas;
+- `src/app/robots.ts` e `src/app/sitemap.ts` orientam os buscadores;
+- metadata por rota define canonical, Open Graph e Twitter Cards;
+- JSON-LD descreve o site e o jogo sem dados promocionais inventados.
+
+Defina `GOOGLE_SITE_VERIFICATION` no ambiente de produção depois de cadastrar
+o domínio no Google Search Console. A imagem social oficial fica em
+`public/media/social/miraj-of-icarus-og.jpg`.
 
 ## Estrutura
 

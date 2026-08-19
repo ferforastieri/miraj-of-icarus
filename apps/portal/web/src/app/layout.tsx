@@ -1,18 +1,52 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { QueryProvider } from "@/providers/QueryProvider";
 import { JadeCursor } from "@/components/ui/JadeCursor";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { pageMetadata, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Miraj of Icarus - O céu não é o limite",
+    description: siteConfig.description,
+    path: "/",
+    absoluteTitle: true,
+  }),
   title: {
-    default: "Miraj of Icarus — A passagem está aberta",
+    default: "Miraj of Icarus - O céu não é o limite",
     template: "%s | Miraj of Icarus",
   },
-  description:
-    "Portal oficial de Miraj of Icarus. Baixe o launcher, acompanhe os reinos e gerencie sua conta.",
   metadataBase: new URL("https://mirajoficarus.com"),
-  alternates: { canonical: "/" },
-  icons: { icon: "/media/branding/miraj-mj-mark-jade.png" },
+  applicationName: siteConfig.name,
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "games",
+  manifest: "/manifest.webmanifest",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: false, email: false, address: false },
+  icons: {
+    icon: [
+      { url: "/icons/favicon-48.png", type: "image/png", sizes: "48x48" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "black-translucent",
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#041d19",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -31,6 +65,7 @@ export default function RootLayout({
       <body>
         <QueryProvider>{children}</QueryProvider>
         <JadeCursor />
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );
