@@ -27,8 +27,8 @@ compatíveis.
 
 O locale faz parte de toda URL pública. A raiz detecta a preferência do
 navegador, com português como padrão, e o seletor de país grava a escolha no
-cookie `MIRAJ_LOCALE`. Os catálogos ficam em `messages/pt.json`,
-`messages/en.json` e `messages/es.json`; mantenha a mesma árvore de chaves nos
+cookie `MIRAJ_LOCALE`. Os catálogos ficam em `src/i18n/messages/pt.json`,
+`src/i18n/messages/en.json` e `src/i18n/messages/es.json`; mantenha a mesma árvore de chaves nos
 três arquivos.
 
 `src/i18n/routing.ts` concentra locales e países, `src/middleware.ts` resolve
