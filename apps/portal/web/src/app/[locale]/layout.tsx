@@ -35,8 +35,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     formatDetection: { telephone: false, email: false, address: false },
     icons: {
       icon: [
-        { url: "/icons/favicon-48.png", type: "image/png", sizes: "48x48" },
-        { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+        { url: "/icons/favicon-transparent-48.png", type: "image/png", sizes: "48x48" },
       ],
       apple: [{ url: "/icons/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
     },

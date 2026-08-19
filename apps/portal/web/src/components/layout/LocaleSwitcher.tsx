@@ -42,15 +42,16 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
   }
 
   return (
-    <div className="miraj-nav-dropdown relative z-50 w-[210px]" aria-label={t("label")}>
+    <div className="miraj-nav-dropdown relative z-50 w-[180px]" aria-label={t("label")}>
       <button
-        className="miraj-button grid min-h-10 w-full place-items-center px-6 font-miraj-of-icarus text-[.6rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white"
+        className="miraj-button grid min-h-10 w-full place-items-center px-8 font-miraj-of-icarus text-[.6rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white"
         type="button"
         aria-haspopup="menu"
+        title={t(locale)}
       >
-        <span className="flex items-center justify-center gap-2 leading-none">
+        <span className="grid w-full min-w-0 grid-cols-[1.25rem_minmax(0,1fr)_.6rem] items-center gap-2 leading-none">
           <CurrentFlag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
-          <span>{t(locale)}</span>
+          <span className="min-w-0 truncate text-center">{localeDetails[locale].countryCode}</span>
           <span className="text-[.52rem] text-[#cdb573]" aria-hidden="true">◆</span>
         </span>
       </button>
@@ -61,7 +62,7 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
           return (
             <Link
               className={cn(
-                "miraj-button grid min-h-[48px] w-[220px] grid-cols-[2rem_1fr] items-center px-6 text-left font-miraj-of-icarus text-[.6rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white",
+                "miraj-button grid min-h-[48px] w-[220px] grid-cols-[1.5rem_minmax(0,1fr)] items-center gap-2 px-8 text-left font-miraj-of-icarus text-[.57rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white",
                 locale === item && "text-white",
               )}
               href={pathname as never}
@@ -69,9 +70,10 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
               key={item}
               role="menuitem"
               aria-current={locale === item ? "page" : undefined}
+              title={t(item)}
             >
               <Flag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
-              <span>{t(item)}</span>
+              <span className="min-w-0 truncate">{localeDetails[item].label}</span>
             </Link>
           );
         })}
