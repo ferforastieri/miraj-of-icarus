@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
 import { MAX_CHARACTER_LEVEL, prestigeBlendForLevel, prestigeTierForLevel } from "@/data/game-classes";
 
@@ -12,6 +13,8 @@ type PrestigeBadgeProps = {
 };
 
 export function PrestigeBadge({ classId, level, selected = false, interpolate = true, className = "", priority = false }: PrestigeBadgeProps) {
+  const prestigeT = useTranslations("Prestige");
+  const classesT = useTranslations("Classes");
   const normalizedLevel = Math.max(0, Math.min(MAX_CHARACTER_LEVEL, Math.floor(level)));
   const blend = prestigeBlendForLevel(normalizedLevel);
   const tier = prestigeTierForLevel(normalizedLevel);
@@ -26,7 +29,7 @@ export function PrestigeBadge({ classId, level, selected = false, interpolate = 
       data-level={normalizedLevel}
       data-tier={tier.id}
       style={style}
-      aria-label={`${tier.name}, nível ${normalizedLevel}`}
+      aria-label={`${prestigeT(`tiers.${tier.id}.name`)}, ${classesT("level", { level: normalizedLevel })}`}
     >
       <Image
         className="absolute inset-0 size-full object-contain transition-[filter] duration-300"

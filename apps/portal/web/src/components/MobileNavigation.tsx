@@ -2,22 +2,24 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { routes } from "@/routes";
 
-const navigationItems = [
-  { href: routes.home, label: "Início" },
-  { href: routes.gameAbout, label: "Sobre o jogo" },
-  { href: routes.classes, label: "Personagens" },
-  { href: routes.skills, label: "Skills" },
-  { href: routes.realms, label: "Reinos" },
-  { href: routes.download, label: "Download" },
-  { href: routes.community, label: "Comunidade" },
-  { href: routes.trade, label: "Trade" },
-  { href: routes.shop, label: "Shop" },
-] as const;
-
 export function MobileNavigation() {
+  const t = useTranslations("Navigation");
+  const navigationItems = [
+    { href: routes.home, label: t("home") },
+    { href: routes.gameAbout, label: t("aboutGame") },
+    { href: routes.classes, label: t("characters") },
+    { href: routes.skills, label: t("skills") },
+    { href: routes.realms, label: t("realms") },
+    { href: routes.download, label: t("download") },
+    { href: routes.community, label: t("community") },
+    { href: routes.trade, label: t("trade") },
+    { href: routes.shop, label: t("shop") },
+  ];
   const [isOpen, setIsOpen] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -102,7 +104,7 @@ export function MobileNavigation() {
       <button
         className="miraj-mobile-nav__trigger pointer-events-auto"
         type="button"
-        aria-label="Abrir navegação"
+        aria-label={t("open")}
         aria-controls="mobile-navigation-sheet"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
@@ -114,7 +116,7 @@ export function MobileNavigation() {
 
       {isOpen && (
         <div className="pointer-events-auto fixed inset-0 z-[70]">
-          <button className="miraj-mobile-sheet__backdrop" type="button" aria-label="Fechar navegação" onClick={close} />
+          <button className="miraj-mobile-sheet__backdrop" type="button" aria-label={t("close")} onClick={close} />
           <section
             className="miraj-mobile-sheet"
             id="mobile-navigation-sheet"
@@ -137,13 +139,13 @@ export function MobileNavigation() {
 
             <div className="flex shrink-0 items-center justify-between gap-4 px-5 pb-3 pt-1">
               <div>
-                <p className="text-[.56rem] uppercase tracking-[.2em] text-[#88d2a8]">Escolha seu destino</p>
-                <h2 className="mt-1 font-miraj-of-icarus text-xl text-[#f4edd6]" id="mobile-navigation-title">Navegação</h2>
+                <p className="text-[.56rem] uppercase tracking-[.2em] text-[#88d2a8]">{t("chooseDestination")}</p>
+                <h2 className="mt-1 font-miraj-of-icarus text-xl text-[#f4edd6]" id="mobile-navigation-title">{t("navigation")}</h2>
               </div>
-              <button ref={closeButtonRef} className="miraj-button miraj-mobile-sheet__close" type="button" onClick={close}>Fechar</button>
+              <button ref={closeButtonRef} className="miraj-button miraj-mobile-sheet__close" type="button" onClick={close}>{t("closeButton")}</button>
             </div>
 
-            <nav className="min-h-0 overflow-y-auto px-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]" aria-label="Navegação mobile">
+            <nav className="min-h-0 overflow-y-auto px-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]" aria-label={t("mobileAria")}>
               <div className="grid grid-cols-2 gap-1">
                 {navigationItems.map((item, index) => (
                   <Link className={`miraj-button miraj-mobile-sheet__link ${index === 0 ? "col-span-2 w-[min(260px,100%)] justify-self-center" : ""}`} href={item.href} key={item.href} onClick={close}>
@@ -154,9 +156,13 @@ export function MobileNavigation() {
 
               <div className="my-3 h-px bg-[linear-gradient(90deg,transparent,#c9b271,transparent)]" aria-hidden="true" />
 
+              <LocaleSwitcher mobile />
+
+              <div className="my-3 h-px bg-[linear-gradient(90deg,transparent,#c9b271,transparent)]" aria-hidden="true" />
+
               <div className="grid grid-cols-2 gap-1">
-                <Link className="miraj-button miraj-mobile-sheet__account" href={routes.login} onClick={close}>Entrar</Link>
-                <Link className="miraj-button miraj-mobile-sheet__account miraj-mobile-sheet__account--primary" href={routes.register} onClick={close}>Criar conta</Link>
+                <Link className="miraj-button miraj-mobile-sheet__account" href={routes.login} onClick={close}>{t("login")}</Link>
+                <Link className="miraj-button miraj-mobile-sheet__account miraj-mobile-sheet__account--primary" href={routes.register} onClick={close}>{t("register")}</Link>
               </div>
             </nav>
           </section>

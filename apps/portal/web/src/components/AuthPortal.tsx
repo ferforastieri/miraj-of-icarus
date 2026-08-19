@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState, type FormEvent } from "react";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useLogin } from "@/api/authentication/login";
 import { useRegister } from "@/api/authentication/register";
 import { ApiError } from "@/api/http";
@@ -12,21 +13,9 @@ import { Kicker } from "@/components/ui/Kicker";
 import { Turnstile } from "@/components/Turnstile";
 import { routes } from "@/routes";
 
-const messages: Record<string, string> = {
-  invalid_credentials: "Conta ou senha incorretas.",
-  invalid_account_name: "Use de 3 a 32 letras ou números no nome da conta.",
-  invalid_password: "A senha precisa ter entre 10 e 200 caracteres.",
-  account_name_unavailable: "Esse nome de conta já está em uso.",
-  password_mismatch: "As senhas não são iguais.",
-  service_unavailable: "O serviço de contas está indisponível. Tente novamente em instantes.",
-  session_expired: "Sua sessão terminou. Entre novamente.",
-  turnstile_required: "Conclua a verificação de segurança.",
-  turnstile_invalid: "A verificação de segurança expirou. Tente novamente.",
-  turnstile_failed: "A verificação de segurança expirou. Tente novamente.",
-  rate_limited: "Muitas tentativas. Aguarde um pouco antes de tentar novamente.",
-};
-
 export function AuthPortal({ registering, initialError }: { registering: boolean; initialError?: string }) {
+  const t = useTranslations("Auth");
+  const router = useRouter();
   const login = useLogin();
   const register = useRegister();
   const [error, setError] = useState(initialError);
@@ -52,7 +41,8 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
       }
       if (registering) await register.mutateAsync({ userName, password, turnstileToken });
       else await login.mutateAsync({ userName, password });
-      window.location.assign(routes.client);
+      router.push(routes.client);
+      router.refresh();
     } catch (reason) {
       setError(reason instanceof ApiError ? reason.code : "service_unavailable");
       if (reason instanceof ApiError && reason.retryAfter) setRetryAfter(reason.retryAfter);
@@ -65,25 +55,25 @@ export function AuthPortal({ registering, initialError }: { registering: boolean
     <main className="relative grid min-h-screen place-items-center px-6 pb-20 pt-52 max-[700px]:pt-32 max-[620px]:px-3 max-[620px]:pb-12">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,232,157,.12),transparent_35%)]" aria-hidden="true" />
       <section className="auth-panel relative w-[min(620px,100%)] px-[clamp(34px,8vw,74px)] pb-[clamp(48px,8vw,78px)] pt-[clamp(62px,10vw,94px)] drop-shadow-[0_30px_60px_rgba(3,27,22,.48)]" aria-labelledby="auth-title">
-        <Kicker>Portal do jogador</Kicker>
-        <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{registering ? "Abra sua passagem." : "Retorne ao reino."}</h1>
-        <p className="leading-relaxed text-mist">{registering ? "Crie sua conta para preparar seus personagens e acompanhar os reinos." : "Entre para acessar seus personagens, o estado dos reinos e a versão mais recente."}</p>
-        <div className="my-6 grid grid-cols-2 gap-2" role="tablist" aria-label="Acesso à conta">
-          <Link className={`${tabClass} ${!registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={!registering} href={routes.login}>Entrar</Link>
-          <Link className={`${tabClass} ${registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={registering} href={routes.register}>Criar conta</Link>
+        <Kicker>{t("playerPortal")}</Kicker>
+        <h1 id="auth-title" className="mb-3 font-display text-[clamp(2.8rem,6vw,4.3rem)] font-medium leading-[.9]">{t(registering ? "registerTitle" : "loginTitle")}</h1>
+        <p className="leading-relaxed text-mist">{t(registering ? "registerDescription" : "loginDescription")}</p>
+        <div className="my-6 grid grid-cols-2 gap-2" role="tablist" aria-label={t("accessAria")}>
+          <Link className={`${tabClass} ${!registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={!registering} href={routes.login}>{t("login")}</Link>
+          <Link className={`${tabClass} ${registering ? "text-ancient-gold" : ""}`} role="tab" aria-selected={registering} href={routes.register}>{t("register")}</Link>
         </div>
         {error && <Alert className="mb-4" role="alert">
-          {messages[error] ?? "Não foi possível concluir a ação."}
-          {error === "rate_limited" && retryAfter ? ` Tente novamente em ${Math.ceil(retryAfter / 60)} minuto(s).` : ""}
+          {t.has(`errors.${error}`) ? t(`errors.${error}`) : t("errors.fallback")}
+          {error === "rate_limited" && retryAfter ? ` ${t("retryAfter", { minutes: Math.ceil(retryAfter / 60) })}` : ""}
         </Alert>}
         <form className="grid gap-4" onSubmit={submit}>
-          <label className={labelClass}><span>Conta</span><Input name="userName" autoComplete="username" minLength={3} maxLength={32} required /></label>
-          <label className={labelClass}><span>Senha</span><Input name="password" type="password" autoComplete={registering ? "new-password" : "current-password"} minLength={10} maxLength={200} required /></label>
-          {registering && <label className={labelClass}><span>Confirmar senha</span><Input name="passwordConfirmation" type="password" autoComplete="new-password" minLength={10} maxLength={200} required /></label>}
+          <label className={labelClass}><span>{t("account")}</span><Input name="userName" autoComplete="username" minLength={3} maxLength={32} required /></label>
+          <label className={labelClass}><span>{t("password")}</span><Input name="password" type="password" autoComplete={registering ? "new-password" : "current-password"} minLength={10} maxLength={200} required /></label>
+          {registering && <label className={labelClass}><span>{t("confirmPassword")}</span><Input name="passwordConfirmation" type="password" autoComplete="new-password" minLength={10} maxLength={200} required /></label>}
           {registering && <Turnstile onToken={setTurnstileToken} />}
-          <Button className="mt-1 w-full" variant="primary" type="submit" disabled={pending}>{pending ? "Abrindo passagem..." : registering ? "Criar conta e entrar" : "Entrar na área do cliente"}</Button>
+          <Button className="mt-1 w-full" variant="primary" type="submit" disabled={pending}>{t(pending ? "opening" : registering ? "registerSubmit" : "loginSubmit")}</Button>
         </form>
-        <Link className="relative mt-6 block text-center text-xs text-mist" href={routes.home}>← Voltar para o portal</Link>
+        <Link className="relative mt-6 block text-center text-xs text-mist" href={routes.home}>← {t("back")}</Link>
       </section>
     </main>
   );

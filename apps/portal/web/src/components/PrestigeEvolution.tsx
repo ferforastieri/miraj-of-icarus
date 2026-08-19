@@ -1,24 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
 import { classHref, gameClasses, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClass } from "@/data/game-classes";
 
-const prestigeSteps = [
-  { id: "beginning", name: "Início", level: 0 },
-  ...prestigeTiers,
-] as const;
-
 export function PrestigeEvolution() {
+  const classesT = useTranslations("Classes");
+  const prestigeT = useTranslations("Prestige");
   const [classId, setClassId] = useState<GameClass["id"]>("warrior");
   const [level, setLevel] = useState(0);
   const [playing, setPlaying] = useState(true);
   const selectedClass = gameClasses.find(gameClass => gameClass.id === classId) ?? gameClasses[0];
   const tier = prestigeTierForLevel(level);
   const nextTier = prestigeTiers.find(item => item.level > level);
+  const className = (id: GameClass["id"]) => classesT(`items.${id}.name`);
+  const tierName = (id: string) => id === "beginning" ? classesT("beginning") : prestigeT(`tiers.${id}.name`);
+  const prestigeSteps = [{ id: "beginning", level: 0 }, ...prestigeTiers];
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -59,18 +60,18 @@ export function PrestigeEvolution() {
   return (
     <div className="mx-auto mt-0 w-[min(1240px,100%)]" data-testid="prestige-evolution">
       <div className="border-b border-[#d4b867] bg-transparent px-[clamp(1rem,2.4vw,2.5rem)] pb-9 pt-2 text-[#f7f4e8] [text-shadow:0_2px_4px_#010e0c,0_0_10px_#021713]">
-        <div className="grid grid-cols-8 gap-2 max-[1050px]:grid-cols-4 max-[520px]:grid-cols-2" role="group" aria-label="Escolha uma classe">
+        <div className="grid grid-cols-8 gap-2 max-[1050px]:grid-cols-4 max-[520px]:grid-cols-2" role="group" aria-label={classesT("chooseAria")}>
           {gameClasses.map(gameClass => (
             <button
               className={`relative grid min-h-[138px] cursor-pointer place-items-center border bg-transparent px-2 py-2 text-center drop-shadow-[0_3px_5px_rgba(1,16,13,.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0d68a] ${classId === gameClass.id ? "border-[#f2d477] shadow-[0_0_16px_rgba(205,167,70,.6)]" : "border-[#d9c37e]/85"}`}
               key={gameClass.id}
               type="button"
               aria-pressed={classId === gameClass.id}
-              aria-label={`Exibir a evolução de ${gameClass.name}`}
+              aria-label={classesT("showEvolution", { name: className(gameClass.id) })}
               onClick={() => setClassId(gameClass.id)}
             >
               <Image className="size-[94px] object-contain drop-shadow-[0_2px_5px_#031713]" src={`/media/game-ui/classes/gold/${gameClass.id}.png`} alt="" width={112} height={112} />
-              <span className="font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#fff0b7]">{gameClass.name}</span>
+              <span className="font-miraj-of-icarus text-[.62rem] font-semibold uppercase tracking-[.07em] text-[#fff0b7]">{className(gameClass.id)}</span>
               {classId === gameClass.id && <span className="absolute inset-x-3 bottom-0 h-px bg-[#f0d171] shadow-[0_0_7px_#d7ad43]" />}
             </button>
           ))}
@@ -88,22 +89,22 @@ export function PrestigeEvolution() {
                 <PrestigeBadge classId={classId} className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
               </div>
             </div>
-            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass)}>Conhecer a classe</Link>
+            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass)}>{classesT("meet")}</Link>
           </div>
           <div className="w-full text-left max-[900px]:mx-auto max-[900px]:max-w-[460px] max-[900px]:text-center">
-          <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{selectedClass.role}</p>
-          <h3 className="mt-2 font-miraj-of-icarus text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[.9] text-[#f4efdc]">{selectedClass.name}</h3>
-          <p className="mt-3 text-sm font-medium leading-6 text-[#eef2e9]">{selectedClass.epithet}</p>
+          <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{classesT(`items.${selectedClass.id}.role`)}</p>
+          <h3 className="mt-2 font-miraj-of-icarus text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[.9] text-[#f4efdc]">{className(selectedClass.id)}</h3>
+          <p className="mt-3 text-sm font-medium leading-6 text-[#eef2e9]">{classesT(`items.${selectedClass.id}.epithet`)}</p>
           <div className="mt-5 max-[900px]:text-center">
             <strong className="text-[clamp(4.5rem,10vw,8rem)] font-normal leading-none text-white">{level}</strong>
           </div>
-          <p className="mt-6 text-xs uppercase tracking-[.18em]" style={{ color: tier.color }}>{tier.stage}</p>
-          <h4 className="mt-1 text-[clamp(2rem,3.5vw,3.5rem)] leading-none text-[#f4efdc]">{tier.name}</h4>
-          <p className="mt-4 max-w-[460px] text-sm font-medium leading-6 text-[#f0f3ea] max-[900px]:mx-auto">{tier.description}</p>
-          <p className="mt-5 text-sm text-[#d7e5dc]">{nextTier ? `Próximo brasão: ${nextTier.name}, conquistado no nível ${nextTier.level}.` : "O brasão alcançou sua forma lendária definitiva."}</p>
+          <p className="mt-6 text-xs uppercase tracking-[.18em]" style={{ color: tier.color }}>{prestigeT(`tiers.${tier.id}.stage`)}</p>
+          <h4 className="mt-1 text-[clamp(2rem,3.5vw,3.5rem)] leading-none text-[#f4efdc]">{tierName(tier.id)}</h4>
+          <p className="mt-4 max-w-[460px] text-sm font-medium leading-6 text-[#f0f3ea] max-[900px]:mx-auto">{prestigeT(`tiers.${tier.id}.description`)}</p>
+          <p className="mt-5 text-sm text-[#d7e5dc]">{nextTier ? classesT("nextCrest", { name: tierName(nextTier.id), level: nextTier.level }) : classesT("finalCrest")}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3 max-[720px]:justify-center max-[520px]:flex-col">
             <label className="grid min-w-[240px] gap-2 text-[.65rem] font-semibold uppercase tracking-[.12em] text-[#edf3eb] max-[520px]:w-full">
-              Escolher nível
+              {classesT("chooseLevel")}
               <input className="accent-[#78b79a]" type="range" min="0" max={MAX_CHARACTER_LEVEL} value={level} onChange={event => { setPlaying(false); setLevel(Number(event.target.value)); }} />
             </label>
           </div>
@@ -122,10 +123,10 @@ export function PrestigeEvolution() {
               key={item.id}
               type="button"
               onClick={() => { setPlaying(false); setLevel(item.level); }}
-              aria-label={`Exibir ${item.name}, nível ${item.level}`}
+              aria-label={classesT("showTier", { name: tierName(item.id), level: item.level })}
             >
               <PrestigeBadge classId={classId} className={`w-16 transition-[filter,opacity] ${level >= item.level ? "opacity-100" : "opacity-65 grayscale-[.45]"}`} level={item.level} selected interpolate={false} />
-              <strong className="text-xs font-normal">{item.name}</strong>
+              <strong className="text-xs font-normal">{tierName(item.id)}</strong>
             </button>
           ))}
         </div>

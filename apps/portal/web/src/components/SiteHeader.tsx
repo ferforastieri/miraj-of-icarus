@@ -1,6 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { MobileNavigation } from "@/components/MobileNavigation";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { cn } from "@/lib/cn";
 import { routes } from "@/routes";
 
@@ -29,41 +31,42 @@ function NavDropdown({ label, items }: DropdownProps) {
   );
 }
 
-const gameItems = [
-  { href: routes.gameAbout, label: "Sobre" },
-  { href: routes.classes, label: "Personagens" },
-  { href: routes.skills, label: "Skills" },
-] as const;
-
-const shopItems = [
-  { href: routes.trade, label: "Trade" },
-  { href: routes.shop, label: "Shop" },
-] as const;
-
 export function SiteHeader() {
+  const t = useTranslations("Navigation");
+  const gameItems = [
+    { href: routes.gameAbout, label: t("about") },
+    { href: routes.classes, label: t("characters") },
+    { href: routes.skills, label: t("skills") },
+  ];
+  const shopItems = [
+    { href: routes.trade, label: t("trade") },
+    { href: routes.shop, label: t("shop") },
+  ];
+
   return (
     <header className={cn("absolute inset-x-0 top-0 z-30 w-full pt-6 max-[900px]:pt-3")}>
       <div className="mb-1 flex justify-end gap-1 pr-5 font-miraj-of-icarus text-[.64rem] font-semibold uppercase tracking-[.08em] text-[#eee7d6] [text-shadow:0_1px_5px_#061d18] max-[900px]:hidden">
-        <Link className={accountItem} href={routes.login}>Entrar</Link>
-        <Link className={accountItem} href={routes.register}>Criar conta</Link>
+        <LocaleSwitcher />
+        <Link className={accountItem} href={routes.login}>{t("login")}</Link>
+        <Link className={accountItem} href={routes.register}>{t("register")}</Link>
       </div>
 
-      <nav className="relative grid h-[82px] grid-cols-[minmax(0,1fr)_190px_minmax(0,1fr)] items-center max-[1050px]:grid-cols-[minmax(0,1fr)_170px_minmax(0,1fr)] max-[900px]:h-[68px] max-[900px]:grid-cols-[1fr_92px_1fr]" aria-label="Navegação principal">
+      <nav className="relative grid h-[82px] grid-cols-[minmax(0,1fr)_190px_minmax(0,1fr)] items-center max-[1050px]:grid-cols-[minmax(0,1fr)_170px_minmax(0,1fr)] max-[900px]:h-[68px] max-[900px]:grid-cols-[1fr_92px_1fr]" aria-label={t("mainAria")}>
         <div className="col-start-1 flex min-w-0 items-center justify-end max-[900px]:hidden">
-          <Link className={navItem} href={routes.home}>Início</Link>
-          <NavDropdown label="O jogo" items={gameItems} />
-          <Link className={navItem} href={routes.realms}>Reinos</Link>
+          <Link className={navItem} href={routes.home}>{t("home")}</Link>
+          <NavDropdown label={t("game")} items={gameItems} />
+          <Link className={navItem} href={routes.realms}>{t("realms")}</Link>
         </div>
 
-        <Link className="absolute -top-[72px] left-1/2 z-30 grid h-[214px] w-[180px] -translate-x-1/2 place-items-center max-[1050px]:-top-[58px] max-[1050px]:h-[190px] max-[1050px]:w-[160px] max-[900px]:hidden" href={routes.home} aria-label="Miraj of Icarus — início">
+        <Link className="absolute -top-[72px] left-1/2 z-30 grid h-[214px] w-[180px] -translate-x-1/2 place-items-center max-[1050px]:-top-[58px] max-[1050px]:h-[190px] max-[1050px]:w-[160px] max-[900px]:hidden" href={routes.home} aria-label={t("homeAria")}>
           <Image className="absolute left-1/2 top-1/2 h-[86%] w-[86%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_10px_14px_rgba(2,24,20,.62)]" src="/media/branding/miraj-header-medallion.png" alt="" width={983} height={1204} priority />
           <Image className="relative z-10 h-[82%] w-[82%] object-contain drop-shadow-[0_8px_7px_rgba(2,24,20,.78)]" src="/media/branding/miraj-mj-mark-jade.png" alt="" width={1052} height={1167} priority />
         </Link>
 
         <div className="col-start-3 flex min-w-0 items-center max-[900px]:hidden">
-          <Link className={navItem} href={routes.download}>Download</Link>
-          <Link className={navItem} href={routes.community}>Comunidade</Link>
-          <NavDropdown label="Shop" items={shopItems} />
+          <Link className={navItem} href={routes.download}>{t("download")}</Link>
+          <Link className={navItem} href={routes.community}>{t("community")}</Link>
+          <NavDropdown label={t("shop")} items={shopItems} />
         </div>
 
         <MobileNavigation />

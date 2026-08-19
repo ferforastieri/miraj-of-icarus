@@ -11,6 +11,7 @@ compatíveis.
 - TypeScript;
 - Tailwind CSS 4;
 - TanStack Query;
+- next-intl para português, inglês e espanhol;
 - OpenNext e Cloudflare Workers.
 
 ## PWA e descoberta
@@ -19,7 +20,21 @@ compatíveis.
 - `public/sw.js` oferece fallback offline sem armazenar APIs ou áreas privadas;
 - `src/app/robots.ts` e `src/app/sitemap.ts` orientam os buscadores;
 - metadata por rota define canonical, Open Graph e Twitter Cards;
+- URLs localizadas e `hreflang` conectam as versões `/pt`, `/en` e `/es`;
 - JSON-LD descreve o site e o jogo sem dados promocionais inventados.
+
+## Internacionalização
+
+O locale faz parte de toda URL pública. A raiz detecta a preferência do
+navegador, com português como padrão, e o seletor de país grava a escolha no
+cookie `MIRAJ_LOCALE`. Os catálogos ficam em `messages/pt.json`,
+`messages/en.json` e `messages/es.json`; mantenha a mesma árvore de chaves nos
+três arquivos.
+
+`src/i18n/routing.ts` concentra locales e países, `src/middleware.ts` resolve
+os redirecionamentos no runtime Edge exigido pelo adaptador Cloudflare e
+`src/app/[locale]` contém as páginas. Rotas `/api/**` não recebem prefixo de
+idioma.
 
 Defina `GOOGLE_SITE_VERIFICATION` no ambiente de produção depois de cadastrar
 o domínio no Google Search Console. A imagem social oficial fica em
@@ -30,7 +45,7 @@ o domínio no Google Search Console. A imagem social oficial fica em
 ```text
 src/
 ├── api/          # uma chamada e seu hook por arquivo, agrupados por módulo
-├── app/          # páginas e Route Handlers do App Router
+├── app/          # páginas localizadas e Route Handlers do App Router
 ├── components/
 │   └── ui/       # componentes visuais globais
 ├── data/         # conteúdo estático e modelos de apresentação
@@ -96,13 +111,13 @@ Revise os arquivos gerados antes de incluí-los em um commit.
 
 ## Rotas do produto
 
-- `/`: landing page;
-- `/o-jogo`, `/reinos` e `/classes/[slug]`: conteúdo do jogo;
-- `/entrar` e `/criar-conta`: autenticação;
-- `/cliente`: conta e personagens do jogador;
-- `/painel`: administração protegida;
-- `/download`: release pública do launcher;
-- `/comunidade`, `/shop` e `/trade`: destinos do ecossistema.
+- `/{locale}`: landing page, em que `locale` é `pt`, `en` ou `es`;
+- `/{locale}/o-jogo`, `/{locale}/reinos` e `/{locale}/classes/[slug]`: conteúdo do jogo;
+- `/{locale}/entrar` e `/{locale}/criar-conta`: autenticação;
+- `/{locale}/cliente`: conta e personagens do jogador;
+- `/{locale}/painel`: administração protegida;
+- `/{locale}/download`: release pública do launcher;
+- `/{locale}/comunidade`, `/{locale}/shop` e `/{locale}/trade`: destinos do ecossistema.
 
 ## Build e publicação
 

@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     id: "/",
     name: `${siteConfig.name} - Portal oficial`,
     short_name: siteConfig.name,
-    description: siteConfig.description,
+    description: siteConfig.defaultDescription,
     start_url: "/",
     scope: "/",
     display: "standalone",

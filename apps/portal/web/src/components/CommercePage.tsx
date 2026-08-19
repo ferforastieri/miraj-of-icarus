@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
@@ -11,6 +12,7 @@ type CommercePageProps = {
 };
 
 export function CommercePage({ eyebrow, title, description }: CommercePageProps) {
+  const t = useTranslations("Commerce");
   return (
     <div className="min-h-screen bg-[#041d19]">
       <section className="relative isolate grid min-h-[82svh] place-items-center overflow-hidden px-6 pb-20 pt-56 text-center max-[700px]:px-4 max-[700px]:pt-32">
@@ -21,7 +23,7 @@ export function CommercePage({ eyebrow, title, description }: CommercePageProps)
           <p className="text-xs uppercase tracking-[.24em] text-[#a9e9c4]">{eyebrow}</p>
           <h1 className="mt-4 font-miraj-of-icarus text-[clamp(3.2rem,7vw,6.8rem)] leading-[.84] text-[#f4f1df]">{title}</h1>
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#d2dfd5]">{description}</p>
-          <Link className={`${buttonStyles("primary", true)} mt-9`} href={routes.community}>Acompanhar novidades</Link>
+          <Link className={`${buttonStyles("primary", true)} mt-9`} href={routes.community}>{t("follow")}</Link>
         </div>
       </section>
       <SiteFooter />

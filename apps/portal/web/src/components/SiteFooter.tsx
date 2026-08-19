@@ -1,14 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { routes } from "@/routes";
-
-const explore = [
-  ["O jogo", routes.game],
-  ["Personagens", routes.classes],
-  ["Reinos", routes.realms],
-  ["Comunidade", routes.community],
-  ["Download", routes.download],
-] as const;
 
 type SocialNetwork = "Discord" | "YouTube" | "Instagram" | "X";
 
@@ -29,6 +22,9 @@ function SocialIcon({ network }: { network: SocialNetwork }) {
 }
 
 export function SiteFooter() {
+  const t = useTranslations("Footer");
+  const nav = useTranslations("Navigation");
+  const explore = [[nav("game"), routes.game], [nav("characters"), routes.classes], [nav("realms"), routes.realms], [nav("community"), routes.community], [nav("download"), routes.download]] as const;
   const footerLink = "text-[#c8d8cc] hover:text-[#8fe2b0] focus-visible:text-white";
 
   return (
@@ -37,18 +33,18 @@ export function SiteFooter() {
       <span className="absolute left-1/2 top-0 h-px w-[min(900px,88vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d1b36f] to-transparent" aria-hidden="true" />
 
       <div className="mx-auto flex w-[min(1220px,100%)] items-center justify-between gap-7 max-[900px]:flex-wrap max-[700px]:flex-col max-[700px]:text-center">
-        <Link className="flex h-16 w-[220px] shrink-0 items-center max-[700px]:justify-center" href={routes.home} aria-label="Miraj of Icarus — início">
+        <Link className="flex h-16 w-[220px] shrink-0 items-center max-[700px]:justify-center" href={routes.home} aria-label={nav("homeAria")}>
           <Image className="h-full w-full object-contain object-left max-[700px]:object-center" src="/media/branding/miraj-of-icarus-wordmark-jade.png" alt="Miraj of Icarus" width={1413} height={673} />
         </Link>
 
-        <nav className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[.72rem] uppercase tracking-[.08em]" aria-label="Navegação do rodapé">
+        <nav className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[.72rem] uppercase tracking-[.08em]" aria-label={t("navigationAria")}>
           {explore.map(([label, href]) => <Link className={footerLink} href={href} key={label}>{label}</Link>)}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2" aria-label="Redes sociais — em breve">
+        <div className="flex shrink-0 items-center gap-2" aria-label={t("socialAria")}>
           {(["Discord", "YouTube", "Instagram", "X"] as const).map(network => (
-            <span className="grid size-8 place-items-center text-[#bcd1c3] [&_svg]:size-5" key={network} title={`${network} — em breve`}>
-              <span className="sr-only">{network} — em breve</span>
+            <span className="grid size-8 place-items-center text-[#bcd1c3] [&_svg]:size-5" key={network} title={t("comingSoon", { network })}>
+              <span className="sr-only">{t("comingSoon", { network })}</span>
               <SocialIcon network={network} />
             </span>
           ))}
@@ -57,8 +53,8 @@ export function SiteFooter() {
 
       <div className="mx-auto mt-5 flex w-[min(1220px,100%)] items-center justify-between gap-5 border-t border-[#315548]/80 pt-4 text-[.58rem] uppercase tracking-[.1em] text-[#718b7e] max-[700px]:flex-col max-[700px]:gap-2 max-[700px]:text-center">
         <p>© {new Date().getFullYear()} Miraj of Icarus</p>
-        <p>Uma reconstrução independente em andamento</p>
-        <div className="flex gap-4"><Link className={footerLink} href={routes.login}>Entrar</Link><Link className={footerLink} href={routes.register}>Criar conta</Link></div>
+        <p>{t("reconstruction")}</p>
+        <div className="flex gap-4"><Link className={footerLink} href={routes.login}>{nav("login")}</Link><Link className={footerLink} href={routes.register}>{nav("register")}</Link></div>
       </div>
     </footer>
   );
