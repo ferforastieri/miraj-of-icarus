@@ -1,34 +1,81 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { BR, ES, US } from "country-flag-icons/react/3x2";
 import { Link, usePathname } from "@/i18n/navigation";
 import { localeDetails, routing, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/cn";
+
+const localeFlags = { pt: BR, en: US, es: ES } as const;
 
 export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const t = useTranslations("LocaleSwitcher");
+  const CurrentFlag = localeFlags[locale];
+
+  if (mobile) {
+    return (
+      <div className="grid w-full grid-cols-3 gap-1" role="group" aria-label={t("label")}>
+        {routing.locales.map(item => {
+          const Flag = localeFlags[item];
+          return (
+            <Link
+              className="miraj-button grid min-h-12 place-items-center px-3 font-miraj-of-icarus text-[.68rem] font-semibold uppercase text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white"
+              href={pathname as never}
+              locale={item}
+              key={item}
+              title={t(item)}
+              aria-current={locale === item ? "page" : undefined}
+              aria-selected={locale === item}
+            >
+              <span className="flex items-center justify-center gap-2" aria-hidden="true">
+                <Flag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" />
+                <span>{localeDetails[item].countryCode}</span>
+              </span>
+              <span className="sr-only">{t(item)}</span>
+            </Link>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
-    <div className={cn("flex h-10 items-stretch border border-[#9f8750]/70 bg-[#031b17]/85", mobile && "h-12 w-full")} role="group" aria-label={t("label")}>
-      {routing.locales.map(item => (
-        <Link
-          className={cn(
-            "grid min-w-11 place-items-center border-r border-[#9f8750]/45 px-3 font-miraj-of-icarus text-[.61rem] font-semibold uppercase text-[#d9e5d9] transition-colors last:border-r-0 hover:bg-[#176344] hover:text-white focus-visible:bg-[#176344] focus-visible:text-white",
-            mobile && "flex-1 text-[.68rem]",
-            locale === item && "bg-[#258257] text-white",
-          )}
-          href={pathname as never}
-          locale={item}
-          key={item}
-          title={t(item)}
-          aria-current={locale === item ? "page" : undefined}
-        >
-          <span aria-hidden="true">{localeDetails[item].countryCode}</span>
-          <span className="sr-only">{t(item)}</span>
-        </Link>
-      ))}
+    <div className="miraj-nav-dropdown relative z-50 w-[210px]" aria-label={t("label")}>
+      <button
+        className="miraj-button grid min-h-10 w-full place-items-center px-6 font-miraj-of-icarus text-[.6rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white"
+        type="button"
+        aria-haspopup="menu"
+      >
+        <span className="flex items-center justify-center gap-2 leading-none">
+          <CurrentFlag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
+          <span>{t(locale)}</span>
+          <span className="text-[.52rem] text-[#cdb573]" aria-hidden="true">◆</span>
+        </span>
+      </button>
+
+      <div className="miraj-nav-menu absolute left-1/2 top-[38px] z-50 w-[230px] justify-items-center pt-5" role="menu">
+        {routing.locales.map(item => {
+          const Flag = localeFlags[item];
+          return (
+            <Link
+              className={cn(
+                "miraj-button grid min-h-[48px] w-[220px] grid-cols-[2rem_1fr] items-center px-6 text-left font-miraj-of-icarus text-[.6rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white",
+                locale === item && "text-white",
+              )}
+              href={pathname as never}
+              locale={item}
+              key={item}
+              role="menuitem"
+              aria-current={locale === item ? "page" : undefined}
+            >
+              <Flag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
+              <span>{t(item)}</span>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

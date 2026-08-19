@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.101.4",
+    "country-flag-icons": "^1.6.20",
     "next": "^16.3.1",
     "next-intl": "^4.13.7",
     "react": "^19.2.8",
