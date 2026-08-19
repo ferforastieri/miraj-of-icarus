@@ -12,7 +12,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024 ** 2) return `${Math.ceil(bytes / 1024)} KB`;
@@ -28,7 +28,7 @@ export default function ClientPage() {
   const release = useLatestRelease();
   const logout = useLogout();
   useEffect(() => {
-    if (!account.isLoading && !account.data) router.replace(`${routes.login}?retorno=${encodeURIComponent(routes.client)}`);
+    if (!account.isLoading && !account.data) router.replace({ pathname: routes.login, query: { retorno: routes.client } });
   }, [account.data, account.isLoading, router]);
   if (account.isLoading || !account.data) return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("loading")}</main><SiteFooter /></div>;
 

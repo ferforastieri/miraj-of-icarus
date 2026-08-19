@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/seo";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: Locale }> };

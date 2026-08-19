@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import type { ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
 import { MobileNavigation } from "@/components/MobileNavigation";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { cn } from "@/lib/cn";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 const navItem = "miraj-button relative z-10 grid min-h-[50px] w-[clamp(116px,10.5vw,154px)] min-w-0 shrink-0 place-items-center px-4 font-miraj-of-icarus text-[clamp(.54rem,.49rem+.13vw,.67rem)] font-semibold uppercase tracking-[.04em] text-[#e0e9df] [text-shadow:0_2px_2px_#041b16] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] max-[980px]:w-[116px] max-[980px]:px-3";
 const accountItem = "miraj-button grid min-h-10 min-w-[142px] place-items-center px-8 text-[.6rem] tracking-[.035em] hover:text-white hover:drop-shadow-[0_0_7px_rgba(40,185,111,.7)] focus-visible:text-white focus-visible:drop-shadow-[0_0_7px_rgba(40,185,111,.7)]";
@@ -12,7 +13,7 @@ const dropdownMenuLink = "miraj-button grid min-h-[48px] w-[210px] place-items-c
 
 type DropdownProps = {
   label: string;
-  items: ReadonlyArray<{ href: string; label: string }>;
+  items: ReadonlyArray<{ href: ComponentProps<typeof Link>["href"]; label: string }>;
 };
 
 function NavDropdown({ label, items }: DropdownProps) {
@@ -25,7 +26,7 @@ function NavDropdown({ label, items }: DropdownProps) {
         </span>
       </button>
       <div className="miraj-nav-menu absolute left-1/2 top-[48px] z-40 w-[220px] justify-items-center pt-5" role="menu">
-        {items.map(item => <Link className={dropdownMenuLink} href={item.href} key={item.href} role="menuitem">{item.label}</Link>)}
+        {items.map(item => <Link className={dropdownMenuLink} href={item.href} key={item.label} role="menuitem">{item.label}</Link>)}
       </div>
     </div>
   );

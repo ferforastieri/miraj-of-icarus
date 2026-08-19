@@ -19,7 +19,7 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
             mobile && "flex-1 text-[.68rem]",
             locale === item && "bg-[#258257] text-white",
           )}
-          href={pathname}
+          href={pathname as never}
           locale={item}
           key={item}
           title={t(item)}

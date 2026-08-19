@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 type CommercePageProps = {
   eyebrow: string;

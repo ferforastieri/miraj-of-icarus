@@ -12,8 +12,8 @@ import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
-import { routes } from "@/routes";
-import { gameClasses } from "@/data/game-classes";
+import { routes } from "@/i18n/routing";
+import { gameClasses } from "@/domain/game/classes";
 
 export default function AdministrationPage() {
   const t = useTranslations("Admin");
@@ -35,7 +35,7 @@ export default function AdministrationPage() {
   const restoreCharacter = useAdminRestoreCharacter();
   const maintenance = useSetMaintenance();
   useEffect(() => {
-    if (!account.isLoading && !account.data) router.replace(`${routes.login}?retorno=${encodeURIComponent(routes.panel)}`);
+    if (!account.isLoading && !account.data) router.replace({ pathname: routes.login, query: { retorno: routes.panel } });
     if (account.data && account.data.role !== "Administrator") router.replace(routes.client);
   }, [account.data, account.isLoading, router]);
   if (account.isLoading || account.data?.role !== "Administrator") return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("validating")}</main><SiteFooter /></div>;

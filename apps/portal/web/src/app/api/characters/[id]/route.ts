@@ -1,4 +1,4 @@
-import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/lib/server/backend";
+import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/api/backend";
 
 export async function DELETE(
   _request: Request,

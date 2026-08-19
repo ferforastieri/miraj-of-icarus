@@ -1,3 +1,5 @@
+import "server-only";
+
 export const ACCESS_COOKIE = "miraj_of_icarus_access";
 export const REFRESH_COOKIE = "miraj_of_icarus_refresh";
 

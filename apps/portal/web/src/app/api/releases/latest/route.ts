@@ -1,4 +1,4 @@
-import { backendFetch, proxyResponse, withBackendErrors } from "@/lib/server/backend";
+import { backendFetch, proxyResponse, withBackendErrors } from "@/api/backend";
 
 export async function GET() {
   return withBackendErrors(async () =>

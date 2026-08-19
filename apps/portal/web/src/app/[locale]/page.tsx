@@ -9,7 +9,7 @@ import { SectionTitlePlaque } from "@/components/ui/SectionTitlePlaque";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/lib/seo";
 import { localeDetails, type Locale } from "@/i18n/routing";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

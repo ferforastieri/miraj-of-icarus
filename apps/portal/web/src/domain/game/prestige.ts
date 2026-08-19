@@ -1,19 +1,3 @@
-export type GameClass = {
-  id: "warrior" | "guardian" | "thief" | "priest" | "wizard" | "archer" | "idoll" | "magician";
-  slug: string;
-};
-
-export const gameClasses: readonly GameClass[] = [
-  { id: "warrior", slug: "guerreiro" },
-  { id: "guardian", slug: "guardiao" },
-  { id: "thief", slug: "ladino" },
-  { id: "priest", slug: "sacerdote" },
-  { id: "wizard", slug: "mago" },
-  { id: "archer", slug: "arqueiro" },
-  { id: "idoll", slug: "idol" },
-  { id: "magician", slug: "magician" },
-] as const;
-
 export const prestigeTiers = [
   { id: "bronze", level: 10, color: "#a96743" },
   { id: "silver", level: 20, color: "#b9c8cb" },
@@ -49,12 +33,4 @@ export function prestigeBlendForLevel(value: number) {
   const from = prestigeTierForLevel(level);
   const to = prestigeTiers.find(tier => tier.level > level) ?? from;
   return { from, to, progress: (level - from.level) / (to.level - from.level || 1) };
-}
-
-export function classHref(gameClass: GameClass) {
-  return `/classes/${gameClass.slug}`;
-}
-
-export function findGameClass(slug: string) {
-  return gameClasses.find(gameClass => gameClass.slug === slug);
 }

@@ -5,7 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 export function MobileNavigation() {
   const t = useTranslations("Navigation");
@@ -148,7 +148,7 @@ export function MobileNavigation() {
             <nav className="min-h-0 overflow-y-auto px-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]" aria-label={t("mobileAria")}>
               <div className="grid grid-cols-2 gap-1">
                 {navigationItems.map((item, index) => (
-                  <Link className={`miraj-button miraj-mobile-sheet__link ${index === 0 ? "col-span-2 w-[min(260px,100%)] justify-self-center" : ""}`} href={item.href} key={item.href} onClick={close}>
+                  <Link className={`miraj-button miraj-mobile-sheet__link ${index === 0 ? "col-span-2 w-[min(260px,100%)] justify-self-center" : ""}`} href={item.href} key={item.label} onClick={close}>
                     {item.label}
                   </Link>
                 ))}

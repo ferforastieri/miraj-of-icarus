@@ -6,7 +6,8 @@ import { Link } from "@/i18n/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, gameClasses, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClass } from "@/data/game-classes";
+import { classHref, gameClasses, type GameClass } from "@/domain/game/classes";
+import { MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers } from "@/domain/game/prestige";
 
 export function PrestigeEvolution() {
   const classesT = useTranslations("Classes");

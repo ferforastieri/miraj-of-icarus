@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { QueryProvider } from "@/providers/QueryProvider";
+import { QueryProvider } from "@/api/QueryProvider";
 import { JadeCursor } from "@/components/ui/JadeCursor";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { pageMetadata, siteConfig } from "@/lib/seo";

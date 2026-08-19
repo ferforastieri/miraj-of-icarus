@@ -13,7 +13,7 @@ import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
-import { gameClasses } from "@/data/game-classes";
+import { gameClasses } from "@/domain/game/classes";
 
 export function CharacterPanel({ enabled }: { enabled: boolean }) {
   const t = useTranslations("Characters");

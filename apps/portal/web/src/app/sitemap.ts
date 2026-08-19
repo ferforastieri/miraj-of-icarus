@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { gameClasses } from "@/data/game-classes";
+import { gameClasses } from "@/domain/game/classes";
 import { siteConfig } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 

@@ -44,19 +44,22 @@ o domínio no Google Search Console. A imagem social oficial fica em
 
 ```text
 src/
-├── api/          # uma chamada e seu hook por arquivo, agrupados por módulo
-├── app/          # páginas localizadas e Route Handlers do App Router
+├── api/
+│   ├── client/   # cliente HTTP, hooks TanStack Query e QueryProvider
+│   └── server/   # sessão, cookies e comunicação do BFF com a API principal
+├── app/          # páginas localizadas e Route Handlers em app/api
 ├── components/
 │   └── ui/       # componentes visuais globais
-├── data/         # conteúdo estático e modelos de apresentação
-├── lib/          # sessão, BFF e utilitários compartilhados
-├── providers/    # providers React globais
+├── domain/game/  # classes, prestígio e regras invariantes do jogo
+├── i18n/         # configuração de locales e navegação localizada
+├── lib/          # utilitários compartilhados de apresentação
 └── routes/       # definição central dos caminhos do portal
 ```
 
 Tokens de acesso e refresh permanecem em cookies `HttpOnly`; não use
 `localStorage` para sessão. Chamadas do navegador passam pelas rotas `/api/**`
-do portal, que conversam com a API pelo lado servidor.
+do portal. Os Route Handlers delegam a comunicação externa para `api/server`,
+enquanto componentes importam somente módulos de `api/client`.
 
 ## Requisitos
 

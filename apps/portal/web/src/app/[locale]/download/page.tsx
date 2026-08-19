@@ -6,7 +6,7 @@ import { useLatestRelease } from "@/api/releases/get-latest-release";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024 ** 2) return `${Math.ceil(bytes / 1024)} KB`;

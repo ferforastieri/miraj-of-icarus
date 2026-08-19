@@ -4,7 +4,7 @@ import { useAccount } from "@/api/authentication/get-account";
 import { AuthPortal } from "@/components/AuthPortal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";

@@ -1,5 +1,42 @@
 import { defineRouting } from "next-intl/routing";
 
+export const routes = {
+  home: "/",
+  login: "/entrar",
+  register: "/criar-conta",
+  client: "/cliente",
+  panel: "/painel",
+  game: "/o-jogo",
+  gameAbout: { pathname: "/o-jogo", hash: "sobre" },
+  skills: { pathname: "/o-jogo", hash: "skills" },
+  community: "/comunidade",
+  reconstruction: { pathname: "/", hash: "reconstrucao" },
+  realms: "/reinos",
+  download: "/download",
+  trade: "/trade",
+  shop: "/shop",
+  classes: { pathname: "/", hash: "classes" },
+  prestige: { pathname: "/", hash: "prestigio" },
+  offline: "/offline",
+  class: "/classes/[slug]",
+} as const;
+
+export const pathnames = {
+  "/": "/",
+  "/entrar": { pt: "/entrar", en: "/sign-in", es: "/iniciar-sesion" },
+  "/criar-conta": { pt: "/criar-conta", en: "/create-account", es: "/crear-cuenta" },
+  "/cliente": { pt: "/conta", en: "/account", es: "/cuenta" },
+  "/painel": { pt: "/administracao", en: "/admin", es: "/administracion" },
+  "/o-jogo": { pt: "/o-jogo", en: "/the-game", es: "/el-juego" },
+  "/comunidade": { pt: "/comunidade", en: "/community", es: "/comunidad" },
+  "/reinos": { pt: "/reinos", en: "/realms", es: "/reinos" },
+  "/download": "/download",
+  "/trade": { pt: "/trocas", en: "/trade", es: "/intercambios" },
+  "/shop": { pt: "/loja", en: "/shop", es: "/tienda" },
+  "/offline": { pt: "/sem-conexao", en: "/offline", es: "/sin-conexion" },
+  "/classes/[slug]": { pt: "/classes/[slug]", en: "/classes/[slug]", es: "/clases/[slug]" },
+} as const;
+
 export const routing = defineRouting({
   locales: ["pt", "en", "es"],
   defaultLocale: "pt",
@@ -10,6 +47,7 @@ export const routing = defineRouting({
     sameSite: "lax",
   },
   alternateLinks: false,
+  pathnames,
 });
 
 export type Locale = (typeof routing.locales)[number];

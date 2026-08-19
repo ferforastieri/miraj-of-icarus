@@ -5,9 +5,10 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, findGameClass, gameClasses, prestigeTiers } from "@/data/game-classes";
+import { classHref, findGameClass, gameClasses } from "@/domain/game/classes";
+import { prestigeTiers } from "@/domain/game/prestige";
 import { pageMetadata } from "@/lib/seo";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 
 export function generateStaticParams() {

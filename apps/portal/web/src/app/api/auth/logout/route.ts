@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
-import { REFRESH_COOKIE } from "@/lib/session";
-import { backendFetch, clearSession } from "@/lib/server/backend";
+import { REFRESH_COOKIE } from "@/api/session";
+import { backendFetch, clearSession } from "@/api/backend";
 
 export async function POST() {
   const refreshToken = (await cookies()).get(REFRESH_COOKIE)?.value;

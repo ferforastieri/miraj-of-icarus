@@ -6,7 +6,7 @@ import { useGameServers } from "@/api/game-servers/get-game-servers";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 export default function RealmsPage() {
   const t = useTranslations("Realms");
@@ -23,7 +23,7 @@ export default function RealmsPage() {
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.25em] text-[#b5e8c8]">{t("kicker")}</p>
           <h1 className="mt-5 font-miraj-of-icarus text-[clamp(3.2rem,7vw,7rem)] font-semibold leading-[.82] text-[#f5f0dc] [text-shadow:0_4px_16px_#031b16]">{t("title")}</h1>
           <p className="mx-auto mt-8 max-w-3xl text-[clamp(1rem,1.6vw,1.25rem)] leading-8 text-[#e2ebe2]">{t("description")}</p>
-          <Link className={`${buttonStyles("primary", true)} mt-9`} href="#reinos-disponiveis">{t("view")}</Link>
+          <a className={`${buttonStyles("primary", true)} mt-9`} href="#reinos-disponiveis">{t("view")}</a>
         </div>
       </section>
 

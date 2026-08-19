@@ -6,7 +6,7 @@ import {
   REFRESH_COOKIE,
   apiUrl,
   type Session,
-} from "@/lib/session";
+} from "@/api/session";
 
 const cookieOptions = {
   httpOnly: true,

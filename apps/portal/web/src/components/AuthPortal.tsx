@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
 import { Turnstile } from "@/components/Turnstile";
-import { routes } from "@/routes";
+import { routes } from "@/i18n/routing";
 
 export function AuthPortal({ registering, initialError }: { registering: boolean; initialError?: string }) {
   const t = useTranslations("Auth");
