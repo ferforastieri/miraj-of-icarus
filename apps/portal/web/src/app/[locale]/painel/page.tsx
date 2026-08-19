@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { useFormatter, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { useAccount } from "@/api/authentication/get-account";
-import { useAdminAccounts, useAdminAudit, useAdminCharacters, useAdminDeleteCharacter, useAdminOverview, useAdminRestoreCharacter, useSetMaintenance, useSuspendAccount, useRestoreAccount } from "@/api/administration/admin";
-import { useGameServers } from "@/api/game-servers/get-game-servers";
+import { useAccount } from "@/app/api/_react-query/authentication/get-account";
+import { useAdminAccounts, useAdminAudit, useAdminCharacters, useAdminDeleteCharacter, useAdminOverview, useAdminRestoreCharacter, useSetMaintenance, useSuspendAccount, useRestoreAccount } from "@/app/api/_react-query/administration/admin";
+import { useGameServers } from "@/app/api/_react-query/game-servers/get-game-servers";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Alert } from "@/components/ui/Alert";
@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
 import { routes } from "@/i18n/routing";
-import { gameClasses } from "@/domain/game/classes";
+import { gameClasses } from "@/game";
 
 export default function AdministrationPage() {
   const t = useTranslations("Admin");

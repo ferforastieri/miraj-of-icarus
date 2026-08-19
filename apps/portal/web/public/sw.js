@@ -1,8 +1,8 @@
 const CACHE_NAME = "miraj-of-icarus-pwa-v2";
 const PRECACHE_URLS = [
-  "/pt/offline",
+  "/pt/sem-conexao",
   "/en/offline",
-  "/es/offline",
+  "/es/sin-conexion",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/media/branding/miraj-mj-mark-jade.png",
@@ -29,7 +29,8 @@ self.addEventListener("fetch", event => {
 
   if (request.mode === "navigate") {
     const locale = new URL(request.url).pathname.split("/")[1];
-    const offlineUrl = ["pt", "en", "es"].includes(locale) ? `/${locale}/offline` : "/pt/offline";
+    const offlinePaths = { pt: "/pt/sem-conexao", en: "/en/offline", es: "/es/sin-conexion" };
+    const offlineUrl = offlinePaths[locale] || offlinePaths.pt;
     event.respondWith(fetch(request).catch(() => caches.match(offlineUrl)));
     return;
   }

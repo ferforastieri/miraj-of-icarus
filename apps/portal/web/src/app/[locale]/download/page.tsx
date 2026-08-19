@@ -2,7 +2,7 @@
 
 import { useFormatter, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useLatestRelease } from "@/api/releases/get-latest-release";
+import { useLatestRelease } from "@/app/api/_react-query/releases/get-latest-release";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";

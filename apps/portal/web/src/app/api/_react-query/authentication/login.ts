@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { request } from "@/api/http";
-import { accountQueryKey } from "@/api/authentication/get-account";
+import { request } from "@/app/api/_react-query/http";
+import { accountQueryKey } from "@/app/api/_react-query/authentication/get-account";
 
 export type LoginInput = { userName: string; password: string };
 

@@ -1,4 +1,4 @@
-import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/api/backend";
+import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/app/api/_backend/backend";
 
 async function forward(request: Request, context: { params: Promise<{ path: string[] }> }) {
   const { path } = await context.params;

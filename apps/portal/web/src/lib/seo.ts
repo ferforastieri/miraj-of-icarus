@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { getPathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { localeDetails, routing } from "@/i18n/routing";
+import { localeDetails, pathnames, routing } from "@/i18n/routing";
 
 export const siteConfig = {
   name: "Miraj of Icarus",
@@ -16,11 +17,14 @@ export const siteConfig = {
   },
 } as const;
 
+type StaticPath = Exclude<keyof typeof pathnames, "/classes/[slug]">;
+type PagePath = StaticPath | { pathname: "/classes/[slug]"; params: { slug: string } };
+
 type PageMetadataOptions = {
   locale: Locale;
   title: string;
   description: string;
-  path: string;
+  path: PagePath | ((locale: Locale) => PagePath);
   absoluteTitle?: boolean;
   index?: boolean;
   follow?: boolean;
@@ -38,9 +42,9 @@ export function pageMetadata({
   imageAlt = siteConfig.socialImage.alt,
 }: PageMetadataOptions): Metadata {
   const socialTitle = absoluteTitle ? title : `${title} | ${siteConfig.name}`;
-  const localizedPath = path === "/" ? `/${locale}` : `/${locale}${path}`;
+  const localizedPath = getPathname({ locale, href: typeof path === "function" ? path(locale) : path });
   const languages = Object.fromEntries(
-    routing.locales.map(item => [localeDetails[item].htmlLang, path === "/" ? `/${item}` : `/${item}${path}`]),
+    routing.locales.map(item => [localeDetails[item].htmlLang, getPathname({ locale: item, href: typeof path === "function" ? path(item) : path })]),
   );
 
   return {
@@ -48,7 +52,7 @@ export function pageMetadata({
     description,
     alternates: index ? {
       canonical: localizedPath,
-      languages: { ...languages, "x-default": path === "/" ? "/pt" : `/pt${path}` },
+      languages: { ...languages, "x-default": getPathname({ locale: routing.defaultLocale, href: typeof path === "function" ? path(routing.defaultLocale) : path }) },
     } : undefined,
     robots: {
       index,

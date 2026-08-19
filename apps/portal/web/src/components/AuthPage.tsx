@@ -1,6 +1,6 @@
 "use client";
 
-import { useAccount } from "@/api/authentication/get-account";
+import { useAccount } from "@/app/api/_react-query/authentication/get-account";
 import { AuthPortal } from "@/components/AuthPortal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";

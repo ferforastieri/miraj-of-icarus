@@ -3,10 +3,10 @@
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useAccount } from "@/api/authentication/get-account";
-import { useLogout } from "@/api/authentication/logout";
-import { useGameServers } from "@/api/game-servers/get-game-servers";
-import { useLatestRelease } from "@/api/releases/get-latest-release";
+import { useAccount } from "@/app/api/_react-query/authentication/get-account";
+import { useLogout } from "@/app/api/_react-query/authentication/logout";
+import { useGameServers } from "@/app/api/_react-query/game-servers/get-game-servers";
+import { useLatestRelease } from "@/app/api/_react-query/releases/get-latest-release";
 import { CharacterPanel } from "@/components/CharacterPanel";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";

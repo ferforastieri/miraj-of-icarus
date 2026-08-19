@@ -3,9 +3,9 @@
 import { useTranslations } from "next-intl";
 import { useState, type FormEvent } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useLogin } from "@/api/authentication/login";
-import { useRegister } from "@/api/authentication/register";
-import { ApiError } from "@/api/http";
+import { useLogin } from "@/app/api/_react-query/authentication/login";
+import { useRegister } from "@/app/api/_react-query/authentication/register";
+import { ApiError } from "@/app/api/_react-query/http";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";

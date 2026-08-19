@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ApiError, request } from "@/api/http";
+import { ApiError, request } from "@/app/api/_react-query/http";
 
 export type ClientRelease = {
   version: string;

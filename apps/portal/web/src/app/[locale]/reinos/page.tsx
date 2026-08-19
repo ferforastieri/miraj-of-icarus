@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useGameServers } from "@/api/game-servers/get-game-servers";
+import { useGameServers } from "@/app/api/_react-query/game-servers/get-game-servers";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";

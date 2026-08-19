@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { request } from "@/api/http";
+import { request } from "@/app/api/_react-query/http";
 
 export type GameServer = {
   id: string;

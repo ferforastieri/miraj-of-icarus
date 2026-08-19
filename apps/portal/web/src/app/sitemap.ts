@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
-import { gameClasses } from "@/domain/game/classes";
+import { classHref, gameClasses } from "@/game";
+import { getPathname } from "@/i18n/navigation";
+import { routes, routing } from "@/i18n/routing";
 import { siteConfig } from "@/lib/seo";
-import { routing } from "@/i18n/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routing.locales.flatMap(locale => [
-    { url: `${siteConfig.url}/${locale}`, changeFrequency: "weekly" as const, priority: locale === "pt" ? 1 : 0.9 },
-    { url: `${siteConfig.url}/${locale}/o-jogo`, changeFrequency: "monthly" as const, priority: 0.9 },
-    { url: `${siteConfig.url}/${locale}/reinos`, changeFrequency: "daily" as const, priority: 0.8 },
-    { url: `${siteConfig.url}/${locale}/download`, changeFrequency: "daily" as const, priority: 0.8 },
-    ...gameClasses.map(gameClass => ({ url: `${siteConfig.url}/${locale}/classes/${gameClass.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
+    { url: `${siteConfig.url}${getPathname({ locale, href: routes.home })}`, changeFrequency: "weekly" as const, priority: locale === "pt" ? 1 : 0.9 },
+    { url: `${siteConfig.url}${getPathname({ locale, href: routes.game })}`, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${siteConfig.url}${getPathname({ locale, href: routes.realms })}`, changeFrequency: "daily" as const, priority: 0.8 },
+    { url: `${siteConfig.url}${getPathname({ locale, href: routes.download })}`, changeFrequency: "daily" as const, priority: 0.8 },
+    ...gameClasses.map(gameClass => ({ url: `${siteConfig.url}${getPathname({ locale, href: classHref(gameClass, locale) })}`, changeFrequency: "monthly" as const, priority: 0.7 })),
   ]);
 }

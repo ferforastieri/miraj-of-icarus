@@ -3,17 +3,17 @@
 import Image from "next/image";
 import { useFormatter, useTranslations } from "next-intl";
 import { useState, type FormEvent } from "react";
-import { useCreateCharacter } from "@/api/characters/create-character";
-import { useDeleteCharacter } from "@/api/characters/delete-character";
-import { useCharacters, type Character } from "@/api/characters/get-characters";
-import { useRestoreCharacter } from "@/api/characters/restore-character";
-import { ApiError } from "@/api/http";
+import { useCreateCharacter } from "@/app/api/_react-query/characters/create-character";
+import { useDeleteCharacter } from "@/app/api/_react-query/characters/delete-character";
+import { useCharacters, type Character } from "@/app/api/_react-query/characters/get-characters";
+import { useRestoreCharacter } from "@/app/api/_react-query/characters/restore-character";
+import { ApiError } from "@/app/api/_react-query/http";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
-import { gameClasses } from "@/domain/game/classes";
+import { gameClasses } from "@/game";
 
 export function CharacterPanel({ enabled }: { enabled: boolean }) {
   const t = useTranslations("Characters");

@@ -1,5 +1,5 @@
-import { backendFetch, clientAddressHeaders, proxyResponse, saveSession, withBackendErrors } from "@/api/backend";
-import type { Session } from "@/api/session";
+import { backendFetch, clientAddressHeaders, proxyResponse, saveSession, withBackendErrors } from "@/app/api/_backend/backend";
+import type { Session } from "@/app/api/_backend/session";
 
 export async function POST(request: Request) {
   return withBackendErrors(async () => {

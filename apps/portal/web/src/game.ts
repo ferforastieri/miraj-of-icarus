@@ -1,3 +1,29 @@
+import type { Locale } from "@/i18n/routing";
+
+export type GameClass = {
+  id: "warrior" | "guardian" | "thief" | "priest" | "wizard" | "archer" | "idoll" | "magician";
+  slugs: Record<Locale, string>;
+};
+
+export const gameClasses: readonly GameClass[] = [
+  { id: "warrior", slugs: { pt: "guerreiro", en: "warrior", es: "guerrero" } },
+  { id: "guardian", slugs: { pt: "guardiao", en: "guardian", es: "guardian" } },
+  { id: "thief", slugs: { pt: "ladino", en: "thief", es: "picaro" } },
+  { id: "priest", slugs: { pt: "sacerdote", en: "priest", es: "sacerdote" } },
+  { id: "wizard", slugs: { pt: "mago", en: "wizard", es: "mago" } },
+  { id: "archer", slugs: { pt: "arqueiro", en: "archer", es: "arquero" } },
+  { id: "idoll", slugs: { pt: "idol", en: "idol", es: "idolo" } },
+  { id: "magician", slugs: { pt: "magician", en: "magician", es: "magician" } },
+] as const;
+
+export function classHref(gameClass: GameClass, locale: Locale) {
+  return { pathname: "/classes/[slug]" as const, params: { slug: gameClass.slugs[locale] } };
+}
+
+export function findGameClass(slug: string, locale: Locale) {
+  return gameClasses.find(gameClass => gameClass.slugs[locale] === slug);
+}
+
 export const prestigeTiers = [
   { id: "bronze", level: 10, color: "#a96743" },
   { id: "silver", level: 20, color: "#b9c8cb" },

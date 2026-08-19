@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { PrestigeBadge } from "@/components/PrestigeBadge";
 import { buttonStyles } from "@/components/ui/Button";
-import { classHref, gameClasses, type GameClass } from "@/domain/game/classes";
-import { MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers } from "@/domain/game/prestige";
+import { classHref, gameClasses, MAX_CHARACTER_LEVEL, prestigeTierForLevel, prestigeTiers, type GameClass } from "@/game";
+import type { Locale } from "@/i18n/routing";
 
 export function PrestigeEvolution() {
+  const locale = useLocale() as Locale;
   const classesT = useTranslations("Classes");
   const prestigeT = useTranslations("Prestige");
   const [classId, setClassId] = useState<GameClass["id"]>("warrior");
@@ -90,7 +91,7 @@ export function PrestigeEvolution() {
                 <PrestigeBadge classId={classId} className="w-full drop-shadow-[0_24px_28px_rgba(1,13,11,.65)]" level={level} selected interpolate={false} priority />
               </div>
             </div>
-            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass)}>{classesT("meet")}</Link>
+            <Link className={`${buttonStyles("ghost")} -mt-2`} href={classHref(selectedClass, locale)}>{classesT("meet")}</Link>
           </div>
           <div className="w-full text-left max-[900px]:mx-auto max-[900px]:max-w-[460px] max-[900px]:text-center">
           <p className="font-miraj-of-icarus text-[.65rem] font-semibold uppercase tracking-[.18em] text-[#a8f2c4]">{classesT(`items.${selectedClass.id}.role`)}</p>

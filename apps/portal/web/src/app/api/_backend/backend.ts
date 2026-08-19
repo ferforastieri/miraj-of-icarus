@@ -6,7 +6,7 @@ import {
   REFRESH_COOKIE,
   apiUrl,
   type Session,
-} from "@/api/session";
+} from "@/app/api/_backend/session";
 
 const cookieOptions = {
   httpOnly: true,

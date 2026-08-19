@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { request } from "@/api/http";
-import type { ClientRelease } from "@/api/releases/get-latest-release";
-import type { Character } from "@/api/characters/get-characters";
+import { request } from "@/app/api/_react-query/http";
+import type { ClientRelease } from "@/app/api/_react-query/releases/get-latest-release";
+import type { Character } from "@/app/api/_react-query/characters/get-characters";
 
 export type AdminOverview = { accounts: number; characters: number; availableServers: number; totalServers: number; release: ClientRelease | null };
 export type AdminAccount = { accountId: number; userName: string; role: string; status: string; suspensionReason: string | null; suspendedAt: string | null; createdAt: string };

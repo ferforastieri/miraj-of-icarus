@@ -1,4 +1,4 @@
-import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/api/backend";
+import { authenticatedBackendFetch, proxyResponse, withBackendErrors } from "@/app/api/_backend/backend";
 
 export async function POST(
   _request: Request,
