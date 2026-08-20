@@ -4,6 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { QueryProvider } from "@/app/api/_react-query/QueryProvider";
 import { JadeCursor } from "@/components/ui/JadeCursor";
+import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { ServiceWorkerRegistration } from "@/components/system/ServiceWorkerRegistration";
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import { localeDetails, routing, type Locale } from "@/i18n/routing";
@@ -70,6 +71,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       <body>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>
+          <MobileNavigation />
         </NextIntlClientProvider>
         <JadeCursor />
         <ServiceWorkerRegistration />

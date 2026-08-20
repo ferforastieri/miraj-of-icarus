@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
-import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { cn } from "@/lib/cn";
 import { routes } from "@/i18n/routing";
@@ -69,8 +68,6 @@ export function SiteHeader() {
           <Link className={navItem} href={routes.community}>{t("community")}</Link>
           <NavDropdown label={t("shop")} items={shopItems} />
         </div>
-
-        <MobileNavigation />
       </nav>
     </header>
   );
