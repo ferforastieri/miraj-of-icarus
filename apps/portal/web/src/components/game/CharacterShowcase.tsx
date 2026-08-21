@@ -61,9 +61,9 @@ export function CharacterShowcase() {
             ))}
           </dl>
 
-          <div className="mt-8 flex flex-wrap gap-3 max-[900px]:justify-center max-[520px]:flex-col">
-            <Link className={buttonStyles("primary")} href={classHref(t(`slugs.${classId}`))}>{t("meet")}</Link>
-            <Link className={buttonStyles("ghost")} href={routes.register}>{t("choose")}</Link>
+          <div className="mt-8 grid max-w-xl grid-cols-2 gap-3 max-[900px]:mx-auto max-[520px]:grid-cols-1">
+            <Link className={`${buttonStyles("primary")} !min-w-0 !px-4`} href={classHref(t(`slugs.${classId}`))}>{t("meet")}</Link>
+            <Link className={`${buttonStyles("ghost")} !min-w-0 !px-4`} href={routes.register}>{t("choose")}</Link>
           </div>
         </div>
 
@@ -75,10 +75,10 @@ export function CharacterShowcase() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2 sm:gap-4" role="group" aria-label={t("chooseAria")}>
+      <div className="mx-auto mt-10 flex w-full max-w-5xl flex-nowrap items-start justify-start gap-2 overflow-x-auto px-2 pb-5 lg:justify-center" role="group" aria-label={t("chooseAria")}>
         {gameClassIds.map((item, index) => (
           <button
-            className={`relative grid size-[76px] place-items-center rounded-full transition-[transform,filter] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f0d68a] sm:size-[92px] ${item === classId ? "scale-110 drop-shadow-[0_0_18px_rgba(222,194,109,.7)]" : "opacity-70 grayscale-[.2] hover:scale-105 hover:opacity-100 hover:grayscale-0"}`}
+            className={`relative grid w-[84px] shrink-0 place-items-center gap-1 transition-[transform,filter] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f0d68a] sm:w-[104px] ${item === classId ? "scale-110 drop-shadow-[0_0_18px_rgba(222,194,109,.7)]" : "opacity-70 grayscale-[.2] hover:scale-105 hover:opacity-100 hover:grayscale-0"}`}
             type="button"
             key={item}
             aria-label={t("showEvolution", { name: t(`items.${item}.name`) })}
@@ -87,13 +87,14 @@ export function CharacterShowcase() {
             onClick={() => selectClass(index)}
           >
             <Image
-              className="size-full object-contain"
+              className="size-[76px] object-contain sm:size-[92px]"
               src={`/media/game-ui/classes/gold/${item}${item === classId ? "-selected" : ""}.png`}
               alt=""
               width={112}
               height={112}
             />
-            <span className={`absolute bottom-0 left-1/2 h-px -translate-x-1/2 bg-[#f0d171] shadow-[0_0_8px_#d7ad43] transition-[width,opacity] ${item === classId ? "w-10 opacity-100" : "w-0 opacity-0"}`} aria-hidden="true" />
+            <span className={`font-miraj-of-icarus text-[.58rem] uppercase tracking-[.05em] transition-colors sm:text-[.64rem] ${item === classId ? "text-[#fff0b7]" : "text-[#d5dfd7]"}`}>{t(`items.${item}.name`)}</span>
+            <span className={`h-px bg-[#f0d171] shadow-[0_0_8px_#d7ad43] transition-[width,opacity] ${item === classId ? "w-10 opacity-100" : "w-0 opacity-0"}`} aria-hidden="true" />
           </button>
         ))}
       </div>

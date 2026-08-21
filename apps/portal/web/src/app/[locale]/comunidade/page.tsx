@@ -29,9 +29,9 @@ export default async function CommunityPage({ params }: Props) {
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.25em] text-[#b5e8c8]">{t("kicker")}</p>
           <h1 className="miraj-page-heading mt-5">{t("title")}</h1>
           <p className="mx-auto mt-8 max-w-3xl text-[clamp(1rem,1.6vw,1.22rem)] leading-8 text-[#e2ebe2]">{t("description")}</p>
-          <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[620px]:w-full max-[620px]:flex-col">
-            <Link className={buttonStyles("primary", true)} href={routes.register}>{t("createAccount")}</Link>
-            <Link className={buttonStyles("ghost", true)} href={routes.home}>{t("backHome")}</Link>
+          <div className="mx-auto mt-10 grid w-full max-w-[620px] grid-cols-2 gap-3 max-[700px]:grid-cols-1">
+            <Link className={`${buttonStyles("primary", true)} w-full !min-w-0`} href={routes.register}>{t("createAccount")}</Link>
+            <Link className={`${buttonStyles("ghost", true)} w-full !min-w-0`} href={routes.home}>{t("backHome")}</Link>
           </div>
         </div>
       </section>

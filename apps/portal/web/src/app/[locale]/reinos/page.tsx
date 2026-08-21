@@ -45,8 +45,8 @@ export default function RealmsPage() {
                   <span className={`font-miraj-of-icarus text-sm uppercase tracking-[.14em] ${server.available ? "text-[#82e0a8]" : "text-[#d6a58f]"}`}>{t(server.available ? "available" : "maintenance")}</span>
                 </article>
               ))}
-              {servers.isLoading && <p className="border-y border-[#a58a52] py-12 text-center text-[#5e7168]">{t("loading")}</p>}
-              {!servers.isLoading && !servers.data?.length && <p className="border-y border-[#a58a52] py-12 text-center text-[#5e7168]">{t("empty")}</p>}
+              {servers.isLoading && <p className="border-y border-[#a58a52] bg-[#071310]/70 px-6 py-12 text-center text-[#c7d5cc]">{t("loading")}</p>}
+              {!servers.isLoading && !servers.data?.length && <p className="border-y border-[#c0a45f] bg-[#071310]/80 px-6 py-12 text-center text-base leading-7 text-[#f0f3ea] shadow-[inset_0_0_32px_rgba(55,162,105,.12)] [text-shadow:0_2px_5px_#010c0a]">{t("empty")}</p>}
             </div>
           </div>
         </section>

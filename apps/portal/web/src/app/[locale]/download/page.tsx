@@ -30,9 +30,9 @@ export default function DownloadPage() {
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.24em] text-[#a9e9c4]">{t("kicker")}</p>
           <h1 className="miraj-page-heading mt-4">{t("title")}</h1>
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#d9e5da]">{t("description")}</p>
-          <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[560px]:w-full max-[560px]:flex-col">
-            {release ? <a className={buttonStyles("primary", true)} href={release.launcherUrl}>{t("downloadLauncher")}</a> : <span className={buttonStyles("primary", true)} aria-disabled="true">{t("preparing")}</span>}
-            <Link className={buttonStyles("ghost", true)} href={routes.register}>{t("createAccount")}</Link>
+          <div className="mx-auto mt-10 grid w-full max-w-[620px] grid-cols-2 gap-3 max-[700px]:grid-cols-1">
+            {release ? <a className={`${buttonStyles("primary", true)} w-full !min-w-0`} href={release.launcherUrl}>{t("downloadLauncher")}</a> : <span className={`${buttonStyles("primary", true)} w-full !min-w-0`} aria-disabled="true">{t("preparing")}</span>}
+            <Link className={`${buttonStyles("ghost", true)} w-full !min-w-0`} href={routes.register}>{t("createAccount")}</Link>
           </div>
           {release && <p className="mt-5 text-xs uppercase tracking-[.12em] text-[#c9d8ca]">{t("releaseDetails", { version: release.version.slice(0, 8), size: formatBytes(release.totalSize), date: format.dateTime(new Date(release.publishedAt)) })}</p>}
           {releaseQuery.isError && <p className="mx-auto mt-6 max-w-xl text-sm text-[#d8cfae]">{t("error")}</p>}
