@@ -38,7 +38,7 @@
   * { box-sizing: border-box; }
   html {
     scroll-behavior: smooth;
-    background: var(--color-abyss);
+    background: #101417;
     cursor: url("/media/branding/miraj-jade-cursor-pointer.png") 3 3, auto;
   }
   a, button, label, select, summary, [role="button"] {
@@ -47,7 +47,7 @@
   input, textarea, [contenteditable="true"] { cursor: text; }
   body {
     margin: 0;
-    background: var(--color-abyss);
+    background: #101417;
     color: var(--color-moonsteel);
     font-family: "Marcellus";
     -webkit-font-smoothing: antialiased;
@@ -110,6 +110,86 @@
 }
 
 @layer components {
+  .miraj-page {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: #101417 url("/media/portal-hero-v3.png") center top / cover fixed no-repeat;
+  }
+
+  .miraj-page > footer {
+    margin-top: auto;
+  }
+
+  .miraj-page-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: clamp(30rem, 68svh, 44rem);
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .miraj-dark-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgb(8 13 15 / 82%), rgb(12 16 18 / 58%), rgb(8 13 15 / 82%)),
+      url("/media/landing/news-frontier-v1.webp") center / cover no-repeat;
+    color: #edf1e7;
+  }
+
+  .miraj-section-frame {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-block: clamp(1.5rem, 4vh, 3rem);
+  }
+
+  .miraj-dark-section::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 18%, rgb(255 245 210 / 10%), transparent 38%);
+    content: "";
+    opacity: 1;
+  }
+
+  .miraj-scene-classes {
+    background:
+      linear-gradient(90deg, rgb(8 13 15 / 78%), rgb(10 14 16 / 42%), rgb(8 13 15 / 78%)),
+      url("/media/landing/classes-hall-v1.webp") center / cover no-repeat;
+  }
+
+  .miraj-scene-citadel {
+    background:
+      linear-gradient(90deg, rgb(8 13 15 / 76%), rgb(10 14 16 / 38%), rgb(8 13 15 / 76%)),
+      url("/media/portal-hero-v3.png") center / cover no-repeat;
+  }
+
+  .miraj-page-heading {
+    font-family: var(--font-miraj-of-icarus);
+    font-size: clamp(2.5rem, 4.8vw, 4.75rem);
+    font-weight: 600;
+    line-height: .88;
+    color: #f5f0dc;
+    text-shadow: 0 4px 16px rgb(3 18 16 / 72%);
+  }
+
+  .miraj-glass-card {
+    border: 34px solid transparent;
+    border-image-source: url("/media/game-ui/jade/panel-card.png");
+    border-image-slice: 190 160 fill;
+    border-image-width: 42px 38px;
+    border-image-repeat: stretch;
+    background: transparent;
+    filter: drop-shadow(0 18px 26px rgb(1 8 10 / 28%));
+    color: #edf1e7;
+  }
+
   .miraj-button {
     --miraj-button-state: url("/media/game-ui/jade/button-default.png");
     background-image: var(--miraj-button-state), url("/media/game-ui/jade/button-default.png");
@@ -325,12 +405,13 @@
   }
 
   .jade-card {
-    border: 42px solid transparent;
-    border-image-source: url("/media/game-ui/jade/card.png");
-    border-image-slice: 76 170 fill;
-    border-image-width: 42px 58px;
+    border: 34px solid transparent;
+    border-image-source: url("/media/game-ui/jade/panel-card.png");
+    border-image-slice: 190 160 fill;
+    border-image-width: 42px 38px;
     border-image-repeat: stretch;
-    background: #073a35;
+    background: transparent;
+    filter: drop-shadow(0 18px 26px rgb(1 8 10 / 28%));
     padding: clamp(1.25rem, 2.4vw, 2rem);
   }
 
@@ -419,7 +500,7 @@
 
   .auth-panel {
     border: 58px solid transparent;
-    border-image-source: url("/media/game-ui/jade/auth-panel.png");
+    border-image-source: url("/media/game-ui/jade/panel-card.png");
     border-image-slice: 190 160 fill;
     border-image-width: 72px 62px;
     border-image-repeat: stretch;

@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
+import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
 import { pageMetadata } from "@/lib/seo";
 import { routes } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
@@ -22,14 +23,13 @@ export default async function GamePage({ params }: Props) {
   const pillars = [1, 2, 3].map((item, index) => ({ mark: ["I", "II", "III"][index], title: t(`pillar${item}Title`), text: t(`pillar${item}Text`) }));
   const reconstruction = [[t("accessTitle"), t("accessText")], [t("charactersTitle"), t("charactersText")], [t("worldTitle"), t("worldText")]];
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#041d19]">
-      <section className="relative isolate grid min-h-[78svh] place-items-center overflow-hidden px-6 pb-20 pt-56 text-center max-[700px]:min-h-[720px] max-[700px]:px-4 max-[700px]:pt-32">
-        <div className="absolute inset-0 -z-30 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center max-[700px]:bg-[58%_center]" aria-hidden="true" />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(3,25,21,.35),rgba(3,25,21,.88)),radial-gradient(circle_at_50%_38%,rgba(103,205,143,.14),transparent_44%)]" aria-hidden="true" />
+    <div className="miraj-page">
+      <section className="miraj-page-hero px-6 pb-12 pt-52 text-center max-[700px]:px-4 max-[700px]:pt-28">
+        <WaterBackdrop imagePosition="bg-center max-[700px]:bg-[58%_center]" />
         <SiteHeader />
         <div className="w-[min(900px,100%)]">
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.25em] text-[#b5e8c8]">{t("kicker")}</p>
-          <h1 className="mt-5 font-miraj-of-icarus text-[clamp(3.2rem,7.5vw,7.2rem)] font-semibold leading-[.82] text-[#f5f0dc] [text-shadow:0_4px_16px_#031b16]">{t("title")}</h1>
+          <h1 className="miraj-page-heading mt-5">{t("title")}</h1>
           <p className="mx-auto mt-8 max-w-3xl text-[clamp(1rem,1.6vw,1.25rem)] leading-8 text-[#e2ebe2]">{t("description")}</p>
           <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[620px]:w-full max-[620px]:flex-col">
             <Link className={buttonStyles("primary", true)} href={routes.classes}>{t("meetClasses")}</Link>
@@ -39,25 +39,25 @@ export default async function GamePage({ params }: Props) {
       </section>
 
       <main>
-        <section className="scroll-mt-28 bg-[linear-gradient(180deg,#eef0df,#f8f1de)] px-6 py-28 text-[#173b32] max-[700px]:px-4 max-[700px]:py-20" id="sobre">
+        <section className="miraj-dark-section miraj-scene-classes miraj-section-frame scroll-mt-28 px-6 max-[700px]:px-4" id="sobre">
           <div className="mx-auto w-[min(1180px,100%)]">
             <header className="grid grid-cols-[.72fr_1.28fr] gap-14 border-b border-[#9b824c] pb-14 max-[800px]:grid-cols-1 max-[800px]:gap-6">
-              <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#8c6c35]">{t("proposalKicker")}</p>
+              <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#92dfaf]">{t("proposalKicker")}</p>
               <h2 className="font-miraj-of-icarus text-[clamp(2.8rem,5vw,5.5rem)] leading-[.88]">{t("proposalTitle")}</h2>
             </header>
-            <div className="mt-12 grid grid-cols-3 gap-px bg-[#a38a55] max-[800px]:grid-cols-1">
+            <div className="mt-12 grid grid-cols-3 gap-3 max-[800px]:grid-cols-1">
               {pillars.map(pillar => (
-                <article className="scroll-mt-32 min-h-[330px] bg-[#edf0df] p-8 max-[700px]:min-h-0" id={pillar.mark === "II" ? "skills" : undefined} key={pillar.mark}>
-                  <span className="font-miraj-of-icarus text-sm text-[#9a793c]">{pillar.mark}</span>
+                <article className="miraj-glass-card scroll-mt-32 min-h-[330px] p-8 max-[700px]:min-h-0" id={pillar.mark === "II" ? "skills" : undefined} key={pillar.mark}>
+                  <span className="font-miraj-of-icarus text-sm text-[#d6bd78]">{pillar.mark}</span>
                   <h3 className="mt-16 font-miraj-of-icarus text-4xl leading-none max-[700px]:mt-8">{pillar.title}</h3>
-                  <p className="mt-6 leading-7 text-[#536b62]">{pillar.text}</p>
+                  <p className="mt-6 leading-7 text-[#bccdc2]">{pillar.text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-28 text-[#edf1e7] max-[700px]:px-4 max-[700px]:py-20">
+        <section className="miraj-dark-section miraj-section-frame relative isolate overflow-hidden px-6 text-[#edf1e7] max-[700px]:px-4">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.12]" aria-hidden="true" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_28%_45%,rgba(39,145,92,.22),rgba(3,27,23,.96)_58%)]" aria-hidden="true" />
           <div className="mx-auto grid w-[min(1180px,100%)] grid-cols-[.92fr_1.08fr] items-center gap-16 max-[900px]:grid-cols-1">
@@ -80,10 +80,10 @@ export default async function GamePage({ params }: Props) {
           </div>
         </section>
 
-        <section className="bg-[#e9eddd] px-6 py-24 text-center text-[#173b32] max-[700px]:px-4">
-          <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#8c6c35]">{t("firstStepKicker")}</p>
+        <section className="miraj-dark-section miraj-scene-citadel miraj-section-frame px-6 text-center max-[700px]:px-4">
+          <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#92dfaf]">{t("firstStepKicker")}</p>
           <h2 className="mx-auto mt-4 max-w-4xl font-miraj-of-icarus text-[clamp(2.8rem,5vw,5.2rem)] leading-[.88]">{t("firstStepTitle")}</h2>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#526b61]">{t("firstStepText")}</p>
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#bccdc2]">{t("firstStepText")}</p>
           <Link className={`${buttonStyles("primary", true)} mt-9`} href={routes.classes}>{t("chooseClass")}</Link>
         </section>
       </main>

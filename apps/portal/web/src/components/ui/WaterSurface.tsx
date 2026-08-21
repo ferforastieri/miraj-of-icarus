@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { cn } from "@/lib/cn";
 
 const vertexShader = `
 attribute vec2 a_position;
@@ -84,7 +85,7 @@ function createProgram(gl: WebGLRenderingContext, fragmentSource: string) {
   return program;
 }
 
-export function WaterSurface() {
+export function WaterSurface({ className }: { className?: string }) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -208,5 +209,5 @@ export function WaterSurface() {
     };
   }, []);
 
-  return <canvas ref={canvas} className="pointer-events-none absolute inset-0 z-[-25] h-full w-full motion-reduce:hidden" aria-hidden="true" />;
+  return <canvas ref={canvas} className={cn("pointer-events-none absolute inset-0 z-[-25] h-full w-full motion-reduce:hidden", className)} aria-hidden="true" />;
 }

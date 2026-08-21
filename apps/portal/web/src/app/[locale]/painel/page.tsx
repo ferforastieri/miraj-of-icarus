@@ -12,6 +12,7 @@ import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Kicker } from "@/components/ui/Kicker";
+import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
 import { routes } from "@/i18n/routing";
 import { gameClassIds } from "@/components/game/model";
 
@@ -38,15 +39,17 @@ export default function AdministrationPage() {
     if (!account.isLoading && !account.data) router.replace({ pathname: routes.login, query: { retorno: routes.panel } });
     if (account.data && account.data.role !== "Administrator") router.replace(routes.client);
   }, [account.data, account.isLoading, router]);
-  if (account.isLoading || account.data?.role !== "Administrator") return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("validating")}</main><SiteFooter /></div>;
+  if (account.isLoading || account.data?.role !== "Administrator") return <div className="miraj-page"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("validating")}</main><SiteFooter /></div>;
 
   const stat = "jade-card flex min-h-[160px] flex-col justify-between";
   return (
-    <div className="min-h-screen bg-abyss"><SiteHeader />
-      <main className="mx-auto w-[min(1180px,calc(100%-40px))] pb-16 pt-52 max-[700px]:pt-32 max-[560px]:w-[calc(100%-18px)]">
-        <Kicker>{t("kicker")}</Kicker>
-        <h1 className="mb-4 text-[clamp(3rem,7vw,6rem)] leading-[.88]">{t("title")}</h1>
-        <p className="max-w-2xl text-mist">{t("description")}</p>
+    <div className="miraj-page relative isolate"><WaterBackdrop fixed subtle /><SiteHeader />
+      <main className="mx-auto w-[min(1180px,calc(100%-40px))] pb-16 pt-40 max-[700px]:pt-28 max-[560px]:w-[calc(100%-18px)]">
+        <header className="jade-card">
+          <Kicker>{t("kicker")}</Kicker>
+          <h1 className="miraj-page-heading mb-4">{t("title")}</h1>
+          <p className="max-w-2xl text-mist">{t("description")}</p>
+        </header>
         {overview.isError && <Alert className="mt-6">{t("loadError")}</Alert>}
         <section className="my-10 grid grid-cols-4 gap-2 max-[800px]:grid-cols-2 max-[480px]:grid-cols-1">
           <article className={stat}><span className="text-ancient-gold">{t("accounts")}</span><strong className="text-4xl">{overview.data?.accounts ?? "-"}</strong></article>

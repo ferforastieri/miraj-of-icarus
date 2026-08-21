@@ -12,6 +12,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
+import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
 import { routes } from "@/i18n/routing";
 
 function formatBytes(bytes: number) {
@@ -30,16 +31,17 @@ export default function ClientPage() {
   useEffect(() => {
     if (!account.isLoading && !account.data) router.replace({ pathname: routes.login, query: { retorno: routes.client } });
   }, [account.data, account.isLoading, router]);
-  if (account.isLoading || !account.data) return <div className="min-h-screen bg-abyss"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("loading")}</main><SiteFooter /></div>;
+  if (account.isLoading || !account.data) return <div className="miraj-page"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("loading")}</main><SiteFooter /></div>;
 
   const availableServers = (servers.data ?? []).filter(server => server.available).length;
   const card = "jade-card flex min-h-[180px] flex-col justify-between drop-shadow-[0_14px_20px_rgba(3,27,22,.28)]";
   return (
-    <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(40,185,111,.16),transparent_28%)] bg-abyss">
+    <div className="miraj-page relative isolate">
+      <WaterBackdrop fixed subtle />
       <SiteHeader />
-      <main className="mx-auto w-[min(1180px,calc(100%-48px))] pb-20 pt-52 max-[700px]:pt-32 max-[620px]:w-[calc(100%-20px)]">
-        <header className="flex min-h-[230px] items-center justify-between gap-8 border-b border-jade/25 max-[700px]:flex-col max-[700px]:items-start max-[700px]:py-10">
-          <div><Kicker>{t("kicker")}</Kicker><h1 className="mb-3 font-display text-[clamp(2.7rem,6vw,5.5rem)] leading-[.9]">{t("welcome", { name: account.data.userName })}</h1><p className="text-mist">{t("description")}</p></div>
+      <main className="mx-auto w-[min(1180px,calc(100%-48px))] pb-20 pt-40 max-[700px]:pt-28 max-[620px]:w-[calc(100%-20px)]">
+        <header className="jade-card flex min-h-[230px] items-center justify-between gap-8 max-[700px]:flex-col max-[700px]:items-start">
+          <div><Kicker>{t("kicker")}</Kicker><h1 className="miraj-page-heading mb-3">{t("welcome", { name: account.data.userName })}</h1><p className="text-mist">{t("description")}</p></div>
           <Button type="button" disabled={logout.isPending} onClick={() => logout.mutate(undefined, { onSuccess: () => router.push(routes.login) })}>{t("logout")}</Button>
         </header>
         <section className="my-10 grid grid-cols-4 gap-2 max-[920px]:grid-cols-2 max-[560px]:grid-cols-1" aria-label={t("overviewAria")}>
@@ -50,7 +52,7 @@ export default function ClientPage() {
         </section>
         <CharacterPanel enabled />
         {account.data.role === "Administrator" && <Link className="mb-8 inline-block text-jade" href={routes.panel}>{t("openAdmin")} →</Link>}
-        <section className="mb-20 flex items-center justify-between gap-8 border-y border-jade/25 p-8 max-[620px]:flex-col max-[620px]:items-start max-[620px]:px-0"><div><Kicker>{t("security")}</Kicker><h2 className="text-4xl">{t("session")}</h2><p className="max-w-[580px] text-mist">{t("sessionDescription")}</p></div><Button onClick={() => logout.mutate(undefined, { onSuccess: () => router.push(routes.login) })}>{t("endSession")}</Button></section>
+        <section className="jade-card mb-20 flex items-center justify-between gap-8 max-[620px]:flex-col max-[620px]:items-start"><div><Kicker>{t("security")}</Kicker><h2 className="text-4xl">{t("session")}</h2><p className="max-w-[580px] text-mist">{t("sessionDescription")}</p></div><Button onClick={() => logout.mutate(undefined, { onSuccess: () => router.push(routes.login) })}>{t("endSession")}</Button></section>
       </main><SiteFooter />
     </div>
   );

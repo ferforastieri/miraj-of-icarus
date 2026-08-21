@@ -6,6 +6,7 @@ import { useLatestRelease } from "@/app/api/_react-query/releases/get-latest-rel
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { buttonStyles } from "@/components/ui/Button";
+import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
 import { routes } from "@/i18n/routing";
 
 function formatBytes(bytes: number) {
@@ -21,14 +22,13 @@ export default function DownloadPage() {
   const release = releaseQuery.data ?? null;
 
   return (
-    <div className="min-h-screen bg-[#041d19]">
-      <section className="relative isolate grid min-h-[82svh] place-items-center overflow-hidden px-6 pb-20 pt-56 text-center max-[700px]:px-4 max-[700px]:pt-32">
-        <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center" aria-hidden="true" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(3,25,21,.45),rgba(3,25,21,.94)),radial-gradient(circle_at_50%_44%,rgba(45,157,99,.2),transparent_44%)]" aria-hidden="true" />
+    <div className="miraj-page">
+      <section className="miraj-page-hero px-6 pb-12 pt-52 text-center max-[700px]:px-4 max-[700px]:pt-28">
+        <WaterBackdrop />
         <SiteHeader />
         <div className="w-[min(850px,100%)]">
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.24em] text-[#a9e9c4]">{t("kicker")}</p>
-          <h1 className="mt-4 font-miraj-of-icarus text-[clamp(3.1rem,7vw,6.8rem)] leading-[.84] text-[#f4f1df] [text-shadow:0_3px_12px_#031b16]">{t("title")}</h1>
+          <h1 className="miraj-page-heading mt-4">{t("title")}</h1>
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#d9e5da]">{t("description")}</p>
           <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap justify-center gap-3 max-[560px]:w-full max-[560px]:flex-col">
             {release ? <a className={buttonStyles("primary", true)} href={release.launcherUrl}>{t("downloadLauncher")}</a> : <span className={buttonStyles("primary", true)} aria-disabled="true">{t("preparing")}</span>}

@@ -24,7 +24,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const news = [1, 2, 3].map((item, index) => ({ category: t(`news${item}Category`), title: t(`news${item}Title`), description: t(`news${item}Description`), href: [routes.classes, routes.realms, routes.game][index] }));
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#041d19]">
+    <div className="min-h-screen overflow-x-hidden bg-[#101417]">
       <JsonLd data={structuredData} />
       <section className="relative isolate grid min-h-[100svh] place-items-center overflow-hidden" id="inicio" aria-labelledby="hero-title">
         <div data-testid="hero-image" className="absolute inset-0 -z-30 animate-hero-arrival bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center max-[700px]:bg-[58%_center]" aria-hidden="true" />
@@ -53,25 +53,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       </section>
 
       <main>
-        <section className="relative isolate overflow-hidden bg-[#052721] px-6 py-6 max-[700px]:px-4 max-[700px]:py-4" id="classes">
+        <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[#101417] px-6 py-[clamp(1rem,3vh,2rem)] max-[700px]:px-4" id="classes">
           <div className="absolute inset-0 -z-20 bg-[url('/media/landing/classes-hall-v1.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[700px]:bg-cover" aria-hidden="true" />
           <SectionTitlePlaque
             title={t("charactersTitle")}
             description={t("charactersDescription")}
           />
-          <PrestigeEvolution />
+          <div className="flex flex-1 items-center">
+            <PrestigeEvolution />
+          </div>
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[url('/media/landing/news-frontier-v1.webp')] bg-cover bg-center px-6 py-6 text-[#f2f0e2] max-[700px]:bg-[62%_center] max-[700px]:px-4 max-[700px]:py-4" id="noticias" aria-labelledby="news-title">
-          <div className="mx-auto w-[min(1200px,100%)]">
+        <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[url('/media/landing/news-frontier-v1.webp')] bg-cover bg-center px-6 py-[clamp(1rem,3vh,2rem)] text-[#f2f0e2] max-[700px]:bg-[62%_center] max-[700px]:px-4" id="noticias" aria-labelledby="news-title">
+          <div className="mx-auto flex min-h-[calc(100svh-clamp(2rem,6vh,4rem))] w-[min(1200px,100%)] flex-col">
             <SectionTitlePlaque title={t("newsTitle")} titleId="news-title" />
-            <div className="mb-10 mt-1 text-center">
+            <div className="mb-[clamp(1rem,3vh,2.5rem)] mt-1 text-center">
               <Link className="text-sm uppercase tracking-[.12em] text-[#e8d795] underline decoration-[#a8e5bc] underline-offset-8" href={routes.community}>{t("followCommunity")}</Link>
             </div>
 
-            <div className="grid grid-cols-[1.5fr_.85fr] gap-5 max-[980px]:grid-cols-1">
+            <div className="grid flex-1 grid-cols-[1.5fr_.85fr] gap-5 max-[980px]:grid-cols-1">
               {news.map((item, index) => (
-                <Link className={`group flex flex-col overflow-hidden bg-[#042a24] shadow-[0_24px_55px_rgba(2,20,16,.35)] ${index === 0 ? "row-span-2 min-h-[660px]" : "min-h-[320px]"} max-[980px]:min-h-[520px]`} href={item.href} key={item.title}>
+                <Link className={`group flex flex-col overflow-hidden border border-[#cdb573]/45 bg-[#111719]/90 shadow-[0_24px_55px_rgba(2,10,12,.35)] ${index === 0 ? "row-span-2 min-h-[660px]" : "min-h-[320px]"} max-[980px]:min-h-[520px]`} href={item.href} key={item.title}>
                   <div className={`relative shrink-0 overflow-hidden ${index === 0 ? "h-[360px]" : "h-[132px]"} max-[980px]:h-[230px]`}>
                     <Image className={`h-full w-full object-cover transition-transform duration-700 group-focus-visible:scale-[1.02] ${index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"}`} src="/media/landing/news-frontier-v1.webp" alt={t("newsImageAlt")} width={1881} height={836} sizes={index === 0 ? "(max-width: 980px) 100vw, 62vw" : "(max-width: 980px) 100vw, 35vw"} />
                   </div>

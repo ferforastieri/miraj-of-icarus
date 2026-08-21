@@ -8,6 +8,7 @@ import { routes } from "@/i18n/routing";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
+import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
 
 export function AuthScreen({ registering }: { registering: boolean }) {
   const t = useTranslations("Auth");
@@ -17,7 +18,8 @@ export function AuthScreen({ registering }: { registering: boolean }) {
     if (account.data) router.replace(routes.client);
   }, [account.data, router]);
   return (
-    <div className="min-h-screen overflow-hidden bg-[linear-gradient(90deg,rgba(4,31,26,.82),rgba(4,31,26,.25),rgba(4,31,26,.68)),url('/media/portal-hero-v3.png')] bg-cover bg-center bg-fixed">
+    <div className="miraj-page relative isolate">
+      <WaterBackdrop fixed />
       <SiteHeader />
       {account.isLoading || account.data
         ? <main className="grid min-h-[60vh] place-items-center text-sm uppercase tracking-[.16em] text-mist">{t("opening")}</main>

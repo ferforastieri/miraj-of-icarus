@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
 export const viewport: Viewport = {
   colorScheme: "dark",
-  themeColor: "#041d19",
+  themeColor: "#101417",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -68,7 +68,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         <link rel="preload" href="/media/game-ui/jade/button-pressed.png" as="image" />
         <link rel="preload" href="/media/game-ui/jade/button-disabled.png" as="image" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>
           <MobileNavigation />
