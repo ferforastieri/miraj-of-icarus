@@ -24,11 +24,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const news = [1, 2, 3].map((item, index) => ({ category: t(`news${item}Category`), title: t(`news${item}Title`), description: t(`news${item}Description`), href: [routes.classes, routes.realms, routes.game][index] }));
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#101417]">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#101417]">
       <JsonLd data={structuredData} />
+      <WaterSurface fixed overlay />
       <section className="relative isolate grid min-h-[100svh] place-items-center overflow-hidden" id="inicio" aria-labelledby="hero-title">
         <div data-testid="hero-image" className="absolute inset-0 -z-30 animate-hero-arrival bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center max-[700px]:bg-[58%_center]" aria-hidden="true" />
-        <WaterSurface />
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_43%,rgba(235,255,226,.05)_0_18%,rgba(5,38,31,.12)_44%,rgba(3,24,20,.82)_100%),linear-gradient(180deg,rgba(2,19,16,.2),transparent_35%,rgba(3,24,20,.82)_100%)]" aria-hidden="true" />
         <SiteHeader />
 

@@ -6,6 +6,7 @@ import { QueryProvider } from "@/app/api/_react-query/QueryProvider";
 import { JadeCursor } from "@/components/ui/JadeCursor";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { ServiceWorkerRegistration } from "@/components/system/ServiceWorkerRegistration";
+import { ScrollToTop } from "@/components/system/ScrollToTop";
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import { localeDetails, routing, type Locale } from "@/i18n/routing";
 import "../globals.css";
@@ -70,6 +71,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
+          <ScrollToTop />
           <QueryProvider>{children}</QueryProvider>
           <MobileNavigation />
         </NextIntlClientProvider>

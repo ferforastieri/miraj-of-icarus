@@ -61,6 +61,24 @@ void main(){
   gl_FragColor=vec4(color,1.0);
 }`;
 
+const overlayShader = `
+precision highp float;
+varying vec2 v_uv;
+uniform sampler2D u_state;
+uniform vec2 u_texel;
+float heightAt(vec2 point){return texture2D(u_state,point).r*2.0-1.0;}
+void main(){
+  float left=heightAt(v_uv-vec2(u_texel.x,0.0));
+  float right=heightAt(v_uv+vec2(u_texel.x,0.0));
+  float bottom=heightAt(v_uv-vec2(0.0,u_texel.y));
+  float top=heightAt(v_uv+vec2(0.0,u_texel.y));
+  vec2 gradient=vec2(right-left,top-bottom);
+  float crest=clamp(length(gradient)*10.0,0.0,.78)*.55;
+  float shade=clamp((gradient.x-gradient.y)*4.5+.5,0.0,1.0);
+  vec3 color=mix(vec3(.015,.17,.14),vec3(.92,1.0,.94),shade);
+  gl_FragColor=vec4(color,crest);
+}`;
+
 function createShader(gl: WebGLRenderingContext, type: number, source: string) {
   const shader = gl.createShader(type);
   if (!shader) return null;
@@ -85,16 +103,16 @@ function createProgram(gl: WebGLRenderingContext, fragmentSource: string) {
   return program;
 }
 
-export function WaterSurface({ className }: { className?: string }) {
+export function WaterSurface({ className, overlay = false, fixed = false }: { className?: string; overlay?: boolean; fixed?: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const element = canvas.current;
     if (!element || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const gl = element.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false });
+    const gl = element.getContext("webgl", { alpha: overlay, antialias: false, premultipliedAlpha: false });
     if (!gl) return;
     const simulation = createProgram(gl, simulationShader);
-    const render = createProgram(gl, renderShader);
+    const render = createProgram(gl, overlay ? overlayShader : renderShader);
     if (!simulation || !render) return;
 
     const buffer = gl.createBuffer();
@@ -179,6 +197,12 @@ export function WaterSurface({ className }: { className?: string }) {
       bindProgram(render);
       gl.bindFramebuffer(gl.FRAMEBUFFER, null);
       gl.viewport(0, 0, element.width, element.height);
+      if (overlay) {
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      }
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, textures[source]);
       gl.uniform1i(uniform(render, "u_state"), 0);
@@ -207,7 +231,7 @@ export function WaterSurface({ className }: { className?: string }) {
       gl.deleteProgram(simulation);
       gl.deleteProgram(render);
     };
-  }, []);
+  }, [overlay]);
 
-  return <canvas ref={canvas} className={cn("pointer-events-none absolute inset-0 z-[-25] h-full w-full motion-reduce:hidden", className)} aria-hidden="true" />;
+  return <canvas ref={canvas} className={cn("pointer-events-none inset-0 h-full w-full motion-reduce:hidden", fixed ? "fixed z-[25]" : "absolute z-[-25]", className)} aria-hidden="true" />;
 }
