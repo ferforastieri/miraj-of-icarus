@@ -73,7 +73,7 @@ void main(){
   float bottom=heightAt(v_uv-vec2(0.0,u_texel.y));
   float top=heightAt(v_uv+vec2(0.0,u_texel.y));
   vec2 gradient=vec2(right-left,top-bottom);
-  float crest=clamp(length(gradient)*10.0,0.0,.78)*.55;
+  float crest=clamp(length(gradient)*10.0,0.0,.78)*.38;
   float shade=clamp((gradient.x-gradient.y)*4.5+.5,0.0,1.0);
   vec3 color=mix(vec3(.015,.17,.14),vec3(.92,1.0,.94),shade);
   gl_FragColor=vec4(color,crest);

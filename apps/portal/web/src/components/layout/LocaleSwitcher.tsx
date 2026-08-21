@@ -42,8 +42,6 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
               locale={item}
               key={item}
               title={t(item)}
-              aria-current={locale === item ? "page" : undefined}
-              aria-selected={locale === item}
             >
               <span className="flex items-center justify-center gap-2" aria-hidden="true">
                 <Flag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" />
@@ -65,10 +63,10 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
         aria-haspopup="menu"
         title={t(locale)}
       >
-        <span className="grid w-full min-w-0 grid-cols-[1.25rem_minmax(0,1fr)_.6rem] items-center gap-2 leading-none">
-          <CurrentFlag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
+        <span className="relative flex w-full min-w-0 items-center justify-center leading-none">
+          <CurrentFlag className="absolute left-0 h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
           <span className="min-w-0 truncate text-center">{localeDetails[locale].countryCode}</span>
-          <span className="text-[.52rem] text-[#cdb573]" aria-hidden="true">◆</span>
+          <span className="absolute right-0 text-[.52rem] text-[#cdb573]" aria-hidden="true">◆</span>
         </span>
       </button>
 
@@ -78,7 +76,7 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
           return (
             <Link
               className={cn(
-                "miraj-button grid min-h-[48px] w-[220px] grid-cols-[1.5rem_minmax(0,1fr)] items-center gap-2 px-8 text-left font-miraj-of-icarus text-[.57rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white",
+                "miraj-button flex min-h-[48px] w-[220px] items-center justify-center gap-3 px-8 text-center font-miraj-of-icarus text-[.57rem] font-semibold uppercase tracking-[.035em] text-[#e8eadc] [text-shadow:0_2px_2px_#041b16] hover:text-white focus-visible:text-white",
                 locale === item && "text-white",
               )}
               href={hrefFor(item) as never}
@@ -88,8 +86,8 @@ export function LocaleSwitcher({ mobile = false }: { mobile?: boolean }) {
               aria-current={locale === item ? "page" : undefined}
               title={t(item)}
             >
-              <Flag className="h-3.5 w-5 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
-              <span className="min-w-0 truncate">{localeDetails[item].label}</span>
+              <Flag className="h-3.5 w-5 shrink-0 border border-[#e9d9a4]/55 object-cover shadow-[0_1px_3px_#021713]" aria-hidden="true" />
+              <span className="truncate">{localeDetails[item].label}</span>
             </Link>
           );
         })}

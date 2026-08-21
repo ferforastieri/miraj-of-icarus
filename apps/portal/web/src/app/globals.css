@@ -385,8 +385,7 @@
   }
 
   .miraj-mobile-sheet__account--primary {
-    --miraj-button-state: url("/media/game-ui/jade/button-focused.png");
-    color: white;
+    color: #e8d795;
   }
 
   @keyframes miraj-menu-open {
