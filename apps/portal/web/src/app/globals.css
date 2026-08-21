@@ -10,22 +10,13 @@
 
 @theme {
   --color-abyss: #061f20;
-  --color-iron: #0a3a35;
   --color-moonsteel: #eaf1e7;
   --color-mist: #aebdb2;
-  --color-frost: #91e5b4;
   --color-jade: #28b96f;
-  --color-jade-deep: #0f704a;
   --color-ancient-gold: #b99a5b;
-  --color-antique: #826532;
-  --color-blood: #7e313b;
-  --color-royal: #176347;
-  --color-parchment: #eee7d6;
-  --color-skywash: #eee7d6;
   --color-danger: #a34247;
   --font-display: "Marcellus";
   --font-miraj-of-icarus: "Marcellus";
-  --font-interface: "Marcellus";
   --animate-hero-arrival: hero-arrival 2.2s cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -141,14 +132,6 @@
     color: #edf1e7;
   }
 
-  .miraj-section-frame {
-    display: flex;
-    min-height: 100svh;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-block: clamp(1.5rem, 4vh, 3rem);
-  }
-
   .miraj-dark-section::before {
     position: absolute;
     inset: 0;
@@ -179,7 +162,8 @@
     text-shadow: 0 4px 16px rgb(3 18 16 / 72%);
   }
 
-  .miraj-glass-card {
+  .miraj-glass-card,
+  .jade-card {
     border: 34px solid transparent;
     border-image-source: url("/media/game-ui/jade/panel-card.png");
     border-image-slice: 190 160 fill;
@@ -188,6 +172,10 @@
     background: transparent;
     filter: drop-shadow(0 18px 26px rgb(1 8 10 / 28%));
     color: #edf1e7;
+  }
+
+  .jade-card {
+    padding: clamp(1.25rem, 2.4vw, 2rem);
   }
 
   .miraj-button {
@@ -403,19 +391,29 @@
     to { opacity: 1; }
   }
 
-  .jade-card {
-    border: 34px solid transparent;
-    border-image-source: url("/media/game-ui/jade/panel-card.png");
-    border-image-slice: 190 160 fill;
-    border-image-width: 42px 38px;
-    border-image-repeat: stretch;
-    background: transparent;
-    filter: drop-shadow(0 18px 26px rgb(1 8 10 / 28%));
-    padding: clamp(1.25rem, 2.4vw, 2rem);
-  }
-
   .prestige-badge {
     container-type: inline-size;
+  }
+
+  .character-showcase__glow {
+    background: radial-gradient(circle, rgb(77 205 132 / 24%), rgb(77 205 132 / 4%) 52%, transparent 70%);
+    filter: blur(10px);
+    animation: character-glow 3.2s ease-in-out infinite;
+  }
+
+  .character-showcase__ring {
+    box-shadow: inset 0 0 32px rgb(121 197 157 / 9%), 0 0 28px rgb(121 197 157 / 12%);
+    animation: character-orbit 18s linear infinite;
+  }
+
+  .character-showcase__ring--reverse { animation-direction: reverse; animation-duration: 24s; }
+  .character-showcase__crest { animation: character-arrival 700ms cubic-bezier(.2,.75,.2,1) both; }
+
+  @keyframes character-orbit { to { transform: rotate(405deg); } }
+  @keyframes character-glow { 50% { opacity: .58; transform: scale(1.08); } }
+  @keyframes character-arrival {
+    from { opacity: 0; filter: brightness(2) saturate(.5); transform: translateY(18px) scale(.88); }
+    to { opacity: 1; filter: brightness(1) saturate(1); transform: translateY(0) scale(1); }
   }
 
   .prestige-badge__level {
@@ -492,7 +490,10 @@
 
   @media (prefers-reduced-motion: reduce) {
     .prestige-ritual__reveal,
-    .prestige-ritual__beam {
+    .prestige-ritual__beam,
+    .character-showcase__glow,
+    .character-showcase__ring,
+    .character-showcase__crest {
       animation: none;
     }
   }

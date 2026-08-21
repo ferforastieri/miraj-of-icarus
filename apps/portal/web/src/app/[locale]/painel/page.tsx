@@ -41,31 +41,64 @@ export default function AdministrationPage() {
   }, [account.data, account.isLoading, router]);
   if (account.isLoading || account.data?.role !== "Administrator") return <div className="miraj-page"><SiteHeader /><main className="grid min-h-screen place-items-center pt-32 text-sm uppercase tracking-[.16em] text-mist">{t("validating")}</main><SiteFooter /></div>;
 
-  const stat = "jade-card flex min-h-[160px] flex-col justify-between";
+  const stat = "jade-card flex min-h-[132px] flex-col justify-between";
+  const compactButton = "!min-h-12 !min-w-[140px] !px-7";
   return (
-    <div className="miraj-page relative isolate"><WaterBackdrop fixed subtle /><SiteHeader />
-      <main className="mx-auto w-[min(1180px,calc(100%-40px))] pb-16 pt-40 max-[700px]:pt-28 max-[560px]:w-[calc(100%-18px)]">
-        <header className="jade-card">
-          <Kicker>{t("kicker")}</Kicker>
-          <h1 className="miraj-page-heading mb-4">{t("title")}</h1>
-          <p className="max-w-2xl text-mist">{t("description")}</p>
+    <div className="miraj-page relative isolate">
+      <WaterBackdrop fixed subtle />
+      <SiteHeader />
+      <main className="mx-auto w-[min(1240px,calc(100%-40px))] pb-16 pt-40 max-[700px]:pt-28 max-[560px]:w-[calc(100%-18px)]">
+        <header className="jade-card grid grid-cols-[1fr_auto] items-end gap-8 max-[760px]:grid-cols-1">
+          <div>
+            <Kicker>{t("kicker")}</Kicker>
+            <h1 className="miraj-page-heading mb-4">{t("title")}</h1>
+            <p className="max-w-2xl text-mist">{t("description")}</p>
+          </div>
+          <span className="text-right text-xs uppercase tracking-[.14em] text-ancient-gold max-[760px]:text-left">
+            {account.data.userName}<small className="mt-1 block text-mist">#{account.data.accountId}</small>
+          </span>
         </header>
+
         {overview.isError && <Alert className="mt-6">{t("loadError")}</Alert>}
-        <section className="my-10 grid grid-cols-4 gap-2 max-[800px]:grid-cols-2 max-[480px]:grid-cols-1">
-          <article className={stat}><span className="text-ancient-gold">{t("accounts")}</span><strong className="text-4xl">{overview.data?.accounts ?? "-"}</strong></article>
-          <article className={stat}><span className="text-ancient-gold">{t("characters")}</span><strong className="text-4xl">{overview.data?.characters ?? "-"}</strong></article>
-          <article className={stat}><span className="text-ancient-gold">{t("realms")}</span><strong className="text-4xl">{overview.data ? `${overview.data.availableServers}/${overview.data.totalServers}` : "-"}</strong></article>
-          <article className={stat}><span className="text-ancient-gold">{t("release")}</span><strong className="text-2xl">{overview.data?.release?.version.slice(0, 8) ?? t("noRelease")}</strong></article>
+
+        <section className="my-8 grid grid-cols-4 gap-3 max-[800px]:grid-cols-2 max-[480px]:grid-cols-1" aria-label={t("operation")}>
+          <article className={stat}><span className="text-xs uppercase tracking-[.12em] text-ancient-gold">{t("accounts")}</span><strong className="text-4xl font-normal">{overview.data?.accounts ?? "-"}</strong></article>
+          <article className={stat}><span className="text-xs uppercase tracking-[.12em] text-ancient-gold">{t("characters")}</span><strong className="text-4xl font-normal">{overview.data?.characters ?? "-"}</strong></article>
+          <article className={stat}><span className="text-xs uppercase tracking-[.12em] text-ancient-gold">{t("realms")}</span><strong className="text-4xl font-normal">{overview.data ? `${overview.data.availableServers}/${overview.data.totalServers}` : "-"}</strong></article>
+          <article className={stat}><span className="text-xs uppercase tracking-[.12em] text-ancient-gold">{t("release")}</span><strong className="text-2xl font-normal">{overview.data?.release?.version.slice(0, 8) ?? t("noRelease")}</strong></article>
         </section>
-        <section className="jade-card mb-16" aria-labelledby="accounts-title">
-          <div className="mb-6 flex items-end justify-between gap-5 max-[640px]:flex-col max-[640px]:items-stretch"><div><Kicker>{t("moderation")}</Kicker><h2 id="accounts-title" className="text-4xl">{t("accounts")}</h2></div><label className="grid gap-2 text-xs uppercase text-mist">{t("search")}<Input value={query} onChange={event => { setQuery(event.target.value); setPage(1); }} placeholder={t("accountName")} /></label></div>
-          <div className="overflow-x-auto"><table className="w-full min-w-[760px] border-collapse text-left"><thead className="text-xs uppercase tracking-[.12em] text-ancient-gold"><tr><th className="p-3">{t("account")}</th><th className="p-3">{t("role")}</th><th className="p-3">{t("status")}</th><th className="p-3">{t("actions")}</th></tr></thead><tbody>{accounts.data?.items.map(item => <tr className="border-t border-jade/20" key={item.accountId}><td className="p-3"><button className="text-left text-jade focus-visible:text-white" onClick={() => setSelectedAccount(item.accountId)}>{item.userName}<small className="block text-mist">#{item.accountId}</small></button></td><td className="p-3">{t(`roles.${item.role}`)}</td><td className="p-3">{t(`statuses.${item.status}`)}</td><td className="flex gap-1 p-3">{item.status === "Active" ? <Button className="min-w-[140px]" variant="danger" onClick={() => { const reason = window.prompt(t("suspensionReason")); if (reason) suspend.mutate({ accountId: item.accountId, reason }); }}>{t("suspend")}</Button> : <Button className="min-w-[140px]" onClick={() => restore.mutate(item.accountId)}>{t("restore")}</Button>}<Button className="min-w-[140px]" onClick={() => setSelectedAccount(item.accountId)}>{t("characters")}</Button></td></tr>)}</tbody></table></div>
-          <div className="mt-5 flex items-center justify-between"><Button disabled={page <= 1} onClick={() => setPage(value => value - 1)}>{t("previous")}</Button><span className="text-sm text-mist">{t("page", { page })}</span><Button disabled={!accounts.data || page * accounts.data.pageSize >= accounts.data.total} onClick={() => setPage(value => value + 1)}>{t("next")}</Button></div>
-        </section>
-        {selectedAccount !== null && <section className="jade-card mb-16"><div className="mb-5 flex items-center justify-between"><div><Kicker>{t("account")} #{selectedAccount}</Kicker><h2 className="text-4xl">{t("characters")}</h2></div><Button onClick={() => setSelectedAccount(null)}>{t("close")}</Button></div><div className="grid gap-2">{characters.data?.map(character => { const knownClass = gameClassIds.find(classId => classId === character.archetype); return <article className="flex items-center justify-between gap-4 border-y border-jade/20 p-4 max-[560px]:flex-col max-[560px]:items-start" key={character.id}><div><strong className="text-xl">{character.name}</strong><p className="text-sm text-mist">{knownClass ? classesT(`items.${knownClass}.name`) : character.archetype} · {t("level", { level: character.level })}{character.deletionScheduledAt ? ` · ${t("deletionScheduled")}` : ""}</p></div>{character.deletionScheduledAt ? <Button onClick={() => restoreCharacter.mutate({ accountId: selectedAccount, characterId: character.id })}>{t("cancelDeletion")}</Button> : <Button variant="danger" onClick={() => { if (window.confirm(t("scheduleDeletionQuestion", { name: character.name }))) deleteCharacter.mutate({ accountId: selectedAccount, characterId: character.id }); }}>{t("scheduleDeletion")}</Button>}</article>; })}</div></section>}
-        <section className="jade-card mb-16"><Kicker>{t("operation")}</Kicker><h2 className="mb-5 text-4xl">{t("maintenanceTitle")}</h2><div className="grid gap-2">{servers.data?.map(server => <article className="flex items-center justify-between gap-5 border-y border-jade/20 p-4 max-[620px]:flex-col max-[620px]:items-start" key={server.id}><div><strong className="text-xl">{server.name}</strong><p className="text-sm text-mist">{server.available ? t("available") : server.maintenanceMessage || t("unavailable")}</p></div>{server.maintenanceMessage ? <Button onClick={() => maintenance.mutate({ serverId: server.id, enabled: false })}>{t("endMaintenance")}</Button> : <Button variant="danger" onClick={() => { const message = window.prompt(t("maintenanceMessage")); if (message) maintenance.mutate({ serverId: server.id, enabled: true, message }); }}>{t("startMaintenance")}</Button>}</article>)}</div></section>
-        <section className="jade-card mb-16"><Kicker>{t("security")}</Kicker><h2 className="mb-5 text-4xl">{t("audit")}</h2><div className="grid gap-2">{audit.data?.map(entry => <article className="border-y border-jade/20 p-4" key={entry.id}><strong>{entry.action}</strong><span className="mx-2 text-ancient-gold">{entry.target}</span><time className="block text-sm text-mist">{format.dateTime(new Date(entry.createdAt), { dateStyle: "short", timeStyle: "short" })}</time></article>)}</div></section>
-      </main><SiteFooter />
+
+        <div className="grid grid-cols-[minmax(0,1.55fr)_minmax(320px,.75fr)] items-start gap-4 max-[980px]:grid-cols-1">
+          <section className="jade-card" aria-labelledby="accounts-title">
+            <div className="mb-6 flex items-end justify-between gap-5 max-[640px]:flex-col max-[640px]:items-stretch">
+              <div><Kicker>{t("moderation")}</Kicker><h2 id="accounts-title" className="text-4xl">{t("accounts")}</h2></div>
+              <label className="grid gap-2 text-xs uppercase text-mist">{t("search")}<Input value={query} onChange={event => { setQuery(event.target.value); setPage(1); }} placeholder={t("accountName")} /></label>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[760px] border-collapse text-left">
+                <thead className="text-xs uppercase tracking-[.12em] text-ancient-gold"><tr><th className="p-3">{t("account")}</th><th className="p-3">{t("role")}</th><th className="p-3">{t("status")}</th><th className="p-3">{t("actions")}</th></tr></thead>
+                <tbody>{accounts.data?.items.map(item => (
+                  <tr className="border-t border-jade/20" key={item.accountId}>
+                    <td className="p-3"><button className="text-left text-jade focus-visible:text-white" onClick={() => setSelectedAccount(item.accountId)}>{item.userName}<small className="block text-mist">#{item.accountId}</small></button></td>
+                    <td className="p-3">{t(`roles.${item.role}`)}</td>
+                    <td className="p-3">{t(`statuses.${item.status}`)}</td>
+                    <td className="p-3"><div className="flex gap-2">{item.status === "Active" ? <Button className={compactButton} variant="danger" onClick={() => { const reason = window.prompt(t("suspensionReason")); if (reason) suspend.mutate({ accountId: item.accountId, reason }); }}>{t("suspend")}</Button> : <Button className={compactButton} onClick={() => restore.mutate(item.accountId)}>{t("restore")}</Button>}<Button className={compactButton} onClick={() => setSelectedAccount(item.accountId)}>{t("characters")}</Button></div></td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+            <div className="mt-5 flex items-center justify-between gap-3"><Button className={compactButton} disabled={page <= 1} onClick={() => setPage(value => value - 1)}>{t("previous")}</Button><span className="text-sm text-mist">{t("page", { page })}</span><Button className={compactButton} disabled={!accounts.data || page * accounts.data.pageSize >= accounts.data.total} onClick={() => setPage(value => value + 1)}>{t("next")}</Button></div>
+          </section>
+
+          <aside className="grid gap-4">
+            <section className="jade-card"><Kicker>{t("operation")}</Kicker><h2 className="mb-5 text-3xl">{t("maintenanceTitle")}</h2><div className="grid gap-3">{servers.data?.map(server => <article className="border-t border-jade/20 pt-4" key={server.id}><div className="mb-4"><strong className="text-xl">{server.name}</strong><p className="text-sm text-mist">{server.available ? t("available") : server.maintenanceMessage || t("unavailable")}</p></div>{server.maintenanceMessage ? <Button className={`${compactButton} w-full`} onClick={() => maintenance.mutate({ serverId: server.id, enabled: false })}>{t("endMaintenance")}</Button> : <Button className={`${compactButton} w-full`} variant="danger" onClick={() => { const message = window.prompt(t("maintenanceMessage")); if (message) maintenance.mutate({ serverId: server.id, enabled: true, message }); }}>{t("startMaintenance")}</Button>}</article>)}</div></section>
+            <section className="jade-card"><Kicker>{t("security")}</Kicker><h2 className="mb-5 text-3xl">{t("audit")}</h2><div className="grid max-h-[420px] gap-1 overflow-y-auto pr-1">{audit.data?.map(entry => <article className="border-t border-jade/20 py-3" key={entry.id}><strong className="block text-sm">{entry.action}</strong><span className="text-sm text-ancient-gold">{entry.target}</span><time className="block text-xs text-mist">{format.dateTime(new Date(entry.createdAt), { dateStyle: "short", timeStyle: "short" })}</time></article>)}</div></section>
+          </aside>
+        </div>
+
+        {selectedAccount !== null && <section className="jade-card mt-4"><div className="mb-5 flex items-center justify-between gap-4 max-[560px]:items-start"><div><Kicker>{t("account")} #{selectedAccount}</Kicker><h2 className="text-4xl">{t("characters")}</h2></div><Button className={compactButton} onClick={() => setSelectedAccount(null)}>{t("close")}</Button></div><div className="grid grid-cols-2 gap-3 max-[760px]:grid-cols-1">{characters.data?.map(character => { const knownClass = gameClassIds.find(classId => classId === character.archetype); return <article className="flex items-center justify-between gap-4 border-y border-jade/20 p-4 max-[560px]:flex-col max-[560px]:items-start" key={character.id}><div><strong className="text-xl">{character.name}</strong><p className="text-sm text-mist">{knownClass ? classesT(`items.${knownClass}.name`) : character.archetype} · {t("level", { level: character.level })}{character.deletionScheduledAt ? ` · ${t("deletionScheduled")}` : ""}</p></div>{character.deletionScheduledAt ? <Button className={compactButton} onClick={() => restoreCharacter.mutate({ accountId: selectedAccount, characterId: character.id })}>{t("cancelDeletion")}</Button> : <Button className={compactButton} variant="danger" onClick={() => { if (window.confirm(t("scheduleDeletionQuestion", { name: character.name }))) deleteCharacter.mutate({ accountId: selectedAccount, characterId: character.id }); }}>{t("scheduleDeletion")}</Button>}</article>; })}</div></section>}
+      </main>
+      <SiteFooter />
     </div>
   );
 }

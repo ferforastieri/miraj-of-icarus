@@ -28,7 +28,7 @@ export default function RealmsPage() {
       </section>
 
       <main>
-        <section className="miraj-dark-section miraj-scene-citadel miraj-section-frame px-6 max-[700px]:px-4" id="reinos-disponiveis">
+        <section className="miraj-dark-section miraj-scene-citadel px-6 py-20 max-[700px]:px-4 max-[700px]:py-14" id="reinos-disponiveis">
           <div className="mx-auto w-[min(1120px,100%)]">
             <header className="grid grid-cols-[.6fr_1.4fr] gap-12 border-b border-[#9c824d] pb-12 max-[760px]:grid-cols-1 max-[760px]:gap-4">
               <p className="font-miraj-of-icarus text-xs uppercase tracking-[.2em] text-[#92dfaf]">{t("availableKicker")}</p>
@@ -51,7 +51,7 @@ export default function RealmsPage() {
           </div>
         </section>
 
-        <section className="miraj-dark-section miraj-section-frame relative isolate overflow-hidden px-6 text-[#eef1e7] max-[700px]:px-4">
+        <section className="miraj-dark-section relative isolate overflow-hidden px-6 py-20 text-[#eef1e7] max-[700px]:px-4 max-[700px]:py-14">
           <div className="absolute inset-0 -z-20 bg-[url('/media/portal-hero-v3.png')] bg-cover bg-center opacity-[.1]" aria-hidden="true" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,29,24,.96),rgba(7,52,43,.9),rgba(3,29,24,.96))]" aria-hidden="true" />
           <div className="mx-auto w-[min(1180px,100%)]">
@@ -71,7 +71,7 @@ export default function RealmsPage() {
               ))}
             </div>
             <div className="mt-14 text-center">
-              <Link className={buttonStyles("primary", true)} href={routes.community}>{t("followCommunity")}</Link>
+              <Link className={buttonStyles("primary")} href={routes.community}>{t("followCommunity")}</Link>
             </div>
           </div>
         </section>

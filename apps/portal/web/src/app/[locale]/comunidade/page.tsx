@@ -36,13 +36,13 @@ export default async function CommunityPage({ params }: Props) {
         </div>
       </section>
 
-      <main className="miraj-dark-section miraj-scene-classes miraj-section-frame px-6 max-[700px]:px-4">
+      <main className="miraj-dark-section miraj-scene-classes px-6 py-20 max-[700px]:px-4 max-[700px]:py-14">
         <section className="mx-auto w-[min(1120px,100%)]">
           <header className="mx-auto max-w-3xl text-center">
             <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#92dfaf]">{t("doorsKicker")}</p>
             <h2 className="mt-4 font-miraj-of-icarus text-[clamp(2.7rem,5vw,5rem)] leading-[.88]">{t("doorsTitle")}</h2>
           </header>
-          <div className="mt-14 grid grid-cols-3 gap-3 max-[760px]:grid-cols-1">
+          <div className="mt-10 grid grid-cols-3 items-stretch gap-4 max-[760px]:grid-cols-1">
             {futureRooms.map(([title, description]) => (
               <article className="miraj-glass-card min-h-64 p-8 max-[760px]:min-h-0" key={title}>
                 <h3 className="font-miraj-of-icarus text-4xl">{title}</h3>

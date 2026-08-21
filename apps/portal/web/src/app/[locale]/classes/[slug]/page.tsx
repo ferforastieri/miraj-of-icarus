@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PrestigeBadge } from "@/components/game/PrestigeBadge";
+import { ClassCrestEvolution } from "@/components/game/ClassCrestEvolution";
 import { buttonStyles } from "@/components/ui/Button";
 import { WaterBackdrop } from "@/components/ui/WaterBackdrop";
-import { classHref, gameClassIds, prestigeTiers } from "@/components/game/model";
+import { classHref, gameClassIds } from "@/components/game/model";
 import { pageMetadata } from "@/lib/seo";
 import { routes, routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
@@ -46,7 +47,6 @@ export default async function ClassPage({ params }: Props) {
   const gameClasses = gameClassIds.map(id => ({ id, slug: t(`slugs.${id}`) }));
   const gameClass = gameClasses.find(item => item.slug === slug);
   if (!gameClass) notFound();
-  const prestigeT = await getTranslations({ locale, namespace: "Prestige" });
   const field = (id: typeof gameClass.id, key: string) => t(`items.${id}.${key}`);
 
   const index = gameClasses.findIndex(item => item.id === gameClass.id);
@@ -77,7 +77,7 @@ export default async function ClassPage({ params }: Props) {
       </section>
 
       <main>
-        <section className="miraj-dark-section miraj-scene-classes miraj-section-frame px-6 max-[700px]:px-4">
+        <section className="miraj-dark-section miraj-scene-classes px-6 py-20 max-[700px]:px-4 max-[700px]:py-14">
           <div className="mx-auto grid w-[min(1100px,100%)] grid-cols-[.9fr_1.1fr] gap-20 max-[850px]:grid-cols-1 max-[850px]:gap-12">
             <div>
               <p className="font-miraj-of-icarus text-xs uppercase tracking-[.2em] text-[#92dfaf]">{t("identity")}</p>
@@ -95,18 +95,10 @@ export default async function ClassPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="miraj-dark-section miraj-section-frame px-6 text-center max-[700px]:px-4">
+        <section className="miraj-dark-section px-6 py-16 text-center max-[700px]:px-4 max-[700px]:py-12">
           <p className="font-miraj-of-icarus text-xs uppercase tracking-[.22em] text-[#92e5b2]">{t("crestRise")}</p>
-          <h2 className="mx-auto mt-5 max-w-4xl font-miraj-of-icarus text-[clamp(3.2rem,6vw,6rem)] leading-[.84] text-[#f4efdc]">{t("achievements")}</h2>
-          <div className="mx-auto mt-16 grid w-[min(1220px,100%)] grid-cols-4 gap-3 max-[950px]:grid-cols-3 max-[700px]:grid-cols-2 max-[430px]:grid-cols-1">
-            {prestigeTiers.map(tier => (
-              <article className="miraj-glass-card px-4 pb-7 pt-3" key={tier.id}>
-                <PrestigeBadge classId={gameClass.id} className="mx-auto size-52" level={tier.level} />
-                <h3 className="font-miraj-of-icarus text-3xl text-[#f1ebda]">{prestigeT(`tiers.${tier.id}.name`)}</h3>
-                <p className="mt-2 text-sm text-[#aacab7]">{t("level", { level: tier.level })} · {prestigeT(`tiers.${tier.id}.stage`)}</p>
-              </article>
-            ))}
-          </div>
+          <h2 className="mx-auto mt-4 max-w-4xl font-miraj-of-icarus text-[clamp(2.7rem,5vw,5rem)] leading-[.86] text-[#f4efdc]">{t("achievements")}</h2>
+          <ClassCrestEvolution classId={gameClass.id} />
         </section>
 
         <nav className="grid grid-cols-2 border-y border-[#9c8755] bg-[linear-gradient(rgba(9,13,15,.72),rgba(9,13,15,.82)),url('/media/portal-hero-v3.png')] bg-cover bg-center text-[#edf1e7]" aria-label={t("otherAria")}>
